@@ -1,10 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>platform</title>
+    <!-- SEC-007: Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' 'unsafe-inline';
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com data:;
+               img-src 'self' data: blob:;
+               connect-src 'self';
+               frame-ancestors 'none';">
+    <!-- SEC-007: Anti-clickjacking -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>NexusLearn — 企业培训中心</title>
+    <meta name="description" content="NexusLearn 企业级交互式培训平台，9门专业课程，从 AI 到 Linux。" />
   </head>
   <body>
     <div id="root"></div>

@@ -69,16 +69,18 @@ export default function Login() {
             <div className="bstat"><span className="bstat-num">100%</span><span className="bstat-label">交互式</span></div>
           </div>
 
-          {/* Quick login hints */}
-          <div className="quick-login-hints">
-            <p className="ql-title">快速体验账号：</p>
-            <button className="ql-btn" onClick={() => quickLogin('admin@nexuslearn.com', 'admin123')}>
-              🔑 管理员账号 (admin / admin123)
-            </button>
-            <button className="ql-btn" onClick={() => quickLogin('demo@nexuslearn.com', 'demo123')}>
-              👤 学员账号 (demo / demo123)
-            </button>
-          </div>
+          {/* Quick login hints — DEV only, never shown in production */}
+          {import.meta.env.DEV && (
+            <div className="quick-login-hints">
+              <p className="ql-title">⚠️ 仅开发模式可见 · 快速体验：</p>
+              <button className="ql-btn" onClick={() => quickLogin('admin@nexuslearn.com', 'admin123')}>
+                🔑 管理员账号 (admin / admin123)
+              </button>
+              <button className="ql-btn" onClick={() => quickLogin('demo@nexuslearn.com', 'demo123')}>
+                👤 学员账号 (demo / demo123)
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Right panel — form */}
