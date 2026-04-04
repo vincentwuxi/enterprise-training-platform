@@ -1,5 +1,34 @@
 .dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.goto-admin-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: 8px;
+  color: #a78bfa;
+  font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.15s;
+}
+.goto-admin-btn:hover { background: rgba(167,139,250,0.2); }
+
+.empty-progress {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
 }
 
 .dashboard-header h1 {

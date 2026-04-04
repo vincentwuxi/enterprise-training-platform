@@ -44,6 +44,22 @@
   overflow: hidden;
   cursor: pointer;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+}
+
+.course-offline { opacity: 0.65; }
+
+.offline-indicator {
+  position: absolute;
+  top: 8px; right: 8px;
+  display: flex; align-items: center; gap: 4px;
+  background: rgba(239,68,68,0.85);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  z-index: 10;
 }
 
 .course-card:hover {
