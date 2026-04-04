@@ -20,33 +20,32 @@ export default function CourseSidebar({ course, activeLessonId }) {
       <div className="sidebar-section">
         <h3 className="section-title">课程目录</h3>
         <nav className="nav-menu">
-          {course.chapters.map((chapter) => {
-             const Icon = IconMap[chapter.icon] || Circle;
-             
-             // Check if active lesson id is in this chapter
-             const hasActiveLesson = chapter.lessons.some(l => l.id === activeLessonId);
+          {/* Normalise: support both chapters (old) and modules (new) */}
+          {(course.chapters || course.modules || []).map((item) => {
+             const Icon = IconMap[item.icon] || Circle;
+             const lessons = item.lessons || [{ id: item.id, title: item.title }];
+             const hasActiveLesson = lessons.some(l => l.id === activeLessonId);
+             const isActive = item.id === activeLessonId || hasActiveLesson;
 
              return (
-              <div key={chapter.id} className="chapter-group">
-                <div 
-                  className={`nav-item ${hasActiveLesson ? 'active' : ''}`}
+              <div key={item.id} className="chapter-group">
+                <div
+                  className={`nav-item ${isActive ? 'active' : ''}`}
                   onClick={() => {
-                    if (chapter.lessons.length > 0) {
-                      navigate(`/course/${courseId}/lesson/${chapter.lessons[0].id}`);
-                    }
+                    navigate(`/course/${courseId}/lesson/${lessons[0].id}`);
                   }}
                 >
                   <Icon className="icon" />
                   <div className="nav-item-content">
-                    <span className="nav-item-title">{chapter.title}</span>
-                    <span className="nav-item-subtitle">{chapter.subtitle}</span>
+                    <span className="nav-item-title">{item.title}</span>
+                    {item.subtitle && <span className="nav-item-subtitle">{item.subtitle}</span>}
                   </div>
                 </div>
-                {hasActiveLesson && (
+                {hasActiveLesson && lessons.length > 1 && (
                    <div className="lesson-submenu">
-                      {chapter.lessons.map(lesson => (
-                         <div 
-                           key={lesson.id} 
+                      {lessons.map(lesson => (
+                         <div
+                           key={lesson.id}
                            className={`submenu-item ${lesson.id === activeLessonId ? 'active' : ''}`}
                            onClick={() => navigate(`/course/${courseId}/lesson/${lesson.id}`)}
                          >

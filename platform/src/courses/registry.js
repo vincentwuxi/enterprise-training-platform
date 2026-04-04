@@ -8,6 +8,7 @@ import aiSkillEngManifest from '@course-skill-eng/../course.manifest.json';
 import fineTuneManifest from '@course-finetune/../course.manifest.json';
 import quantumManifest from '@course-quantum/../course.manifest.json';
 import linuxManifest from '@course-linux/../course.manifest.json';
+import tcpipManifest from '@course-tcpip/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -116,5 +117,18 @@ export const courseRegistry = {
       LessonSysadmin:    lazy(() => import('@course-linux/pages/LessonSysadmin')),
       LessonPerformance: lazy(() => import('@course-linux/pages/LessonPerformance'))
     }
-  }
+  },
+  'tcpip-mastery': {
+    manifest: tcpipManifest,
+    components: {
+      LessonOverview:     lazy(() => import('@course-tcpip/pages/LessonOverview')),
+      LessonModel:        lazy(() => import('@course-tcpip/pages/LessonModel')),
+      LessonIP:           lazy(() => import('@course-tcpip/pages/LessonIP')),
+      LessonTCP:          lazy(() => import('@course-tcpip/pages/LessonTCP')),
+      LessonUDP:          lazy(() => import('@course-tcpip/pages/LessonUDP')),
+      LessonApplication:  lazy(() => import('@course-tcpip/pages/LessonApplication')),
+      LessonSecurity:     lazy(() => import('@course-tcpip/pages/LessonSecurity')),
+      LessonDiagnosis:    lazy(() => import('@course-tcpip/pages/LessonDiagnosis')),
+    }
+  },
 };
