@@ -7,6 +7,7 @@ import aiMasteryManifest from '@course-ai-mastery/../course.manifest.json';
 import aiSkillEngManifest from '@course-skill-eng/../course.manifest.json';
 import fineTuneManifest from '@course-finetune/../course.manifest.json';
 import quantumManifest from '@course-quantum/../course.manifest.json';
+import linuxManifest from '@course-linux/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -101,6 +102,19 @@ export const courseRegistry = {
       LessonEntanglement: lazy(() => import('@course-quantum/pages/LessonEntanglement')),
       LessonTunneling: lazy(() => import('@course-quantum/pages/LessonTunneling')),
       LessonFuture: lazy(() => import('@course-quantum/pages/LessonFuture'))
+    }
+  },
+  'linux-mastery': {
+    manifest: linuxManifest,
+    components: {
+      LessonPhilosophy:  lazy(() => import('@course-linux/pages/LessonPhilosophy')),
+      LessonShell:       lazy(() => import('@course-linux/pages/LessonShell')),
+      LessonFilesystem:  lazy(() => import('@course-linux/pages/LessonFilesystem')),
+      LessonProcess:     lazy(() => import('@course-linux/pages/LessonProcess')),
+      LessonNetwork:     lazy(() => import('@course-linux/pages/LessonNetwork')),
+      LessonStorage:     lazy(() => import('@course-linux/pages/LessonStorage')),
+      LessonSysadmin:    lazy(() => import('@course-linux/pages/LessonSysadmin')),
+      LessonPerformance: lazy(() => import('@course-linux/pages/LessonPerformance'))
     }
   }
 };

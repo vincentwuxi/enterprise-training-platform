@@ -1,0 +1,153 @@
+{
+  "id": "linux-mastery",
+  "version": "1.0.0",
+  "title": "Linux 从入门到精通：说透 Linux 系统",
+  "subtitle": "8 大模块 · 覆盖哲学、Shell、文件系统、进程、网络、存储、系统管理与内核调优全链路",
+  "description": "不只是命令大全，而是真正理解 Linux 的设计哲学与工作机制。从 'Everything is a File' 到内核调参，从第一个 ls 命令到生产级 SRE 运维，用最直接的方式说透 Linux 系统的每一层。配备交互式终端模拟器和真实生产场景演练。",
+  "category": "操作系统与运维",
+  "tags": ["Linux", "Shell", "运维", "SRE", "内核", "网络", "Bash", "系统管理"],
+  "difficulty": "beginner-to-expert",
+  "estimatedHours": 40,
+  "language": "zh-CN",
+  "author": {
+    "name": "NexusLearn Linux 专家团队",
+    "avatar": ""
+  },
+  "cover": {
+    "gradient": ["#001a00", "#003300"],
+    "icon": "terminal"
+  },
+  "prerequisites": [
+    "能使用电脑基本操作",
+    "对编程有基本兴趣（无需经验）",
+    "建议准备一台可以跑 Linux 的机器（VirtualBox / WSL / 云服务器均可）"
+  ],
+  "chapters": [
+    {
+      "id": "c-philosophy",
+      "title": "模块一：Linux 哲学 — 理解一切的基础",
+      "subtitle": "思想奠基篇",
+      "icon": "cpu",
+      "lessons": [
+        {
+          "id": "philosophy",
+          "title": "Everything is a File：Linux 的世界观与设计哲学",
+          "type": "lesson",
+          "component": "LessonPhilosophy",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-shell",
+      "title": "模块二：Shell 精通 — 命令行是你的超级武器",
+      "subtitle": "Shell 实战篇",
+      "icon": "terminal",
+      "lessons": [
+        {
+          "id": "shell",
+          "title": "Bash 深度解析：管道、重定向、变量与脚本编程",
+          "type": "lesson",
+          "component": "LessonShell",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "c-filesystem",
+      "title": "模块三：文件系统 — 目录树与权限体系",
+      "subtitle": "文件系统篇",
+      "icon": "folder",
+      "lessons": [
+        {
+          "id": "filesystem",
+          "title": "Linux 目录结构全解：从 / 到 /proc 的每一寸土地",
+          "type": "lesson",
+          "component": "LessonFilesystem",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-process",
+      "title": "模块四：进程与信号 — 系统动力学",
+      "subtitle": "进程管理篇",
+      "icon": "activity",
+      "lessons": [
+        {
+          "id": "process",
+          "title": "进程生命周期、信号机制与系统调用深度解析",
+          "type": "lesson",
+          "component": "LessonProcess",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-network",
+      "title": "模块五：网络与防火墙 — 掌控每一个数据包",
+      "subtitle": "网络实战篇",
+      "icon": "wifi",
+      "lessons": [
+        {
+          "id": "network",
+          "title": "TCP/IP 栈、iptables/nftables 防火墙与网络诊断全攻略",
+          "type": "lesson",
+          "component": "LessonNetwork",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "c-storage",
+      "title": "模块六：存储与磁盘管理 — 数据的家",
+      "subtitle": "存储管理篇",
+      "icon": "hard-drive",
+      "lessons": [
+        {
+          "id": "storage",
+          "title": "分区、LVM、RAID 与 ext4/xfs 文件系统深度解析",
+          "type": "lesson",
+          "component": "LessonStorage",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-sysadmin",
+      "title": "模块七：系统管理 — 驾驭 systemd 与自动化运维",
+      "subtitle": "系统管理篇",
+      "icon": "settings",
+      "lessons": [
+        {
+          "id": "sysadmin",
+          "title": "systemd 服务管理、cron 任务调度与 Ansible 自动化",
+          "type": "lesson",
+          "component": "LessonSysadmin",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-performance",
+      "title": "模块八：性能调优 — 压榨内核的每一滴性能",
+      "subtitle": "内核调优篇",
+      "icon": "zap",
+      "lessons": [
+        {
+          "id": "performance",
+          "title": "CPU/内存/IO 诊断、sysctl 调参与生产级性能优化",
+          "type": "lesson",
+          "component": "LessonPerformance",
+          "estimatedMinutes": 120
+        }
+      ]
+    }
+  ],
+  "features": {
+    "hasSandbox": true,
+    "hasQuiz": true,
+    "hasKatex": false,
+    "progressTracking": true
+  }
+}

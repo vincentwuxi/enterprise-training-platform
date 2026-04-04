@@ -15,7 +15,8 @@ export default defineConfig({
       '@course-ai-mastery': path.resolve(__dirname, '../AISkillsMastery/src'),
       '@course-skill-eng': path.resolve(__dirname, '../AISkillEngineering/src'),
       '@course-finetune': path.resolve(__dirname, '../LLMFineTuning/src'),
-      '@course-quantum': path.resolve(__dirname, '../QuantumMechanics/src')
+      '@course-quantum': path.resolve(__dirname, '../QuantumMechanics/src'),
+      '@course-linux': path.resolve(__dirname, '../LinuxMastery/src')
     }
   }
 })
