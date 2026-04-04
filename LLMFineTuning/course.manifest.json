@@ -1,0 +1,153 @@
+{
+  "id": "llm-finetuning-mastery",
+  "version": "1.0.0",
+  "title": "大模型微调实战营：从入门到精通",
+  "subtitle": "8 大模块 · 覆盖数据工程、SFT、LoRA/QLoRA、RLHF/DPO、评估与生产部署全链路",
+  "description": "从零理解大模型微调原理，到动手训练属于自己的专属模型。覆盖主流方法论：SFT、LoRA、QLoRA、RLHF、DPO，配备交互式可视化工具，学完即可在企业落地。",
+  "category": "AI 工程与模型训练",
+  "tags": ["大模型", "Fine-tuning", "LoRA", "RLHF", "DPO", "SFT", "AI工程"],
+  "difficulty": "intermediate-to-advanced",
+  "estimatedHours": 32,
+  "language": "zh-CN",
+  "author": {
+    "name": "NexusLearn AI 专家团队",
+    "avatar": ""
+  },
+  "cover": {
+    "gradient": ["#0f172a", "#1e3a5f"],
+    "icon": "cpu"
+  },
+  "prerequisites": [
+    "了解 Python 基础语法",
+    "了解基本的神经网络概念（了解 Transformer 更佳）",
+    "有过 ChatGPT/Claude 等大模型使用经验"
+  ],
+  "chapters": [
+    {
+      "id": "c-foundation",
+      "title": "模块一：认知奠基 — 微调是什么？为什么要微调？",
+      "subtitle": "原理认知篇",
+      "icon": "layers",
+      "lessons": [
+        {
+          "id": "foundation",
+          "title": "从预训练到微调：大模型的成长之路",
+          "type": "lesson",
+          "component": "LessonFoundation",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-data",
+      "title": "模块二：数据工程 — 好数据是微调的一切",
+      "subtitle": "数据准备篇",
+      "icon": "database",
+      "lessons": [
+        {
+          "id": "data",
+          "title": "数据决定上限：从原始文本到高质量训练集",
+          "type": "lesson",
+          "component": "LessonData",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-sft",
+      "title": "模块三：SFT — 监督微调入门",
+      "subtitle": "全量微调篇",
+      "icon": "settings",
+      "lessons": [
+        {
+          "id": "sft",
+          "title": "Supervised Fine-Tuning：最直接的微调方式",
+          "type": "lesson",
+          "component": "LessonSFT",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-peft",
+      "title": "模块四：PEFT — 参数高效微调（LoRA / QLoRA）",
+      "subtitle": "高效微调篇",
+      "icon": "zap",
+      "lessons": [
+        {
+          "id": "peft",
+          "title": "用 1% 参数达到 100% 效果：LoRA 与 QLoRA 实战",
+          "type": "lesson",
+          "component": "LessonPEFT",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "c-rlhf",
+      "title": "模块五：RLHF & DPO — 对齐人类价值观",
+      "subtitle": "偏好对齐篇",
+      "icon": "heart",
+      "lessons": [
+        {
+          "id": "rlhf",
+          "title": "RLHF 到 DPO：让模型符合人类期待",
+          "type": "lesson",
+          "component": "LessonRLHF",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "c-infra",
+      "title": "模块六：训练基础设施 — GPU、框架与配置",
+      "subtitle": "工程实战篇",
+      "icon": "server",
+      "lessons": [
+        {
+          "id": "infra",
+          "title": "训练环境全解：从单 GPU 到分布式集群",
+          "type": "lesson",
+          "component": "LessonInfra",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-eval",
+      "title": "模块七：评估与迭代 — 如何知道微调是否成功？",
+      "subtitle": "评估优化篇",
+      "icon": "bar-chart-2",
+      "lessons": [
+        {
+          "id": "eval",
+          "title": "模型评估全景：Benchmark、人工评估与 LLM-as-Judge",
+          "type": "lesson",
+          "component": "LessonEval",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-deploy",
+      "title": "模块八：生产部署 — 微调模型上线与持续优化",
+      "subtitle": "落地实战篇",
+      "icon": "upload-cloud",
+      "lessons": [
+        {
+          "id": "deploy",
+          "title": "微调模型投产：量化、推理加速与成本控制",
+          "type": "lesson",
+          "component": "LessonDeploy",
+          "estimatedMinutes": 90
+        }
+      ]
+    }
+  ],
+  "features": {
+    "hasSandbox": true,
+    "hasQuiz": true,
+    "hasKatex": false,
+    "progressTracking": true
+  }
+}

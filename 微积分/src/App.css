@@ -1,0 +1,17 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  margin-top: 1rem;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}

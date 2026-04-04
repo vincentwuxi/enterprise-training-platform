@@ -1,0 +1,150 @@
+{
+  "id": "ai-skills-mastery-pro",
+  "version": "1.0.0",
+  "title": "AI 全能实战营：从入门到精通",
+  "subtitle": "8 大模块 · 覆盖 AI 认知、提示词、写作、编程、数据、自动化、创作与AI搭建",
+  "description": "彻底从【听说过AI】升级为【用AI10倍提效】的实战特训营。不讲数学公式，只讲落地场景。每个模块配备互动训练工具，学完即用。",
+  "category": "人工智能与效率提升",
+  "tags": ["AI入门", "提示词", "AI写作", "AI编程", "工作流", "自动化"],
+  "difficulty": "beginner-to-advanced",
+  "estimatedHours": 24,
+  "language": "zh-CN",
+  "author": {
+    "name": "NexusLearn AI 专家团队",
+    "avatar": ""
+  },
+  "cover": {
+    "image": "",
+    "gradient": ["#7c3aed", "#2563eb"],
+    "icon": "brain"
+  },
+  "prerequisites": ["会用电脑浏览网页，无需任何编程或数学基础"],
+  "chapters": [
+    {
+      "id": "c-foundation",
+      "title": "模块一：重新认识 AI",
+      "subtitle": "认知重塑篇",
+      "icon": "lightbulb",
+      "lessons": [
+        {
+          "id": "foundation",
+          "title": "拆解 LLM 的魔法：AI 怎么思考？",
+          "type": "lesson",
+          "component": "LessonFoundation",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-prompt",
+      "title": "模块二：提示词核心心法",
+      "subtitle": "沟通艺术篇",
+      "icon": "message-square",
+      "lessons": [
+        {
+          "id": "prompt",
+          "title": "CRAFT 框架：写出让 AI 秒懂的指令",
+          "type": "lesson",
+          "component": "LessonPrompt",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-writing",
+      "title": "模块三：AI 写作加速器",
+      "subtitle": "写作效能篇",
+      "icon": "pen-tool",
+      "lessons": [
+        {
+          "id": "writing",
+          "title": "10 倍写作效能：从空白到爆款",
+          "type": "lesson",
+          "component": "LessonWriting",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-coding",
+      "title": "模块四：AI 编程助手",
+      "subtitle": "编程加速篇",
+      "icon": "code",
+      "lessons": [
+        {
+          "id": "coding",
+          "title": "人人都是 10x 工程师：AI 辅助开发实战",
+          "type": "lesson",
+          "component": "LessonCoding",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-data",
+      "title": "模块五：AI 数据分析",
+      "subtitle": "数据智能篇",
+      "icon": "bar-chart",
+      "lessons": [
+        {
+          "id": "data",
+          "title": "让 AI 成为你的数据分析师",
+          "type": "lesson",
+          "component": "LessonData",
+          "estimatedMinutes": 75
+        }
+      ]
+    },
+    {
+      "id": "c-automation",
+      "title": "模块六：AI 自动化工作流",
+      "subtitle": "效率倍增篇",
+      "icon": "git-branch",
+      "lessons": [
+        {
+          "id": "automation",
+          "title": "让 AI 帮你打工：构建自动化流水线",
+          "type": "lesson",
+          "component": "LessonAutomation",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-creative",
+      "title": "模块七：AI 多模态创作",
+      "subtitle": "创意解锁篇",
+      "icon": "image",
+      "lessons": [
+        {
+          "id": "creative",
+          "title": "文图声视全制霸：多模态 AI 创作实战",
+          "type": "lesson",
+          "component": "LessonCreative",
+          "estimatedMinutes": 75
+        }
+      ]
+    },
+    {
+      "id": "c-build",
+      "title": "模块八：构建你的 AI 助理",
+      "subtitle": "精通造物篇",
+      "icon": "cpu",
+      "lessons": [
+        {
+          "id": "build",
+          "title": "从用户到创造者：搭建专属 AI Agent",
+          "type": "lesson",
+          "component": "LessonBuild",
+          "estimatedMinutes": 120
+        }
+      ]
+    }
+  ],
+  "features": {
+    "hasSandbox": true,
+    "hasQuiz": true,
+    "hasKatex": false,
+    "progressTracking": true
+  }
+}

@@ -1,0 +1,22 @@
+.integral-vis .riemann-rect {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.integral-vis .stats-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+.text-success {
+  color: var(--accent-success);
+  font-weight: bold;
+}
+
+.text-warning {
+  color: var(--accent-warning);
+}

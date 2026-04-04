@@ -1,0 +1,123 @@
+.course-sidebar-nav {
+  width: 320px;
+  height: calc(100vh - 80px);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 80px;
+  overflow-y: auto;
+  border-radius: 0 16px 16px 0;
+  border-left: none;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chapter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+  background: var(--gradient-glow);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.nav-item .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+}
+
+.nav-item.active .icon {
+  color: white;
+}
+
+.nav-item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.nav-item-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.nav-item.active .nav-item-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lesson-submenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu-item {
+  padding: 0.5rem 1rem 0.5rem 3.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.submenu-item:hover {
+  color: var(--text-primary);
+}
+
+.submenu-item.active {
+  color: var(--accent-primary);
+  border-left-color: var(--accent-primary);
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+}
+
+.unlock-btn {
+  background: var(--gradient-glow);
+  color: white;
+}
+
+.unlock-btn .icon, .unlock-btn .nav-item-title {
+  color: white;
+}

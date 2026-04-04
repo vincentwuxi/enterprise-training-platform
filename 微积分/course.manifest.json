@@ -1,0 +1,81 @@
+{
+  "id": "calculus-intuition",
+  "version": "1.0.0",
+  "title": "微积分 — 直觉互动体验",
+  "subtitle": "从零开始建立微积分的直觉理解",
+  "description": "通过交互式可视化沙盒，帮助你理解极限、导数和积分的本质。不需要记住公式，只需要建立直觉。",
+  
+  "category": "数学与逻辑",
+  "tags": ["微积分", "数学", "可视化", "互动学习"],
+  "difficulty": "intermediate",
+  "estimatedHours": 8,
+  "language": "zh-CN",
+
+  "author": {
+    "name": "NexusLearn 团队",
+    "avatar": ""
+  },
+
+  "cover": {
+    "image": "",
+    "gradient": ["#3b82f6", "#8b5cf6"],
+    "icon": "infinity"
+  },
+
+  "prerequisites": [],
+
+  "chapters": [
+    {
+      "id": "limits",
+      "title": "第一章：极限",
+      "subtitle": "无穷逼近的艺术",
+      "icon": "target",
+      "lessons": [
+        {
+          "id": "limits-intro",
+          "title": "极限的直觉",
+          "type": "lesson",
+          "component": "LessonLimits",
+          "estimatedMinutes": 15
+        }
+      ]
+    },
+    {
+      "id": "derivatives",
+      "title": "第二章：导数",
+      "subtitle": "捕捉瞬间的变化率",
+      "icon": "activity",
+      "lessons": [
+        {
+           "id": "derivatives-intro",
+           "title": "导数的直觉",
+           "type": "lesson",
+           "component": "LessonDerivatives",
+           "estimatedMinutes": 20
+        }
+      ]
+    },
+    {
+      "id": "integrals",
+      "title": "第三章：积分",
+      "subtitle": "化零为整的魔法",
+      "icon": "divide-square",
+      "lessons": [
+        {
+          "id": "integrals-intro",
+          "title": "积分的直觉",
+          "type": "lesson",
+          "component": "LessonIntegrals",
+          "estimatedMinutes": 20
+        }
+      ]
+    }
+  ],
+
+  "features": {
+    "hasSandbox": true,
+    "hasQuiz": true,
+    "hasKatex": true,
+    "progressTracking": true
+  }
+}

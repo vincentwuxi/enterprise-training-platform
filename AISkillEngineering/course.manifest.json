@@ -1,0 +1,122 @@
+{
+  "id": "ai-skill-engineering",
+  "version": "1.0.0",
+  "title": "AI Skill 工程师实战营",
+  "subtitle": "基于 Anthropic 14 个官方 Skill 全面掌握设计、编写、测试与验证 AI Skill 的完整方法论",
+  "description": "从零理解什么是 AI Skill，到动手写一个通过测试的高质量 Skill。基于 Anthropic 官方 14 个 Skills 原文深度解析，学完即可为你的 AI Agent 编写可复用、可测试、可维护的工程级 Skill。",
+  "category": "AI 工程与 Agent 开发",
+  "tags": ["AI Skill", "Agent工程", "TDD", "提示词工程", "Anthropic"],
+  "difficulty": "intermediate-to-advanced",
+  "estimatedHours": 16,
+  "language": "zh-CN",
+  "author": {
+    "name": "NexusLearn AI 专家团队",
+    "avatar": ""
+  },
+  "cover": {
+    "gradient": ["#1e1b4b", "#4c1d95"],
+    "icon": "cpu"
+  },
+  "prerequisites": [
+    "了解基本的 AI 对话工具使用（ChatGPT/Claude）",
+    "有代码阅读能力（无需编程经验）"
+  ],
+  "chapters": [
+    {
+      "id": "c-overview",
+      "title": "模块一：认知重塑 — Skill 是什么？",
+      "subtitle": "宏观认知篇",
+      "icon": "layers",
+      "lessons": [
+        {
+          "id": "overview",
+          "title": "重新定义 AI Skill：不是 Prompt，是工程级参考指南",
+          "type": "lesson",
+          "component": "LessonOverview",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-structure",
+      "title": "模块二：解剖结构 — 一个好 Skill 长什么样？",
+      "subtitle": "结构规范篇",
+      "icon": "file-text",
+      "lessons": [
+        {
+          "id": "structure",
+          "title": "SKILL.md 完整解剖：从 YAML 前言到 CSO 搜索优化",
+          "type": "lesson",
+          "component": "LessonStructure",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-tdd",
+      "title": "模块三：铁律 — TDD 思想写 Skill",
+      "subtitle": "测试驱动篇",
+      "icon": "check-circle",
+      "lessons": [
+        {
+          "id": "tdd",
+          "title": "RED-GREEN-REFACTOR：把 TDD 用于文档工程",
+          "type": "lesson",
+          "component": "LessonTDD",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "c-gallery",
+      "title": "模块四：全景解析 — 14 个官方 Skill 深度扫描",
+      "subtitle": "官方案例篇",
+      "icon": "grid",
+      "lessons": [
+        {
+          "id": "gallery",
+          "title": "14 个官方 Skill 分类解读与设计哲学",
+          "type": "lesson",
+          "component": "LessonGallery",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "c-workshop",
+      "title": "模块五：动手实战 — 从零写一个企业级 Skill",
+      "subtitle": "实战工坊篇",
+      "icon": "tool",
+      "lessons": [
+        {
+          "id": "workshop",
+          "title": "带你完整写一个可测试的 Skill：从 Bad 到 Great",
+          "type": "lesson",
+          "component": "LessonWorkshop",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "c-deploy",
+      "title": "模块六：验证部署 — Skill 上线与持续迭代",
+      "subtitle": "验证部署篇",
+      "icon": "upload-cloud",
+      "lessons": [
+        {
+          "id": "deploy",
+          "title": "验证是最后一关：测试方法、部署策略与持续迭代",
+          "type": "lesson",
+          "component": "LessonDeploy",
+          "estimatedMinutes": 90
+        }
+      ]
+    }
+  ],
+  "features": {
+    "hasSandbox": true,
+    "hasQuiz": true,
+    "hasKatex": false,
+    "progressTracking": true
+  }
+}

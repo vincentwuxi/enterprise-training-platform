@@ -1,0 +1,58 @@
+.limit-curve {
+  stroke: var(--accent-secondary); 
+  stroke-width: 4;
+}
+
+.limit-graph .hole {
+  fill: var(--bg-primary);
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+
+.limit-graph .hole-active {
+  stroke: var(--accent-danger);
+  fill: rgba(239, 68, 68, 0.2);
+  filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
+  stroke-width: 4;
+}
+
+.limit-graph .tracker-line {
+  stroke: var(--accent-primary);
+  stroke-width: 2;
+  stroke-dasharray: 4;
+}
+
+.limit-graph .tracker-point {
+  fill: var(--accent-primary);
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+}
+
+.limit-graph .highlight-text {
+  fill: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.limit-graph .error-text {
+  fill: var(--accent-danger);
+  font-weight: bold;
+  font-size: 14px;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { filter: drop-shadow(0 0 2px var(--accent-danger)); }
+  to { filter: drop-shadow(0 0 6px var(--accent-danger)); }
+}
+
+.error-message {
+  padding: 1.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 12px;
+  color: #fca5a5;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  animation: fadeIn 0.3s;
+}

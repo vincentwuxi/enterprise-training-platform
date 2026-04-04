@@ -1,0 +1,106 @@
+import { lazy } from 'react';
+import calculusManifest from '@course-calculus/../course.manifest.json';
+import aiSkillsManifest from '@course-ai/../course.manifest.json';
+import promptCampManifest from '@course-prompt/../course.manifest.json';
+import cloudflareManifest from '@course-cloudflare/../course.manifest.json';
+import aiMasteryManifest from '@course-ai-mastery/../course.manifest.json';
+import aiSkillEngManifest from '@course-skill-eng/../course.manifest.json';
+import fineTuneManifest from '@course-finetune/../course.manifest.json';
+import quantumManifest from '@course-quantum/../course.manifest.json';
+
+// Simple registry mapping course manifest to its lazy-loaded components
+export const courseRegistry = {
+  'calculus-intuition': {
+    manifest: calculusManifest,
+    components: {
+      LessonLimits: lazy(() => import('@course-calculus/pages/LessonLimits')),
+      LessonDerivatives: lazy(() => import('@course-calculus/pages/LessonDerivatives')),
+      LessonIntegrals: lazy(() => import('@course-calculus/pages/LessonIntegrals'))
+    }
+  },
+  'ai-skills-mastery': {
+    manifest: aiSkillsManifest,
+    components: {
+      LessonFamily: lazy(() => import('@course-ai/pages/LessonFamily')),
+      LessonCooking: lazy(() => import('@course-ai/pages/LessonCooking')),
+      LessonLearning: lazy(() => import('@course-ai/pages/LessonLearning')),
+      LessonJargon: lazy(() => import('@course-ai/pages/LessonJargon')),
+      LessonLimits: lazy(() => import('@course-ai/pages/LessonLimits'))
+    }
+  },
+  'prompt-engineering-camp': {
+    manifest: promptCampManifest,
+    components: {
+      LessonIcebreaker: lazy(() => import('@course-prompt/pages/LessonIcebreaker')),
+      LessonFrameworks: lazy(() => import('@course-prompt/pages/LessonFrameworks')),
+      LessonLimitsBreak: lazy(() => import('@course-prompt/pages/LessonLimitsBreak')),
+      LessonScenarios: lazy(() => import('@course-prompt/pages/LessonScenarios')),
+      LessonEnterprise: lazy(() => import('@course-prompt/pages/LessonEnterprise')),
+      LessonWorkshop: lazy(() => import('@course-prompt/pages/LessonWorkshop'))
+    }
+  },
+  'cloudflare-mastery': {
+    manifest: cloudflareManifest,
+    components: {
+      LessonArchitecture: lazy(() => import('@course-cloudflare/pages/LessonArchitecture')),
+      LessonPerformance: lazy(() => import('@course-cloudflare/pages/LessonPerformance')),
+      LessonSecurity: lazy(() => import('@course-cloudflare/pages/LessonSecurity')),
+      LessonZeroTrust: lazy(() => import('@course-cloudflare/pages/LessonZeroTrust')),
+      LessonEdge: lazy(() => import('@course-cloudflare/pages/LessonEdge')),
+      LessonSRE: lazy(() => import('@course-cloudflare/pages/LessonSRE')),
+      LessonLabs: lazy(() => import('@course-cloudflare/pages/LessonLabs')),
+      LessonAI: lazy(() => import('@course-cloudflare/pages/LessonAI')),
+      LessonHA: lazy(() => import('@course-cloudflare/pages/LessonHA')),
+      LessonNetwork: lazy(() => import('@course-cloudflare/pages/LessonNetwork'))
+    }
+  },
+  'ai-skills-mastery-pro': {
+    manifest: aiMasteryManifest,
+    components: {
+      LessonFoundation: lazy(() => import('@course-ai-mastery/pages/LessonFoundation')),
+      LessonPrompt: lazy(() => import('@course-ai-mastery/pages/LessonPrompt')),
+      LessonWriting: lazy(() => import('@course-ai-mastery/pages/LessonWriting')),
+      LessonCoding: lazy(() => import('@course-ai-mastery/pages/LessonCoding')),
+      LessonData: lazy(() => import('@course-ai-mastery/pages/LessonData')),
+      LessonAutomation: lazy(() => import('@course-ai-mastery/pages/LessonAutomation')),
+      LessonCreative: lazy(() => import('@course-ai-mastery/pages/LessonCreative')),
+      LessonBuild: lazy(() => import('@course-ai-mastery/pages/LessonBuild'))
+    }
+  },
+  'ai-skill-engineering': {
+    manifest: aiSkillEngManifest,
+    components: {
+      LessonOverview: lazy(() => import('@course-skill-eng/pages/LessonOverview')),
+      LessonStructure: lazy(() => import('@course-skill-eng/pages/LessonStructure')),
+      LessonTDD: lazy(() => import('@course-skill-eng/pages/LessonTDD')),
+      LessonGallery: lazy(() => import('@course-skill-eng/pages/LessonGallery')),
+      LessonWorkshop: lazy(() => import('@course-skill-eng/pages/LessonWorkshop')),
+      LessonDeploy: lazy(() => import('@course-skill-eng/pages/LessonDeploy'))
+    }
+  },
+  'llm-finetuning-mastery': {
+    manifest: fineTuneManifest,
+    components: {
+      LessonFoundation: lazy(() => import('@course-finetune/pages/LessonFoundation')),
+      LessonData: lazy(() => import('@course-finetune/pages/LessonData')),
+      LessonSFT: lazy(() => import('@course-finetune/pages/LessonSFT')),
+      LessonPEFT: lazy(() => import('@course-finetune/pages/LessonPEFT')),
+      LessonRLHF: lazy(() => import('@course-finetune/pages/LessonRLHF')),
+      LessonInfra: lazy(() => import('@course-finetune/pages/LessonInfra')),
+      LessonEval: lazy(() => import('@course-finetune/pages/LessonEval')),
+      LessonDeploy: lazy(() => import('@course-finetune/pages/LessonDeploy'))
+    }
+  },
+  'quantum-mechanics-intro': {
+    manifest: quantumManifest,
+    components: {
+      LessonRevolution: lazy(() => import('@course-quantum/pages/LessonRevolution')),
+      LessonDuality: lazy(() => import('@course-quantum/pages/LessonDuality')),
+      LessonUncertainty: lazy(() => import('@course-quantum/pages/LessonUncertainty')),
+      LessonSchrodinger: lazy(() => import('@course-quantum/pages/LessonSchrodinger')),
+      LessonEntanglement: lazy(() => import('@course-quantum/pages/LessonEntanglement')),
+      LessonTunneling: lazy(() => import('@course-quantum/pages/LessonTunneling')),
+      LessonFuture: lazy(() => import('@course-quantum/pages/LessonFuture'))
+    }
+  }
+};

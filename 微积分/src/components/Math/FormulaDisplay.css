@@ -1,0 +1,38 @@
+.formula-container {
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+}
+
+.formula-container.block {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1.25em;
+}
+
+.formula-container.highlight-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.katex-display {
+  margin: 0 !important;
+}
+
+/* Custom Katex coloring to match our theme */
+.katex .mathdefault {
+  color: #e2e8f0;
+}
+
+.katex .mbin, .katex .mrel {
+  color: var(--accent-primary);
+}
+
+.katex .mord {
+  color: inherit;
+}

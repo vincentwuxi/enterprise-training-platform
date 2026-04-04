@@ -1,0 +1,126 @@
+{
+  "id": "prompt-engineering-camp",
+  "version": "1.0.0",
+  "title": "大模型驾驭术：Prompt Engineering 实战集训营",
+  "subtitle": "AI 时代的核心生产力",
+  "description": "专为期望实现 10 倍提效的职场人士打造的实战营。兼顾“去魅与认知建立”、“核心心法传授”、“高阶技巧演练”以及最重要的“业务场景落地”。",
+  
+  "category": "进阶实战",
+  "tags": ["Prompt", "生产力提效", "实战工作坊", "AI办公"],
+  "difficulty": "intermediate",
+  "estimatedHours": 14,
+  "language": "zh-CN",
+
+  "author": {
+    "name": "NexusLearn 特级教研组",
+    "avatar": ""
+  },
+
+  "cover": {
+    "image": "",
+    "gradient": ["#f59e0b", "#ec4899"], 
+    "icon": "zap"
+  },
+
+  "prerequisites": ["了解基础大语言模型概念最佳", "带着实际业务痛点学习"],
+
+  "chapters": [
+    {
+      "id": "module-1-icebreaker",
+      "title": "模块一：认知破冰",
+      "subtitle": "重新理解大模型与人机协作",
+      "icon": "target",
+      "lessons": [
+        {
+          "id": "icebreaker",
+          "title": "把它当超级实习生！",
+          "type": "lesson",
+          "component": "LessonIcebreaker",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "module-2-frameworks",
+      "title": "模块二：核心心法",
+      "subtitle": "构建优质提示词的万能框架",
+      "icon": "divide-square",
+      "lessons": [
+        {
+          "id": "frameworks",
+          "title": "四大原则与框架结构",
+          "type": "lesson",
+          "component": "LessonFrameworks",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "module-3-limitsbreak",
+      "title": "模块三：突破极限",
+      "subtitle": "激发 AI 深度推理的高阶策略",
+      "icon": "activity",
+      "lessons": [
+        {
+          "id": "limitsbreak",
+          "title": "思维链与反向反问",
+          "type": "lesson",
+          "component": "LessonLimitsBreak",
+          "estimatedMinutes": 120
+        }
+      ]
+    },
+    {
+      "id": "module-4-scenarios",
+      "title": "模块四：场景落地",
+      "subtitle": "职场效率 10 倍提升",
+      "icon": "briefcase",
+      "lessons": [
+        {
+          "id": "scenarios",
+          "title": "文字、数据、开发全场景应对",
+          "type": "lesson",
+          "component": "LessonScenarios",
+          "estimatedMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "module-5-enterprise",
+      "title": "模块五：走向企业级",
+      "subtitle": "安全与前沿视野",
+      "icon": "shield-check",
+      "lessons": [
+        {
+           "id": "enterprise",
+           "title": "知识库、智能体与合规防线",
+           "type": "lesson",
+           "component": "LessonEnterprise",
+           "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "module-6-workshop",
+      "title": "模块六：终极黑客松",
+      "subtitle": "BYOP 实战验证工坊",
+      "icon": "trophy",
+      "lessons": [
+        {
+           "id": "workshop",
+           "title": "带着干货与小抄满载而归",
+           "type": "lesson",
+           "component": "LessonWorkshop",
+           "estimatedMinutes": 120
+        }
+      ]
+    }
+  ],
+
+  "features": {
+    "hasSandbox": false,
+    "hasQuiz": false,
+    "hasKatex": false,
+    "progressTracking": true
+  }
+}

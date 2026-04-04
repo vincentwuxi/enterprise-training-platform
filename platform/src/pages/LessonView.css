@@ -1,0 +1,125 @@
+.lesson-view-layout {
+  display: flex;
+  flex: 1;
+}
+
+.lesson-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px); /* Adjust for navbar */
+  overflow: hidden;
+}
+
+.lesson-breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.875rem;
+}
+
+.breadcrumb-link {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb-link:hover {
+  color: var(--accent-primary);
+}
+
+.breadcrumb-separator {
+  margin: 0 0.5rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.lesson-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.lesson-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+}
+
+/* Base rules for integrating legacy Course CSS */
+.lesson-page {
+  padding: 2rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .lesson-page {
+    padding: 1.5rem 1rem; /* Much smaller padding on mobile */
+  }
+}
+
+.lesson-header {
+  margin-bottom: 3rem;
+}
+
+.lesson-header h1 {
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .lesson-header h1 {
+    font-size: 1.75rem; /* Smaller font on mobile */
+  }
+}
+
+.lesson-intro {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.lesson-section {
+  margin-bottom: 3rem;
+}
+
+.lesson-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-section p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.nav-btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: var(--glass-border);
+  transition: all var(--transition-fast);
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}

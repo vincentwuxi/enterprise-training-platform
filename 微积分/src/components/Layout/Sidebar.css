@@ -1,0 +1,69 @@
+.sidebar {
+  width: 280px;
+  height: calc(100vh - 100px);
+  position: sticky;
+  top: 90px;
+  margin-left: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-primary);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+}
+
+.nav-item .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav-item-subtitle {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}

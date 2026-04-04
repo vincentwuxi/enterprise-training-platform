@@ -1,0 +1,138 @@
+{
+  "id": "quantum-mechanics-intro",
+  "version": "1.0.0",
+  "title": "量子力学：从经典到量子的思维革命",
+  "subtitle": "7 大模块 · 从日常直觉出发，重建对物质世界最深层真相的认知",
+  "description": "你不需要数学博士学位，就能真正理解量子力学。通过交互式可视化、思想实验与生动类比，彻底弄清波粒二象性、量子纠缠、不确定性原理与薛定谔方程的深层含义——这些概念正在改变计算机、医疗、通信的未来。",
+  "category": "科学与技术",
+  "tags": ["量子力学", "物理", "波粒二象性", "量子纠缠", "薛定谔", "量子计算"],
+  "difficulty": "beginner-to-intermediate",
+  "estimatedHours": 14,
+  "language": "zh-CN",
+  "author": {
+    "name": "NexusLearn 量子科学团队",
+    "avatar": ""
+  },
+  "cover": {
+    "gradient": ["#0c0a2e", "#1a0a5e"],
+    "icon": "atom"
+  },
+  "prerequisites": [
+    "高中物理基础（了解波与粒子概念即可）",
+    "对科学充满好奇心",
+    "不需要高等数学背景"
+  ],
+  "chapters": [
+    {
+      "id": "c-revolution",
+      "title": "模块一：量子革命 — 经典物理的崩塌",
+      "subtitle": "认知破局篇",
+      "icon": "zap",
+      "lessons": [
+        {
+          "id": "revolution",
+          "title": "当经典物理遇到困境：黑体辐射与光电效应",
+          "type": "lesson",
+          "component": "LessonRevolution",
+          "estimatedMinutes": 45
+        }
+      ]
+    },
+    {
+      "id": "c-duality",
+      "title": "模块二：波粒二象性 — 世界最奇怪的本质",
+      "subtitle": "量子奇异篇",
+      "icon": "waves",
+      "lessons": [
+        {
+          "id": "duality",
+          "title": "电子是波还是粒子？双缝实验揭示终极谜题",
+          "type": "lesson",
+          "component": "LessonDuality",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-uncertainty",
+      "title": "模块三：不确定性原理 — 宇宙不允许被精确测量",
+      "subtitle": "测量哲学篇",
+      "icon": "help-circle",
+      "lessons": [
+        {
+          "id": "uncertainty",
+          "title": "海森堡的洞见：为什么精确是一种幻觉？",
+          "type": "lesson",
+          "component": "LessonUncertainty",
+          "estimatedMinutes": 50
+        }
+      ]
+    },
+    {
+      "id": "c-schrodinger",
+      "title": "模块四：薛定谔方程 — 量子世界的运动定律",
+      "subtitle": "波函数核心篇",
+      "icon": "activity",
+      "lessons": [
+        {
+          "id": "schrodinger",
+          "title": "既生既死：薛定谔的猫与量子叠加态",
+          "type": "lesson",
+          "component": "LessonSchrodinger",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-entanglement",
+      "title": "模块五：量子纠缠 — 爱因斯坦最恐惧的幽灵",
+      "subtitle": "纠缠宇宙篇",
+      "icon": "link",
+      "lessons": [
+        {
+          "id": "entanglement",
+          "title": "幽灵般的超距作用：隔空的神秘连接",
+          "type": "lesson",
+          "component": "LessonEntanglement",
+          "estimatedMinutes": 60
+        }
+      ]
+    },
+    {
+      "id": "c-tunneling",
+      "title": "模块六：量子隧穿 — 穿墙而过的粒子",
+      "subtitle": "量子应用篇",
+      "icon": "arrow-right",
+      "lessons": [
+        {
+          "id": "tunneling",
+          "title": "量子穿墙术：核聚变、隧道二极管与生命之谜",
+          "type": "lesson",
+          "component": "LessonTunneling",
+          "estimatedMinutes": 45
+        }
+      ]
+    },
+    {
+      "id": "c-future",
+      "title": "模块七：量子未来 — 正在改变世界的量子技术",
+      "subtitle": "科技前沿篇",
+      "icon": "cpu",
+      "lessons": [
+        {
+          "id": "future",
+          "title": "量子计算机、量子通信与量子传感器的未来",
+          "type": "lesson",
+          "component": "LessonFuture",
+          "estimatedMinutes": 60
+        }
+      ]
+    }
+  ],
+  "features": {
+    "hasSandbox": true,
+    "hasQuiz": true,
+    "hasKatex": true,
+    "progressTracking": true
+  }
+}

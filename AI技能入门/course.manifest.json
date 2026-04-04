@@ -1,0 +1,111 @@
+{
+  "id": "ai-skills-mastery",
+  "version": "2.0.0",
+  "title": "剥开 AI 的洋葱：零基础极速入门指南",
+  "subtitle": "自上而下，用 5 个层级扫清所有迷茫与黑话",
+  "description": "专为初学者打造的终极概念地图。暂时放下复杂的数学公式和编程代码，通过“做菜”、“训练小狗”、“洋葱套娃”等极度生动的比喻，带你五步打通 AI 知识大合集。",
+  
+  "category": "编程与技术",
+  "tags": ["AI入门", "黑话词典", "洋葱模型", "零门槛"],
+  "difficulty": "beginner",
+  "estimatedHours": 6,
+  "language": "zh-CN",
+
+  "author": {
+    "name": "NexusLearn 架构师",
+    "avatar": ""
+  },
+
+  "cover": {
+    "image": "",
+    "gradient": ["#10b981", "#06b6d4"], 
+    "icon": "bot"
+  },
+
+  "prerequisites": ["无需任何编程基础，带上好奇心即可"],
+
+  "chapters": [
+    {
+      "id": "layer-1-family",
+      "title": "第一层：AI 家族关系",
+      "subtitle": "理清宏观大局观",
+      "icon": "target",
+      "lessons": [
+        {
+          "id": "family",
+          "title": "俄罗斯套娃里的秘密",
+          "type": "lesson",
+          "component": "LessonFamily",
+          "estimatedMinutes": 20
+        }
+      ]
+    },
+    {
+      "id": "layer-2-cooking",
+      "title": "第二层：底层运作机制",
+      "subtitle": "AI 是如何打造出来的",
+      "icon": "circle",
+      "lessons": [
+        {
+          "id": "cooking",
+          "title": "数字厨房的做菜哲学",
+          "type": "lesson",
+          "component": "LessonCooking",
+          "estimatedMinutes": 30
+        }
+      ]
+    },
+    {
+      "id": "layer-3-learning",
+      "title": "第三层：机器怎么上课",
+      "subtitle": "门派与教学方式",
+      "icon": "activity",
+      "lessons": [
+        {
+          "id": "learning",
+          "title": "练习册与训狗模式",
+          "type": "lesson",
+          "component": "LessonLearning",
+          "estimatedMinutes": 25
+        }
+      ]
+    },
+    {
+      "id": "layer-4-jargon",
+      "title": "第四层：大模型黑话字典",
+      "subtitle": "当下最实用的工具词汇",
+      "icon": "divide-square",
+      "lessons": [
+        {
+          "id": "jargon",
+          "title": "念咒语、智能体与词元碎片",
+          "type": "lesson",
+          "component": "LessonJargon",
+          "estimatedMinutes": 45
+        }
+      ]
+    },
+    {
+      "id": "layer-5-limits",
+      "title": "第五层：局限与风险",
+      "subtitle": "保持清醒认识",
+      "icon": "shield-alert",
+      "lessons": [
+        {
+           "id": "limits",
+           "title": "致命的幻觉与下一步行动",
+           "type": "lesson",
+           "component": "LessonLimits",
+           "estimatedMinutes": 20
+        }
+      ]
+    }
+  ],
+
+  "features": {
+    "hasSandbox": false,
+    "hasQuiz": false,
+    "hasKatex": false,
+    "progressTracking": true
+  }
+}

@@ -1,0 +1,208 @@
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.stat-card {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat-icon-wrapper {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.stat-icon-wrapper.match { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+.stat-icon-wrapper.target { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; }
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-title {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dashboard-main-content {
+  display: flex;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-main-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.continue-learning-section {
+  flex: 2;
+}
+
+.continue-learning-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.mt-8 {
+  margin-top: 3rem !important;
+}
+
+.continue-card {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.continue-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.05);
+}
+
+.continue-info {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.continue-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.continue-info p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gradient-main);
+  border-radius: 3px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .achievements-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.achievement-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.achievement-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.achievement-card p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.dashboard-sidebar {
+  flex: 1;
+}
+
+.trend-box {
+  padding: 1.5rem;
+}
+
+.trend-box h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.trend-chart-mock {
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+
+.trend-chart-mock .bar {
+  flex: 1;
+  background: var(--accent-primary);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.7;
+}
+
+.trend-chart-mock .bar:last-child {
+  opacity: 1;
+  background: var(--gradient-main);
+}
+
+.trend-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0 0.25rem;
+}
