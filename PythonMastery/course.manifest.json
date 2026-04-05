@@ -1,0 +1,22 @@
+{
+  "id": "python-mastery",
+  "title": "Python 从入门到精通：写出工业级代码",
+  "description": "从零开始系统掌握 Python 编程，覆盖基础语法、面向对象、并发编程、数据处理、标准库，直到数据科学与自动化实战。配备交互式代码运行器、算法可视化工具、实战项目模板，让你真正写出工业级可用的 Python 代码。",
+  "category": "编程开发",
+  "level": "全级别",
+  "totalHours": 40,
+  "cover": {
+    "gradient": ["#1e3a5f", "#1a56db"]
+  },
+  "instructor": "高级软件工程师 · Python 核心贡献者",
+  "modules": [
+    { "id": "basics",     "title": "模块一：Python 基础 — 语法、类型与控制流",   "lessonKey": "LessonBasics" },
+    { "id": "functions",  "title": "模块二：函数与模块 — 构建可复用代码",         "lessonKey": "LessonFunctions" },
+    { "id": "oop",        "title": "模块三：面向对象编程 — 类、继承与魔术方法",   "lessonKey": "LessonOOP" },
+    { "id": "dataio",     "title": "模块四：数据处理 — 文件、JSON、正则表达式",   "lessonKey": "LessonDataIO" },
+    { "id": "stdlib",     "title": "模块五：标准库精讲 — os、collections、datetime", "lessonKey": "LessonStdLib" },
+    { "id": "concurrent", "title": "模块六：并发编程 — 多线程、多进程与 asyncio",  "lessonKey": "LessonConcurrent" },
+    { "id": "datascience","title": "模块七：数据科学入门 — NumPy、Pandas、可视化", "lessonKey": "LessonDataScience" },
+    { "id": "projects",   "title": "模块八：实战项目 — 爬虫、API 与自动化脚本",   "lessonKey": "LessonProjects" }
+  ]
+}
