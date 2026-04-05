@@ -25,7 +25,8 @@ export default defineConfig({
       '@course-nginx':   path.resolve(__dirname, '../NginxMastery/src'),
       '@course-pyad':    path.resolve(__dirname, '../PythonAdvanced/src'),
       '@course-cloud':   path.resolve(__dirname, '../CloudNative/src'),
-      '@course-sec':     path.resolve(__dirname, '../SecurityMastery/src')
+      '@course-sec':     path.resolve(__dirname, '../SecurityMastery/src'),
+      '@course-llm':     path.resolve(__dirname, '../LLMMastery/src')
     }
   }
 })
