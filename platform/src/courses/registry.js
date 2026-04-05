@@ -16,6 +16,7 @@ import dbManifest from '@course-db/../course.manifest.json';
 import nginxManifest from '@course-nginx/../course.manifest.json';
 import pyAdvManifest from '@course-pyad/../course.manifest.json';
 import cloudManifest from '@course-cloud/../course.manifest.json';
+import secManifest from '@course-sec/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -227,6 +228,19 @@ export const courseRegistry = {
       LessonIaC:            lazy(() => import('@course-cloud/pages/LessonIaC')),
       LessonCostObs:        lazy(() => import('@course-cloud/pages/LessonCostObs')),
       LessonProduction:     lazy(() => import('@course-cloud/pages/LessonProduction')),
+    }
+  },
+  'security-pentest': {
+    manifest: secManifest,
+    components: {
+      LessonSecCore:  lazy(() => import('@course-sec/pages/LessonSecCore')),
+      LessonWebSec:   lazy(() => import('@course-sec/pages/LessonWebSec')),
+      LessonSQLi:     lazy(() => import('@course-sec/pages/LessonSQLi')),
+      LessonXSSCSRF:  lazy(() => import('@course-sec/pages/LessonXSSCSRF')),
+      LessonRecon:    lazy(() => import('@course-sec/pages/LessonRecon')),
+      LessonPrivesc:  lazy(() => import('@course-sec/pages/LessonPrivesc')),
+      LessonCrypto:   lazy(() => import('@course-sec/pages/LessonCrypto')),
+      LessonDefense:  lazy(() => import('@course-sec/pages/LessonDefense')),
     }
   },
 };

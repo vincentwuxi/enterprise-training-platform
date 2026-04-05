@@ -1,0 +1,23 @@
+{
+  "id": "security-pentest",
+  "title": "系统安全 & 渗透测试：白帽攻防实战",
+  "description": "从攻防思维到生产防御，含交互式 SQL 注入靶场模拟、XSS 攻击链演示、OWASP Top 10 漏洞详解、Burp Suite 代理抓包流程、密码学原理可视化、以及零信任安全架构设计。所有内容遵守法律法规，仅用于授权环境的安全学习。",
+  "category": "安全 & 攻防",
+  "level": "高级",
+  "totalHours": 40,
+  "cover": {
+    "gradient": ["#0a0002", "#100004"]
+  },
+  "disclaimer": "⚠️ 仅用于授权环境。未经授权对系统进行渗透测试属于违法行为。",
+  "instructor": "CISSP/CEH 认证安全工程师 · 前攻防红队成员 · CTF 竞赛教练",
+  "modules": [
+    { "id": "sec-core",    "title": "模块一：安全基础 — 攻防思维与网络安全模型",          "lessonKey": "LessonSecCore" },
+    { "id": "web-sec",     "title": "模块二：Web 安全 — OWASP Top 10 漏洞详解",         "lessonKey": "LessonWebSec" },
+    { "id": "sqli",        "title": "模块三：SQL 注入 — 检测、利用与防御",               "lessonKey": "LessonSQLi" },
+    { "id": "xss-csrf",    "title": "模块四：XSS / CSRF / 点击劫持 — 客户端攻击",       "lessonKey": "LessonXSSCSRF" },
+    { "id": "recon",       "title": "模块五：侦察与渗透流程 — Kali/Burp Suite 实战",    "lessonKey": "LessonRecon" },
+    { "id": "privesc",     "title": "模块六：权限提升与后渗透 — Linux/Windows 实战",     "lessonKey": "LessonPrivesc" },
+    { "id": "crypto",      "title": "模块七：密码学应用 — 哈希/对称/非对称/证书链",      "lessonKey": "LessonCrypto" },
+    { "id": "defense",     "title": "模块八：防御加固 — WAF/IDS/零信任/安全编码清单",   "lessonKey": "LessonDefense" }
+  ]
+}
