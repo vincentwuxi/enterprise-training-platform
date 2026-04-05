@@ -9,6 +9,7 @@ import fineTuneManifest from '@course-finetune/../course.manifest.json';
 import quantumManifest from '@course-quantum/../course.manifest.json';
 import linuxManifest from '@course-linux/../course.manifest.json';
 import tcpipManifest from '@course-tcpip/../course.manifest.json';
+import seoManifest from '@course-seo/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -129,6 +130,19 @@ export const courseRegistry = {
       LessonApplication:  lazy(() => import('@course-tcpip/pages/LessonApplication')),
       LessonSecurity:     lazy(() => import('@course-tcpip/pages/LessonSecurity')),
       LessonDiagnosis:    lazy(() => import('@course-tcpip/pages/LessonDiagnosis')),
+    }
+  },
+  'seo-mastery': {
+    manifest: seoManifest,
+    components: {
+      LessonFoundation: lazy(() => import('@course-seo/pages/LessonFoundation')),
+      LessonKeyword:    lazy(() => import('@course-seo/pages/LessonKeyword')),
+      LessonTechnical:  lazy(() => import('@course-seo/pages/LessonTechnical')),
+      LessonOnPage:     lazy(() => import('@course-seo/pages/LessonOnPage')),
+      LessonOffPage:    lazy(() => import('@course-seo/pages/LessonOffPage')),
+      LessonContent:    lazy(() => import('@course-seo/pages/LessonContent')),
+      LessonAnalytics:  lazy(() => import('@course-seo/pages/LessonAnalytics')),
+      LessonCase:       lazy(() => import('@course-seo/pages/LessonCase')),
     }
   },
 };

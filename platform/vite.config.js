@@ -17,7 +17,8 @@ export default defineConfig({
       '@course-finetune': path.resolve(__dirname, '../LLMFineTuning/src'),
       '@course-quantum': path.resolve(__dirname, '../QuantumMechanics/src'),
       '@course-linux': path.resolve(__dirname, '../LinuxMastery/src'),
-      '@course-tcpip': path.resolve(__dirname, '../TCPIPMastery/src')
+      '@course-tcpip': path.resolve(__dirname, '../TCPIPMastery/src'),
+      '@course-seo':   path.resolve(__dirname, '../SEOMastery/src')
     }
   }
 })
