@@ -19,7 +19,8 @@ export default defineConfig({
       '@course-linux': path.resolve(__dirname, '../LinuxMastery/src'),
       '@course-tcpip': path.resolve(__dirname, '../TCPIPMastery/src'),
       '@course-seo':    path.resolve(__dirname, '../SEOMastery/src'),
-      '@course-python': path.resolve(__dirname, '../PythonMastery/src')
+      '@course-python': path.resolve(__dirname, '../PythonMastery/src'),
+      '@course-devops':  path.resolve(__dirname, '../DockerK8sMastery/src')
     }
   }
 })

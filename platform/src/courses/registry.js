@@ -11,6 +11,7 @@ import linuxManifest from '@course-linux/../course.manifest.json';
 import tcpipManifest from '@course-tcpip/../course.manifest.json';
 import seoManifest from '@course-seo/../course.manifest.json';
 import pythonManifest from '@course-python/../course.manifest.json';
+import devopsManifest from '@course-devops/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -157,6 +158,19 @@ export const courseRegistry = {
       LessonConcurrent:   lazy(() => import('@course-python/pages/LessonConcurrent')),
       LessonDataScience:  lazy(() => import('@course-python/pages/LessonDataScience')),
       LessonProjects:     lazy(() => import('@course-python/pages/LessonProjects')),
+    }
+  },
+  'devops-mastery': {
+    manifest: devopsManifest,
+    components: {
+      LessonContainers:    lazy(() => import('@course-devops/pages/LessonContainers')),
+      LessonDocker:        lazy(() => import('@course-devops/pages/LessonDocker')),
+      LessonDockerfile:    lazy(() => import('@course-devops/pages/LessonDockerfile')),
+      LessonCompose:       lazy(() => import('@course-devops/pages/LessonCompose')),
+      LessonK8sCore:       lazy(() => import('@course-devops/pages/LessonK8sCore')),
+      LessonK8sAdvanced:   lazy(() => import('@course-devops/pages/LessonK8sAdvanced')),
+      LessonObservability: lazy(() => import('@course-devops/pages/LessonObservability')),
+      LessonProduction:    lazy(() => import('@course-devops/pages/LessonProduction')),
     }
   },
 };

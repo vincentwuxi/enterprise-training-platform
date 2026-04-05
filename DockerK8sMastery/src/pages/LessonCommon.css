@@ -1,0 +1,223 @@
+/* ============================================================
+   Docker & K8s Mastery — Shared Lesson Styles
+   Theme: Docker Blue (#0db7ed) + K8s Blue (#326CE5) on deep dark
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --dk-bg:      #030c18;
+  --dk-surface: #060f1e;
+  --dk-card:    #09152a;
+  --dk-border:  rgba(13, 183, 237, 0.15);
+  --dk-docker:  #0db7ed;
+  --dk-k8s:     #326CE5;
+  --dk-blue2:   #60a5fa;
+  --dk-green:   #10b981;
+  --dk-yellow:  #f59e0b;
+  --dk-red:     #ef4444;
+  --dk-purple:  #a78bfa;
+  --dk-text:    #e2e8f0;
+  --dk-muted:   #64748b;
+}
+
+.lesson-dk {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--dk-text);
+  min-height: 100vh;
+}
+
+/* Badge */
+.dk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(13, 183, 237, 0.1);
+  border: 1px solid rgba(13, 183, 237, 0.3);
+  color: var(--dk-docker);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+/* Hero */
+.dk-hero { margin-bottom: 2.5rem; }
+.dk-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 0.5rem 0 1rem;
+  color: #f8fafc;
+}
+.dk-hero p { font-size: 1rem; color: var(--dk-muted); line-height: 1.75; max-width: 680px; margin: 0; }
+.dk-hero p strong { color: var(--dk-docker); }
+
+/* Section */
+.dk-section { margin: 2.5rem 0; }
+.dk-section-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0 0 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+/* Card */
+.dk-card {
+  background: var(--dk-card);
+  border: 1px solid var(--dk-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.dk-card h3 { font-size: 1rem; font-weight: 700; color: var(--dk-docker); margin: 0 0 0.75rem; }
+.dk-card p  { color: var(--dk-muted); font-size: 0.875rem; line-height: 1.7; margin: 0.35rem 0; }
+
+/* Grids */
+.dk-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.dk-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.dk-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+
+/* Interactive */
+.dk-interactive {
+  background: var(--dk-surface);
+  border: 1px solid var(--dk-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.dk-interactive h3 {
+  font-size: 1rem; font-weight: 700; color: #f1f5f9;
+  margin: 0 0 1rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 0.4rem; flex-wrap: wrap;
+}
+
+/* Terminal */
+.dk-term-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(13,183,237,0.2);
+  margin-bottom: 0.75rem;
+}
+.dk-term-header {
+  background: #1a2332;
+  padding: 0.5rem 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; color: var(--dk-muted); font-family: 'JetBrains Mono', monospace;
+}
+.dk-term-dot { width: 10px; height: 10px; border-radius: 50%; }
+.dk-term {
+  background: #020b14;
+  padding: 1rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  line-height: 1.75;
+  white-space: pre;
+  overflow-x: auto;
+}
+.dk-term .prompt { color: #0db7ed; }
+.dk-term .cmd    { color: #e2e8f0; }
+.dk-term .out    { color: #6ee7b7; }
+.dk-term .cmt    { color: #475569; font-style: italic; }
+.dk-term .warn   { color: #fbbf24; }
+.dk-term .err    { color: #f87171; }
+
+.dk-output {
+  background: #010c18;
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 0 0 8px 8px;
+  padding: 0.875rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem; color: #6ee7b7;
+  line-height: 1.7; white-space: pre;
+}
+
+/* Button */
+.dk-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(13,183,237,0.08);
+  border: 1px solid rgba(13,183,237,0.25);
+  border-radius: 8px; color: var(--dk-docker);
+  font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.dk-btn:hover  { background: rgba(13,183,237,0.18); }
+.dk-btn.primary { background: linear-gradient(135deg, #0369a1, #0db7ed); color: #fff; border: none; }
+.dk-btn.primary:hover { opacity: 0.9; box-shadow: 0 4px 16px rgba(13,183,237,0.3); }
+.dk-btn.k8s    { background: rgba(50,108,229,0.1); border-color: rgba(50,108,229,0.3); color: #93c5fd; }
+.dk-btn.green  { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); color: #34d399; }
+
+/* Tag */
+.dk-tag {
+  display: inline-block;
+  padding: 0.18rem 0.52rem; border-radius: 4px;
+  font-size: 0.72rem; font-weight: 700;
+}
+.dk-tag.docker { background: rgba(13,183,237,0.12); color: #0db7ed; }
+.dk-tag.k8s    { background: rgba(50,108,229,0.12); color: #93c5fd; }
+.dk-tag.green  { background: rgba(16,185,129,0.12); color: #34d399; }
+.dk-tag.yellow { background: rgba(245,158,11,0.12); color: #fbbf24; }
+.dk-tag.red    { background: rgba(239,68,68,0.12);  color: #f87171; }
+
+/* Table */
+.dk-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.dk-table th { background: rgba(13,183,237,0.06); padding: 0.65rem 1rem; text-align: left; font-size: 0.75rem; font-weight: 700; color: var(--dk-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--dk-border); }
+.dk-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--dk-text); vertical-align: top; }
+.dk-table tr:last-child td { border-bottom: none; }
+.dk-table tr:hover td { background: rgba(13,183,237,0.03); }
+
+/* Steps */
+.dk-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.dk-step {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem;
+  background: var(--dk-surface);
+  border: 1px solid var(--dk-border); border-radius: 8px;
+}
+.dk-step-num {
+  width: 30px; height: 30px;
+  background: rgba(13,183,237,0.1); border: 1px solid rgba(13,183,237,0.3);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 800; color: var(--dk-docker); flex-shrink: 0;
+}
+.dk-step-content h4 { font-size: 0.9rem; font-weight: 700; color: #f1f5f9; margin: 0 0 0.3rem; }
+.dk-step-content p  { font-size: 0.82rem; color: var(--dk-muted); margin: 0; line-height: 1.6; }
+
+/* Architecture diagram box */
+.dk-arch {
+  background: #020b14;
+  border: 1px solid rgba(13,183,237,0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.9;
+  color: #94a3b8;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Meter */
+.dk-meter { height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; margin: 0.3rem 0; }
+.dk-meter-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+
+/* Nav */
+.dk-nav {
+  display: flex; justify-content: space-between;
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--dk-border);
+}
+
+@media (max-width: 640px) {
+  .lesson-dk { padding: 1.5rem 1rem 4rem; }
+  .dk-hero h1 { font-size: 1.5rem; }
+}
