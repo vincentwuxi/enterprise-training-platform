@@ -15,6 +15,7 @@ import devopsManifest from '@course-devops/../course.manifest.json';
 import dbManifest from '@course-db/../course.manifest.json';
 import nginxManifest from '@course-nginx/../course.manifest.json';
 import pyAdvManifest from '@course-pyad/../course.manifest.json';
+import cloudManifest from '@course-cloud/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -213,6 +214,19 @@ export const courseRegistry = {
       LessonTDD:           lazy(() => import('@course-pyad/pages/LessonTDD')),
       LessonPerformance:   lazy(() => import('@course-pyad/pages/LessonPerformance')),
       LessonProjects:      lazy(() => import('@course-pyad/pages/LessonProjects')),
+    }
+  },
+  'cloud-native': {
+    manifest: cloudManifest,
+    components: {
+      LessonCloudCore:      lazy(() => import('@course-cloud/pages/LessonCloudCore')),
+      LessonAWSCore:        lazy(() => import('@course-cloud/pages/LessonAWSCore')),
+      LessonGCPCore:        lazy(() => import('@course-cloud/pages/LessonGCPCore')),
+      LessonServerless:     lazy(() => import('@course-cloud/pages/LessonServerless')),
+      LessonContainerCloud: lazy(() => import('@course-cloud/pages/LessonContainerCloud')),
+      LessonIaC:            lazy(() => import('@course-cloud/pages/LessonIaC')),
+      LessonCostObs:        lazy(() => import('@course-cloud/pages/LessonCostObs')),
+      LessonProduction:     lazy(() => import('@course-cloud/pages/LessonProduction')),
     }
   },
 };

@@ -23,7 +23,8 @@ export default defineConfig({
       '@course-devops':  path.resolve(__dirname, '../DockerK8sMastery/src'),
       '@course-db':      path.resolve(__dirname, '../DatabaseMastery/src'),
       '@course-nginx':   path.resolve(__dirname, '../NginxMastery/src'),
-      '@course-pyad':    path.resolve(__dirname, '../PythonAdvanced/src')
+      '@course-pyad':    path.resolve(__dirname, '../PythonAdvanced/src'),
+      '@course-cloud':   path.resolve(__dirname, '../CloudNative/src')
     }
   }
 })
