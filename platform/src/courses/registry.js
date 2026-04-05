@@ -14,6 +14,7 @@ import pythonManifest from '@course-python/../course.manifest.json';
 import devopsManifest from '@course-devops/../course.manifest.json';
 import dbManifest from '@course-db/../course.manifest.json';
 import nginxManifest from '@course-nginx/../course.manifest.json';
+import pyAdvManifest from '@course-pyad/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -199,6 +200,19 @@ export const courseRegistry = {
       LessonGateway:       lazy(() => import('@course-nginx/pages/LessonGateway')),
       LessonPerformance:   lazy(() => import('@course-nginx/pages/LessonPerformance')),
       LessonProduction:    lazy(() => import('@course-nginx/pages/LessonProduction')),
+    }
+  },
+  'python-advanced': {
+    manifest: pyAdvManifest,
+    components: {
+      LessonAsyncCore:     lazy(() => import('@course-pyad/pages/LessonAsyncCore')),
+      LessonAsyncPatterns: lazy(() => import('@course-pyad/pages/LessonAsyncPatterns')),
+      LessonFastAPIBasics: lazy(() => import('@course-pyad/pages/LessonFastAPIBasics')),
+      LessonFastAPIAuth:   lazy(() => import('@course-pyad/pages/LessonFastAPIAuth')),
+      LessonFastAPIDB:     lazy(() => import('@course-pyad/pages/LessonFastAPIDB')),
+      LessonTDD:           lazy(() => import('@course-pyad/pages/LessonTDD')),
+      LessonPerformance:   lazy(() => import('@course-pyad/pages/LessonPerformance')),
+      LessonProjects:      lazy(() => import('@course-pyad/pages/LessonProjects')),
     }
   },
 };
