@@ -12,6 +12,7 @@ import tcpipManifest from '@course-tcpip/../course.manifest.json';
 import seoManifest from '@course-seo/../course.manifest.json';
 import pythonManifest from '@course-python/../course.manifest.json';
 import devopsManifest from '@course-devops/../course.manifest.json';
+import dbManifest from '@course-db/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -171,6 +172,19 @@ export const courseRegistry = {
       LessonK8sAdvanced:   lazy(() => import('@course-devops/pages/LessonK8sAdvanced')),
       LessonObservability: lazy(() => import('@course-devops/pages/LessonObservability')),
       LessonProduction:    lazy(() => import('@course-devops/pages/LessonProduction')),
+    }
+  },
+  'database-mastery': {
+    manifest: dbManifest,
+    components: {
+      LessonFundamentals:  lazy(() => import('@course-db/pages/LessonFundamentals')),
+      LessonMySQL:         lazy(() => import('@course-db/pages/LessonMySQL')),
+      LessonSQLAdvanced:   lazy(() => import('@course-db/pages/LessonSQLAdvanced')),
+      LessonIndex:         lazy(() => import('@course-db/pages/LessonIndex')),
+      LessonRedis:         lazy(() => import('@course-db/pages/LessonRedis')),
+      LessonRedisAdvanced: lazy(() => import('@course-db/pages/LessonRedisAdvanced')),
+      LessonDesign:        lazy(() => import('@course-db/pages/LessonDesign')),
+      LessonProjects:      lazy(() => import('@course-db/pages/LessonProjects')),
     }
   },
 };

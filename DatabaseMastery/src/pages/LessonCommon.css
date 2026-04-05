@@ -1,0 +1,162 @@
+/* ============================================================
+   MySQL + Redis Mastery — Shared Lesson Styles
+   Theme: MySQL Orange (#F29111) + Redis Red (#DC382D) on deep dark
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --db-bg:      #080400;
+  --db-surface: #0d0700;
+  --db-card:    #120900;
+  --db-border:  rgba(242,145,17,0.15);
+  --db-mysql:   #F29111;
+  --db-redis:   #DC382D;
+  --db-blue:    #60a5fa;
+  --db-green:   #10b981;
+  --db-yellow:  #fbbf24;
+  --db-muted:   #4a3b28;
+  --db-text:    #f5e6d0;
+  --db-sub:     #a08060;
+}
+
+.lesson-db {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--db-text);
+  min-height: 100vh;
+}
+
+/* Badge */
+.db-badge {
+  display: inline-flex;
+  align-items: center; gap: 0.5rem;
+  background: rgba(242,145,17,0.1);
+  border: 1px solid rgba(242,145,17,0.3);
+  color: var(--db-mysql);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+.db-badge.redis {
+  background: rgba(220,56,45,0.1);
+  border-color: rgba(220,56,45,0.3);
+  color: var(--db-redis);
+}
+
+/* Hero */
+.db-hero { margin-bottom: 2.5rem; }
+.db-hero h1 { font-size: clamp(1.75rem, 4vw, 2.4rem); font-weight: 900; line-height: 1.25; margin: 0.5rem 0 1rem; color: #fff9f0; }
+.db-hero p  { font-size: 1rem; color: var(--db-sub); line-height: 1.75; max-width: 680px; margin: 0; }
+.db-hero p strong { color: var(--db-mysql); }
+
+/* Section */
+.db-section { margin: 2.5rem 0; }
+.db-section-title { font-size: 1.2rem; font-weight: 800; color: #fff9f0; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* Card */
+.db-card { background: var(--db-card); border: 1px solid var(--db-border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+.db-card h3 { font-size: 1rem; font-weight: 700; color: var(--db-mysql); margin: 0 0 0.75rem; }
+.db-card p  { color: var(--db-sub); font-size: 0.875rem; line-height: 1.7; margin: 0.35rem 0; }
+
+/* Grids */
+.db-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.db-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.db-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+
+/* Interactive */
+.db-interactive { background: var(--db-surface); border: 1px solid var(--db-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.db-interactive h3 { font-size: 1rem; font-weight: 700; color: #fff9f0; margin: 0 0 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; flex-wrap: wrap; }
+
+/* SQL Editor */
+.db-sql-wrapper { border-radius: 10px; overflow: hidden; border: 1px solid rgba(242,145,17,0.2); margin-bottom: 0.75rem; }
+.db-sql-header  { background: #1a0f00; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--db-sub); font-family: 'JetBrains Mono', monospace; }
+.db-sql-dot     { width: 10px; height: 10px; border-radius: 50%; }
+.db-sql {
+  background: #080400;
+  padding: 1rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; color: #f5e6d0;
+  line-height: 1.8; white-space: pre; overflow-x: auto;
+}
+.db-sql .kw  { color: #F29111; font-weight: 700; }
+.db-sql .fn  { color: #fbbf24; }
+.db-sql .str { color: #86efac; }
+.db-sql .num { color: #93c5fd; }
+.db-sql .cmt { color: #4a3b28; font-style: italic; }
+.db-sql .tbl { color: #f9a8d4; }
+
+.db-result {
+  background: #050300;
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 0 0 8px 8px;
+  padding: 0.875rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem; color: #86efac;
+  line-height: 1.7; white-space: pre;
+}
+
+/* Redis Terminal */
+.db-redis-term {
+  background: #100000;
+  border: 1px solid rgba(220,56,45,0.25);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; color: #fca5a5;
+  line-height: 1.9; white-space: pre;
+}
+.db-redis-term .cmd    { color: #f5e6d0; }
+.db-redis-term .ret    { color: #86efac; }
+.db-redis-term .prompt { color: #DC382D; font-weight: 700; }
+.db-redis-term .cmt    { color: #4a3b28; font-style: italic; }
+
+/* Button */
+.db-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(242,145,17,0.08); border: 1px solid rgba(242,145,17,0.25);
+  border-radius: 8px; color: var(--db-mysql);
+  font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.db-btn:hover { background: rgba(242,145,17,0.16); }
+.db-btn.primary { background: linear-gradient(135deg, #c46d00, #F29111); color: #fff; border: none; box-shadow: 0 0 0 0; }
+.db-btn.primary:hover { opacity: 0.9; box-shadow: 0 4px 16px rgba(242,145,17,0.3); }
+.db-btn.redis { background: rgba(220,56,45,0.1); border-color: rgba(220,56,45,0.3); color: #fca5a5; }
+.db-btn.redis:hover { background: rgba(220,56,45,0.2); }
+.db-btn.active { background: rgba(242,145,17,0.2); border-color: rgba(242,145,17,0.5); }
+
+/* Tag */
+.db-tag { display: inline-block; padding: 0.18rem 0.52rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
+.db-tag.mysql  { background: rgba(242,145,17,0.12); color: #F29111; }
+.db-tag.redis  { background: rgba(220,56,45,0.12);  color: #fca5a5; }
+.db-tag.green  { background: rgba(16,185,129,0.12); color: #34d399; }
+.db-tag.blue   { background: rgba(96,165,250,0.12); color: #93c5fd; }
+.db-tag.yellow { background: rgba(251,191,36,0.12); color: #fbbf24; }
+
+/* Table */
+.db-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.db-table th { background: rgba(242,145,17,0.06); padding: 0.65rem 1rem; text-align: left; font-size: 0.73rem; font-weight: 700; color: var(--db-sub); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--db-border); }
+.db-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--db-text); vertical-align: top; }
+.db-table tr:last-child td { border-bottom: none; }
+.db-table tr:hover td { background: rgba(242,145,17,0.03); }
+
+/* Meter */
+.db-meter { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.db-meter-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+
+/* Steps */
+.db-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.db-step  { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--db-surface); border: 1px solid var(--db-border); border-radius: 8px; }
+.db-step-num { width: 30px; height: 30px; background: rgba(242,145,17,0.1); border: 1px solid rgba(242,145,17,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: var(--db-mysql); flex-shrink: 0; }
+.db-step-content h4 { font-size: 0.9rem; font-weight: 700; color: #fff9f0; margin: 0 0 0.3rem; }
+.db-step-content p  { font-size: 0.82rem; color: var(--db-sub); margin: 0; line-height: 1.6; }
+
+/* Nav */
+.db-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--db-border); }
