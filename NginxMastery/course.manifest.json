@@ -1,0 +1,22 @@
+{
+  "id": "nginx-mastery",
+  "title": "Nginx + 微服务网关从入门到精通：掌握现代 Web 基础设施",
+  "description": "从 Nginx 事件驱动原理到生产级微服务网关，含交互式配置编辑器、负载均衡算法可视化模拟器、限流/熔断演示、Kong/Traefik 对比、蓝绿部署步进演示。构建可支撑百万 QPS 的企业级 Web 基础设施。",
+  "category": "DevOps & 基础设施",
+  "level": "中高级",
+  "totalHours": 34,
+  "cover": {
+    "gradient": ["#010810", "#001a0a"]
+  },
+  "instructor": "资深 SRE 工程师 · Nginx 专家 · 微服务架构师",
+  "modules": [
+    { "id": "core",          "title": "模块一：Nginx 核心 — 事件驱动与 Worker 进程模型",   "lessonKey": "LessonNginxCore" },
+    { "id": "config",        "title": "模块二：配置精通 — server/location/upstream 详解",    "lessonKey": "LessonConfig" },
+    { "id": "proxy",         "title": "模块三：反向代理与负载均衡 — 五大算法可视化",         "lessonKey": "LessonProxy" },
+    { "id": "ssl",           "title": "模块四：HTTPS 与安全 — TLS握手、证书、安全头",       "lessonKey": "LessonSSL" },
+    { "id": "microservices", "title": "模块五：微服务架构 — API Gateway 设计模式",          "lessonKey": "LessonMicroservices" },
+    { "id": "gateway",       "title": "模块六：现代网关 — Kong/Traefik/Nginx 对比实战",    "lessonKey": "LessonGateway" },
+    { "id": "performance",   "title": "模块七：性能调优 — 缓存、压缩与连接池优化",         "lessonKey": "LessonPerformance" },
+    { "id": "production",    "title": "模块八：生产实战 — 蓝绿部署、熔断与限流",           "lessonKey": "LessonProduction" }
+  ]
+}
