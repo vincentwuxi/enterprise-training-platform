@@ -19,6 +19,7 @@ import cloudManifest from '@course-cloud/../course.manifest.json';
 import secManifest from '@course-sec/../course.manifest.json';
 import llmManifest from '@course-llm/../course.manifest.json';
 import deManifest from '@course-de/../course.manifest.json';
+import cicdManifest from '@course-cicd/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -269,6 +270,19 @@ export const courseRegistry = {
       LessonPipeline:    lazy(() => import('@course-de/pages/LessonPipeline')),
       LessonMonitor:     lazy(() => import('@course-de/pages/LessonMonitor')),
       LessonProject:     lazy(() => import('@course-de/pages/LessonProject')),
+    }
+  },
+  'cicd-gitops': {
+    manifest: cicdManifest,
+    components: {
+      LessonCICDCore:     lazy(() => import('@course-cicd/pages/LessonCICDCore')),
+      LessonGitActions:   lazy(() => import('@course-cicd/pages/LessonGitActions')),
+      LessonDockerBuild:  lazy(() => import('@course-cicd/pages/LessonDockerBuild')),
+      LessonHelmChart:    lazy(() => import('@course-cicd/pages/LessonHelmChart')),
+      LessonArgoCD:       lazy(() => import('@course-cicd/pages/LessonArgoCD')),
+      LessonKubeDeploy:   lazy(() => import('@course-cicd/pages/LessonKubeDeploy')),
+      LessonMonitorAlert: lazy(() => import('@course-cicd/pages/LessonMonitorAlert')),
+      LessonProject:      lazy(() => import('@course-cicd/pages/LessonProject')),
     }
   },
 };

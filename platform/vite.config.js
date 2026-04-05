@@ -27,7 +27,8 @@ export default defineConfig({
       '@course-cloud':   path.resolve(__dirname, '../CloudNative/src'),
       '@course-sec':     path.resolve(__dirname, '../SecurityMastery/src'),
       '@course-llm':     path.resolve(__dirname, '../LLMMastery/src'),
-      '@course-de':      path.resolve(__dirname, '../DataEngineering/src')
+      '@course-de':      path.resolve(__dirname, '../DataEngineering/src'),
+      '@course-cicd':    path.resolve(__dirname, '../CICDMastery/src')
     }
   }
 })
