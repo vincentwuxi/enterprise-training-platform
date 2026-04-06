@@ -1,0 +1,96 @@
+/* ==================================================
+   ML Engineering — Neural Orange + Deep Dark Theme
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --ml-bg:      #030a05;
+  --ml-surface: #060e08;
+  --ml-card:    #091209;
+  --ml-border:  rgba(16,185,129,0.12);
+  --ml-green:   #10b981;
+  --ml-lime:    #34d399;
+  --ml-orange:  #f97316;
+  --ml-amber:   #fbbf24;
+  --ml-blue:    #3b82f6;
+  --ml-purple:  #8b5cf6;
+  --ml-red:     #ef4444;
+  --ml-text:    #ecfdf5;
+  --ml-muted:   #6b7280;
+  --ml-torch:   #ee4c2c;   /* PyTorch 官方红 */
+}
+
+.lesson-ml {
+  max-width: 980px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ml-text);
+}
+
+.ml-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.22);
+  color: #34d399; padding: 0.4rem 1rem; border-radius: 20px;
+  font-size: 0.78rem; font-family: 'JetBrains Mono',monospace;
+  font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.ml-badge.torch  { background: rgba(238,76,44,0.07); border-color: rgba(238,76,44,0.22); color: #f87171; }
+.ml-badge.orange { background: rgba(249,115,22,0.07); border-color: rgba(249,115,22,0.22); color: #fb923c; }
+.ml-badge.blue   { background: rgba(59,130,246,0.07); border-color: rgba(59,130,246,0.22); color: #60a5fa; }
+.ml-badge.purple { background: rgba(139,92,246,0.07); border-color: rgba(139,92,246,0.22); color: #a78bfa; }
+.ml-badge.amber  { background: rgba(251,191,36,0.07); border-color: rgba(251,191,36,0.22); color: #fbbf24; }
+
+.ml-hero { margin-bottom: 2.5rem; }
+.ml-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.4rem); font-weight: 900; line-height: 1.25; margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #34d399, #10b981, #f97316, #fbbf24);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.ml-hero p { font-size: 1rem; color: var(--ml-muted); line-height: 1.8; max-width: 720px; margin: 0; }
+.ml-hero p strong { color: #34d399; -webkit-text-fill-color: #34d399; }
+
+.ml-section { margin: 2.5rem 0; }
+.ml-section-title { font-size: 1.1rem; font-weight: 800; color: #ecfdf5; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.ml-card { background: var(--ml-card); border: 1px solid var(--ml-border); border-radius: 12px; padding: 1.25rem; }
+.ml-grid-2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1rem; }
+.ml-grid-3 { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 0.75rem; }
+
+.ml-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(16,185,129,0.14); }
+.ml-code-head { background: #060e08; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: #374151; font-family: 'JetBrains Mono',monospace; }
+.ml-code-dot  { width: 10px; height: 10px; border-radius: 50%; }
+.ml-code      { background: #030a05; padding: 1rem 1.25rem; font-family: 'JetBrains Mono',monospace; font-size: 0.8rem; color: #6b7280; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 440px; overflow-y: auto; }
+
+.ml-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem;
+  background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px;
+  color: #34d399; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: 'Inter',sans-serif;
+}
+.ml-btn:hover { background: rgba(16,185,129,0.14); }
+.ml-btn.primary { background: linear-gradient(135deg,#059669,#d97706); color: #fff; border: none; box-shadow: 0 2px 16px rgba(16,185,129,0.3); }
+.ml-btn.primary:hover { opacity: 0.9; }
+.ml-btn.torch  { background: rgba(238,76,44,0.06); border-color: rgba(238,76,44,0.2); color: #f87171; }
+.ml-btn.orange { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.2); color: #f97316; }
+.ml-btn.blue   { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.2); color: #3b82f6; }
+
+.ml-interactive { background: var(--ml-surface); border: 1px solid var(--ml-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.ml-interactive h3 { font-size: 1rem; font-weight: 700; color: #ecfdf5; margin: 0 0 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+.ml-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.ml-table th { background: rgba(16,185,129,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.73rem; font-weight: 700; color: var(--ml-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.ml-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.ml-table tr:last-child td { border-bottom: none; }
+
+.ml-tag { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+.ml-tag.green  { background: rgba(16,185,129,0.1); color: #10b981; }
+.ml-tag.torch  { background: rgba(238,76,44,0.1); color: #f87171; }
+.ml-tag.orange { background: rgba(249,115,22,0.1); color: #f97316; }
+.ml-tag.blue   { background: rgba(59,130,246,0.1); color: #3b82f6; }
+.ml-tag.purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+
+.ml-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.04); }
+.ml-progress { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.05); overflow: hidden; }
+.ml-progress-fill { height: 100%; border-radius: 3px; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
+
+/* Neural network node animations */
+@keyframes ml-pulse { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.ml-node { animation: ml-pulse 2s ease-in-out infinite; }

@@ -33,7 +33,8 @@ export default defineConfig({
       '@course-arch':    path.resolve(__dirname, '../CompArch/src'),
       '@course-web3':    path.resolve(__dirname, '../BlockchainWeb3/src'),
       '@course-perf':    path.resolve(__dirname, '../PerfOptimization/src'),
-      '@course-ai-api':  path.resolve(__dirname, '../AIAPIMastery/src')
+      '@course-ai-api':  path.resolve(__dirname, '../AIAPIMastery/src'),
+      '@course-ml-eng':  path.resolve(__dirname, '../MLEngineering/src')
     }
   }
 })

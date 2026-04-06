@@ -25,6 +25,7 @@ import archManifest from '@course-arch/../course.manifest.json';
 import web3Manifest from '@course-web3/../course.manifest.json';
 import perfManifest from '@course-perf/../course.manifest.json';
 import aiApiManifest from '@course-ai-api/../course.manifest.json';
+import mlEngManifest from '@course-ml-eng/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -353,6 +354,19 @@ export const courseRegistry = {
       LessonStreaming:  lazy(() => import('@course-ai-api/pages/LessonStreaming')),
       LessonRouting:    lazy(() => import('@course-ai-api/pages/LessonRouting')),
       LessonProduction: lazy(() => import('@course-ai-api/pages/LessonProduction')),
+    }
+  },
+  'ml-engineering': {
+    manifest: mlEngManifest,
+    components: {
+      LessonMLFoundation: lazy(() => import('@course-ml-eng/pages/LessonMLFoundation')),
+      LessonPyTorch:      lazy(() => import('@course-ml-eng/pages/LessonPyTorch')),
+      LessonCNN:          lazy(() => import('@course-ml-eng/pages/LessonCNN')),
+      LessonTransformer:  lazy(() => import('@course-ml-eng/pages/LessonTransformer')),
+      LessonFineTuning:   lazy(() => import('@course-ml-eng/pages/LessonFineTuning')),
+      LessonMLOps:        lazy(() => import('@course-ml-eng/pages/LessonMLOps')),
+      LessonServing:      lazy(() => import('@course-ml-eng/pages/LessonServing')),
+      LessonMonitoring:   lazy(() => import('@course-ml-eng/pages/LessonMonitoring')),
     }
   },
 };
