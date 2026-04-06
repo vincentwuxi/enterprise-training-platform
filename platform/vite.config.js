@@ -32,7 +32,8 @@ export default defineConfig({
       '@course-sd':      path.resolve(__dirname, '../SystemDesign/src'),
       '@course-arch':    path.resolve(__dirname, '../CompArch/src'),
       '@course-web3':    path.resolve(__dirname, '../BlockchainWeb3/src'),
-      '@course-perf':    path.resolve(__dirname, '../PerfOptimization/src')
+      '@course-perf':    path.resolve(__dirname, '../PerfOptimization/src'),
+      '@course-ai-api':  path.resolve(__dirname, '../AIAPIMastery/src')
     }
   }
 })

@@ -24,6 +24,7 @@ import sdManifest from '@course-sd/../course.manifest.json';
 import archManifest from '@course-arch/../course.manifest.json';
 import web3Manifest from '@course-web3/../course.manifest.json';
 import perfManifest from '@course-perf/../course.manifest.json';
+import aiApiManifest from '@course-ai-api/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -339,6 +340,19 @@ export const courseRegistry = {
       LessonAPM:        lazy(() => import('@course-perf/pages/LessonAPM')),
       LessonMemory:     lazy(() => import('@course-perf/pages/LessonMemory')),
       LessonStress:     lazy(() => import('@course-perf/pages/LessonStress')),
+    }
+  },
+  'ai-api-mastery': {
+    manifest: aiApiManifest,
+    components: {
+      LessonBasics:     lazy(() => import('@course-ai-api/pages/LessonBasics')),
+      LessonOpenAI:     lazy(() => import('@course-ai-api/pages/LessonOpenAI')),
+      LessonGemini:     lazy(() => import('@course-ai-api/pages/LessonGemini')),
+      LessonClaude:     lazy(() => import('@course-ai-api/pages/LessonClaude')),
+      LessonPrompt:     lazy(() => import('@course-ai-api/pages/LessonPrompt')),
+      LessonStreaming:  lazy(() => import('@course-ai-api/pages/LessonStreaming')),
+      LessonRouting:    lazy(() => import('@course-ai-api/pages/LessonRouting')),
+      LessonProduction: lazy(() => import('@course-ai-api/pages/LessonProduction')),
     }
   },
 };
