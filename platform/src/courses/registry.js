@@ -21,6 +21,7 @@ import llmManifest from '@course-llm/../course.manifest.json';
 import deManifest from '@course-de/../course.manifest.json';
 import cicdManifest from '@course-cicd/../course.manifest.json';
 import sdManifest from '@course-sd/../course.manifest.json';
+import archManifest from '@course-arch/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -297,6 +298,19 @@ export const courseRegistry = {
       LessonDistributed:  lazy(() => import('@course-sd/pages/LessonDistributed')),
       LessonMicroservice: lazy(() => import('@course-sd/pages/LessonMicroservice')),
       LessonInterview:    lazy(() => import('@course-sd/pages/LessonInterview')),
+    }
+  },
+  'computer-arch': {
+    manifest: archManifest,
+    components: {
+      LessonOverview:  lazy(() => import('@course-arch/pages/LessonOverview')),
+      LessonDigital:   lazy(() => import('@course-arch/pages/LessonDigital')),
+      LessonISA:       lazy(() => import('@course-arch/pages/LessonISA')),
+      LessonPipeline:  lazy(() => import('@course-arch/pages/LessonPipeline')),
+      LessonCache:     lazy(() => import('@course-arch/pages/LessonCache')),
+      LessonMemory:    lazy(() => import('@course-arch/pages/LessonMemory')),
+      LessonIO:        lazy(() => import('@course-arch/pages/LessonIO')),
+      LessonParallel:  lazy(() => import('@course-arch/pages/LessonParallel')),
     }
   },
 };

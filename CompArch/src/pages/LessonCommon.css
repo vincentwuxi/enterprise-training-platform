@@ -1,0 +1,119 @@
+/* ============================================================
+   Computer Architecture — Shared Theme
+   Circuit Gold + Silicon Gray + Volt Green + Data Blue + Heat Red
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --ca-bg:      #0d0f0a;
+  --ca-surface: #111409;
+  --ca-card:    #161a0d;
+  --ca-border:  rgba(245,158,11,0.12);
+  --ca-gold:    #f59e0b;
+  --ca-amber:   #fbbf24;
+  --ca-green:   #22c55e;
+  --ca-lime:    #86efac;
+  --ca-blue:    #3b82f6;
+  --ca-sky:     #60a5fa;
+  --ca-red:     #ef4444;
+  --ca-rose:    #f87171;
+  --ca-purple:  #a855f7;
+  --ca-text:    #d4d0b8;
+  --ca-muted:   #64748b;
+  --ca-sub:     #1a1f10;
+}
+
+.lesson-ca {
+  max-width: 960px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ca-text);
+}
+
+/* Badge */
+.ca-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.22);
+  color: var(--ca-amber); padding: 0.4rem 1rem; border-radius: 20px;
+  font-size: 0.78rem; font-family: 'JetBrains Mono',monospace;
+  font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.ca-badge.green  { background: rgba(34,197,94,0.07);  border-color: rgba(34,197,94,0.22);  color: var(--ca-lime); }
+.ca-badge.blue   { background: rgba(59,130,246,0.07); border-color: rgba(59,130,246,0.22); color: var(--ca-sky); }
+.ca-badge.red    { background: rgba(239,68,68,0.07);  border-color: rgba(239,68,68,0.22);  color: var(--ca-rose); }
+.ca-badge.purple { background: rgba(168,85,247,0.07); border-color: rgba(168,85,247,0.22); color: #c084fc; }
+
+/* Hero */
+.ca-hero { margin-bottom: 2.5rem; }
+.ca-hero h1 { font-size: clamp(1.75rem,4vw,2.4rem); font-weight: 900; line-height: 1.25; margin: 0.5rem 0 1rem; background: linear-gradient(135deg,#f59e0b,#86efac,#60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.ca-hero p  { font-size: 1rem; color: var(--ca-muted); line-height: 1.75; max-width: 680px; margin: 0; }
+.ca-hero p strong { color: var(--ca-amber); -webkit-text-fill-color: var(--ca-amber); }
+
+/* Section */
+.ca-section { margin: 2.5rem 0; }
+.ca-section-title { font-size: 1.15rem; font-weight: 800; color: #e8e0c0; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* Card */
+.ca-card { background: var(--ca-card); border: 1px solid var(--ca-border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+
+/* Grid */
+.ca-grid-2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1rem; }
+.ca-grid-3 { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 0.75rem; }
+.ca-grid-4 { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 0.75rem; }
+
+/* Code */
+.ca-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(245,158,11,0.12); }
+.ca-code-head { background: #111409; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: #64748b; font-family: 'JetBrains Mono',monospace; }
+.ca-code-dot  { width: 10px; height: 10px; border-radius: 50%; }
+.ca-code      { background: #0d0f0a; padding: 1rem 1.25rem; font-family: 'JetBrains Mono',monospace; font-size: 0.8rem; color: #d4d0b8; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 380px; overflow-y: auto; }
+
+/* Button */
+.ca-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.2);
+  border-radius: 8px; color: var(--ca-amber);
+  font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  transition: all 0.15s; font-family: 'Inter',sans-serif;
+}
+.ca-btn:hover { background: rgba(245,158,11,0.12); }
+.ca-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.ca-btn.primary { background: linear-gradient(135deg,#92400e,#d97706); color: #fff; border: none; box-shadow: 0 2px 16px rgba(245,158,11,0.25); }
+.ca-btn.primary:hover { opacity: 0.9; }
+.ca-btn.green  { background: rgba(34,197,94,0.07);  border-color: rgba(34,197,94,0.22);  color: #22c55e; }
+.ca-btn.blue   { background: rgba(59,130,246,0.07); border-color: rgba(59,130,246,0.22); color: #3b82f6; }
+.ca-btn.red    { background: rgba(239,68,68,0.07);  border-color: rgba(239,68,68,0.22);  color: #ef4444; }
+.ca-btn.purple { background: rgba(168,85,247,0.07); border-color: rgba(168,85,247,0.22); color: #a855f7; }
+
+/* Tags */
+.ca-tag { display: inline-block; padding: 0.18rem 0.52rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
+.ca-tag.gold   { background: rgba(245,158,11,0.12); color: #f59e0b; }
+.ca-tag.green  { background: rgba(34,197,94,0.12);  color: #22c55e; }
+.ca-tag.blue   { background: rgba(59,130,246,0.12); color: #3b82f6; }
+.ca-tag.red    { background: rgba(239,68,68,0.12);  color: #ef4444; }
+.ca-tag.purple { background: rgba(168,85,247,0.12); color: #a855f7; }
+
+/* Table */
+.ca-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.ca-table th { background: rgba(245,158,11,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.73rem; font-weight: 700; color: var(--ca-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ca-sub); }
+.ca-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+.ca-table tr:last-child td { border-bottom: none; }
+.ca-table tr:hover td { background: rgba(245,158,11,0.02); }
+
+/* Interactive */
+.ca-interactive { background: var(--ca-surface); border: 1px solid var(--ca-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.ca-interactive h3 { font-size: 1rem; font-weight: 700; color: #e8e0c0; margin: 0 0 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+/* Nav */
+.ca-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--ca-sub); }
+
+/* Bit cell */
+.ca-bit { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 5px; font-family: 'JetBrains Mono',monospace; font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: all 0.15s; user-select: none; }
+.ca-bit-1 { background: rgba(245,158,11,0.2); border: 1.5px solid #f59e0b; color: #fbbf24; }
+.ca-bit-0 { background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1); color: #334155; }
+
+/* Pipeline stage */
+.ca-stage { border-radius: 8px; text-align: center; padding: 0.4rem 0.2rem; font-size: 0.65rem; font-weight: 800; transition: all 0.3s; }
+
+@keyframes ca-blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.ca-active { animation: ca-blink 0.8s infinite; }

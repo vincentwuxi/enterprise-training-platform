@@ -29,7 +29,8 @@ export default defineConfig({
       '@course-llm':     path.resolve(__dirname, '../LLMMastery/src'),
       '@course-de':      path.resolve(__dirname, '../DataEngineering/src'),
       '@course-cicd':    path.resolve(__dirname, '../CICDMastery/src'),
-      '@course-sd':      path.resolve(__dirname, '../SystemDesign/src')
+      '@course-sd':      path.resolve(__dirname, '../SystemDesign/src'),
+      '@course-arch':    path.resolve(__dirname, '../CompArch/src')
     }
   }
 })

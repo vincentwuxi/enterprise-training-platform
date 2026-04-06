@@ -1,0 +1,20 @@
+{
+  "id": "computer-arch",
+  "title": "计算机组成原理：从晶体管到 CPU",
+  "description": "从零理解计算机是如何工作的！二进制/逻辑门/加法器 → 指令集（ISA）→ CPU 五级流水线 → Cache 层次结构 → 虚拟内存 → I/O 系统 → 多核并行架构。配套交互式逻辑门模拟器、流水线动画、Cache 命中/缺失演示，帮你建立完整的计算机体系结构直觉，为系统编程、性能调优、面试打好坚实基础。",
+  "category": "计算机基础",
+  "level": "中级",
+  "totalHours": 40,
+  "cover": { "gradient": ["#1c1408", "#1e1b0a"] },
+  "instructor": "CMU 15-213 CSAPP 课程体系 · 前 Intel CPU 设计工程师 · 《深入理解计算机系统》中文版技术顾问",
+  "modules": [
+    { "id": "overview",     "title": "模块一：体系结构总览 — 冯·诺依曼 / 层次模型 / 历史演进",       "lessonKey": "LessonOverview" },
+    { "id": "digital",      "title": "模块二：数字电路基础 — 二进制 / 逻辑门 / 半加器 / ALU",        "lessonKey": "LessonDigital" },
+    { "id": "isa",          "title": "模块三：指令集架构（ISA）— RISC/CISC / 寻址 / ARM vs x86",    "lessonKey": "LessonISA" },
+    { "id": "pipeline",     "title": "模块四：CPU 流水线 — 五级流水 / 数据冒险 / 分支预测",          "lessonKey": "LessonPipeline" },
+    { "id": "cache",        "title": "模块五：Cache 层次结构 — 命中/缺失 / 替换策略 / 一致性",       "lessonKey": "LessonCache" },
+    { "id": "memory",       "title": "模块六：虚拟内存 — 页表 / TLB / 缺页中断 / mmap",             "lessonKey": "LessonMemory" },
+    { "id": "io",           "title": "模块七：I/O 系统 — 总线 / DMA / 中断 / PCIe / NVMe",          "lessonKey": "LessonIO" },
+    { "id": "parallel",     "title": "模块八：并行架构 — 多核 / SIMD / GPU / NUMA 拓扑",             "lessonKey": "LessonParallel" }
+  ]
+}
