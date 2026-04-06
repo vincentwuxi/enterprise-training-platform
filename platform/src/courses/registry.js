@@ -23,6 +23,7 @@ import cicdManifest from '@course-cicd/../course.manifest.json';
 import sdManifest from '@course-sd/../course.manifest.json';
 import archManifest from '@course-arch/../course.manifest.json';
 import web3Manifest from '@course-web3/../course.manifest.json';
+import perfManifest from '@course-perf/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -325,6 +326,19 @@ export const courseRegistry = {
       LessonOracle:     lazy(() => import('@course-web3/pages/LessonOracle')),
       LessonLayer2:     lazy(() => import('@course-web3/pages/LessonLayer2')),
       LessonFullstack:  lazy(() => import('@course-web3/pages/LessonFullstack')),
+    }
+  },
+  'perf-optimization': {
+    manifest: perfManifest,
+    components: {
+      LessonFoundation: lazy(() => import('@course-perf/pages/LessonFoundation')),
+      LessonLinux:      lazy(() => import('@course-perf/pages/LessonLinux')),
+      LessonPython:     lazy(() => import('@course-perf/pages/LessonPython')),
+      LessonJavaScript: lazy(() => import('@course-perf/pages/LessonJavaScript')),
+      LessonDatabase:   lazy(() => import('@course-perf/pages/LessonDatabase')),
+      LessonAPM:        lazy(() => import('@course-perf/pages/LessonAPM')),
+      LessonMemory:     lazy(() => import('@course-perf/pages/LessonMemory')),
+      LessonStress:     lazy(() => import('@course-perf/pages/LessonStress')),
     }
   },
 };

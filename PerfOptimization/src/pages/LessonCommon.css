@@ -1,0 +1,116 @@
+/* ============================================================
+   Performance Optimization — Shared Theme
+   Flame Red + Speed Green + Metric Blue + Optim Orange + CPU Purple
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --po-bg:      #060609;
+  --po-surface: #0a0a10;
+  --po-card:    #0d0d16;
+  --po-border:  rgba(239,68,68,0.12);
+  --po-red:     #ef4444;
+  --po-orange:  #f97316;
+  --po-amber:   #fbbf24;
+  --po-green:   #22c55e;
+  --po-lime:    #4ade80;
+  --po-blue:    #3b82f6;
+  --po-sky:     #60a5fa;
+  --po-purple:  #8b5cf6;
+  --po-violet:  #a78bfa;
+  --po-text:    #f1f5f9;
+  --po-muted:   #64748b;
+  --po-sub:     #111118;
+}
+
+.lesson-po {
+  max-width: 980px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--po-text);
+}
+
+/* Badge */
+.po-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.22);
+  color: #f87171; padding: 0.4rem 1rem; border-radius: 20px;
+  font-size: 0.78rem; font-family: 'JetBrains Mono',monospace;
+  font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.po-badge.green  { background: rgba(34,197,94,0.07);  border-color: rgba(34,197,94,0.22);  color: #4ade80; }
+.po-badge.blue   { background: rgba(59,130,246,0.07); border-color: rgba(59,130,246,0.22); color: #60a5fa; }
+.po-badge.orange { background: rgba(249,115,22,0.07); border-color: rgba(249,115,22,0.22); color: #fb923c; }
+.po-badge.purple { background: rgba(139,92,246,0.07); border-color: rgba(139,92,246,0.22); color: #a78bfa; }
+.po-badge.amber  { background: rgba(251,191,36,0.07); border-color: rgba(251,191,36,0.22); color: #fbbf24; }
+
+/* Hero */
+.po-hero { margin-bottom: 2.5rem; }
+.po-hero h1 { font-size: clamp(1.75rem,4vw,2.4rem); font-weight: 900; line-height: 1.25; margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg,#ef4444,#f97316,#22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.po-hero p  { font-size: 1rem; color: var(--po-muted); line-height: 1.8; max-width: 700px; margin: 0; }
+.po-hero p strong { color: #f87171; -webkit-text-fill-color: #f87171; }
+
+/* Section */
+.po-section { margin: 2.5rem 0; }
+.po-section-title { font-size: 1.1rem; font-weight: 800; color: #f1f5f9; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* Card */
+.po-card { background: var(--po-card); border: 1px solid var(--po-border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+
+/* Grids */
+.po-grid-2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1rem; }
+.po-grid-3 { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 0.75rem; }
+.po-grid-4 { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 0.75rem; }
+
+/* Code */
+.po-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(239,68,68,0.12); }
+.po-code-head { background: #0a0a10; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: #475569; font-family: 'JetBrains Mono',monospace; }
+.po-code-dot  { width: 10px; height: 10px; border-radius: 50%; }
+.po-code      { background: #060609; padding: 1rem 1.25rem; font-family: 'JetBrains Mono',monospace; font-size: 0.8rem; color: #94a3b8; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 420px; overflow-y: auto; }
+
+/* Buttons */
+.po-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 8px; color: #f87171;
+  font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  transition: all 0.15s; font-family: 'Inter',sans-serif;
+}
+.po-btn:hover { background: rgba(239,68,68,0.12); }
+.po-btn.primary { background: linear-gradient(135deg,#b91c1c,#ef4444); color: #fff; border: none; box-shadow: 0 2px 16px rgba(239,68,68,0.3); }
+.po-btn.primary:hover { opacity: 0.9; }
+.po-btn.green  { background: rgba(34,197,94,0.06);  border-color: rgba(34,197,94,0.2);  color: #22c55e; }
+.po-btn.green:hover  { background: rgba(34,197,94,0.14); }
+.po-btn.blue   { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.2); color: #3b82f6; }
+.po-btn.orange { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.2); color: #f97316; }
+.po-btn.purple { background: rgba(139,92,246,0.06); border-color: rgba(139,92,246,0.2); color: #8b5cf6; }
+.po-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Table */
+.po-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.po-table th { background: rgba(239,68,68,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.73rem; font-weight: 700; color: var(--po-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--po-sub); }
+.po-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.po-table tr:last-child td { border-bottom: none; }
+.po-table tr:hover td { background: rgba(239,68,68,0.02); }
+
+/* Interactive */
+.po-interactive { background: var(--po-surface); border: 1px solid var(--po-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.po-interactive h3 { font-size: 1rem; font-weight: 700; color: #f1f5f9; margin: 0 0 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+/* Nav */
+.po-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--po-sub); }
+
+/* Progress bar */
+.po-progress { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.05); overflow: hidden; margin: 0.2rem 0; }
+.po-progress-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+
+/* Metric card */
+.po-metric { padding: 0.75rem 1rem; border-radius: 9px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+.po-metric-val { font-family: 'JetBrains Mono',monospace; font-size: 1.4rem; font-weight: 900; line-height: 1; }
+.po-metric-label { font-size: 0.68rem; color: var(--po-muted); margin-top: 0.2rem; }
+
+/* Flame bar */
+@keyframes po-flash { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.po-hot { animation: po-flash 1s infinite; }
