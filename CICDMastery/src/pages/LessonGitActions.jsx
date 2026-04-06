@@ -76,7 +76,7 @@ function PipelineSimulator() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
         {steps.map((step, i) => (
-          <div key={step.id} className={`cd-step ${step.status === 'running' ? 'running' : step.status === 'passed' ? 'passed' : step.status === 'failed' ? 'failed' : ''}`}>
+          <div key={step.id} className={`cd-step \${step.status === 'running' ? 'running' : step.status === 'passed' ? 'passed' : step.status === 'failed' ? 'failed' : ''}`}>
             <span style={{ fontSize: '0.9rem', flexShrink: 0 }}>
               {step.status === 'pending' ? '⚪' : step.status === 'running' ? <span className="cd-spinner">⏳</span> : step.status === 'passed' ? '✅' : '❌'}
             </span>
@@ -91,7 +91,7 @@ function PipelineSimulator() {
       {(allDone || hasFailed) && (
         <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.875rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 700,
           background: hasFailed ? 'rgba(239,68,68,0.08)' : 'rgba(34,197,94,0.08)',
-          color: hasFailed ? '#f87171' : '#22c55e', border: `1px solid ${hasFailed ? 'rgba(239,68,68,0.25)' : 'rgba(34,197,94,0.25)'}` }}>
+          color: hasFailed ? '#f87171' : '#22c55e', border: `1px solid \${hasFailed ? 'rgba(239,68,68,0.25)' : 'rgba(34,197,94,0.25)'}` }}>
           {hasFailed ? `❌ 流水线失败（测试未通过）— 用时 ${elapsed}s。Slack 通知已发送 🔔` : `✅ 所有 ${totalDone} 步完成 — 总耗时 ${elapsed}s！镜像已推送，Staging 已更新 🎉`}
         </div>
       )}
@@ -125,7 +125,7 @@ on:
 
 env:
   REGISTRY: ghcr.io            # 全局环境变量
-  IMAGE: ${{ github.repository }}
+  IMAGE: \${{ github.repository }}
 
 jobs:
   build-test:
@@ -144,10 +144,10 @@ jobs:
         with:
           fetch-depth: 0       # 获取完整历史（用于版本计算）
 
-      - name: Setup Python ${{ matrix.python-version }}
+      - name: Setup Python \${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: \${{ matrix.python-version }}
           cache: pip            # 自动缓存 pip 依赖！
 
       - name: Run tests
@@ -162,7 +162,7 @@ jobs:
 # Settings → Secrets → Actions → New secret
 - name: Push Docker image
   env:
-    DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
+    DOCKER_PASSWORD: \${{ secrets.DOCKER_HUB_TOKEN }}
   run: |
     echo "$DOCKER_PASSWORD" | docker login -u myorg --password-stdin
     docker push myorg/app:latest
@@ -220,7 +220,7 @@ permissions:
     cache-from: type=gha                # 使用 GitHub Cache API
     cache-to: type=gha,mode=max
     push: true
-    tags: ghcr.io/myorg/app:${{ github.sha }}
+    tags: ghcr.io/myorg/app:\${{ github.sha }}
 
 # 3. 手动缓存（任意文件）
 - uses: actions/cache@v4
@@ -229,9 +229,9 @@ permissions:
       ~/.cache/pip
       node_modules
       .venv
-    key: ${{ runner.os }}-deps-${{ hashFiles('poetry.lock') }}
+    key: \${{ runner.os }}-deps-\${{ hashFiles('poetry.lock') }}
     restore-keys: |
-      ${{ runner.os }}-deps-
+      \${{ runner.os }}-deps-
 
 # ── 制品上传 / 下载（跨 Job 共享文件）──
 - uses: actions/upload-artifact@v4
@@ -263,9 +263,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: \${{ inputs.environment }}
     steps:
-      - run: helm upgrade --install app ./helm -f values-${{ inputs.environment }}.yaml
+      - run: helm upgrade --install app ./helm -f values-\${{ inputs.environment }}.yaml
 
 # 在其他 Workflow 中调用
 jobs:
@@ -274,15 +274,15 @@ jobs:
     with:
       environment: staging
     secrets:
-      KUBECONFIG: ${{ secrets.STAGING_KUBECONFIG }}
+      KUBECONFIG: \${{ secrets.STAGING_KUBECONFIG }}
 
 # 2. 条件执行 & 输出传递
 - id: tag
   run: |
-    VERSION=v$(date +%Y%m%d)-${{ github.run_number }}
+    VERSION=v$(date +%Y%m%d)-\${{ github.run_number }}
     echo "version=$VERSION" >> $GITHUB_OUTPUT  # 设置输出变量
 
-- run: echo "版本：${{ steps.tag.outputs.version }}"
+- run: echo "版本：\${{ steps.tag.outputs.version }}"
 
 # 3. 矩阵 + continue-on-error（并行多平台，单失败不阻断）
 strategy:
@@ -290,11 +290,11 @@ strategy:
   matrix:
     os: [ubuntu-22.04, macos-13]
     python: ['3.11', '3.12']
-runs-on: ${{ matrix.os }}
+runs-on: \${{ matrix.os }}
 
 # 4. Concurrency（同分支只保留最新流水线）
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: \${{ github.workflow }}-\${{ github.ref }}
   cancel-in-progress: true  # 取消进行中的旧流水线`,
   },
 ];
@@ -322,7 +322,7 @@ export default function LessonGitActions() {
           {WORKFLOW_TOPICS.map((topic, i) => (
             <button key={i} onClick={() => setActiveTopic(i)}
               style={{ flex: 1, minWidth: 130, padding: '0.75rem', borderRadius: '10px', cursor: 'pointer', textAlign: 'center', fontWeight: 700, fontSize: '0.82rem', transition: 'all 0.2s',
-                border: `1px solid ${activeTopic === i ? topic.color + '60' : 'rgba(255,255,255,0.07)'}`,
+                border: `1px solid \${activeTopic === i ? topic.color + '60' : 'rgba(255,255,255,0.07)'}`,
                 background: activeTopic === i ? `${topic.color}10` : 'rgba(255,255,255,0.02)',
                 color: activeTopic === i ? topic.color : '#8b949e' }}>
               <div style={{ fontSize: '1.1rem', marginBottom: '0.15rem' }}>{topic.icon}</div>

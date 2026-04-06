@@ -6,6 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   resolve: {
+    dedupe: ['react', 'react-dom', 'react-router-dom', 'lucide-react'],
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@course-calculus': path.resolve(__dirname, '../微积分/src'),

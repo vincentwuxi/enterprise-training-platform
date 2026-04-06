@@ -51,7 +51,7 @@ CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
 - name: 🛡️ Security Scan with Trivy
   uses: aquasecurity/trivy-action@master
   with:
-    image-ref: 'ghcr.io/myorg/app:${{ github.sha }}'
+    image-ref: 'ghcr.io/myorg/app:\${{ github.sha }}'
     format: 'sarif'            # GitHub Security 标准格式
     output: 'trivy-results.sarif'
     severity: 'CRITICAL,HIGH'  # 只报告高危
@@ -166,7 +166,7 @@ cosign verify --key cosign.pub ghcr.io/myorg/app:latest
 # GitHub Actions SLSA 供应链证明（Provenance）
 - uses: slsa-framework/slsa-github-generator/.github/workflows/...
   with:
-    image: ghcr.io/myorg/app:${{ github.sha }}
+    image: ghcr.io/myorg/app:\${{ github.sha }}
   # 生成 SLSA Level 3 证明，链接到特定构建运行`,
   },
 ];
@@ -224,7 +224,7 @@ export default function LessonDockerBuild() {
           {DOCKER_TOPICS.map((topic, i) => (
             <button key={i} onClick={() => setActiveTopic(i)}
               style={{ flex: 1, minWidth: 130, padding: '0.75rem', borderRadius: '10px', cursor: 'pointer', textAlign: 'center', fontWeight: 700, fontSize: '0.82rem', transition: 'all 0.2s',
-                border: `1px solid ${activeTopic === i ? topic.color + '60' : 'rgba(255,255,255,0.07)'}`,
+                border: `1px solid \${activeTopic === i ? topic.color + '60' : 'rgba(255,255,255,0.07)'}`,
                 background: activeTopic === i ? `${topic.color}10` : 'rgba(255,255,255,0.02)',
                 color: activeTopic === i ? topic.color : '#8b949e' }}>
               <div style={{ fontSize: '1.1rem', marginBottom: '0.15rem' }}>{topic.icon}</div>
