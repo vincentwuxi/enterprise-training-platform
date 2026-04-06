@@ -30,7 +30,8 @@ export default defineConfig({
       '@course-de':      path.resolve(__dirname, '../DataEngineering/src'),
       '@course-cicd':    path.resolve(__dirname, '../CICDMastery/src'),
       '@course-sd':      path.resolve(__dirname, '../SystemDesign/src'),
-      '@course-arch':    path.resolve(__dirname, '../CompArch/src')
+      '@course-arch':    path.resolve(__dirname, '../CompArch/src'),
+      '@course-web3':    path.resolve(__dirname, '../BlockchainWeb3/src')
     }
   }
 })

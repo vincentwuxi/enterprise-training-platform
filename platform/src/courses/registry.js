@@ -22,6 +22,7 @@ import deManifest from '@course-de/../course.manifest.json';
 import cicdManifest from '@course-cicd/../course.manifest.json';
 import sdManifest from '@course-sd/../course.manifest.json';
 import archManifest from '@course-arch/../course.manifest.json';
+import web3Manifest from '@course-web3/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -311,6 +312,19 @@ export const courseRegistry = {
       LessonMemory:    lazy(() => import('@course-arch/pages/LessonMemory')),
       LessonIO:        lazy(() => import('@course-arch/pages/LessonIO')),
       LessonParallel:  lazy(() => import('@course-arch/pages/LessonParallel')),
+    }
+  },
+  'blockchain-web3': {
+    manifest: web3Manifest,
+    components: {
+      LessonFoundation: lazy(() => import('@course-web3/pages/LessonFoundation')),
+      LessonSolidity:   lazy(() => import('@course-web3/pages/LessonSolidity')),
+      LessonDeFi:       lazy(() => import('@course-web3/pages/LessonDeFi')),
+      LessonNFT:        lazy(() => import('@course-web3/pages/LessonNFT')),
+      LessonSecurity:   lazy(() => import('@course-web3/pages/LessonSecurity')),
+      LessonOracle:     lazy(() => import('@course-web3/pages/LessonOracle')),
+      LessonLayer2:     lazy(() => import('@course-web3/pages/LessonLayer2')),
+      LessonFullstack:  lazy(() => import('@course-web3/pages/LessonFullstack')),
     }
   },
 };
