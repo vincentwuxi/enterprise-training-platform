@@ -1,0 +1,119 @@
+/* ==================================================
+   React + TypeScript Course — Electric Blue Theme
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --rt-bg:      #030712;
+  --rt-surface: #070b18;
+  --rt-card:    #0a0f20;
+  --rt-border:  rgba(59,130,246,0.12);
+  --rt-blue:    #3b82f6;
+  --rt-sky:     #60a5fa;
+  --rt-cyan:    #06b6d4;
+  --rt-react:   #61dafb;   /* React 官方色 */
+  --rt-ts:      #3178c6;   /* TypeScript 官方色 */
+  --rt-next:    #ffffff;   /* Next.js 官方色 */
+  --rt-purple:  #8b5cf6;
+  --rt-green:   #10b981;
+  --rt-orange:  #f97316;
+  --rt-red:     #ef4444;
+  --rt-text:    #e2e8f0;
+  --rt-muted:   #64748b;
+}
+
+.lesson-rt {
+  max-width: 980px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--rt-text);
+}
+
+/* Badge */
+.rt-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.22);
+  color: #60a5fa; padding: 0.4rem 1rem; border-radius: 20px;
+  font-size: 0.78rem; font-family: 'JetBrains Mono',monospace;
+  font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.rt-badge.ts     { background: rgba(49,120,198,0.07); border-color: rgba(49,120,198,0.25); color: #60a5fa; }
+.rt-badge.react  { background: rgba(97,218,251,0.07); border-color: rgba(97,218,251,0.25); color: #61dafb; }
+.rt-badge.next   { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); color: #e2e8f0; }
+.rt-badge.green  { background: rgba(16,185,129,0.07); border-color: rgba(16,185,129,0.22); color: #34d399; }
+.rt-badge.purple { background: rgba(139,92,246,0.07); border-color: rgba(139,92,246,0.22); color: #a78bfa; }
+
+/* Hero */
+.rt-hero { margin-bottom: 2.5rem; }
+.rt-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.4rem); font-weight: 900; line-height: 1.25;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #61dafb, #3b82f6, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.rt-hero p { font-size: 1rem; color: var(--rt-muted); line-height: 1.8; max-width: 720px; margin: 0; }
+.rt-hero p strong { color: #61dafb; -webkit-text-fill-color: #61dafb; }
+
+/* Sections */
+.rt-section { margin: 2.5rem 0; }
+.rt-section-title { font-size: 1.1rem; font-weight: 800; color: #e2e8f0; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* Cards */
+.rt-card { background: var(--rt-card); border: 1px solid var(--rt-border); border-radius: 12px; padding: 1.25rem; }
+.rt-grid-2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap: 1rem; }
+.rt-grid-3 { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 0.75rem; }
+
+/* Code */
+.rt-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(59,130,246,0.14); }
+.rt-code-head { background: #070b18; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: #475569; font-family: 'JetBrains Mono',monospace; }
+.rt-code-dot  { width: 10px; height: 10px; border-radius: 50%; }
+.rt-code      { background: #030712; padding: 1rem 1.25rem; font-family: 'JetBrains Mono',monospace; font-size: 0.8rem; color: #94a3b8; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 440px; overflow-y: auto; }
+
+/* Buttons */
+.rt-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem; background: rgba(59,130,246,0.06);
+  border: 1px solid rgba(59,130,246,0.2); border-radius: 8px;
+  color: #60a5fa; font-size: 0.875rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter',sans-serif;
+}
+.rt-btn:hover { background: rgba(59,130,246,0.14); }
+.rt-btn.primary { background: linear-gradient(135deg,#2563eb,#7c3aed); color: #fff; border: none; box-shadow: 0 2px 16px rgba(59,130,246,0.35); }
+.rt-btn.primary:hover { opacity: 0.9; }
+.rt-btn.react  { background: rgba(97,218,251,0.06); border-color: rgba(97,218,251,0.2); color: #61dafb; }
+.rt-btn.ts     { background: rgba(49,120,198,0.06); border-color: rgba(49,120,198,0.25); color: #60a5fa; }
+.rt-btn.green  { background: rgba(16,185,129,0.06); border-color: rgba(16,185,129,0.2); color: #34d399; }
+.rt-btn.purple { background: rgba(139,92,246,0.06); border-color: rgba(139,92,246,0.2); color: #a78bfa; }
+
+/* Table */
+.rt-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.rt-table th { background: rgba(59,130,246,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.73rem; font-weight: 700; color: var(--rt-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.rt-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.rt-table tr:last-child td { border-bottom: none; }
+.rt-table tr:hover td { background: rgba(59,130,246,0.02); }
+
+/* Interactive */
+.rt-interactive { background: var(--rt-surface); border: 1px solid var(--rt-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.rt-interactive h3 { font-size: 1rem; font-weight: 700; color: #e2e8f0; margin: 0 0 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+/* Tag */
+.rt-tag { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+.rt-tag.react  { background: rgba(97,218,251,0.1); color: #61dafb; }
+.rt-tag.ts     { background: rgba(49,120,198,0.1); color: #60a5fa; }
+.rt-tag.green  { background: rgba(16,185,129,0.1); color: #10b981; }
+.rt-tag.purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+.rt-tag.orange { background: rgba(249,115,22,0.1); color: #f97316; }
+.rt-tag.red    { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+/* Nav */
+.rt-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.04); }
+
+/* Render/preview area */
+.rt-preview {
+  background: #f8fafc; border-radius: 8px; padding: 1.25rem;
+  color: #1e293b; font-family: 'Inter',sans-serif;
+}
+
+/* Spin animation for React logo */
+@keyframes rt-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.rt-spin { animation: rt-spin 8s linear infinite; display: inline-block; }

@@ -1,0 +1,94 @@
+/* ==================================================
+   Interview Mastery — Gold Trophy Theme
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --iv-bg:      #0a0800;
+  --iv-surface: #100f02;
+  --iv-card:    #141200;
+  --iv-border:  rgba(234,179,8,0.12);
+  --iv-gold:    #eab308;
+  --iv-amber:   #f59e0b;
+  --iv-yellow:  #fbbf24;
+  --iv-green:   #22c55e;
+  --iv-blue:    #3b82f6;
+  --iv-red:     #ef4444;
+  --iv-purple:  #8b5cf6;
+  --iv-text:    #fefce8;
+  --iv-muted:   #78716c;
+}
+
+.lesson-iv {
+  max-width: 980px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--iv-text);
+}
+
+.iv-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(234,179,8,0.07); border: 1px solid rgba(234,179,8,0.25);
+  color: #fbbf24; padding: 0.4rem 1rem; border-radius: 20px;
+  font-size: 0.78rem; font-family: 'JetBrains Mono',monospace;
+  font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.iv-badge.green  { background: rgba(34,197,94,0.07); border-color: rgba(34,197,94,0.22); color: #4ade80; }
+.iv-badge.blue   { background: rgba(59,130,246,0.07); border-color: rgba(59,130,246,0.22); color: #60a5fa; }
+.iv-badge.red    { background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.22); color: #f87171; }
+.iv-badge.purple { background: rgba(139,92,246,0.07); border-color: rgba(139,92,246,0.22); color: #a78bfa; }
+
+.iv-hero { margin-bottom: 2.5rem; }
+.iv-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.4rem); font-weight: 900; line-height: 1.25; margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #eab308, #22c55e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.iv-hero p { font-size: 1rem; color: var(--iv-muted); line-height: 1.8; max-width: 720px; margin: 0; }
+.iv-hero p strong { color: #fbbf24; -webkit-text-fill-color: #fbbf24; }
+
+.iv-section { margin: 2.5rem 0; }
+.iv-section-title { font-size: 1.1rem; font-weight: 800; color: #fefce8; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.iv-card { background: var(--iv-card); border: 1px solid var(--iv-border); border-radius: 12px; padding: 1.25rem; }
+.iv-grid-2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1rem; }
+.iv-grid-3 { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 0.75rem; }
+
+.iv-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(234,179,8,0.14); }
+.iv-code-head { background: #100f02; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: #57534e; font-family: 'JetBrains Mono',monospace; }
+.iv-code-dot  { width: 10px; height: 10px; border-radius: 50%; }
+.iv-code      { background: #0a0800; padding: 1rem 1.25rem; font-family: 'JetBrains Mono',monospace; font-size: 0.8rem; color: #a8a29e; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 440px; overflow-y: auto; }
+
+.iv-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem;
+  background: rgba(234,179,8,0.06); border: 1px solid rgba(234,179,8,0.2); border-radius: 8px;
+  color: #fbbf24; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: 'Inter',sans-serif;
+}
+.iv-btn:hover { background: rgba(234,179,8,0.14); }
+.iv-btn.primary { background: linear-gradient(135deg,#b45309,#a16207); color: #fef3c7; border: none; box-shadow: 0 2px 16px rgba(234,179,8,0.3); }
+.iv-btn.primary:hover { opacity: 0.9; }
+.iv-btn.green  { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.2); color: #4ade80; }
+.iv-btn.blue   { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.2); color: #60a5fa; }
+.iv-btn.red    { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.2); color: #f87171; }
+.iv-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.iv-interactive { background: var(--iv-surface); border: 1px solid var(--iv-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.iv-interactive h3 { font-size: 1rem; font-weight: 700; color: #fefce8; margin: 0 0 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+.iv-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.iv-table th { background: rgba(234,179,8,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.73rem; font-weight: 700; color: var(--iv-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.iv-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.iv-table tr:last-child td { border-bottom: none; }
+
+.iv-tag { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+.iv-tag.gold   { background: rgba(234,179,8,0.1); color: #eab308; }
+.iv-tag.green  { background: rgba(34,197,94,0.1); color: #22c55e; }
+.iv-tag.blue   { background: rgba(59,130,246,0.1); color: #3b82f6; }
+.iv-tag.red    { background: rgba(239,68,68,0.1); color: #ef4444; }
+.iv-tag.purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+
+.iv-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.04); }
+.iv-progress { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.05); overflow: hidden; }
+.iv-progress-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+
+/* Timer ring */
+@keyframes iv-countdown { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 283; } }
