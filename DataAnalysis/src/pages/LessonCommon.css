@@ -1,0 +1,100 @@
+/* DataAnalysis — 课程公共样式（青色数据主题）*/
+:root {
+  --da-primary: #06b6d4;
+  --da-secondary: #0ea5e9;
+  --da-accent: #10b981;
+  --da-bg: #0a0f1a;
+  --da-surface: #111827;
+  --da-card: #1a2236;
+  --da-border: rgba(6,182,212,0.2);
+  --da-text: #e2e8f0;
+  --da-muted: #94a3b8;
+}
+
+/* ── 页面骨架 ── */
+.da-lesson { background: var(--da-bg); color: var(--da-text); min-height: 100vh; font-family: 'Inter', sans-serif; padding: 2rem; }
+
+/* ── Hero ── */
+.da-hero { background: linear-gradient(135deg,#0c1628 0%,#0a1f35 50%,#061a20 100%); border: 1px solid var(--da-border); border-radius: 1.5rem; padding: 2.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+.da-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:400px; height:400px; background:radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%); pointer-events:none; }
+.da-hero-badge { display:inline-flex; align-items:center; gap:.4rem; background:rgba(6,182,212,0.15); color:var(--da-primary); border:1px solid var(--da-border); border-radius:99px; padding:.3rem .8rem; font-size:.75rem; font-weight:600; letter-spacing:.05em; margin-bottom:1rem; }
+.da-hero h1 { font-size:2rem; font-weight:800; background:linear-gradient(120deg,#06b6d4,#0ea5e9,#10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0 0 .75rem; }
+.da-hero p { color:var(--da-muted); font-size:1rem; line-height:1.7; max-width:700px; }
+
+/* ── 目标卡片 ── */
+.da-goals { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem; }
+.da-goal { background:var(--da-card); border:1px solid var(--da-border); border-radius:1rem; padding:1.2rem; display:flex; align-items:flex-start; gap:.75rem; transition:border-color .2s; }
+.da-goal:hover { border-color:var(--da-primary); }
+.da-goal-icon { font-size:1.4rem; line-height:1; }
+.da-goal h3 { font-size:.85rem; font-weight:700; color:var(--da-text); margin:0 0 .25rem; }
+.da-goal p { font-size:.78rem; color:var(--da-muted); margin:0; line-height:1.5; }
+
+/* ── 章节标题 ── */
+.da-section-title { font-size:1.25rem; font-weight:700; color:var(--da-text); margin:2rem 0 1rem; display:flex; align-items:center; gap:.5rem; }
+.da-section-title::after { content:''; flex:1; height:1px; background:var(--da-border); }
+
+/* ── 代码块 ── */
+.da-code { background:#0d1117; border:1px solid rgba(6,182,212,0.15); border-radius:.75rem; overflow:hidden; margin:1rem 0; }
+.da-code-header { display:flex; align-items:center; justify-content:space-between; padding:.6rem 1rem; background:rgba(6,182,212,0.06); border-bottom:1px solid rgba(6,182,212,0.1); }
+.da-code-lang { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--da-primary); }
+.da-code pre { margin:0; padding:1.2rem; font-size:.82rem; line-height:1.65; color:#a5d6ff; font-family:'JetBrains Mono','Fira Code',monospace; overflow-x:auto; }
+.da-code pre .kw  { color:#ff79c6; }
+.da-code pre .fn  { color:#50fa7b; }
+.da-code pre .str { color:#f1fa8c; }
+.da-code pre .cm  { color:#6272a4; font-style:italic; }
+.da-code pre .num { color:#bd93f9; }
+
+/* ── 交互模拟器 ── */
+.da-sim { background:var(--da-card); border:1px solid var(--da-border); border-radius:1rem; padding:1.5rem; margin:1.5rem 0; }
+.da-sim-title { font-size:.9rem; font-weight:700; color:var(--da-primary); margin:0 0 1rem; display:flex; align-items:center; gap:.5rem; }
+.da-tab-bar { display:flex; gap:.5rem; margin-bottom:1.2rem; flex-wrap:wrap; }
+.da-tab { padding:.4rem .9rem; border-radius:.5rem; border:1px solid var(--da-border); background:transparent; color:var(--da-muted); font-size:.8rem; cursor:pointer; transition:all .2s; }
+.da-tab.active { background:var(--da-primary); color:#fff; border-color:var(--da-primary); }
+.da-tab:hover:not(.active) { border-color:var(--da-primary); color:var(--da-primary); }
+
+/* ── 表格 ── */
+.da-table-wrap { overflow-x:auto; border-radius:.75rem; border:1px solid var(--da-border); margin:1rem 0; }
+.da-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.da-table th { background:rgba(6,182,212,0.1); color:var(--da-primary); font-weight:700; padding:.65rem 1rem; text-align:left; border-bottom:1px solid var(--da-border); white-space:nowrap; }
+.da-table td { padding:.6rem 1rem; border-bottom:1px solid rgba(255,255,255,0.04); color:var(--da-text); }
+.da-table tr:last-child td { border-bottom:none; }
+.da-table tr:hover td { background:rgba(6,182,212,0.04); }
+.da-badge { display:inline-block; padding:.15rem .5rem; border-radius:.35rem; font-size:.72rem; font-weight:700; }
+.da-badge.green  { background:rgba(16,185,129,.2); color:#10b981; }
+.da-badge.blue   { background:rgba(6,182,212,.2);  color:#06b6d4; }
+.da-badge.orange { background:rgba(251,146,60,.2); color:#fb923c; }
+.da-badge.red    { background:rgba(239,68,68,.2);  color:#ef4444; }
+
+/* ── 提示框 ── */
+.da-tip { background:rgba(6,182,212,.08); border-left:3px solid var(--da-primary); border-radius:0 .75rem .75rem 0; padding:1rem 1.2rem; margin:1rem 0; }
+.da-tip strong { color:var(--da-primary); display:block; margin-bottom:.3rem; font-size:.85rem; }
+.da-tip p { margin:0; font-size:.85rem; color:var(--da-muted); line-height:1.6; }
+.da-warn { background:rgba(251,146,60,.08); border-left:3px solid #fb923c; border-radius:0 .75rem .75rem 0; padding:1rem 1.2rem; margin:1rem 0; }
+.da-warn strong { color:#fb923c; display:block; margin-bottom:.3rem; font-size:.85rem; }
+.da-warn p { margin:0; font-size:.85rem; color:var(--da-muted); line-height:1.6; }
+
+/* ── 输出框 ── */
+.da-output { background:#050a0f; border:1px solid rgba(16,185,129,0.2); border-radius:.75rem; padding:1rem 1.2rem; margin:.75rem 0; font-family:monospace; font-size:.82rem; color:#10b981; line-height:1.7; }
+.da-output .out-label { color:#6272a4; font-size:.75rem; margin-bottom:.5rem; display:block; }
+
+/* ── 知识点卡片 ── */
+.da-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin:1rem 0; }
+.da-card { background:var(--da-card); border:1px solid var(--da-border); border-radius:1rem; padding:1.25rem; transition:transform .2s,border-color .2s; }
+.da-card:hover { transform:translateY(-2px); border-color:var(--da-primary); }
+.da-card-icon { font-size:1.5rem; margin-bottom:.75rem; }
+.da-card h3  { font-size:.9rem; font-weight:700; color:var(--da-text); margin:0 0 .4rem; }
+.da-card p   { font-size:.8rem; color:var(--da-muted); margin:0; line-height:1.6; }
+
+/* ── 步骤列表 ── */
+.da-steps { list-style:none; padding:0; margin:1rem 0; display:flex; flex-direction:column; gap:.75rem; }
+.da-steps li { display:flex; gap:1rem; align-items:flex-start; }
+.da-step-num { width:28px; height:28px; min-width:28px; border-radius:50%; background:linear-gradient(135deg,var(--da-primary),var(--da-accent)); display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; color:#fff; }
+.da-step-body h4 { margin:0 0 .2rem; font-size:.88rem; color:var(--da-text); }
+.da-step-body p  { margin:0; font-size:.8rem; color:var(--da-muted); line-height:1.5; }
+
+/* 响应式 */
+@media(max-width:768px){
+  .da-lesson { padding:1rem; }
+  .da-hero h1 { font-size:1.4rem; }
+  .da-goals { grid-template-columns:1fr 1fr; }
+}
