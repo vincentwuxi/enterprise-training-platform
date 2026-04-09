@@ -31,6 +31,7 @@ import agentManifest from '@course-agent/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
+import omftManifest  from '@course-omft/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -437,6 +438,19 @@ export const courseRegistry = {
       LessonBizModel:        lazy(() => import('@course-llmpd/pages/LessonBizModel')),
       LessonCaseStudy:       lazy(() => import('@course-llmpd/pages/LessonCaseStudy')),
       LessonAIProductProject:lazy(() => import('@course-llmpd/pages/LessonAIProductProject')),
+    }
+  },
+  'open-model-finetune': {
+    manifest: omftManifest,
+    components: {
+      LessonFTIntro:    lazy(() => import('@course-omft/pages/LessonFTIntro')),
+      LessonDataPrep:   lazy(() => import('@course-omft/pages/LessonDataPrep')),
+      LessonLoRA:       lazy(() => import('@course-omft/pages/LessonLoRA')),
+      LessonSFT:        lazy(() => import('@course-omft/pages/LessonSFT')),
+      LessonDPO:        lazy(() => import('@course-omft/pages/LessonDPO')),
+      LessonEval:       lazy(() => import('@course-omft/pages/LessonEval')),
+      LessonQuant:      lazy(() => import('@course-omft/pages/LessonQuant')),
+      LessonFTProject:  lazy(() => import('@course-omft/pages/LessonFTProject')),
     }
   },
 };
