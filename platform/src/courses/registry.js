@@ -33,6 +33,7 @@ import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
 import omftManifest  from '@course-omft/../course.manifest.json';
 import rtManifest    from '@course-rt/../course.manifest.json';
+import aseManifest   from '@course-ase/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -465,6 +466,19 @@ export const courseRegistry = {
       LessonPerformance: lazy(() => import('@course-rt/pages/LessonPerformance')),
       LessonTesting:     lazy(() => import('@course-rt/pages/LessonTesting')),
       LessonDeployment:  lazy(() => import('@course-rt/pages/LessonDeployment')),
+    }
+  },
+  'ai-strategy-executive': {
+    manifest: aseManifest,
+    components: {
+      LessonCognition:   lazy(() => import('@course-ase/pages/LessonCognition')),
+      LessonOpportunity: lazy(() => import('@course-ase/pages/LessonOpportunity')),
+      LessonROI:         lazy(() => import('@course-ase/pages/LessonROI')),
+      LessonVendor:      lazy(() => import('@course-ase/pages/LessonVendor')),
+      LessonTeam:        lazy(() => import('@course-ase/pages/LessonTeam')),
+      LessonData:        lazy(() => import('@course-ase/pages/LessonData')),
+      LessonRisk:        lazy(() => import('@course-ase/pages/LessonRisk')),
+      LessonRoadmap:     lazy(() => import('@course-ase/pages/LessonRoadmap')),
     }
   },
 };

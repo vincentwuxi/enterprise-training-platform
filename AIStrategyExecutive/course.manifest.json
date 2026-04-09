@@ -1,0 +1,19 @@
+{
+  "id": "ai-strategy-executive",
+  "title": "AI 战略决策：管理者的 AI 升级手册",
+  "description": "专为 CTO、CEO、部门负责人设计的 AI 战略决策课程。无需技术背景，用商业语言解读 AI 本质 → 机会识别框架 → ROI 测算模型 → 供应商选型 → 团队组建 → 数据战略 → 风险合规 → 90天落地路线图。让你在董事会和投资人面前谈起 AI 有底气，推动 AI 转型有方法。",
+  "category": "管理与战略",
+  "level": "管理者",
+  "duration": "12h",
+  "tags": ["AI战略", "管理者", "ROI", "数字化转型", "CTO", "决策框架", "AI合规", "供应商选型"],
+  "modules": [
+    { "id": "cognition",   "title": "模块一：AI 认知重建 — 用商业语言理解 AI", "lessonKey": "LessonCognition" },
+    { "id": "opportunity", "title": "模块二：机会识别框架 — 在企业内找 AI 着力点", "lessonKey": "LessonOpportunity" },
+    { "id": "roi",         "title": "模块三：ROI 测算模型 — 如何向董事会证明 AI 投资值得", "lessonKey": "LessonROI" },
+    { "id": "vendor",      "title": "模块四：AI 供应商选型 — 自研 vs 采购 vs 外包", "lessonKey": "LessonVendor" },
+    { "id": "team",        "title": "模块五：组建 AI 团队 — 招什么人、怎么管", "lessonKey": "LessonTeam" },
+    { "id": "data",        "title": "模块六：数据战略 — 企业数据资产的价值化路径", "lessonKey": "LessonData" },
+    { "id": "risk",        "title": "模块七：AI 风险与合规 — 不踩坑的决策清单", "lessonKey": "LessonRisk" },
+    { "id": "roadmap",     "title": "模块八：90 天行动路线图 — 从 POC 到全面落地", "lessonKey": "LessonRoadmap" }
+  ]
+}

@@ -42,7 +42,8 @@ export default defineConfig({
       '@course-pm':      path.resolve(__dirname, '../PMAIMastery/src'),
       '@course-llmpd':   path.resolve(__dirname, '../LLMProductDesign/src'),
       '@course-omft':    path.resolve(__dirname, '../OpenModelFinetune/src'),
-      '@course-rt':      path.resolve(__dirname, '../ReactTypeScript/src')
+      '@course-rt':      path.resolve(__dirname, '../ReactTypeScript/src'),
+      '@course-ase':     path.resolve(__dirname, '../AIStrategyExecutive/src')
     }
   }
 })
