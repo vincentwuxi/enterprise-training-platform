@@ -45,7 +45,8 @@ export default defineConfig({
       '@course-rt':      path.resolve(__dirname, '../ReactTypeScript/src'),
       '@course-ase':     path.resolve(__dirname, '../AIStrategyExecutive/src'),
       '@course-rag':     path.resolve(__dirname, '../RAGEngineering/src'),
-      '@course-k8s':     path.resolve(__dirname, '../KubernetesOps/src')
+      '@course-k8s':     path.resolve(__dirname, '../KubernetesOps/src'),
+      '@course-aae':     path.resolve(__dirname, '../AIAgentEngineering/src')
     }
   }
 })

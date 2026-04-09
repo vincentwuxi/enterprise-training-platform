@@ -1,299 +1,235 @@
 import { useState } from 'react';
 import './LessonCommon.css';
 
-const GRAPH_NODES = [
-  { id: 'start',    label: '▶ START',         x: 50,  y: 50,  color: '#10b981' },
-  { id: 'agent',    label: '🧠 Agent Node',   x: 50,  y: 160, color: '#8b5cf6' },
-  { id: 'tools',    label: '⚡ Tool Node',    x: 10,  y: 280, color: '#06b6d4' },
-  { id: 'human',    label: '👤 Human Review', x: 90,  y: 280, color: '#f59e0b' },
-  { id: 'end',      label: '⏹ END',          x: 50,  y: 390, color: '#ef4444' },
-];
+export default function LessonLangGraph() {
+  const [tab, setTab] = useState('basic');
 
-const TABS = [
-  {
-    key: 'basic',
-    label: '基础图',
-    code: `from langgraph.graph import StateGraph, END
+  const codes = {
+    basic: `# ━━━━ LangGraph 核心概念与基础用法 ━━━━
+# pip install langgraph langchain-openai
+
+from langgraph.graph import StateGraph, END
+from langchain_openai import ChatOpenAI
 from typing import TypedDict, Annotated
 import operator
 
+# ━━━━ 1. 定义状态（State）━━━━
 class AgentState(TypedDict):
-    messages: Annotated[list, operator.add]
-    next: str
+    messages: Annotated[list, operator.add]  # 追加模式
+    current_task: str
+    tool_results: list
+    final_answer: str
+    iterations: int
 
-# 构建图
-builder = StateGraph(AgentState)
+# ━━━━ 2. 定义节点（Nodes）━━━━
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
-# 添加节点
-builder.add_node("agent", call_model)      # LLM 推理节点
-builder.add_node("tools", call_tools)      # 工具执行节点
-
-# 设置入口
-builder.set_entry_point("agent")
-
-# 添加条件边（Agent 决定下一步）
-def should_continue(state: AgentState) -> str:
-    last_msg = state["messages"][-1]
-    if last_msg.tool_calls:
-        return "tools"   # → 执行工具
-    return END           # → 结束
-
-builder.add_conditional_edges("agent", should_continue)
-builder.add_edge("tools", "agent")  # 工具结果返回 Agent
-
-# 编译并运行
-graph = builder.compile()
-result = graph.invoke({"messages": [HumanMessage("帮我搜索最新 AI 新闻")]})`,
-  },
-  {
-    key: 'conditional',
-    label: '条件分支',
-    code: `# 复杂条件分支：根据任务类型路由到不同节点
-def route_task(state: AgentState) -> str:
-    """根据用户意图路由到不同处理路径"""
-    intent = state.get("intent", "")
-    
-    if "代码" in intent or "编程" in intent:
-        return "code_agent"      # → 代码专家 Agent
-    elif "搜索" in intent or "查找" in intent:
-        return "search_agent"    # → 搜索 Agent
-    elif "分析" in intent:
-        return "analysis_agent"  # → 数据分析 Agent
-    else:
-        return "general_agent"   # → 通用 Agent
-
-builder.add_conditional_edges(
-    "router",
-    route_task,
-    {
-        "code_agent":     "code_agent",
-        "search_agent":   "search_agent",
-        "analysis_agent": "analysis_agent",
-        "general_agent":  "general_agent",
+def agent_node(state: AgentState) -> AgentState:
+    """主要决策节点"""
+    response = llm.invoke(state["messages"])
+    return {
+        "messages": [response],
+        "iterations": state.get("iterations", 0) + 1,
     }
-)`,
-  },
-  {
-    key: 'hitl',
-    label: '人工介入 HITL',
-    code: `# HITL (Human-in-the-Loop): 危险操作前暂停等待人工确认
-from langgraph.checkpoint.memory import MemorySaver
-from langgraph.graph import interrupt
 
-# 关键节点：执行前请求人工确认
-def risky_action_node(state: AgentState):
-    action = state["pending_action"]
-    
-    # interrupt() 暂停图执行，等待外部输入
-    human_decision = interrupt({
-        "question": f"即将执行: {action}，请确认",
-        "action":    action,
-        "severity":  "high",
-    })
-    
-    if human_decision["approved"]:
-        return execute_action(action)
-    else:
-        return {"messages": [AIMessage("操作已取消")]}
+def tool_node(state: AgentState) -> AgentState:
+    """工具执行节点"""
+    last_message = state["messages"][-1]
+    # 执行工具调用
+    tool_results = execute_tools(last_message.tool_calls)
+    return {"tool_results": tool_results}
 
-# 使用 Checkpoint 持久化暂停状态
-checkpointer = MemorySaver()  # 生产用 PostgresSaver
-graph = builder.compile(
-    checkpointer=checkpointer,
-    interrupt_before=["risky_action"],  # 在此节点前暂停
-)
-
-# 恢复执行（人工确认后）
-graph.invoke(
-    Command(resume={"approved": True}),
-    config={"configurable": {"thread_id": "task_123"}}
-)`,
-  },
-  {
-    key: 'loop',
-    label: '循环与终止',
-    code: `# 带循环的 Agent：自我改进直到满足质量标准
-def should_revise(state: AgentState) -> str:
-    iteration = state.get("iteration_count", 0)
+def should_continue(state: AgentState) -> str:
+    """条件路由函数：返回下一个节点名称"""
+    last_msg = state["messages"][-1]
     
-    # 防止无限循环
-    if iteration >= 5:
+    # 超出最大迭代次数 → 强制结束
+    if state.get("iterations", 0) >= 10:
         return "end"
     
-    # 质量评估
-    quality_score = evaluate_output(state["last_output"])
-    if quality_score >= 0.85:
-        return "end"     # 质量达标，结束
-    else:
-        return "revise"  # 质量不足，继续改进
+    # 有工具调用 → 执行工具
+    if hasattr(last_msg, "tool_calls") and last_msg.tool_calls:
+        return "tools"
+    
+    # 没有工具调用 → 已有答案，结束
+    return "end"
 
-# 循环计数器（在节点中更新）
-def revise_node(state: AgentState) -> AgentState:
-    return {
-        **state,
-        "iteration_count": state.get("iteration_count", 0) + 1,
-        "messages": state["messages"] + [
-            SystemMessage(f"第{state.get('iteration_count',0)+1}次改进...")
-        ]
+# ━━━━ 3. 构建图（Graph）━━━━
+workflow = StateGraph(AgentState)
+
+# 添加节点
+workflow.add_node("agent", agent_node)
+workflow.add_node("tools", tool_node)
+
+# 设置入口
+workflow.set_entry_point("agent")
+
+# 添加边
+workflow.add_conditional_edges(
+    "agent",             # 从 agent 节点出发
+    should_continue,     # 路由函数
+    {
+        "tools": "tools",  # 返回 "tools" → 执行工具节点
+        "end": END,        # 返回 "end" → 结束
     }
+)
+workflow.add_edge("tools", "agent")  # 工具执行后回到 agent
 
-builder.add_conditional_edges("evaluate", should_revise, {
-    "end": END, "revise": "revise_node"
+# 编译
+app = workflow.compile()
+
+# 运行
+result = app.invoke({
+    "messages": [{"role": "user", "content": "帮我查一下今天上海的天气"}],
+    "iterations": 0,
+})`,
+
+    hitl: `# ━━━━ Human-in-the-Loop（人工介入）━━━━
+
+from langgraph.graph import StateGraph, END
+from langgraph.checkpoint.memory import MemorySaver
+
+# MemorySaver 支持暂停和恢复
+checkpointer = MemorySaver()
+
+def review_action_node(state: AgentState) -> AgentState:
+    """需要人工审批的节点"""
+    pending_action = state.get("pending_action")
+    # ⚠️ 这里 interrupt 会暂停执行，等待人工确认
+    return {"awaiting_approval": True, "pending_action": pending_action}
+
+def route_after_review(state: AgentState) -> str:
+    """检查人工审批结果"""
+    if state.get("human_approved"):
+        return "execute"
+    else:
+        return "cancel"
+
+workflow = StateGraph(AgentState)
+workflow.add_node("plan", plan_node)
+workflow.add_node("review", review_action_node)      # 人工审批节点
+workflow.add_node("execute", execute_node)
+workflow.add_node("cancel", cancel_node)
+
+workflow.add_conditional_edges("review", route_after_review, {
+    "execute": "execute",
+    "cancel": END,
 })
-builder.add_edge("revise_node", "agent")`,
-  },
-];
 
-export default function LessonLangGraph() {
-  const [activeTab, setActiveTab] = useState('basic');
-  const [hoveredNode, setHoveredNode] = useState(null);
+# 编译（带 checkpointer 支持暂停/恢复）
+app = workflow.compile(checkpointer=checkpointer)
+
+# ━━━━ 使用流程 ━━━━
+config = {"configurable": {"thread_id": "approval-001"}}
+
+# 第一阶段：运行到 review 节点暂停
+result = app.invoke(initial_state, config=config)
+# 系统暂停，发送邮件/通知给审批者
+
+# 审批者决策后，更新状态并恢复
+app.update_state(config, {"human_approved": True, "approved_by": "alice"})
+# 继续从暂停点执行
+final_result = app.invoke(None, config=config)`,
+
+    streaming: `# ━━━━ LangGraph 流式输出 + 可视化 ━━━━
+
+# ━━━━ 流式执行（实时看到每步结果）━━━━
+async def stream_agent(user_query: str):
+    config = {"configurable": {"thread_id": "stream-001"}}
+    
+    async for event in app.astream_events(
+        {"messages": [{"role": "user", "content": user_query}]},
+        config=config,
+        version="v2",
+    ):
+        event_type = event["event"]
+        
+        if event_type == "on_chat_model_stream":
+            # LLM 流式输出每个 token
+            token = event["data"]["chunk"].content
+            if token:
+                print(token, end="", flush=True)
+        
+        elif event_type == "on_tool_start":
+            # 工具开始执行
+            tool_name = event["name"]
+            tool_input = event["data"]["input"]
+            print(f"\n🔧 调用工具：{tool_name}({tool_input})")
+        
+        elif event_type == "on_tool_end":
+            # 工具执行完成
+            print(f"✅ 工具结果：{event['data']['output'][:100]}...")
+
+# ━━━━ 可视化图结构 ━━━━
+# 方式 1：ASCII 图（终端）
+print(app.get_graph().draw_ascii())
+
+# 方式 2：Mermaid 图（导出到文档）
+mermaid = app.get_graph().draw_mermaid()
+print(mermaid)
+
+# 方式 3：LangGraph Studio（可视化 IDE）
+# langgraph dev  ← 启动本地 Studio
+
+# ━━━━ 状态检查点（调试）━━━━
+# 查看图中某个 checkpoint 的状态
+config = {"configurable": {"thread_id": "debug-001"}}
+state_history = list(app.get_state_history(config))
+for state in state_history[-5:]:
+    print(f"Step: {state.next}, Iterations: {state.values.get('iterations')}")`,
+  };
 
   return (
     <div className="ag-lesson">
-      <div className="ag-container">
+      <div className="ag-hero">
+        <div className="ag-badge">// MODULE 04 · LANGGRAPH</div>
+        <h1>LangGraph 状态机</h1>
+        <p>LangGraph 用图（Graph）的方式精确控制 Agent 的执行流程。相比黑盒式 Agent，<strong>LangGraph 可控、可观测、支持 Human-in-the-Loop——是生产级 Agent 的最佳选择</strong>。</p>
+      </div>
 
-        <div className="ag-hero">
-          <div className="ag-badge">模块五 · LangGraph</div>
-          <h1>LangGraph — 复杂工作流与条件分支</h1>
-          <p>LangChain 适合线性任务，LangGraph 适合复杂工作流。用有向图描述 Agent 的状态转移、条件路由、循环改进和人工介入——构建真正生产级的 Agent 系统。</p>
-        </div>
-
-        <div className="ag-metrics">
-          {[
-            { v: 'Graph', l: '有向状态图' },
-            { v: 'HITL', l: '人工介入节点' },
-            { v: 'State', l: '持久化 Checkpoint' },
-            { v: 'Loop', l: '自我改进循环' },
-          ].map(m => (
-            <div key={m.l} className="ag-metric-card">
-              <div className="ag-metric-value">{m.v}</div>
-              <div className="ag-metric-label">{m.l}</div>
-            </div>
+      <div className="ag-section">
+        <div className="ag-section-title">🗺️ LangGraph 三大核心主题</div>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+          {[['basic', '🔷 基础图构建'], ['hitl', '👁️ Human-in-the-Loop'], ['streaming', '⚡ 流式 + 可视化']].map(([k, l]) => (
+            <button key={k} className={`ag-btn ${tab === k ? 'active' : ''}`} onClick={() => setTab(k)}>{l}</button>
           ))}
         </div>
-
-        {/* LangChain vs LangGraph */}
-        <div className="ag-section">
-          <h2>⚖️ LangChain vs LangGraph — 如何选择</h2>
-          <div className="ag-grid-2">
-            <div className="ag-card">
-              <div className="ag-card-title">🔗 LangChain AgentExecutor</div>
-              <div className="ag-card-body" style={{marginBottom:'0.75rem'}}>适合线性任务，开箱即用，配置简单</div>
-              <div className="ag-tags">
-                <span className="ag-tag green">✅ 简单问答</span>
-                <span className="ag-tag green">✅ 单一工具链</span>
-                <span className="ag-tag green">✅ 快速原型</span>
-                <span className="ag-tag red">❌ 复杂分支</span>
-                <span className="ag-tag red">❌ 人工审核</span>
-                <span className="ag-tag red">❌ 状态持久化</span>
-              </div>
-            </div>
-            <div className="ag-card" style={{borderColor:'var(--ag-primary)'}}>
-              <div className="ag-card-title" style={{color:'var(--ag-primary)'}}>🕸️ LangGraph</div>
-              <div className="ag-card-body" style={{marginBottom:'0.75rem'}}>适合复杂工作流，精确控制每个节点</div>
-              <div className="ag-tags">
-                <span className="ag-tag">✅ 条件路由</span>
-                <span className="ag-tag">✅ 循环改进</span>
-                <span className="ag-tag">✅ 人工介入</span>
-                <span className="ag-tag">✅ 状态持久化</span>
-                <span className="ag-tag">✅ 多 Agent 编排</span>
-                <span className="ag-tag amber">⚠️ 学习曲线</span>
-              </div>
-            </div>
+        <div className="ag-code-wrap">
+          <div className="ag-code-head">
+            <div className="ag-code-dot" style={{ background: '#ef4444' }} /><div className="ag-code-dot" style={{ background: '#f59e0b' }} /><div className="ag-code-dot" style={{ background: '#10b981' }} />
+            <span style={{ marginLeft: '0.5rem' }}>{tab}_langgraph.py</span>
           </div>
-          <div className="ag-tip">🎯 <span><strong>决策规则</strong>：任务有分支判断或需要人工审核 → 用 LangGraph；线性执行且不需要状态持久化 → 用 AgentExecutor。</span></div>
+          <div className="ag-code">{codes[tab]}</div>
         </div>
+      </div>
 
-        {/* Graph Visualization */}
-        <div className="ag-section">
-          <h2>🕸️ 核心概念：节点、边、状态</h2>
-          <div className="ag-grid-2">
-            <div>
-              {/* Simple SVG Graph Diagram */}
-              <svg viewBox="0 0 200 450" style={{width:'100%',maxWidth:300,height:'auto',display:'block',margin:'0 auto'}}>
-                {/* Edges */}
-                <defs>
-                  <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                    <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6" opacity="0.7"/>
-                  </marker>
-                </defs>
-                <line x1="100" y1="75" x2="100" y2="145" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="4" markerEnd="url(#arrow)" opacity="0.7"/>
-                <line x1="75"  y1="185" x2="35"  y2="265" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="4" markerEnd="url(#arrow)" opacity="0.7"/>
-                <line x1="125" y1="185" x2="165" y2="265" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4" markerEnd="url(#arrow)" opacity="0.7"/>
-                <line x1="35"  y1="300" x2="90"  y2="375" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="4" markerEnd="url(#arrow)" opacity="0.7"/>
-                <line x1="165" y1="300" x2="110" y2="375" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="4" markerEnd="url(#arrow)" opacity="0.7"/>
-                {/* Nodes */}
-                {[
-                  { y:50,  label:'▶ START',       color:'#10b981', textColor:'#000' },
-                  { y:160, label:'🧠 Agent',       color:'#8b5cf6', textColor:'#fff' },
-                  { y:278, label:'⚡ Tools',       color:'#06b6d4', textColor:'#000', x:35 },
-                  { y:278, label:'👤 Human',       color:'#f59e0b', textColor:'#000', x:165 },
-                  { y:390, label:'⏹ END',         color:'#ef4444', textColor:'#fff' },
-                ].map((n, i) => (
-                  <g key={i}>
-                    <rect x={(n.x || 100) - 40} y={n.y - 18} width={80} height={36}
-                      rx={8} fill={n.color} opacity={0.9}/>
-                    <text x={n.x || 100} y={n.y + 5} textAnchor="middle"
-                      fill={n.textColor} fontSize="9" fontWeight="600">{n.label}</text>
-                  </g>
-                ))}
-                {/* Condition label */}
-                <text x="100" y="230" textAnchor="middle" fill="#7c6fa0" fontSize="8">条件边</text>
-              </svg>
-            </div>
-            <div>
-              <div className="ag-steps">
-                {[
-                  { t: '节点 (Node)', d: '图中的每个处理单元，可以是 LLM 调用、工具执行、人工审核等任意 Python 函数' },
-                  { t: '边 (Edge)', d: '节点之间的连接关系，分为普通边（固定流向）和条件边（动态路由）' },
-                  { t: '状态 (State)', d: 'TypedDict 定义的共享数据结构，在所有节点间传递和更新，是图的"血液"' },
-                  { t: 'Checkpoint', d: '状态快照机制，支持暂停恢复、错误回滚、人工介入后继续执行' },
-                ].map((s, i) => (
-                  <div key={i} className="ag-step">
-                    <div className="ag-step-content">
-                      <div className="ag-step-title">{s.t}</div>
-                      <div className="ag-step-desc">{s.d}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <div className="ag-section">
+        <div className="ag-section-title">📊 LangGraph vs 传统 Agent 对比</div>
+        <div className="ag-card" style={{ overflowX: 'auto' }}>
+          <table className="ag-table">
+            <thead><tr><th>维度</th><th style={{ color: 'var(--ag-violet)' }}>LangGraph</th><th style={{ color: 'var(--ag-amber)' }}>传统 AgentExecutor</th></tr></thead>
+            <tbody>
+              {[
+                ['执行流程', '显式图结构，每步可见', '黑盒循环，不透明'],
+                ['条件分支', '精确的条件路由函数', '依赖 LLM 判断（不稳定）'],
+                ['暂停/恢复', '✅ 支持 Checkpoint', '❌ 不支持'],
+                ['Human-in-Loop', '✅ 内置 interrupt 机制', '❌ 需要自己实现'],
+                ['并行执行', '✅ 节点可并行', '❌ 顺序执行'],
+                ['调试体验', '✅ LangGraph Studio 可视化', '⚠️ 只能看日志'],
+                ['生产稳定性', '✅ 精确控制，易测试', '⚠️ 依赖 LLM 规划准确性'],
+              ].map(([dim, lg, ae], i) => (
+                <tr key={i}>
+                  <td style={{ fontWeight: 600, fontSize: '0.85rem' }}>{dim}</td>
+                  <td style={{ color: 'var(--ag-lavender)', fontSize: '0.84rem' }}>{lg}</td>
+                  <td style={{ color: 'var(--ag-muted)', fontSize: '0.84rem' }}>{ae}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        {/* Code Examples */}
-        <div className="ag-section">
-          <h2>💻 LangGraph 实战代码</h2>
-          <div className="ag-tabs">
-            {TABS.map(t => (
-              <button key={t.key} className={`ag-tab${activeTab === t.key ? ' active' : ''}`}
-                onClick={() => setActiveTab(t.key)}>{t.label}</button>
-            ))}
-          </div>
-          <div className="ag-code">{TABS.find(t => t.key === activeTab)?.code}</div>
+        <div className="ag-tip">
+          💡 <strong>建议</strong>：原型阶段用 ReAct AgentExecutor 快速验证，生产阶段迁移到 LangGraph。LangGraph 的多出的开发成本在调试和维护阶段会成倍回收。
         </div>
-
-        {/* Use Cases */}
-        <div className="ag-section">
-          <h2>🎯 LangGraph 典型应用场景</h2>
-          <div className="ag-grid-3">
-            {[
-              { t: '代码审查 Agent', d: 'PR → 静态分析 → LLM 审查 → 人工仲裁 → 反馈', tag: '本课实战' },
-              { t: '内容生成流水线', d: '大纲 → 初稿 → 自我评估 → 修改（循环3次）→ 发布', tag: '创作类' },
-              { t: '客服路由系统', d: '分类 → 路由到专业 Agent → 人工升级 → 满意度收集', tag: '服务类' },
-              { t: '研究报告生成', d: '问题分解 → 并行搜索 → 汇总 → 事实核查 → 输出', tag: '研究类' },
-              { t: '数据管道 Agent', d: '提取 → 清洗 → 验证 → 异常 → 人工确认 → 入库', tag: '数据类' },
-              { t: '安全审计 Agent', d: '扫描代码 → 分类漏洞 → 高危暂停 → 修复建议', tag: '安全类' },
-            ].map((c, i) => (
-              <div key={i} className="ag-card">
-                <div className="ag-card-title">{c.t}</div>
-                <div className="ag-card-body">{c.d}</div>
-                <div className="ag-tags" style={{marginTop:'0.5rem'}}><span className="ag-tag cyan">{c.tag}</span></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </div>
     </div>
   );

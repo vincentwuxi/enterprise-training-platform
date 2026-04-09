@@ -1,294 +1,224 @@
 import { useState } from 'react';
 import './LessonCommon.css';
 
-const FRAMEWORKS = [
-  {
-    name: 'AutoGen',
-    org: 'Microsoft',
-    desc: '对话驱动的多 Agent 框架，Agent 之间通过消息传递协作完成任务',
-    strength: ['对话式协作自然','内置 Code Executor','支持人工介入','社区活跃'],
-    weakness: ['调试复杂','消息风暴风险','不支持复杂状态图'],
-    code: `import autogen
+export default function LessonMultiAgent() {
+  const [tab, setTab] = useState('architecture');
 
-# 定义 Agent
-assistant = autogen.AssistantAgent(
-    name="助理",
-    llm_config={"model": "gpt-4o"},
-    system_message="你是一个擅长编写 Python 代码的助手。",
+  const codes = {
+    architecture: `# ━━━━ Multi-Agent 系统架构模式 ━━━━
+
+# ━━━━ 模式 1：Orchestrator + Subagent ━━━━
+# Orchestrator 负责任务分解和结果汇总
+# Subagents 各司其职，专注特定领域
+
+from langgraph.graph import StateGraph, END
+from langchain_openai import ChatOpenAI
+
+ORCHESTRATOR_PROMPT = """你是一个任务协调器。
+将用户的请求分解为子任务，并分配给专业 Agent：
+- research_agent: 负责信息检索和事实核查
+- code_agent: 负责代码编写和调试
+- writer_agent: 负责文档和报告撰写
+
+输出 JSON 格式的任务分配：
+{"tasks": [{"agent": "xxx", "task": "xxx"}, ...]}"""
+
+async def orchestrator_node(state):
+    """任务分解与分配"""
+    plan = await llm.ainvoke([
+        {"role": "system", "content": ORCHESTRATOR_PROMPT},
+        {"role": "user", "content": state["user_request"]},
+    ])
+    tasks = json.loads(plan.content)["tasks"]
+    return {"task_queue": tasks, "results": []}
+
+async def research_agent_node(state):
+    """专业搜索 Agent"""
+    task = next(t for t in state["task_queue"] if t["agent"] == "research_agent")
+    result = await research_chain.ainvoke({"task": task["task"]})
+    return {"results": state["results"] + [{"agent": "research", "result": result}]}
+
+async def code_agent_node(state):
+    """专业代码 Agent（沙盒执行）"""
+    task = next(t for t in state["task_queue"] if t["agent"] == "code_agent")
+    code = await code_chain.ainvoke({"task": task["task"]})
+    execution_result = sandbox.run(code)  # E2B/Docker 沙盒
+    return {"results": state["results"] + [{"agent": "code", "result": execution_result}]}
+
+async def aggregator_node(state):
+    """汇总所有子 Agent 结果"""
+    all_results = "\n\n".join([f"[{r['agent']}]: {r['result']}" for r in state["results"]])
+    final = await llm.ainvoke(f"综合以下结果，给出最终答案：\n{all_results}")
+    return {"final_answer": final.content}`,
+
+    crewai: `# ━━━━ CrewAI：角色扮演式 Multi-Agent ━━━━
+# pip install crewai crewai-tools
+
+from crewai import Agent, Task, Crew, Process
+from crewai_tools import SerperDevTool, FileWriterTool
+
+# ━━━━ 定义专业角色 ━━━━
+researcher = Agent(
+    role="Senior Research Analyst",
+    goal="研究并分析 {topic} 的最新动态，提供深度洞察",
+    backstory="""你是一位有10年经验的技术研究员，
+    擅长从多维度分析技术趋势和市场动态。""",
+    tools=[SerperDevTool()],         # 搜索工具
+    llm="gpt-4o",
+    verbose=True,
+    max_iter=5,
 )
+
+writer = Agent(
+    role="Technical Content Writer",
+    goal="将研究结果转化为高质量的技术报告",
+    backstory="""你是一位精通技术写作的专业作家，
+    能够将复杂的技术内容转化为清晰易懂的读者友好文章。""",
+    tools=[FileWriterTool()],        # 可写入文件
+    llm="gpt-4o-mini",
+    verbose=True,
+)
+
+reviewer = Agent(
+    role="Quality Assurance Specialist",
+    goal="审查报告的准确性、完整性和可读性",
+    backstory="你是严格的质量审查专家，确保输出达到发布标准。",
+    llm="gpt-4o-mini",
+    verbose=True,
+)
+
+# ━━━━ 定义任务 ━━━━
+research_task = Task(
+    description="研究 {topic} 的当前状态：技术原理、主要玩家、最新进展。提供详实的事实和数据。",
+    expected_output="3000字的研究报告，包含关键数据点和引用来源",
+    agent=researcher,
+)
+
+writing_task = Task(
+    description="基于研究报告，撰写一篇面向工程师的深度技术文章",
+    expected_output="结构清晰的技术文章，含代码示例和实践建议",
+    agent=writer,
+    context=[research_task],  # 依赖 research_task 的输出
+)
+
+review_task = Task(
+    description="审查文章并提出修改意见，确保技术准确性",
+    expected_output="修订后的最终文章",
+    agent=reviewer,
+    context=[writing_task],
+)
+
+# ━━━━ 组建 Crew 并运行 ━━━━
+crew = Crew(
+    agents=[researcher, writer, reviewer],
+    tasks=[research_task, writing_task, review_task],
+    process=Process.sequential,     # Sequential / Hierarchical
+    verbose=True,
+    memory=True,                    # 启用持久化记忆
+)
+
+result = crew.kickoff(inputs={"topic": "AI Agent 工程最佳实践 2025"})`,
+
+    autogen: `# ━━━━ AutoGen：对话驱动的 Multi-Agent ━━━━
+# pip install pyautogen
+
+import autogen
+
+llm_config = {
+    "model": "gpt-4o-mini",
+    "api_key": os.environ["OPENAI_API_KEY"],
+    "timeout": 60,
+}
+
+# ━━━━ 定义 Agent ━━━━
 user_proxy = autogen.UserProxyAgent(
-    name="用户代理",
-    human_input_mode="NEVER",     # 全自动
-    code_execution_config={
-        "work_dir": "coding",
-        "use_docker": True,       # 沙箱执行
-    },
+    name="User",
+    human_input_mode="NEVER",          # NEVER / ALWAYS / TERMINATE
     max_consecutive_auto_reply=10,
+    is_termination_msg=lambda x: "TERMINATE" in x.get("content", ""),
+    code_execution_config={
+        "use_docker": True,            # 使用 Docker 沙盒执行代码
+        "work_dir": "/tmp/autogen",
+    },
 )
+
+engineer = autogen.AssistantAgent(
+    name="Engineer",
+    llm_config=llm_config,
+    system_message="""你是一位精通 Python 和机器学习的工程师。
+    编写高质量代码，并在每段代码末尾加 # TERMINATE 表示完成。""",
+)
+
+critic = autogen.AssistantAgent(
+    name="Critic",
+    llm_config=llm_config,
+    system_message="""你是一位代码审查专家。
+    审查 Engineer 的代码，发现问题时提出具体修改意见。
+    代码完全正确时回复 "TERMINATE"。""",
+)
+
+# ━━━━ GroupChat：多 Agent 群聊协作 ━━━━
+groupchat = autogen.GroupChat(
+    agents=[user_proxy, engineer, critic],
+    messages=[],
+    max_round=20,
+    speaker_selection_method="auto",   # LLM 自动决定谁发言
+)
+manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
 
 # 启动对话
 user_proxy.initiate_chat(
-    assistant,
-    message="写一个 Python 脚本，分析 CSV 文件并画出销售趋势图",
-)
-# AutoGen 自动：写代码 → 执行 → 发现错误 → 修复 → 再执行...`,
-  },
-  {
-    name: 'CrewAI',
-    org: 'CrewAI',
-    desc: '基于角色的多 Agent 框架，像搭建一支"团队"，每个 Agent 有明确职责',
-    strength: ['角色概念清晰','任务分配直观','内置工具丰富','企业采用广泛'],
-    weakness: ['灵活性较低','定制化成本高','开源版功能受限'],
-    code: `from crewai import Agent, Task, Crew, Process
-
-# 定义团队成员（Agent）
-researcher = Agent(
-    role="市场研究员",
-    goal="深度研究竞争对手的产品策略",
-    backstory="你是顶级市场分析师，擅长从海量数据中提炼洞察",
-    tools=[search_tool, web_scraper],
-    llm=ChatOpenAI(model="gpt-4o"),
-    verbose=True,
-)
-analyst = Agent(
-    role="数据分析师",
-    goal="基于研究数据撰写结构化分析报告",
-    backstory="你精通数据解读和商业洞察，报告逻辑严密",
-    tools=[python_repl, chart_generator],
-)
-writer = Agent(
-    role="商业写作专家",
-    goal="将分析结果转化为清晰的执行建议文档",
-    backstory="你有 10 年商业写作经验，擅长将复杂分析简化",
-)
-
-# 定义任务（Task）
-research_task = Task(
-    description="搜集 OpenAI、Anthropic、Google DeepMind 的最新产品动态",
-    expected_output="包含产品名、价格、核心功能的对比表格",
-    agent=researcher,
-)
-analysis_task = Task(
-    description="基于研究结果，分析竞争格局和市场机会",
-    expected_output="SWOT 分析报告（1500字）",
-    agent=analyst,
-    context=[research_task],  # 依赖上一个任务的输出
-)
-
-# 组建团队并执行
-crew = Crew(
-    agents=[researcher, analyst, writer],
-    tasks=[research_task, analysis_task],
-    process=Process.sequential,  # 顺序执行
-    verbose=True,
-)
-result = crew.kickoff()`,
-  },
-  {
-    name: 'LangGraph Multi',
-    org: 'LangChain',
-    desc: '基于图状态机的多 Agent 编排，最灵活，适合复杂工作流',
-    strength: ['极致灵活','精确控制流程','状态持久化','HITL 支持'],
-    weakness: ['学习曲线陡','代码量多','需要深度理解图模型'],
-    code: `from langgraph.graph import StateGraph
-from langgraph.prebuilt import create_react_agent
-
-# 创建专业化子 Agent
-code_agent   = create_react_agent(llm, [python_repl, file_tools])
-search_agent = create_react_agent(llm, [search_tool, web_scraper])
-qa_agent     = create_react_agent(llm, [test_runner])
-
-# 监督者 Agent（决策路由）
-def supervisor(state):
-    """决定调用哪个子 Agent"""
-    response = supervisor_llm.invoke([
-        SystemMessage("根据任务内容，选择: code_agent/search_agent/qa_agent/FINISH"),
-        *state["messages"]
-    ])
-    return {"next": parse_agent_choice(response)}
-
-# 构建 Supervisor 图
-builder = StateGraph(AgentState)
-builder.add_node("supervisor",    supervisor)
-builder.add_node("code_agent",    code_agent)
-builder.add_node("search_agent",  search_agent)
-builder.add_node("qa_agent",      qa_agent)
-
-builder.set_entry_point("supervisor")
-builder.add_conditional_edges("supervisor", lambda s: s["next"], {
-    "code_agent":   "code_agent",
-    "search_agent": "search_agent",
-    "qa_agent":     "qa_agent",
-    "FINISH":        END,
-})
-for agent in ["code_agent", "search_agent", "qa_agent"]:
-    builder.add_edge(agent, "supervisor")  # 完成后回到监督者`,
-  },
-];
-
-const PATTERNS = [
-  {
-    name: 'Supervisor 模式',
-    desc: '一个监督者 Agent 分配任务给多个专业化 Worker Agent',
-    when: '任务可分解、各子任务独立',
-    svg_desc: 'Supervisor → [CodeAgent, SearchAgent, QAAgent]'
-  },
-  {
-    name: 'Pipeline 模式',
-    desc: '多个 Agent 顺序执行，前一个的输出是后一个的输入',
-    when: '任务有明确先后依赖关系',
-    svg_desc: 'Researcher → Analyst → Writer → Reviewer'
-  },
-  {
-    name: 'Debate 模式',
-    desc: '多个 Agent 对同一问题提出不同观点，裁判 Agent 综合判断',
-    when: '需要多视角验证、减少偏见',
-    svg_desc: 'Agent1 ⇄ Agent2 → Judge → Final Answer'
-  },
-  {
-    name: 'Swarm 模式',
-    desc: 'Agent 自主选择将任务交接给合适的同伴，去中心化协作',
-    when: '任务边界模糊，需要动态分工',
-    svg_desc: 'Any Agent → handoff → Specialist Agent'
-  },
-];
-
-export default function LessonMultiAgent() {
-  const [framework, setFramework] = useState(0);
-  const [pattern, setPattern] = useState(0);
-
-  const fw = FRAMEWORKS[framework];
+    manager,
+    message="实现一个 RAG 系统的评测脚本，用 RAGAs 库评估 Faithfulness 和 Answer Relevancy",
+)`,
+  };
 
   return (
     <div className="ag-lesson">
-      <div className="ag-container">
+      <div className="ag-hero">
+        <div className="ag-badge">// MODULE 05 · MULTI-AGENT SYSTEMS</div>
+        <h1>Multi-Agent 系统</h1>
+        <p>单个 Agent 的能力有上限。<strong>Multi-Agent 系统通过职责分离、并行执行、专业协作</strong>突破边界——处现复杂任务的能力呈指数级增长。CrewAI 和 AutoGen 是当前最成熟的两个框架。</p>
+      </div>
 
-        <div className="ag-hero">
-          <div className="ag-badge">模块六 · Multi-Agent Systems</div>
-          <h1>Multi-Agent 系统 — AutoGen 与 CrewAI 编排</h1>
-          <p>单个 Agent 有上下文限制和专业边界。Multi-Agent 系统通过角色分工、并行执行和相互校验，解决单 Agent 无法胜任的复杂任务。</p>
-        </div>
-
-        <div className="ag-metrics">
-          {[
-            { v: 'AutoGen', l: 'Microsoft 对话式' },
-            { v: 'CrewAI', l: '角色团队模型' },
-            { v: '4种', l: '协作模式' },
-            { v: 'Supervisor', l: '推荐入门模式' },
-          ].map(m => (
-            <div key={m.l} className="ag-metric-card">
-              <div className="ag-metric-value">{m.v}</div>
-              <div className="ag-metric-label">{m.l}</div>
-            </div>
+      <div className="ag-section">
+        <div className="ag-section-title">🤝 三种 Multi-Agent 实现方式</div>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+          {[['architecture', '🏗️ Orchestrator 架构'], ['crewai', '🚀 CrewAI 角色协作'], ['autogen', '💬 AutoGen 对话协作']].map(([k, l]) => (
+            <button key={k} className={`ag-btn ${tab === k ? 'active' : ''}`} onClick={() => setTab(k)}>{l}</button>
           ))}
         </div>
-
-        {/* Why Multi-Agent */}
-        <div className="ag-section">
-          <h2>🤔 为什么需要 Multi-Agent？</h2>
-          <div className="ag-grid-3">
-            {[
-              { t: '上下文限制', d: '单 Agent 上下文窗口有限，复杂任务需要"接力"处理' },
-              { t: '专业分工', d: '不同 Agent 使用不同 Prompt/工具，各自成为某领域专家' },
-              { t: '并行加速', d: '互不依赖的子任务可以同时执行，大幅减少总耗时' },
-              { t: '相互校验', d: '一个 Agent 生成，另一个验证，减少幻觉和错误' },
-              { t: '容错设计', d: '某个 Agent 失败时可降级或重试，整体系统更健壮' },
-              { t: '成本优化', d: '简单子任务用小模型，复杂推理才用 GPT-4，节省成本' },
-            ].map((c, i) => (
-              <div key={i} className="ag-card">
-                <div className="ag-card-title">{c.t}</div>
-                <div className="ag-card-body">{c.d}</div>
-              </div>
-            ))}
+        <div className="ag-code-wrap">
+          <div className="ag-code-head">
+            <div className="ag-code-dot" style={{ background: '#ef4444' }} /><div className="ag-code-dot" style={{ background: '#f59e0b' }} /><div className="ag-code-dot" style={{ background: '#10b981' }} />
+            <span style={{ marginLeft: '0.5rem' }}>{tab}.py</span>
           </div>
+          <div className="ag-code">{codes[tab]}</div>
         </div>
+      </div>
 
-        {/* Framework Comparison */}
-        <div className="ag-section">
-          <h2>⚖️ 框架对比与代码实现</h2>
-          <div className="ag-tabs">
-            {FRAMEWORKS.map((f, i) => (
-              <button key={i} className={`ag-tab${framework === i ? ' active' : ''}`} onClick={() => setFramework(i)}>
-                {f.name} <span style={{fontSize:'0.7rem',opacity:0.7}}>({f.org})</span>
-              </button>
-            ))}
-          </div>
-          <p style={{color:'var(--ag-muted)',fontSize:'0.9rem',marginBottom:'1rem'}}>{fw.desc}</p>
-          <div className="ag-grid-2" style={{marginBottom:'1rem'}}>
-            <div className="ag-card">
-              <div className="ag-card-title" style={{color:'var(--ag-green)'}}>✅ 优势</div>
-              <ul style={{margin:'0.5rem 0 0',paddingLeft:'1.2rem',color:'var(--ag-muted)',fontSize:'0.85rem',lineHeight:1.8}}>
-                {fw.strength.map((s,i) => <li key={i}>{s}</li>)}
-              </ul>
-            </div>
-            <div className="ag-card">
-              <div className="ag-card-title" style={{color:'var(--ag-red)'}}>⚠️ 局限</div>
-              <ul style={{margin:'0.5rem 0 0',paddingLeft:'1.2rem',color:'var(--ag-muted)',fontSize:'0.85rem',lineHeight:1.8}}>
-                {fw.weakness.map((s,i) => <li key={i}>{s}</li>)}
-              </ul>
-            </div>
-          </div>
-          <div className="ag-code">{fw.code}</div>
+      <div className="ag-section">
+        <div className="ag-section-title">📊 框架选型指南</div>
+        <div className="ag-card" style={{ overflowX: 'auto' }}>
+          <table className="ag-table">
+            <thead><tr><th>框架</th><th>核心理念</th><th>优势</th><th>适合场景</th></tr></thead>
+            <tbody>
+              {[
+                ['LangGraph Multi-Agent', '显式图状态控制', '可控性最强，生产首选', '需要精确控制流程的企业应用'],
+                ['CrewAI', '角色+职责的团队协作', '最快原型，角色设定直观', '内容生产/研究报告类任务'],
+                ['AutoGen', 'LLM 驱动的对话协作', '代码执行能力强，迭代改进', '代码生成/数据分析任务'],
+                ['手写 Orchestrator', '自定义 API 调用', '完全可控，无框架依赖', '超大规模/特殊需求'],
+              ].map(([f, c, a, s], i) => (
+                <tr key={i}>
+                  <td><span className="ag-tag purple">{f}</span></td>
+                  <td style={{ color: 'var(--ag-muted)', fontSize: '0.83rem' }}>{c}</td>
+                  <td style={{ color: 'var(--ag-lavender)', fontSize: '0.83rem' }}>{a}</td>
+                  <td style={{ color: 'var(--ag-muted)', fontSize: '0.83rem' }}>{s}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        {/* Collaboration Patterns */}
-        <div className="ag-section">
-          <h2>🕸️ 四种协作模式</h2>
-          <div className="ag-tabs">
-            {PATTERNS.map((p, i) => (
-              <button key={i} className={`ag-tab${pattern === i ? ' active' : ''}`} onClick={() => setPattern(i)}>
-                {p.name}
-              </button>
-            ))}
-          </div>
-          <div className="ag-card">
-            <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:'0.9rem',color:'var(--ag-primary)',marginBottom:'0.75rem',fontWeight:600}}>
-              {PATTERNS[pattern].svg_desc}
-            </div>
-            <div style={{fontSize:'0.92rem',marginBottom:'0.5rem'}}>{PATTERNS[pattern].desc}</div>
-            <div className="ag-tags"><span className="ag-tag cyan">适用：{PATTERNS[pattern].when}</span></div>
-          </div>
-          <div className="ag-tip">🎯 <span><strong>入门推荐 Supervisor 模式</strong>：逻辑清晰、易于调试、可控性强。在掌握后再探索更复杂的 Swarm 模式。</span></div>
-        </div>
-
-        {/* Production Considerations */}
-        <div className="ag-section">
-          <h2>🏭 Multi-Agent 生产注意事项</h2>
-          <div className="ag-code">{`# 关键风险与应对策略
-
-# 1. Token 爆炸（Agent 间消息过长）
-def truncate_agent_message(msg: str, max_tokens: int = 2000) -> str:
-    """Agent 间消息传递时强制截断"""
-    tokens = tiktoken.encode(msg)
-    if len(tokens) > max_tokens:
-        return tiktoken.decode(tokens[:max_tokens]) + "\\n[内容已截断...]"
-    return msg
-
-# 2. 循环检测（Agent A 调用 B，B 调用 A）
-class LoopDetector:
-    def __init__(self, max_visits: int = 3):
-        self.visit_count = defaultdict(int)
-        self.max_visits = max_visits
-    
-    def check(self, agent_name: str) -> bool:
-        self.visit_count[agent_name] += 1
-        if self.visit_count[agent_name] > self.max_visits:
-            raise RuntimeError(f"Agent {agent_name} 疑似陷入循环，已访问 {self.max_visits} 次")
-        return True
-
-# 3. 成本上限（整个 Multi-Agent 任务）
-class CostGuard:
-    def __init__(self, max_cost_usd: float = 1.0):
-        self.max_cost = max_cost_usd
-        self.current_cost = 0.0
-    
-    def record(self, tokens_used: int, model: str):
-        cost = tokens_used * MODEL_COSTS[model]
-        self.current_cost += cost
-        if self.current_cost > self.max_cost:
-            raise RuntimeError(f"成本超限 $" + str(round(self.current_cost, 2)) + " > $" + str(self.max_cost))`}</div>
-        </div>
-
       </div>
     </div>
   );

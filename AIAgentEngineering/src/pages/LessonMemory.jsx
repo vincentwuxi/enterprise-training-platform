@@ -3,267 +3,235 @@ import './LessonCommon.css';
 
 const MEMORY_TYPES = [
   {
-    type: '工作记忆', en: 'Working Memory', icon: '⚡',
-    desc: 'LLM 的上下文窗口，包含当前对话、工具结果、系统提示',
-    limit: '最大 128K~1M token（取决于模型）',
-    code: `# 工作记忆 = LLM 上下文窗口
-# 自动由 AgentExecutor 管理，无需手动操作
+    key: 'conversational', name: '对话记忆', icon: '💬', color: '#8b5cf6',
+    type: 'Short-term', storage: 'In-memory / Redis',
+    desc: '记录对话历史，让 Agent 知道"之前说了什么"。最基础的记忆类型。',
+    code: `from langchain.memory import ConversationBufferWindowMemory, ConversationSummaryMemory
 
-# 超长对话时的 Token 压缩策略
-from langchain.memory import ConversationTokenBufferMemory
-
-memory = ConversationTokenBufferMemory(
-    llm=ChatOpenAI(),
-    max_token_limit=8000,  # 保留最近 8K tokens
-    return_messages=True,
-)
-# 超出限制时自动截断旧消息`,
-  },
-  {
-    type: '情节记忆', en: 'Episodic Memory', icon: '📖',
-    desc: '对话历史的结构化存储，支持跨会话持久化',
-    limit: '可持久化到数据库，无限制',
-    code: `# 对话历史 Buffer（内存）
-from langchain.memory import ConversationBufferWindowMemory
-
+# ━━━━ 滑动窗口记忆（只记最近 K 轮）━━━━
 memory = ConversationBufferWindowMemory(
-    k=10,              # 保留最近 10 轮对话
+    k=5,                      # 只保留最近5轮对话
+    memory_key="chat_history",
     return_messages=True,
 )
 
-# 持久化到 Redis（跨会话）  
-from langchain_community.chat_message_histories import RedisChatMessageHistory
+# ━━━━ 摘要记忆（长对话压缩）━━━━
+# 超过一定轮数后，用 LLM 将历史对话总结为摘要
+from langchain.memory import ConversationSummaryBufferMemory
 
-history = RedisChatMessageHistory(
-    session_id="user_123_session_456",
-    url="redis://localhost:6379",
-    ttl=86400,  # 24小时过期
+summary_memory = ConversationSummaryBufferMemory(
+    llm=ChatOpenAI(model="gpt-4o-mini"),
+    max_token_limit=1000,       # 超过1000 token 就压缩
+    memory_key="chat_history",
+    return_messages=True,
 )
+
+# ━━━━ Redis 持久化（多会话/多用户）━━━━
+from langchain.memory import RedisChatMessageHistory
+from langchain.memory import ConversationBufferMemory
+
+session_id = f"user_{user_id}_session_{session_id}"
+history = RedisChatMessageHistory(session_id=session_id, url="redis://localhost:6379")
 memory = ConversationBufferMemory(
     chat_memory=history,
     return_messages=True,
 )`,
   },
   {
-    type: '语义记忆', en: 'Semantic Memory', icon: '🧬',
-    desc: '向量数据库存储，通过语义相似度检索相关历史信息',
-    limit: '百万级文档，亚秒级检索',
-    code: `# 向量记忆：将重要信息存入向量数据库
-from langchain.memory import VectorStoreRetrieverMemory
-from langchain_openai import OpenAIEmbeddings
-from langchain_chroma import Chroma
+    key: 'entity', name: 'Entity 记忆', icon: '🏷️', color: '#f59e0b',
+    type: 'Working Memory', storage: 'Dict / Knowledge Graph',
+    desc: '跟踪对话中提到的实体（人物/产品/组织），自动提取和更新实体信息。',
+    code: `from langchain.memory import ConversationEntityMemory
 
-vectorstore = Chroma(
-    embedding_function=OpenAIEmbeddings(),
-    persist_directory="./agent_memory",
+# Entity Memory 自动提取实体并维护实体档案
+entity_memory = ConversationEntityMemory(
+    llm=ChatOpenAI(model="gpt-4o-mini"),
+    memory_key="entities",
+    input_key="input",
 )
-retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
-memory = VectorStoreRetrieverMemory(retriever=retriever)
 
-# Agent 每次对话，自动检索相关历史
-# "你还记得我上周说的项目需求吗？"
-# → 向量检索 → 返回最相关的历史记录`,
+# 对话过程中自动提取：
+# 用户："张三是我们公司的CTO，他负责AI项目"
+# Entity Memory 自动记录：
+# {
+#   "张三": "公司CTO，负责AI项目",
+#   "公司": "用户所在公司",
+#   "AI项目": "张三负责的项目",
+# }
+
+# 后续对话时自动注入相关实体信息
+# 用户："张三最近怎么样？"
+# Agent 的上下文：[Entity Memory 中关于张三的信息...]
+
+# ━━━━ 手动管理实体（更灵活）━━━━
+entity_store = {}
+
+def update_entity(name: str, info: str):
+    if name not in entity_store:
+        entity_store[name] = []
+    entity_store[name].append(info)
+
+def get_entity(name: str) -> str:
+    return "; ".join(entity_store.get(name, ["未知"]))`,
   },
   {
-    type: '程序记忆', en: 'Procedural Memory', icon: '⚙️',
-    desc: 'Agent 可用的技能、工具和操作流程的静态注册表',
-    limit: '固定在代码中，需要部署更新',
-    code: `# 程序记忆 = 工具注册表 + 系统提示中的能力声明
-AGENT_SKILLS = {
-    "data_analysis": {
-        "description": "分析 CSV/Excel 数据，生成统计报告",
-        "tools": ["read_file", "run_python", "create_chart"],
-        "example": "分析 sales_2024.csv 的月度趋势",
-    },
-    "web_research": {
-        "description": "搜索网络信息，整合多来源内容",
-        "tools": ["search_web", "fetch_url", "summarize"],
-        "example": "调研竞争对手的定价策略",
-    },
-}
-# 动态注入到 System Prompt
-skill_desc = "\\n".join([f"- {k}: {v['description']}" 
-                          for k, v in AGENT_SKILLS.items()])`,
+    key: 'vector', name: 'Vector 记忆（长期）', icon: '🔢', color: '#10b981',
+    type: 'Long-term', storage: 'Vector DB（Chroma/Pinecone）',
+    desc: '基于向量相似度检索相关历史记忆。支持数百万条记忆，无限扩展，是长期记忆的标配。',
+    code: `from langchain.memory import VectorStoreRetrieverMemory
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+
+# ━━━━ Vector Store 记忆（无限长期记忆）━━━━
+embeddings = OpenAIEmbeddings()
+vectorstore = Chroma(
+    embedding_function=embeddings,
+    persist_directory="./agent_memory",
+)
+retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+
+memory = VectorStoreRetrieverMemory(
+    retriever=retriever,
+    memory_key="relevant_history",
+)
+
+# 存储记忆
+memory.save_context(
+    {"input": "用户偏好深色主题，喜欢简洁的代码风格"},
+    {"output": "已记录用户偏好"},
+)
+
+# 检索相关记忆（自动根据当前对话检索）
+relevant = memory.load_memory_variables({"input": "帮我写一段 Python 代码"})
+# 会自动检索出之前存储的"代码风格偏好"记忆
+
+# ━━━━ Mem0：专业 Agent 记忆库（推荐）━━━━
+# pip install mem0ai
+from mem0 import Memory
+
+m = Memory()
+m.add("用户喜欢用 FastAPI 而不是 Flask", user_id="user_123")
+m.add("用户公司使用 PostgreSQL 数据库", user_id="user_123")
+
+# 检索相关记忆
+memories = m.search("数据库选型", user_id="user_123")`,
+  },
+  {
+    key: 'episodic', name: 'Episodic 记忆', icon: '📖', color: '#06b6d4',
+    type: 'Long-term', storage: 'Structured DB + Vector',
+    desc: '记录完整的过去事件/任务执行经历，包括目标、过程、结果。让 Agent 从经验中学习。',
+    code: `from datetime import datetime
+from dataclasses import dataclass
+
+@dataclass
+class Episode:
+    """一次完整任务的记录"""
+    task: str
+    steps: list[dict]       # 每步的思考和行动
+    result: str
+    success: bool
+    duration_s: float
+    timestamp: datetime = datetime.now()
+    lessons_learned: str = ""  # LLM 总结的经验教训
+
+# ━━━━ 记录 Episode ━━━━
+class EpisodicMemory:
+    def __init__(self, vectorstore):
+        self.vectorstore = vectorstore
+        self.episodes: list[Episode] = []
+    
+    def record(self, episode: Episode):
+        """记录一次任务执行经历"""
+        self.episodes.append(episode)
+        # 存入向量数据库（以便检索）
+        self.vectorstore.add_texts(
+            texts=[f"任务：{episode.task}\n结果：{episode.result}\n经验：{episode.lessons_learned}"],
+            metadatas=[{"success": episode.success, "timestamp": str(episode.timestamp)}]
+        )
+    
+    def recall_similar(self, new_task: str) -> list[Episode]:
+        """检索类似任务的历史经验"""
+        results = self.vectorstore.similarity_search(new_task, k=3)
+        return results  # 返回过去类似任务的经验
+
+# ━━━━ 在 Agent 中使用 ━━━━
+# 执行任务前：检索类似任务经验，避免重蹈覆辙
+past_experience = episodic_memory.recall_similar(current_task)
+system_prompt += f"\n\n历史经验参考：{past_experience}"`,
   },
 ];
 
-const ZEP_CODE = `# Zep — 生产级长期记忆解决方案
-# 自动提取实体、总结对话、语义检索
-from zep_cloud.client import AsyncZep
-from zep_cloud import Message
-
-zep = AsyncZep(api_key=os.environ["ZEP_API_KEY"])
-
-# 添加消息到 Zep（自动处理：摘要/实体提取/向量化）
-await zep.memory.add(
-    session_id="user_123",
-    messages=[
-        Message(role_type="user",   content="我在做一个 B2B SaaS 项目"),
-        Message(role_type="assistant", content="了解，请问目标客户是？"),
-    ]
-)
-
-# 检索相关记忆（语义 + 实体 + 事实）
-memory = await zep.memory.get(session_id="user_123")
-# memory.context 包含:
-# - 最近对话摘要
-# - 识别出的实体（用户、公司、产品名）
-# - 长期事实（"用户在做一个 B2B SaaS 项目"）
-
-# 注入到 Agent Prompt
-system_prompt = f"""
-你是一个助手。以下是关于用户的记忆：
-{memory.context}
-
-基于上述背景继续对话。
-"""`;
-
 export default function LessonMemory() {
-  const [memType, setMemType] = useState(0);
-  const [activeTab, setActiveTab] = useState('types');
-
-  const mem = MEMORY_TYPES[memType];
+  const [mem, setMem] = useState('conversational');
+  const m = MEMORY_TYPES.find(x => x.key === mem) ?? {};
 
   return (
     <div className="ag-lesson">
-      <div className="ag-container">
+      <div className="ag-hero">
+        <div className="ag-badge">// MODULE 03 · MEMORY SYSTEMS</div>
+        <h1>Memory 系统设计</h1>
+        <p>没有记忆的 Agent 每次对话都是"初次见面"。<strong>四类记忆类型</strong>从短期到长期、从结构化到向量化，构成 Agent 的完整记忆体系。选对记忆类型，让 Agent 越来越聪明。</p>
+      </div>
 
-        <div className="ag-hero">
-          <div className="ag-badge">模块四 · Memory & State</div>
-          <h1>记忆与状态 — 让 Agent 记住上下文</h1>
-          <p>没有记忆的 Agent 每次都从零开始。掌握四种记忆类型、跨会话持久化、向量记忆检索，以及 Zep 生产级记忆方案，构建真正"认识你"的 Agent。</p>
-        </div>
-
-        <div className="ag-metrics">
-          {[
-            { v: '4种', l: '记忆类型' },
-            { v: 'Redis', l: '跨会话持久化' },
-            { v: '向量', l: '语义记忆检索' },
-            { v: 'Zep', l: '生产级解决方案' },
-          ].map(m => (
-            <div key={m.l} className="ag-metric-card">
-              <div className="ag-metric-value">{m.v}</div>
-              <div className="ag-metric-label">{m.l}</div>
-            </div>
+      <div className="ag-section">
+        <div className="ag-section-title">🧠 四类记忆类型</div>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+          {MEMORY_TYPES.map(mt => (
+            <button key={mt.key} className={`ag-btn ${mem === mt.key ? 'active' : ''}`}
+              style={{ borderColor: mem === mt.key ? mt.color : undefined, color: mem === mt.key ? mt.color : undefined }}
+              onClick={() => setMem(mt.key)}>
+              {mt.icon} {mt.name}
+              <span className="ag-tag purple" style={{ marginLeft: '0.3rem' }}>{mt.type}</span>
+            </button>
           ))}
         </div>
-
-        {/* Memory Types Explorer */}
-        <div className="ag-section">
-          <h2>🧠 四种记忆类型详解</h2>
-          <div className="ag-tabs">
-            {MEMORY_TYPES.map((m, i) => (
-              <button key={i} className={`ag-tab${memType === i ? ' active' : ''}`} onClick={() => setMemType(i)}>
-                {m.icon} {m.type}
-              </button>
-            ))}
-          </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-              <div style={{ flex: 1, minWidth: 240 }}>
-                <div style={{ fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '0.75rem' }}>{mem.desc}</div>
-                <div className="ag-tags">
-                  <span className="ag-tag cyan">{mem.en}</span>
-                  <span className="ag-tag amber">容量上限: {mem.limit}</span>
-                </div>
-              </div>
+        <div className="ag-grid-2" style={{ marginBottom: '0.75rem' }}>
+          <div className="ag-card" style={{ borderTop: `3px solid ${m.color}` }}>
+            <div style={{ fontWeight: 700, fontSize: '1rem', color: m.color, marginBottom: '0.5rem' }}>{m.icon} {m.name}</div>
+            <div style={{ color: 'var(--ag-muted)', fontSize: '0.87rem', lineHeight: 1.75, marginBottom: '0.75rem' }}>{m.desc}</div>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <span className="ag-tag purple">类型: {m.type}</span>
+              <span className="ag-tag cyan">存储: {m.storage}</span>
             </div>
           </div>
-          <div className="ag-code">{mem.code}</div>
-        </div>
-
-        {/* Memory Architecture */}
-        <div className="ag-section">
-          <h2>🏗️ 生产级记忆架构</h2>
-          <div className="ag-tabs">
-            {[['types','分层架构'],['zep','Zep 长期记忆'],['state','状态管理']].map(([k,l]) => (
-              <button key={k} className={`ag-tab${activeTab===k?' active':''}`} onClick={() => setActiveTab(k)}>{l}</button>
-            ))}
+          <div className="ag-card">
+            <div style={{ fontWeight: 700, fontSize: '0.85rem', marginBottom: '0.75rem', color: 'var(--ag-lavender)' }}>适合场景</div>
+            {mem === 'conversational' && ['客服对话 Bot（记住上下文）', '多轮问答助手', '会话状态管理（购物车等）'].map((s,i)=> <div key={i} style={{fontSize:'0.84rem',color:'var(--ag-muted)',marginBottom:'0.4rem'}}>→ {s}</div>)}
+            {mem === 'entity' && ['人员/项目/产品跟踪', 'CRM 对话助手', '需要记住"谁是谁"的场景'].map((s,i)=> <div key={i} style={{fontSize:'0.84rem',color:'var(--ag-muted)',marginBottom:'0.4rem'}}>→ {s}</div>)}
+            {mem === 'vector' && ['用户偏好长期记忆', '知识积累型 Agent', '跨会话记忆（数百万条）'].map((s,i)=> <div key={i} style={{fontSize:'0.84rem',color:'var(--ag-muted)',marginBottom:'0.4rem'}}>→ {s}</div>)}
+            {mem === 'episodic' && ['任务型 Agent（学习经验）', 'Autonomous Agent', '避免重复错误的场景'].map((s,i)=> <div key={i} style={{fontSize:'0.84rem',color:'var(--ag-muted)',marginBottom:'0.4rem'}}>→ {s}</div>)}
           </div>
-
-          {activeTab === 'types' && (
-            <div>
-              <div className="ag-code">{`# 生产推荐：分层记忆架构
-class LayeredMemory:
-    """
-    L1: 工作记忆（当前上下文窗口）      → 最快，容量最小
-    L2: 情节记忆（Redis 对话历史）       → 毫秒级，GB级
-    L3: 语义记忆（Chroma/Pinecone）     → 秒级，无限扩展
-    """
-    
-    def __init__(self, session_id: str):
-        self.session_id = session_id
-        # L2: Redis 对话历史
-        self.episodic = RedisChatMessageHistory(
-            session_id=session_id, url=REDIS_URL)
-        # L3: 向量数据库
-        self.semantic = Chroma(
-            embedding_function=OpenAIEmbeddings(),
-            collection_name=f"user_{session_id}",
-        )
-    
-    async def remember(self, message: BaseMessage):
-        """存储到 L2，重要内容同时向量化到 L3"""
-        self.episodic.add_message(message)
-        if self._is_important(message.content):
-            self.semantic.add_texts([message.content])
-    
-    async def recall(self, query: str) -> str:
-        """从 L2 + L3 综合检索"""
-        recent = self.episodic.messages[-20:]  # 最近 20 条
-        relevant = self.semantic.similarity_search(query, k=3)
-        return self._format_context(recent, relevant)
-    
-    def _is_important(self, text: str) -> bool:
-        """判断是否值得长期存储（可接 LLM 做分类）"""
-        keywords = ["需求", "决定", "喜好", "项目", "目标"]
-        return any(kw in text for kw in keywords)`}</div>
-            </div>
-          )}
-          {activeTab === 'zep' && <div className="ag-code">{ZEP_CODE}</div>}
-          {activeTab === 'state' && (
-            <div>
-              <div className="ag-code">{`# LangGraph 状态管理（下一模块详解）
-from langgraph.graph import StateGraph
-from typing import TypedDict, Annotated
-import operator
-
-# 定义 Agent 完整状态
-class AgentState(TypedDict):
-    messages: Annotated[list, operator.add]  # 消息列表（自动追加）
-    user_context: str                          # 用户背景信息
-    task_status: str                           # 当前任务状态
-    tool_results: dict                         # 工具执行结果缓存
-    iteration_count: int                       # 循环次数（防止死循环）
-    should_continue: bool                      # 是否继续执行
-
-# 状态在图的每个节点间传递，持久保存在 Checkpoint
-# 支持暂停、恢复、人工介入（HITL）`}</div>
-            </div>
-          )}
         </div>
-
-        {/* Memory Best Practices */}
-        <div className="ag-section">
-          <h2>✅ 记忆设计最佳实践</h2>
-          <div className="ag-grid-2">
-            {[
-              { t: '🔑 会话隔离', d: '每个用户/会话使用独立的 session_id，防止上下文污染和隐私泄露' },
-              { t: '⏰ 自动过期', d: 'Redis TTL 设置合理过期时间（7-30天），避免历史记忆无限累积' },
-              { t: '✂️  摘要压缩', d: '使用 ConversationSummaryMemory 对长对话自动生成摘要，节省 Token' },
-              { t: '🔒 隐私过滤', d: '向量存储前过滤 PII（手机/身份证/密码），防止敏感信息被检索' },
-              { t: '📊 记忆评估', d: '定期评估记忆的检索准确率，调整 embedding 模型和检索参数' },
-              { t: '🔄 记忆更新', d: '用户纠正信息时，需要删除旧向量并插入新的，避免矛盾记忆共存' },
-            ].map((c, i) => (
-              <div key={i} className="ag-card">
-                <div className="ag-card-title">{c.t}</div>
-                <div className="ag-card-body">{c.d}</div>
-              </div>
-            ))}
+        <div className="ag-code-wrap">
+          <div className="ag-code-head">
+            <div className="ag-code-dot" style={{ background: '#ef4444' }} /><div className="ag-code-dot" style={{ background: '#f59e0b' }} /><div className="ag-code-dot" style={{ background: '#10b981' }} />
+            <span style={{ marginLeft: '0.5rem' }}>{mem}_memory.py</span>
           </div>
-          <div className="ag-warn">⚠️ <span>记忆越丰富，每次查询的 Prompt 越长，Token 成本越高。必须做好<strong>相关性过滤</strong>，只注入与当前任务相关的记忆。</span></div>
+          <div className="ag-code">{m.code}</div>
         </div>
+      </div>
 
+      <div className="ag-section">
+        <div className="ag-section-title">🗺️ 记忆类型速查与组合策略</div>
+        <div className="ag-card" style={{ overflowX: 'auto', marginBottom: '1rem' }}>
+          <table className="ag-table">
+            <thead><tr><th>类型</th><th>时效</th><th>容量</th><th>检索方式</th><th>推荐场景</th></tr></thead>
+            <tbody>
+              {MEMORY_TYPES.map(mt => (
+                <tr key={mt.key}>
+                  <td><span style={{ color: mt.color, fontWeight: 700, fontSize: '0.85rem' }}>{mt.icon} {mt.name}</span></td>
+                  <td><span className={`ag-tag ${mt.type.includes('Long') ? 'green' : 'amber'}`}>{mt.type}</span></td>
+                  <td style={{ color: 'var(--ag-muted)', fontSize: '0.83rem' }}>{mt.key === 'vector' || mt.key === 'episodic' ? '无限' : '有限（窗口）'}</td>
+                  <td style={{ color: 'var(--ag-muted)', fontSize: '0.83rem' }}>{mt.key === 'vector' || mt.key === 'episodic' ? '语义相似度' : '顺序/实体名'}</td>
+                  <td style={{ color: 'var(--ag-muted)', fontSize: '0.83rem' }}>{mt.storage.split('（')[0]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="ag-tip">
+          💡 <strong>生产推荐组合</strong>：对话记忆（短期上下文）+ Vector 记忆（长期偏好/知识） + Episodic 记忆（任务经验）。三层叠加构成完整记忆体系，可覆盖 95% 的 Agent 记忆需求。
+        </div>
       </div>
     </div>
   );
