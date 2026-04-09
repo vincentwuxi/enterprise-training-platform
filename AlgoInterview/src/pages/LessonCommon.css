@@ -1,0 +1,155 @@
+/* ===== AlgoInterview Course — Shared Styles ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --al-primary:    #f97316;
+  --al-primary-dk: #ea580c;
+  --al-glow:       rgba(249, 115, 22, 0.22);
+  --al-accent:     #fbbf24;
+  --al-accent2:    #34d399;
+  --al-blue:       #60a5fa;
+  --al-red:        #f87171;
+  --al-bg:        #0c0700;
+  --al-surface:   #160b00;
+  --al-surface2:  #1f1100;
+  --al-border:    rgba(249,115,22,0.18);
+  --al-text:      #fff7ed;
+  --al-muted:     #9a7c55;
+}
+
+/* ---- Layout ---- */
+.al-lesson { font-family:'Inter',sans-serif; background:var(--al-bg); color:var(--al-text); min-height:100vh; padding:2rem 1rem; }
+.al-container { max-width:920px; margin:0 auto; }
+
+/* ---- Hero ---- */
+.al-hero {
+  text-align:center; padding:3rem 2rem;
+  background:linear-gradient(135deg,var(--al-surface) 0%,rgba(249,115,22,.07) 100%);
+  border:1px solid var(--al-border); border-radius:20px; margin-bottom:2.5rem;
+  position:relative; overflow:hidden;
+}
+.al-hero::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(249,115,22,.12),transparent);
+  pointer-events:none;
+}
+.al-badge {
+  display:inline-block; padding:.3rem 1rem;
+  background:var(--al-glow); border:1px solid var(--al-primary); border-radius:999px;
+  font-size:.75rem; font-weight:600; color:var(--al-primary); letter-spacing:.08em;
+  text-transform:uppercase; margin-bottom:1rem;
+}
+.al-hero h1 {
+  font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:700; line-height:1.25;
+  margin:0 0 1rem;
+  background:linear-gradient(135deg,#fff7ed 30%,var(--al-primary));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.al-hero p { color:var(--al-muted); font-size:1.05rem; line-height:1.7; max-width:660px; margin:0 auto; }
+
+/* ---- Section ---- */
+.al-section {
+  background:var(--al-surface); border:1px solid var(--al-border);
+  border-radius:16px; padding:2rem; margin-bottom:1.5rem; transition:border-color .2s;
+}
+.al-section:hover { border-color:rgba(249,115,22,.35); }
+.al-section h2 { font-size:1.25rem; font-weight:600; color:var(--al-primary); margin:0 0 1.25rem; display:flex; align-items:center; gap:.6rem; }
+
+/* ---- Metric Cards ---- */
+.al-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+.al-metric-card { background:var(--al-surface2); border:1px solid var(--al-border); border-radius:12px; padding:1.25rem; text-align:center; transition:transform .2s,border-color .2s; }
+.al-metric-card:hover { transform:translateY(-2px); border-color:var(--al-primary); }
+.al-metric-value { font-size:1.9rem; font-weight:700; color:var(--al-primary); line-height:1; }
+.al-metric-label { font-size:.78rem; color:var(--al-muted); margin-top:.4rem; }
+
+/* ---- Code Block ---- */
+.al-code {
+  background:#080400; border:1px solid var(--al-border); border-left:3px solid var(--al-primary);
+  border-radius:10px; padding:1.25rem 1.5rem;
+  font-family:'JetBrains Mono',monospace; font-size:.82rem; line-height:1.8;
+  color:#fed7aa; overflow-x:auto; white-space:pre; margin:1rem 0;
+}
+
+/* ---- Info Boxes ---- */
+.al-tip   { background:rgba(249,115,22,.08); border-left:3px solid var(--al-primary); color:#fdba74; border-radius:10px; padding:1rem 1.25rem; font-size:.9rem; line-height:1.6; margin:1rem 0; display:flex; gap:.75rem; }
+.al-warn  { background:rgba(251,191,36,.08);  border-left:3px solid var(--al-accent);  color:#fde68a; border-radius:10px; padding:1rem 1.25rem; font-size:.9rem; line-height:1.6; margin:1rem 0; display:flex; gap:.75rem; }
+.al-info  { background:rgba(96,165,250,.08);  border-left:3px solid var(--al-blue);    color:#bfdbfe; border-radius:10px; padding:1rem 1.25rem; font-size:.9rem; line-height:1.6; margin:1rem 0; display:flex; gap:.75rem; }
+.al-good  { background:rgba(52,211,153,.08);  border-left:3px solid var(--al-accent2); color:#6ee7b7; border-radius:10px; padding:1rem 1.25rem; font-size:.9rem; line-height:1.6; margin:1rem 0; display:flex; gap:.75rem; }
+
+/* ---- Formula ---- */
+.al-formula { background:rgba(249,115,22,.1); border:1px solid var(--al-primary); border-radius:10px; padding:1rem 1.5rem; font-family:'JetBrains Mono',monospace; font-size:.95rem; color:var(--al-primary); text-align:center; margin:1rem 0; font-weight:600; }
+
+/* ---- Table ---- */
+.al-table-wrap { overflow-x:auto; margin:1rem 0; }
+.al-table { width:100%; border-collapse:collapse; font-size:.88rem; }
+.al-table th { background:var(--al-surface2); color:var(--al-primary); padding:.65rem 1rem; text-align:left; font-weight:600; border-bottom:1px solid var(--al-border); }
+.al-table td { padding:.65rem 1rem; border-bottom:1px solid rgba(249,115,22,.08); color:var(--al-text); }
+.al-table tr:hover td { background:rgba(249,115,22,.04); }
+
+/* ---- Tab Nav ---- */
+.al-tabs { display:flex; gap:.5rem; margin-bottom:1.25rem; flex-wrap:wrap; }
+.al-tab { padding:.45rem 1.1rem; border-radius:8px; border:1px solid var(--al-border); background:transparent; color:var(--al-muted); font-size:.85rem; cursor:pointer; transition:all .2s; }
+.al-tab:hover { border-color:var(--al-primary); color:var(--al-primary); }
+.al-tab.active { background:var(--al-primary); border-color:var(--al-primary); color:#000; font-weight:600; }
+
+/* ---- Cards ---- */
+.al-card { background:var(--al-surface2); border:1px solid var(--al-border); border-radius:12px; padding:1.25rem; transition:border-color .2s,transform .2s; }
+.al-card:hover { border-color:var(--al-primary); transform:translateY(-2px); }
+.al-card-title { font-weight:600; margin-bottom:.5rem; font-size:.95rem; }
+.al-card-body  { font-size:.86rem; color:var(--al-muted); line-height:1.6; }
+
+/* ---- Grid ---- */
+.al-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.al-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+@media(max-width:640px){ .al-grid-2,.al-grid-3 { grid-template-columns:1fr; } }
+
+/* ---- Tag Pills ---- */
+.al-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0; }
+.al-tag  { padding:.2rem .65rem; border-radius:999px; font-size:.72rem; font-weight:600; background:var(--al-glow); color:var(--al-primary); border:1px solid rgba(249,115,22,.3); }
+.al-tag.green  { background:rgba(52,211,153,.1); color:#34d399; border-color:rgba(52,211,153,.3); }
+.al-tag.blue   { background:rgba(96,165,250,.1); color:#60a5fa; border-color:rgba(96,165,250,.3); }
+.al-tag.red    { background:rgba(248,113,113,.1); color:#f87171; border-color:rgba(248,113,113,.3); }
+.al-tag.yellow { background:rgba(251,191,36,.1); color:#fbbf24; border-color:rgba(251,191,36,.3); }
+
+/* ---- LeetCode Problem Card ---- */
+.al-problem {
+  border:1px solid var(--al-border); border-radius:12px; overflow:hidden; margin:1rem 0;
+}
+.al-problem-header {
+  display:flex; align-items:center; gap:1rem; padding:.75rem 1.25rem;
+  background:var(--al-surface2); border-bottom:1px solid var(--al-border);
+}
+.al-problem-id { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--al-primary); font-size:.9rem; }
+.al-problem-title { font-weight:600; flex:1; }
+.al-difficulty { padding:.2rem .65rem; border-radius:999px; font-size:.72rem; font-weight:700; }
+.al-difficulty.easy   { background:rgba(52,211,153,.15); color:#34d399; }
+.al-difficulty.medium { background:rgba(251,191,36,.15); color:#fbbf24; }
+.al-difficulty.hard   { background:rgba(248,113,113,.15); color:#f87171; }
+.al-problem-body { padding:1.25rem; }
+
+/* ---- Complexity Badge ---- */
+.al-complexity { display:inline-flex; gap:1rem; padding:.5rem 1rem; background:var(--al-surface2); border:1px solid var(--al-border); border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:.8rem; margin:.75rem 0; }
+.al-time  { color:var(--al-accent); }
+.al-space { color:var(--al-blue); }
+
+/* ---- Step List ---- */
+.al-steps { counter-reset:step; display:flex; flex-direction:column; gap:1rem; }
+.al-step  { display:flex; gap:1rem; align-items:flex-start; }
+.al-step::before { counter-increment:step; content:counter(step); min-width:28px; height:28px; background:var(--al-primary); color:#000; font-weight:700; font-size:.8rem; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.al-step-content { flex:1; }
+.al-step-title { font-weight:600; margin-bottom:.25rem; }
+.al-step-desc  { font-size:.86rem; color:var(--al-muted); line-height:1.6; }
+
+/* ---- Viz: Array ---- */
+.al-array { display:flex; gap:4px; flex-wrap:wrap; margin:1rem 0; align-items:center; }
+.al-cell {
+  width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.85rem; font-weight:600;
+  border:2px solid var(--al-border); border-radius:8px; background:var(--al-surface2);
+  transition:all .25s; position:relative;
+}
+.al-cell.left  { border-color:var(--al-accent2); background:rgba(52,211,153,.15); }
+.al-cell.right { border-color:var(--al-blue);    background:rgba(96,165,250,.15); }
+.al-cell.window { border-color:var(--al-primary); background:var(--al-glow); }
+.al-cell.match  { border-color:var(--al-accent);  background:rgba(251,191,36,.2); }
+.al-ptr-label { font-size:.65rem; position:absolute; bottom:-18px; color:var(--al-muted); white-space:nowrap; }

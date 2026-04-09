@@ -1,0 +1,51 @@
+{
+  "id": "algo-interview",
+  "title": "算法与数据结构精讲：LeetCode 高频题 + 面试题解",
+  "description": "面向技术面试的系统化算法训练。覆盖数组双指针、链表与树、动态规划、图论等核心专题，精讲 150+ LeetCode 高频题解题模板，配合系统设计课构建完整面试能力体系。",
+  "category": "编程与技术",
+  "level": "中级到高级",
+  "duration": "40h",
+  "tags": ["算法", "数据结构", "LeetCode", "面试", "动态规划", "图论", "双指针"],
+  "modules": [
+    {
+      "id": "LessonArrayPtr",
+      "title": "模块一：数组 & 双指针 — 高频模板精讲",
+      "description": "滑动窗口、Two Sum 系列、区间问题、前缀和、差分数组"
+    },
+    {
+      "id": "LessonLinkedTree",
+      "title": "模块二：链表 & 二叉树 — 递归思维训练",
+      "description": "链表六大操作模板、二叉树遍历、BST 性质、路径问题"
+    },
+    {
+      "id": "LessonStackQueue",
+      "title": "模块三：栈 & 队列 & 堆 — 单调结构专训",
+      "description": "单调栈、单调队列、优先队列、Top-K 问题、BFS 层序"
+    },
+    {
+      "id": "LessonHashString",
+      "title": "模块四：哈希表 & 字符串 — 映射与匹配",
+      "description": "哈希映射技巧、字符串滑动窗口、KMP、回文、异位词"
+    },
+    {
+      "id": "LessonBinarySearch",
+      "title": "模块五：二分搜索 — 边界定义与变体大全",
+      "description": "二分模板统一、搜索旋转数组、矩阵搜索、最优化二分"
+    },
+    {
+      "id": "LessonDP",
+      "title": "模块六：动态规划 — 状态定义与转移方程",
+      "description": "DP 五步法、背包九讲、LCS/LIS、区间 DP、股票买卖系列"
+    },
+    {
+      "id": "LessonGraph",
+      "title": "模块七：图论 & 排序 — 搜索与拓扑",
+      "description": "BFS/DFS 模板、Dijkstra、拓扑排序、并查集、岛屿系列"
+    },
+    {
+      "id": "LessonDesignAlgo",
+      "title": "模块八：设计题专训 — 结合系统设计的算法题",
+      "description": "LRU Cache、设计 Twitter、搜索自动补全、跳表、布隆过滤器"
+    }
+  ]
+}
