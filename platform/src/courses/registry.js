@@ -32,6 +32,7 @@ import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
 import omftManifest  from '@course-omft/../course.manifest.json';
+import rtManifest    from '@course-rt/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -451,6 +452,19 @@ export const courseRegistry = {
       LessonEval:       lazy(() => import('@course-omft/pages/LessonEval')),
       LessonQuant:      lazy(() => import('@course-omft/pages/LessonQuant')),
       LessonFTProject:  lazy(() => import('@course-omft/pages/LessonFTProject')),
+    }
+  },
+  'react-typescript': {
+    manifest: rtManifest,
+    components: {
+      LessonFoundation:  lazy(() => import('@course-rt/pages/LessonFoundation')),
+      LessonTypeScript:  lazy(() => import('@course-rt/pages/LessonTypeScript')),
+      LessonState:       lazy(() => import('@course-rt/pages/LessonState')),
+      LessonStyling:     lazy(() => import('@course-rt/pages/LessonStyling')),
+      LessonNextjs:      lazy(() => import('@course-rt/pages/LessonNextjs')),
+      LessonPerformance: lazy(() => import('@course-rt/pages/LessonPerformance')),
+      LessonTesting:     lazy(() => import('@course-rt/pages/LessonTesting')),
+      LessonDeployment:  lazy(() => import('@course-rt/pages/LessonDeployment')),
     }
   },
 };

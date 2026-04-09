@@ -41,7 +41,8 @@ export default defineConfig({
       '@course-algo':    path.resolve(__dirname, '../AlgoInterview/src'),
       '@course-pm':      path.resolve(__dirname, '../PMAIMastery/src'),
       '@course-llmpd':   path.resolve(__dirname, '../LLMProductDesign/src'),
-      '@course-omft':    path.resolve(__dirname, '../OpenModelFinetune/src')
+      '@course-omft':    path.resolve(__dirname, '../OpenModelFinetune/src'),
+      '@course-rt':      path.resolve(__dirname, '../ReactTypeScript/src')
     }
   }
 })
