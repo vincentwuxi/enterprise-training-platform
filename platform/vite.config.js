@@ -46,7 +46,8 @@ export default defineConfig({
       '@course-ase':     path.resolve(__dirname, '../AIStrategyExecutive/src'),
       '@course-rag':     path.resolve(__dirname, '../RAGEngineering/src'),
       '@course-k8s':     path.resolve(__dirname, '../KubernetesOps/src'),
-      '@course-aae':     path.resolve(__dirname, '../AIAgentEngineering/src')
+      '@course-aae':     path.resolve(__dirname, '../AIAgentEngineering/src'),
+      '@course-lfp':     path.resolve(__dirname, '../LLMFinetunePro/src')
     }
   }
 })

@@ -1,0 +1,19 @@
+{
+  "id": "llm-finetune-pro",
+  "title": "大模型微调工程化 2.0：LoRA / QLoRA / RLHF / vLLM 全链路",
+  "description": "AI 技术栈的制高点——从微调理论到生产部署的完整工程体系。PEFT 方法全景（LoRA/Prefix/Adapter）→ LoRA 低秩矩阵分解数学原理可视化 → QLoRA 4-bit 量化让消费级 GPU 微调成为可能 → 数据工程（Alpaca/ShareGPT/合成数据）→ 多 GPU 训练（DeepSpeed ZeRO）→ RLHF 三阶段 + DPO/GRPO 偏好对齐 → vLLM PagedAttention 高速推理（OpenAI 兼容接口）→ 评估体系（MMLU/MT-Bench/自定义 Benchmark）与持续迭代。",
+  "category": "AI 工程与模型训练",
+  "level": "高级",
+  "duration": "32h",
+  "tags": ["LoRA", "QLoRA", "RLHF", "DPO", "GRPO", "vLLM", "PEFT", "DeepSpeed", "HuggingFace", "TRL", "BitsAndBytes", "微调", "大模型", "偏好对齐", "量化", "推理优化"],
+  "modules": [
+    { "id": "overview",    "title": "模块一：微调策略全景 — 何时微调 vs RAG vs Prompt？PEFT 方法族", "lessonKey": "LessonOverview" },
+    { "id": "lora",        "title": "模块二：LoRA 深度解析 — 低秩矩阵分解的数学原理与工程实现", "lessonKey": "LessonLoRA" },
+    { "id": "qlora",       "title": "模块三：QLoRA 量化微调 — 消费级 GPU 跑 70B 模型的秘密", "lessonKey": "LessonQLoRA" },
+    { "id": "data",        "title": "模块四：数据工程 — 高质量数据如何决定微调上限", "lessonKey": "LessonData" },
+    { "id": "training",    "title": "模块五：训练工程实战 — DeepSpeed ZeRO / 多 GPU / 显存优化", "lessonKey": "LessonTraining" },
+    { "id": "alignment",   "title": "模块六：RLHF & DPO 偏好对齐 — 让模型说人话、说对话", "lessonKey": "LessonAlignment" },
+    { "id": "inference",   "title": "模块七：vLLM 高速推理部署 — PagedAttention 与生产服务化", "lessonKey": "LessonInference" },
+    { "id": "evaluation",  "title": "模块八：评估与持续迭代 — 如何知道微调真的有效？", "lessonKey": "LessonEvaluation" }
+  ]
+}

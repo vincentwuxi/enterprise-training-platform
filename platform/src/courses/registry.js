@@ -37,6 +37,7 @@ import aseManifest   from '@course-ase/../course.manifest.json';
 import ragManifest   from '@course-rag/../course.manifest.json';
 import k8sManifest   from '@course-k8s/../course.manifest.json';
 import aaeManifest   from '@course-aae/../course.manifest.json';
+import lfpManifest   from '@course-lfp/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -521,6 +522,19 @@ export const courseRegistry = {
       LessonProduction:  lazy(() => import('@course-aae/pages/LessonProduction')),
       LessonPatterns:    lazy(() => import('@course-aae/pages/LessonPatterns')),
       LessonSecurity:    lazy(() => import('@course-aae/pages/LessonSecurity')),
+    }
+  },
+  'llm-finetune-pro': {
+    manifest: lfpManifest,
+    components: {
+      LessonOverview:    lazy(() => import('@course-lfp/pages/LessonOverview')),
+      LessonLoRA:        lazy(() => import('@course-lfp/pages/LessonLoRA')),
+      LessonQLoRA:       lazy(() => import('@course-lfp/pages/LessonQLoRA')),
+      LessonData:        lazy(() => import('@course-lfp/pages/LessonData')),
+      LessonTraining:    lazy(() => import('@course-lfp/pages/LessonTraining')),
+      LessonAlignment:   lazy(() => import('@course-lfp/pages/LessonAlignment')),
+      LessonInference:   lazy(() => import('@course-lfp/pages/LessonInference')),
+      LessonEvaluation:  lazy(() => import('@course-lfp/pages/LessonEvaluation')),
     }
   },
 };

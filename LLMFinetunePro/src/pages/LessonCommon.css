@@ -1,0 +1,104 @@
+/* ==================================================
+   LLM Finetune Pro — Rose Red + Indigo Theme
+   Research Depth × Engineering Precision
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --ft-bg:       #060208;
+  --ft-surface:  #0e0614;
+  --ft-card:     #120818;
+  --ft-card2:    #180c20;
+  --ft-border:   rgba(225,29,72,0.12);
+  --ft-rose:     #e11d48;
+  --ft-pink:     #f43f5e;
+  --ft-indigo:   #6366f1;
+  --ft-violet:   #818cf8;
+  --ft-amber:    #f59e0b;
+  --ft-green:    #10b981;
+  --ft-cyan:     #06b6d4;
+  --ft-text:     #fce7f3;
+  --ft-muted:    #6b4a5e;
+  --ft-border2:  rgba(99,102,241,0.1);
+}
+
+.ft-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ft-text); background: var(--ft-bg); min-height: 100vh;
+}
+
+.ft-hero { margin-bottom: 2.5rem; }
+.ft-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(225,29,72,0.08); border: 1px solid rgba(225,29,72,0.3);
+  color: var(--ft-pink); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.ft-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #e11d48, #f43f5e, #6366f1, #818cf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.ft-hero p { font-size: 0.97rem; color: var(--ft-muted); line-height: 1.8; max-width: 720px; }
+.ft-hero p strong { color: var(--ft-violet); -webkit-text-fill-color: var(--ft-violet); }
+
+.ft-section { margin: 2.5rem 0; }
+.ft-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--ft-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(225,29,72,0.1);
+}
+
+.ft-card { background: var(--ft-card); border: 1px solid var(--ft-border); border-radius: 10px; padding: 1.25rem; }
+.ft-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.ft-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.ft-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.ft-metric { background: var(--ft-card); border: 1px solid var(--ft-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.ft-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--ft-pink); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.ft-metric-label { font-size: 0.73rem; color: var(--ft-muted); }
+
+.ft-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(225,29,72,0.15); margin: 0.5rem 0; }
+.ft-code-head { background: #09030c; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--ft-muted); font-family: 'JetBrains Mono', monospace; }
+.ft-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.ft-code { background: var(--ft-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #fda4af; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.ft-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(225,29,72,0.2);
+  background: rgba(225,29,72,0.05); border-radius: 8px;
+  color: var(--ft-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.ft-btn:hover { background: rgba(225,29,72,0.1); color: var(--ft-pink); }
+.ft-btn.active { background: rgba(225,29,72,0.15); border-color: var(--ft-pink); color: var(--ft-pink); }
+
+.ft-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ft-tag.rose   { background: rgba(225,29,72,0.12); color: var(--ft-pink); }
+.ft-tag.indigo { background: rgba(99,102,241,0.12); color: var(--ft-violet); }
+.ft-tag.green  { background: rgba(16,185,129,0.1); color: var(--ft-green); }
+.ft-tag.amber  { background: rgba(245,158,11,0.1); color: var(--ft-amber); }
+.ft-tag.cyan   { background: rgba(6,182,212,0.1); color: var(--ft-cyan); }
+
+.ft-tip    { background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--ft-muted); line-height: 1.7; }
+.ft-warn   { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--ft-muted); line-height: 1.7; }
+.ft-insight { background: rgba(225,29,72,0.06); border: 1px solid rgba(225,29,72,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--ft-muted); line-height: 1.7; }
+
+.ft-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.ft-table th { background: rgba(225,29,72,0.05); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--ft-pink); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(225,29,72,0.1); }
+.ft-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.ft-table tr:last-child td { border-bottom: none; }
+.ft-table tr:hover td { background: rgba(225,29,72,0.02); }
+
+/* Math visualization block */
+.ft-math { background: var(--ft-card); border: 1px solid rgba(99,102,241,0.2); border-radius: 10px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; }
+.ft-math-eq { font-size: 1rem; color: var(--ft-violet); text-align: center; padding: 0.75rem 0; letter-spacing: 0.03em; }
+.ft-math-label { font-size: 0.78rem; color: var(--ft-muted); text-align: center; }
+
+.ft-steps { display: flex; flex-direction: column; gap: 0; }
+.ft-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; border-radius: 8px; }
+.ft-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(225,29,72,0.1); border: 1px solid rgba(225,29,72,0.3); color: var(--ft-pink); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
