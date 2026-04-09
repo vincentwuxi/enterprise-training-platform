@@ -1,0 +1,109 @@
+/* ==================================================
+   RAG Engineering Course — Emerald + Teal Theme
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --rag-bg:       #020d0d;
+  --rag-surface:  #051212;
+  --rag-card:     #071818;
+  --rag-border:   rgba(16,185,129,0.12);
+  --rag-emerald:  #10b981;
+  --rag-teal:     #0ea5e9;
+  --rag-cyan:     #06b6d4;
+  --rag-mint:     #34d399;
+  --rag-purple:   #8b5cf6;
+  --rag-amber:    #f59e0b;
+  --rag-red:      #ef4444;
+  --rag-text:     #d1fae5;
+  --rag-muted:    #4b7a6a;
+  --rag-border2:  rgba(14,165,233,0.1);
+}
+
+.rag-lesson {
+  max-width: 980px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--rag-text);
+  background: var(--rag-bg); min-height: 100vh;
+}
+
+/* Hero */
+.rag-hero { margin-bottom: 2.5rem; }
+.rag-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.25);
+  color: var(--rag-emerald); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.rag-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.4rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4, #0ea5e9, #34d399);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.rag-hero p { font-size: 0.97rem; color: var(--rag-muted); line-height: 1.8; max-width: 720px; }
+.rag-hero p strong { color: var(--rag-emerald); -webkit-text-fill-color: var(--rag-emerald); }
+
+/* Section */
+.rag-section { margin: 2.5rem 0; }
+.rag-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--rag-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(16,185,129,0.1);
+}
+
+/* Cards */
+.rag-card { background: var(--rag-card); border: 1px solid var(--rag-border); border-radius: 10px; padding: 1.25rem; }
+.rag-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.rag-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.rag-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 0.75rem; }
+
+/* Metrics */
+.rag-metric { background: var(--rag-card); border: 1px solid var(--rag-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.rag-metric-val { font-size: 1.8rem; font-weight: 900; color: var(--rag-emerald); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.rag-metric-label { font-size: 0.75rem; color: var(--rag-muted); }
+
+/* Code */
+.rag-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(16,185,129,0.12); margin: 0.5rem 0; }
+.rag-code-head { background: #040f0f; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--rag-muted); font-family: 'JetBrains Mono', monospace; }
+.rag-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.rag-code { background: #020d0d; padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.785rem; color: #6ee7b7; line-height: 1.9; white-space: pre; overflow-x: auto; max-height: 480px; overflow-y: auto; }
+
+/* Buttons */
+.rag-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(16,185,129,0.2);
+  background: rgba(16,185,129,0.05); border-radius: 8px;
+  color: var(--rag-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.rag-btn:hover { background: rgba(16,185,129,0.1); color: var(--rag-emerald); }
+.rag-btn.active { background: rgba(16,185,129,0.15); border-color: var(--rag-emerald); color: var(--rag-emerald); }
+
+/* Tags */
+.rag-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.rag-tag.green   { background: rgba(16,185,129,0.1); color: var(--rag-emerald); }
+.rag-tag.teal    { background: rgba(14,165,233,0.1); color: var(--rag-teal); }
+.rag-tag.amber   { background: rgba(245,158,11,0.1); color: var(--rag-amber); }
+.rag-tag.red     { background: rgba(239,68,68,0.1); color: var(--rag-red); }
+.rag-tag.purple  { background: rgba(139,92,246,0.1); color: var(--rag-purple); }
+
+/* Callout */
+.rag-tip { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.18); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--rag-muted); line-height: 1.7; }
+.rag-warn { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--rag-muted); line-height: 1.7; }
+
+/* Table */
+.rag-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.rag-table th { background: rgba(16,185,129,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--rag-emerald); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(16,185,129,0.1); }
+.rag-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.rag-table tr:last-child td { border-bottom: none; }
+.rag-table tr:hover td { background: rgba(16,185,129,0.02); }
+
+/* Pipeline Steps */
+.rag-pipeline { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 0.5rem; }
+.rag-pipe-step { flex: 1; min-width: 120px; background: var(--rag-card); border: 1px solid var(--rag-border); border-radius: 8px; padding: 0.85rem 0.75rem; text-align: center; position: relative; margin-right: 2rem; }
+.rag-pipe-step:not(:last-child)::after { content: '→'; position: absolute; right: -1.5rem; top: 50%; transform: translateY(-50%); color: var(--rag-emerald); font-size: 1rem; }
+.rag-pipe-label { font-size: 0.72rem; color: var(--rag-emerald); font-weight: 700; margin-bottom: 0.3rem; }
+.rag-pipe-desc { font-size: 0.72rem; color: var(--rag-muted); line-height: 1.5; }

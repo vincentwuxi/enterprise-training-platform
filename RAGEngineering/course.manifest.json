@@ -1,0 +1,19 @@
+{
+  "id": "rag-engineering",
+  "title": "RAG 工程实战：从检索到生产部署",
+  "description": "系统掌握检索增强生成（RAG）全栈工程能力。文档处理与 Chunking 策略 → Embedding 工程与向量数据库（pgvector/Pinecone/Weaviate）→ 混合检索（BM25+语义）+ Reranker → RAG Prompt 工程 → RAGAs 评估框架 → LangChain/LlamaIndex 生产级实现 → Docker 部署与成本优化。包含可运行代码、性能对比实验和完整电商知识库项目。",
+  "category": "AI 工程",
+  "level": "中高级",
+  "duration": "24h",
+  "tags": ["RAG", "向量数据库", "Embedding", "LangChain", "LlamaIndex", "pgvector", "Pinecone", "BM25", "Reranker", "RAGAs", "生产部署"],
+  "modules": [
+    { "id": "foundation",  "title": "模块一：RAG 原理与架构 — 何时该用 RAG", "lessonKey": "LessonFoundation" },
+    { "id": "chunking",    "title": "模块二：文档处理与 Chunking 工程", "lessonKey": "LessonChunking" },
+    { "id": "embedding",   "title": "模块三：Embedding 工程与模型选型", "lessonKey": "LessonEmbedding" },
+    { "id": "vectordb",    "title": "模块四：向量数据库深度实战", "lessonKey": "LessonVectorDB" },
+    { "id": "retrieval",   "title": "模块五：混合检索 + Reranker 精排", "lessonKey": "LessonRetrieval" },
+    { "id": "generation",  "title": "模块六：生成与 RAG Prompt 工程", "lessonKey": "LessonGeneration" },
+    { "id": "evaluation",  "title": "模块七：RAGAs 评估框架与调优", "lessonKey": "LessonEvaluation" },
+    { "id": "production",  "title": "模块八：生产部署 — 完整项目实战", "lessonKey": "LessonProduction" }
+  ]
+}

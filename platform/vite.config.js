@@ -43,7 +43,8 @@ export default defineConfig({
       '@course-llmpd':   path.resolve(__dirname, '../LLMProductDesign/src'),
       '@course-omft':    path.resolve(__dirname, '../OpenModelFinetune/src'),
       '@course-rt':      path.resolve(__dirname, '../ReactTypeScript/src'),
-      '@course-ase':     path.resolve(__dirname, '../AIStrategyExecutive/src')
+      '@course-ase':     path.resolve(__dirname, '../AIStrategyExecutive/src'),
+      '@course-rag':     path.resolve(__dirname, '../RAGEngineering/src')
     }
   }
 })
