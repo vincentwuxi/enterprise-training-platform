@@ -1,0 +1,51 @@
+{
+  "id": "growth-hacking",
+  "title": "增长黑客 & 产品运营：从0到100万用户的完整实战",
+  "description": "面向产品经理、运营负责人、创业者。掌握 AARRR 增长框架、用户漏斗优化、A/B 测试实验设计、裂变增长策略，以及基于数据的用户运营体系，构建可持续的增长飞轮。",
+  "category": "产品与运营",
+  "level": "初级到高级",
+  "duration": "24h",
+  "tags": ["增长黑客", "产品运营", "A/B测试", "用户增长", "数据运营", "AARRR"],
+  "modules": [
+    {
+      "id": "LessonGrowthFoundation",
+      "title": "模块一：增长思维与 AARRR 框架",
+      "description": "北极星指标、增长飞轮、AARRR 转化漏斗全景"
+    },
+    {
+      "id": "LessonAcquisition",
+      "title": "模块二：用户获取 — 低成本高效率拉新",
+      "description": "SEO/SEM、内容营销、社交裂变、渠道矩阵管理"
+    },
+    {
+      "id": "LessonActivation",
+      "title": "模块三：激活与 Aha Moment — 留下第一批用户",
+      "description": "Onboarding 优化、首次体验设计、激活率提升实战"
+    },
+    {
+      "id": "LessonRetention",
+      "title": "模块四：留存策略 — 让用户长期回来",
+      "description": "Cohort 留存分析、推送策略、生命周期运营、流失预警"
+    },
+    {
+      "id": "LessonFunnelAB",
+      "title": "模块五：漏斗分析 & A/B 测试实战",
+      "description": "转化漏斗诊断、实验设计、统计显著性、多变量测试"
+    },
+    {
+      "id": "LessonViral",
+      "title": "模块六：裂变增长 — 病毒系数与推荐系统",
+      "description": "K 因子计算、推荐计划设计、社群裂变、增长飞轮闭环"
+    },
+    {
+      "id": "LessonDataOps",
+      "title": "模块七：数据驱动运营 — 指标体系与看板",
+      "description": "北极星指标树、OKR 落地、Metabase 看板、自动化报告"
+    },
+    {
+      "id": "LessonGrowthCase",
+      "title": "模块八：实战项目 — 电商 App 从 1 万到 100 万用户",
+      "description": "完整增长案例复盘：诊断问题、制定策略、执行验证、规模化"
+    }
+  ]
+}

@@ -36,7 +36,8 @@ export default defineConfig({
       '@course-perf':    path.resolve(__dirname, '../PerfOptimization/src'),
       '@course-ai-api':  path.resolve(__dirname, '../AIAPIMastery/src'),
       '@course-ml-eng':  path.resolve(__dirname, '../MLEngineering/src'),
-      '@course-da':      path.resolve(__dirname, '../DataAnalysis/src')
+      '@course-da':      path.resolve(__dirname, '../DataAnalysis/src'),
+      '@course-agent':   path.resolve(__dirname, '../AIAgentEngineering/src')
     }
   }
 })

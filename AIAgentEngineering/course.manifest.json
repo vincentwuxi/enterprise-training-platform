@@ -1,0 +1,51 @@
+{
+  "id": "ai-agent-engineering",
+  "title": "AI Agent 工程实战：从单一模型到自主智能体",
+  "description": "深度聚焦 Agent 工程化落地。掌握 ReAct 架构、LangChain/LangGraph、Function Calling、Multi-Agent 编排、记忆与状态管理，以及 Agent 安全评估，独立构建企业级生产 Agent 系统。",
+  "category": "人工智能与效率提升",
+  "level": "进阶实战",
+  "duration": "32h",
+  "tags": ["AI Agent", "LangChain", "LangGraph", "AutoGen", "Function Calling", "MCP", "RAG", "Multi-Agent"],
+  "modules": [
+    {
+      "id": "LessonAgentCore",
+      "title": "模块一：Agent 架构原理 — 从 LLM 到自主智能体",
+      "description": "Agent 的本质、ReAct 框架、感知-规划-行动-记忆四核心组件"
+    },
+    {
+      "id": "LessonLangChain",
+      "title": "模块二：LangChain 实战 — Chain 与 Agent 工程化",
+      "description": "LLMChain、LCEL、AgentExecutor、内置 Agent 类型与调试技巧"
+    },
+    {
+      "id": "LessonToolCalling",
+      "title": "模块三：工具调用 — Function Calling 与 MCP 协议",
+      "description": "OpenAI/Claude Function Calling、自定义工具、MCP 标准、并行工具调用"
+    },
+    {
+      "id": "LessonMemory",
+      "title": "模块四：记忆与状态 — 让 Agent 记住上下文",
+      "description": "短期/长期记忆、向量存储记忆、LangGraph 状态机、Zep 持久化记忆"
+    },
+    {
+      "id": "LessonLangGraph",
+      "title": "模块五：LangGraph — 复杂工作流与条件分支",
+      "description": "Graph 状态机设计、条件边、循环节点、人工介入 (HITL)、Checkpoint"
+    },
+    {
+      "id": "LessonMultiAgent",
+      "title": "模块六：Multi-Agent 系统 — AutoGen 与 CrewAI 编排",
+      "description": "多角色协作、任务分解、Agent 通信协议、CrewAI 角色设计"
+    },
+    {
+      "id": "LessonAgentSafety",
+      "title": "模块七：Agent 安全与评估 — 生产级防护体系",
+      "description": "Prompt Injection 防御、Guardrails AI、AgentBench 评测、幻觉检测"
+    },
+    {
+      "id": "LessonAgentProject",
+      "title": "模块八：实战项目 — 企业级代码审查 Agent",
+      "description": "端到端构建：GitHub PR 自动审查 Agent，集成工具调用、记忆与多轮对话"
+    }
+  ]
+}

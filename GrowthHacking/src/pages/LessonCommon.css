@@ -1,0 +1,333 @@
+/* ===== GrowthHacking Course — Shared Styles ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---- Design Tokens ---- */
+:root {
+  --gh-primary: #10b981;
+  --gh-primary-dark: #059669;
+  --gh-primary-glow: rgba(16, 185, 129, 0.25);
+  --gh-accent: #f59e0b;
+  --gh-accent2: #8b5cf6;
+  --gh-bg: #030f09;
+  --gh-surface: #0a1f13;
+  --gh-surface2: #0f2e1a;
+  --gh-border: rgba(16, 185, 129, 0.18);
+  --gh-text: #e2f5ec;
+  --gh-muted: #6b9e80;
+  --gh-red: #ef4444;
+  --gh-blue: #3b82f6;
+}
+
+/* ---- Layout ---- */
+.gh-lesson {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--gh-bg);
+  color: var(--gh-text);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.gh-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---- Hero ---- */
+.gh-hero {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--gh-surface) 0%, rgba(16,185,129,0.08) 100%);
+  border: 1px solid var(--gh-border);
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.gh-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(16,185,129,0.12), transparent);
+  pointer-events: none;
+}
+.gh-badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: var(--gh-primary-glow);
+  border: 1px solid var(--gh-primary);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gh-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.gh-hero h1 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, #e2f5ec 30%, var(--gh-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gh-hero p {
+  color: var(--gh-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ---- Section ---- */
+.gh-section {
+  background: var(--gh-surface);
+  border: 1px solid var(--gh-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.2s;
+}
+.gh-section:hover { border-color: rgba(16,185,129,0.35); }
+.gh-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gh-primary);
+  margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ---- Metric Cards ---- */
+.gh-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.gh-metric-card {
+  background: var(--gh-surface2);
+  border: 1px solid var(--gh-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.gh-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gh-primary);
+}
+.gh-metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gh-primary);
+  line-height: 1;
+}
+.gh-metric-label {
+  font-size: 0.78rem;
+  color: var(--gh-muted);
+  margin-top: 0.4rem;
+}
+
+/* ---- Code Block ---- */
+.gh-code {
+  background: #010d05;
+  border: 1px solid var(--gh-border);
+  border-left: 3px solid var(--gh-primary);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #a7f3d0;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 1rem 0;
+}
+.gh-code .c { color: #4b7a60; }
+.gh-code .k { color: #10b981; font-weight: 600; }
+.gh-code .s { color: #fcd34d; }
+.gh-code .n { color: #93c5fd; }
+
+/* ---- Info Boxes ---- */
+.gh-tip, .gh-warn, .gh-key {
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.gh-tip  { background: rgba(16,185,129,0.08); border-left: 3px solid var(--gh-primary); color: #a7f3d0; }
+.gh-warn { background: rgba(245,158,11,0.08); border-left: 3px solid var(--gh-accent);  color: #fde68a; }
+.gh-key  { background: rgba(139,92,246,0.08); border-left: 3px solid var(--gh-accent2); color: #c4b5fd; }
+
+/* ---- Formula / Highlight ---- */
+.gh-formula {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid var(--gh-primary);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--gh-primary);
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+/* ---- Table ---- */
+.gh-table-wrap { overflow-x: auto; margin: 1rem 0; }
+.gh-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.gh-table th {
+  background: var(--gh-surface2);
+  color: var(--gh-primary);
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid var(--gh-border);
+}
+.gh-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(16,185,129,0.08);
+  color: var(--gh-text);
+}
+.gh-table tr:hover td { background: rgba(16,185,129,0.04); }
+
+/* ---- Tab Nav ---- */
+.gh-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.gh-tab {
+  padding: 0.45rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--gh-border);
+  background: transparent;
+  color: var(--gh-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gh-tab:hover { border-color: var(--gh-primary); color: var(--gh-primary); }
+.gh-tab.active { background: var(--gh-primary); border-color: var(--gh-primary); color: #000; font-weight: 600; }
+
+/* ---- Stage / Funnel ---- */
+.gh-funnel { display: flex; flex-direction: column; gap: 0; }
+.gh-funnel-step {
+  padding: 1.1rem 1.5rem;
+  border: 1px solid var(--gh-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  transition: background 0.2s;
+}
+.gh-funnel-step:first-child { border-radius: 12px 12px 0 0; }
+.gh-funnel-step:last-child  { border-radius: 0 0 12px 12px; }
+.gh-funnel-step:not(:last-child) { border-bottom: none; }
+.gh-funnel-step:hover { background: var(--gh-surface2); }
+.gh-funnel-label { font-weight: 600; font-size: 0.95rem; }
+.gh-funnel-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--gh-surface2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.gh-funnel-fill { height: 100%; background: var(--gh-primary); border-radius: 4px; transition: width 0.6s ease; }
+.gh-funnel-pct { font-size: 0.85rem; color: var(--gh-primary); font-weight: 600; min-width: 48px; text-align: right; }
+
+/* ---- Interactive Slider ---- */
+.gh-slider-wrap { display: flex; align-items: center; gap: 1rem; margin: 0.75rem 0; }
+.gh-slider-wrap label { font-size: 0.85rem; color: var(--gh-muted); min-width: 120px; }
+.gh-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: var(--gh-surface2);
+  border-radius: 2px;
+  outline: none;
+}
+.gh-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--gh-primary);
+  cursor: pointer;
+}
+.gh-slider-val { font-weight: 600; color: var(--gh-primary); min-width: 56px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+
+/* ---- Result Box ---- */
+.gh-result {
+  background: var(--gh-surface2);
+  border: 1px solid var(--gh-primary);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+}
+.gh-result-title { font-size: 0.8rem; color: var(--gh-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.07em; }
+.gh-result-value { font-size: 2rem; font-weight: 700; color: var(--gh-primary); font-family: 'JetBrains Mono', monospace; }
+.gh-result-sub { font-size: 0.82rem; color: var(--gh-muted); margin-top: 0.3rem; }
+
+/* ---- Tag Pills ---- */
+.gh-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0; }
+.gh-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--gh-primary-glow);
+  color: var(--gh-primary);
+  border: 1px solid rgba(16,185,129,0.3);
+}
+.gh-tag.amber { background: rgba(245,158,11,0.1); color: #f59e0b; border-color: rgba(245,158,11,0.3); }
+.gh-tag.purple { background: rgba(139,92,246,0.1); color: #a78bfa; border-color: rgba(139,92,246,0.3); }
+.gh-tag.red { background: rgba(239,68,68,0.1); color: #f87171; border-color: rgba(239,68,68,0.3); }
+
+/* ---- Grid ---- */
+.gh-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.gh-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 640px) {
+  .gh-grid-2, .gh-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ---- Card ---- */
+.gh-card {
+  background: var(--gh-surface2);
+  border: 1px solid var(--gh-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.gh-card:hover { border-color: var(--gh-primary); transform: translateY(-2px); }
+.gh-card-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+.gh-card-body { font-size: 0.86rem; color: var(--gh-muted); line-height: 1.6; }
+
+/* ---- Step List ---- */
+.gh-steps { counter-reset: step; display: flex; flex-direction: column; gap: 1rem; }
+.gh-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.gh-step::before {
+  counter-increment: step;
+  content: counter(step);
+  min-width: 28px;
+  height: 28px;
+  background: var(--gh-primary);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.gh-step-content { flex: 1; }
+.gh-step-title { font-weight: 600; margin-bottom: 0.25rem; }
+.gh-step-desc { font-size: 0.86rem; color: var(--gh-muted); line-height: 1.6; }
