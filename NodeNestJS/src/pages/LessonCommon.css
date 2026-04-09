@@ -1,0 +1,99 @@
+/* ==================================================
+   Node.js + NestJS — Teal + Sky Blue Theme
+   Enterprise Backend / TypeScript Full-Stack
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --nn-bg:       #020c0a;
+  --nn-surface:  #061410;
+  --nn-card:     #091a16;
+  --nn-card2:    #0c201b;
+  --nn-border:   rgba(15,118,110,0.15);
+  --nn-teal:     #0f766e;
+  --nn-emerald:  #10b981;
+  --nn-sky:      #0ea5e9;
+  --nn-cyan:     #06b6d4;
+  --nn-amber:    #f59e0b;
+  --nn-red:      #ef4444;
+  --nn-violet:   #8b5cf6;
+  --nn-text:     #d1faf4;
+  --nn-muted:    #3d6b62;
+  --nn-border2:  rgba(16,185,129,0.1);
+}
+
+.nn-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--nn-text); background: var(--nn-bg); min-height: 100vh;
+}
+
+.nn-hero { margin-bottom: 2.5rem; }
+.nn-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(15,118,110,0.08); border: 1px solid rgba(15,118,110,0.3);
+  color: var(--nn-emerald); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.nn-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #0f766e, #10b981, #0ea5e9, #06b6d4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.nn-hero p { font-size: 0.97rem; color: var(--nn-muted); line-height: 1.8; max-width: 720px; }
+.nn-hero p strong { color: var(--nn-emerald); -webkit-text-fill-color: var(--nn-emerald); }
+
+.nn-section { margin: 2.5rem 0; }
+.nn-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--nn-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(15,118,110,0.12);
+}
+
+.nn-card { background: var(--nn-card); border: 1px solid var(--nn-border); border-radius: 10px; padding: 1.25rem; }
+.nn-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.nn-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.nn-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 0.75rem; }
+
+.nn-metric { background: var(--nn-card); border: 1px solid var(--nn-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.nn-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--nn-emerald); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.nn-metric-label { font-size: 0.73rem; color: var(--nn-muted); }
+
+.nn-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(15,118,110,0.15); margin: 0.5rem 0; }
+.nn-code-head { background: #030f0c; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--nn-muted); font-family: 'JetBrains Mono', monospace; }
+.nn-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.nn-code { background: var(--nn-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #6ee7b7; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.nn-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(15,118,110,0.2);
+  background: rgba(15,118,110,0.05); border-radius: 8px;
+  color: var(--nn-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.nn-btn:hover { background: rgba(15,118,110,0.1); color: var(--nn-emerald); }
+.nn-btn.active { background: rgba(15,118,110,0.15); border-color: var(--nn-emerald); color: var(--nn-emerald); }
+
+.nn-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.nn-tag.teal    { background: rgba(15,118,110,0.12); color: var(--nn-emerald); }
+.nn-tag.sky     { background: rgba(14,165,233,0.1); color: var(--nn-sky); }
+.nn-tag.amber   { background: rgba(245,158,11,0.1); color: var(--nn-amber); }
+.nn-tag.red     { background: rgba(239,68,68,0.1); color: var(--nn-red); }
+.nn-tag.violet  { background: rgba(139,92,246,0.1); color: var(--nn-violet); }
+
+.nn-tip    { background: rgba(15,118,110,0.06); border: 1px solid rgba(15,118,110,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--nn-muted); line-height: 1.7; }
+.nn-warn   { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--nn-muted); line-height: 1.7; }
+.nn-danger { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--nn-muted); line-height: 1.7; }
+
+.nn-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.nn-table th { background: rgba(15,118,110,0.05); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--nn-emerald); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(15,118,110,0.1); }
+.nn-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.nn-table tr:last-child td { border-bottom: none; }
+.nn-table tr:hover td { background: rgba(15,118,110,0.02); }
+
+.nn-steps { display: flex; flex-direction: column; gap: 0; }
+.nn-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; border-radius: 8px; }
+.nn-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(15,118,110,0.1); border: 1px solid rgba(15,118,110,0.3); color: var(--nn-emerald); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }

@@ -47,7 +47,8 @@ export default defineConfig({
       '@course-rag':     path.resolve(__dirname, '../RAGEngineering/src'),
       '@course-k8s':     path.resolve(__dirname, '../KubernetesOps/src'),
       '@course-aae':     path.resolve(__dirname, '../AIAgentEngineering/src'),
-      '@course-lfp':     path.resolve(__dirname, '../LLMFinetunePro/src')
+      '@course-lfp':     path.resolve(__dirname, '../LLMFinetunePro/src'),
+      '@course-nns':     path.resolve(__dirname, '../NodeNestJS/src')
     }
   }
 })

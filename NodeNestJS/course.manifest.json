@@ -1,0 +1,19 @@
+{
+  "id": "nodejs-nestjs",
+  "title": "Node.js + NestJS 全栈后端：TypeScript 工程师的后端通道",
+  "description": "专为 React + TypeScript 工程师设计的后端进阶路径。Node.js 核心（Event Loop/Stream/Worker Threads）→ NestJS 企业架构（Module/DI/Decorator/管道守卫拦截器）→ TypeORM + Prisma 数据库工程 → 完整 REST API（DTO/Swagger/分页/版本控制）→ JWT + Passport + RBAC 认证体系 → WebSocket + Bull 队列 + Redis 缓存 → Jest/Supertest 测试体系 → Docker 多阶段构建 + K8s Helm 生产部署。",
+  "category": "后端开发",
+  "level": "中高级",
+  "duration": "30h",
+  "tags": ["Node.js", "NestJS", "TypeScript", "TypeORM", "Prisma", "JWT", "Passport", "WebSocket", "Bull", "Redis", "Jest", "Docker", "K8s", "全栈", "后端"],
+  "modules": [
+    { "id": "nodejs-core",   "title": "模块一：Node.js 核心 — Event Loop / Stream / Worker Threads", "lessonKey": "LessonNodeCore" },
+    { "id": "nestjs-arch",   "title": "模块二：NestJS 架构 — Module / DI / Decorator / 五大核心组件", "lessonKey": "LessonNestArch" },
+    { "id": "database",      "title": "模块三：数据库工程 — TypeORM + Prisma ORM 实战", "lessonKey": "LessonDatabase" },
+    { "id": "rest-api",      "title": "模块四：REST API 工程 — DTO / Swagger / 分页 / 版本控制", "lessonKey": "LessonRestAPI" },
+    { "id": "auth",          "title": "模块五：认证与授权 — JWT + Passport + RBAC + OAuth2", "lessonKey": "LessonAuth" },
+    { "id": "realtime",      "title": "模块六：实时与异步 — WebSocket + Bull 队列 + Redis 缓存", "lessonKey": "LessonRealtime" },
+    { "id": "testing",       "title": "模块七：测试体系 — Jest 单元测试 + Supertest E2E + Mock", "lessonKey": "LessonTesting" },
+    { "id": "production",    "title": "模块八：生产部署 — Docker 多阶段 + Prometheus + K8s Helm", "lessonKey": "LessonProduction" }
+  ]
+}

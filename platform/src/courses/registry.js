@@ -38,6 +38,7 @@ import ragManifest   from '@course-rag/../course.manifest.json';
 import k8sManifest   from '@course-k8s/../course.manifest.json';
 import aaeManifest   from '@course-aae/../course.manifest.json';
 import lfpManifest   from '@course-lfp/../course.manifest.json';
+import nnsManifest   from '@course-nns/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -535,6 +536,19 @@ export const courseRegistry = {
       LessonAlignment:   lazy(() => import('@course-lfp/pages/LessonAlignment')),
       LessonInference:   lazy(() => import('@course-lfp/pages/LessonInference')),
       LessonEvaluation:  lazy(() => import('@course-lfp/pages/LessonEvaluation')),
+    }
+  },
+  'nodejs-nestjs': {
+    manifest: nnsManifest,
+    components: {
+      LessonNodeCore:    lazy(() => import('@course-nns/pages/LessonNodeCore')),
+      LessonNestArch:    lazy(() => import('@course-nns/pages/LessonNestArch')),
+      LessonDatabase:    lazy(() => import('@course-nns/pages/LessonDatabase')),
+      LessonRestAPI:     lazy(() => import('@course-nns/pages/LessonRestAPI')),
+      LessonAuth:        lazy(() => import('@course-nns/pages/LessonAuth')),
+      LessonRealtime:    lazy(() => import('@course-nns/pages/LessonRealtime')),
+      LessonTesting:     lazy(() => import('@course-nns/pages/LessonTesting')),
+      LessonProduction:  lazy(() => import('@course-nns/pages/LessonProduction')),
     }
   },
 };
