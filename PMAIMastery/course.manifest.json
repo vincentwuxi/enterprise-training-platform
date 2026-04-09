@@ -1,0 +1,51 @@
+{
+  "id": "pm-ai-mastery",
+  "title": "PM AI 升级手册：产品经理的 AI 时代生存指南",
+  "description": "专为产品经理、运营、创业者设计的 AI 实战课。无需编程基础，掌握 AI 辅助需求分析、PRD 写作、竞品调研、数据洞察、无代码产品搭建，成为 AI 时代不可替代的产品人。",
+  "category": "产品与运营",
+  "level": "入门到实战",
+  "duration": "20h",
+  "tags": ["产品经理", "AI工具", "PRD", "Dify", "Coze", "无代码", "需求分析", "非技术"],
+  "modules": [
+    {
+      "id": "LessonPMmindset",
+      "title": "模块一：AI 时代 PM 的角色重塑",
+      "description": "AI 带来的机会与威胁、10x PM 心智模型、从执行者到决策者的转变"
+    },
+    {
+      "id": "LessonResearch",
+      "title": "模块二：AI 辅助用户研究 & 竞品分析",
+      "description": "AI 加速用户访谈分析、自动竞品对比、市场洞察提炼"
+    },
+    {
+      "id": "LessonPRD",
+      "title": "模块三：AI 写 PRD & 用户故事",
+      "description": "Prompt 模板库、一键生成需求文档、用 AI 发现需求漏洞"
+    },
+    {
+      "id": "LessonNoCode",
+      "title": "模块四：无代码 AI 产品搭建",
+      "description": "Dify、Coze、Zapier、Notion AI——PM 亲手 build 第一个 AI 应用"
+    },
+    {
+      "id": "LessonDataInsight",
+      "title": "模块五：AI 数据洞察 — 让数字开口说话",
+      "description": "用 AI 分析用户行为数据、解读 A/B 测试报告、自动化数据叙事"
+    },
+    {
+      "id": "LessonRoadmap",
+      "title": "模块六：AI 辅助产品规划 & 优先级决策",
+      "description": "ICE/RICE 框架 AI 化、路线图自动生成、OKR 与 AI 项目对齐"
+    },
+    {
+      "id": "LessonCollabEng",
+      "title": "模块七：与工程师协作 AI 项目",
+      "description": "理解 LLM 能力边界、评估技术方案可行性、AI 项目验收标准"
+    },
+    {
+      "id": "LessonPMProject",
+      "title": "模块八：实战项目 — 从零规划一款 AI 原生产品",
+      "description": "完整产品设计流程：定位→用研→PRD→MVP→GTM 策略"
+    }
+  ]
+}

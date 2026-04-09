@@ -29,6 +29,7 @@ import mlEngManifest from '@course-ml-eng/../course.manifest.json';
 import daManifest    from '@course-da/../course.manifest.json';
 import agentManifest from '@course-agent/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
+import pmManifest    from '@course-pm/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -409,6 +410,19 @@ export const courseRegistry = {
       LessonDP:           lazy(() => import('@course-algo/pages/LessonDP')),
       LessonGraph:        lazy(() => import('@course-algo/pages/LessonGraph')),
       LessonDesignAlgo:   lazy(() => import('@course-algo/pages/LessonDesignAlgo')),
+    }
+  },
+  'pm-ai-mastery': {
+    manifest: pmManifest,
+    components: {
+      LessonPMmindset:   lazy(() => import('@course-pm/pages/LessonPMmindset')),
+      LessonResearch:    lazy(() => import('@course-pm/pages/LessonResearch')),
+      LessonPRD:         lazy(() => import('@course-pm/pages/LessonPRD')),
+      LessonNoCode:      lazy(() => import('@course-pm/pages/LessonNoCode')),
+      LessonDataInsight: lazy(() => import('@course-pm/pages/LessonDataInsight')),
+      LessonRoadmap:     lazy(() => import('@course-pm/pages/LessonRoadmap')),
+      LessonCollabEng:   lazy(() => import('@course-pm/pages/LessonCollabEng')),
+      LessonPMProject:   lazy(() => import('@course-pm/pages/LessonPMProject')),
     }
   },
 };
