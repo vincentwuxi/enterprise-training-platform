@@ -39,7 +39,8 @@ export default defineConfig({
       '@course-da':      path.resolve(__dirname, '../DataAnalysis/src'),
       '@course-agent':   path.resolve(__dirname, '../AIAgentEngineering/src'),
       '@course-algo':    path.resolve(__dirname, '../AlgoInterview/src'),
-      '@course-pm':      path.resolve(__dirname, '../PMAIMastery/src')
+      '@course-pm':      path.resolve(__dirname, '../PMAIMastery/src'),
+      '@course-llmpd':   path.resolve(__dirname, '../LLMProductDesign/src')
     }
   }
 })
