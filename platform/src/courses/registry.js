@@ -35,6 +35,7 @@ import omftManifest  from '@course-omft/../course.manifest.json';
 import rtManifest    from '@course-rt/../course.manifest.json';
 import aseManifest   from '@course-ase/../course.manifest.json';
 import ragManifest   from '@course-rag/../course.manifest.json';
+import k8sManifest   from '@course-k8s/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -493,6 +494,19 @@ export const courseRegistry = {
       LessonGeneration:  lazy(() => import('@course-rag/pages/LessonGeneration')),
       LessonEvaluation:  lazy(() => import('@course-rag/pages/LessonEvaluation')),
       LessonProduction:  lazy(() => import('@course-rag/pages/LessonProduction')),
+    }
+  },
+  'kubernetes-ops': {
+    manifest: k8sManifest,
+    components: {
+      LessonArchitecture:  lazy(() => import('@course-k8s/pages/LessonArchitecture')),
+      LessonWorkloads:     lazy(() => import('@course-k8s/pages/LessonWorkloads')),
+      LessonNetworking:    lazy(() => import('@course-k8s/pages/LessonNetworking')),
+      LessonStorage:       lazy(() => import('@course-k8s/pages/LessonStorage')),
+      LessonScheduling:    lazy(() => import('@course-k8s/pages/LessonScheduling')),
+      LessonObservability: lazy(() => import('@course-k8s/pages/LessonObservability')),
+      LessonSecurity:      lazy(() => import('@course-k8s/pages/LessonSecurity')),
+      LessonTroubleshoot:  lazy(() => import('@course-k8s/pages/LessonTroubleshoot')),
     }
   },
 };

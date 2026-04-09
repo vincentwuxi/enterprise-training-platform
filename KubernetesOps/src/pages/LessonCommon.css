@@ -1,0 +1,117 @@
+/* ==================================================
+   Kubernetes Ops — Deep Navy + K8s Blue + Orange Theme
+   DevOps / SRE Premium Design
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --k8s-bg:       #020817;
+  --k8s-surface:  #050d1f;
+  --k8s-card:     #070f24;
+  --k8s-card2:    #0a1430;
+  --k8s-border:   rgba(59,130,246,0.12);
+  --k8s-blue:     #3b82f6;
+  --k8s-blue2:    #60a5fa;
+  --k8s-sky:      #0ea5e9;
+  --k8s-orange:   #f97316;
+  --k8s-amber:    #fbbf24;
+  --k8s-green:    #22c55e;
+  --k8s-red:      #ef4444;
+  --k8s-purple:   #a78bfa;
+  --k8s-text:     #e2e8f0;
+  --k8s-muted:    #4a6080;
+  --k8s-subtle:   #0f1f3a;
+}
+
+.k8s-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--k8s-text); background: var(--k8s-bg); min-height: 100vh;
+}
+
+/* Hero */
+.k8s-hero { margin-bottom: 2.5rem; }
+.k8s-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.25);
+  color: var(--k8s-blue); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.k8s-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa, #f97316, #fbbf24);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.k8s-hero p { font-size: 0.97rem; color: var(--k8s-muted); line-height: 1.8; max-width: 720px; }
+.k8s-hero p strong { color: var(--k8s-blue2); -webkit-text-fill-color: var(--k8s-blue2); }
+
+/* Section */
+.k8s-section { margin: 2.5rem 0; }
+.k8s-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--k8s-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(59,130,246,0.1);
+}
+
+/* Cards */
+.k8s-card { background: var(--k8s-card); border: 1px solid var(--k8s-border); border-radius: 10px; padding: 1.25rem; }
+.k8s-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.k8s-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.k8s-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 0.75rem; }
+
+/* Metrics */
+.k8s-metric { background: var(--k8s-card); border: 1px solid var(--k8s-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.k8s-metric-val { font-size: 1.7rem; font-weight: 900; color: var(--k8s-blue); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.k8s-metric-label { font-size: 0.73rem; color: var(--k8s-muted); }
+
+/* Code */
+.k8s-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(59,130,246,0.15); margin: 0.5rem 0; }
+.k8s-code-head { background: #030c1e; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--k8s-muted); font-family: 'JetBrains Mono', monospace; }
+.k8s-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.k8s-code { background: var(--k8s-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #93c5fd; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+/* Buttons */
+.k8s-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(59,130,246,0.2);
+  background: rgba(59,130,246,0.05); border-radius: 8px;
+  color: var(--k8s-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.k8s-btn:hover { background: rgba(59,130,246,0.1); color: var(--k8s-blue); }
+.k8s-btn.active { background: rgba(59,130,246,0.15); border-color: var(--k8s-blue); color: var(--k8s-blue); }
+
+/* Tags */
+.k8s-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.k8s-tag.blue   { background: rgba(59,130,246,0.1); color: var(--k8s-blue2); }
+.k8s-tag.orange { background: rgba(249,115,22,0.1); color: var(--k8s-orange); }
+.k8s-tag.green  { background: rgba(34,197,94,0.1); color: var(--k8s-green); }
+.k8s-tag.red    { background: rgba(239,68,68,0.1); color: var(--k8s-red); }
+.k8s-tag.purple { background: rgba(167,139,250,0.1); color: var(--k8s-purple); }
+.k8s-tag.amber  { background: rgba(251,191,36,0.1); color: var(--k8s-amber); }
+
+/* Callout */
+.k8s-tip  { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--k8s-muted); line-height: 1.7; }
+.k8s-warn { background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--k8s-muted); line-height: 1.7; }
+.k8s-danger { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--k8s-muted); line-height: 1.7; }
+
+/* Table */
+.k8s-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.k8s-table th { background: rgba(59,130,246,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--k8s-blue); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(59,130,246,0.1); }
+.k8s-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.k8s-table tr:last-child td { border-bottom: none; }
+.k8s-table tr:hover td { background: rgba(59,130,246,0.02); }
+
+/* Flow diagram */
+.k8s-flow { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.k8s-flow-node { background: var(--k8s-card); border: 1px solid var(--k8s-border); border-radius: 8px; padding: 0.6rem 0.9rem; text-align: center; font-size: 0.8rem; min-width: 90px; }
+.k8s-flow-arrow { color: var(--k8s-blue); font-size: 1rem; font-weight: 700; }
+
+/* Steps */
+.k8s-steps { display: flex; flex-direction: column; gap: 0; }
+.k8s-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; border-radius: 8px; transition: background 0.15s; }
+.k8s-step:hover { background: rgba(59,130,246,0.03); }
+.k8s-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: var(--k8s-blue); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; }
