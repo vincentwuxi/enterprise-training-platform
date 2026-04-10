@@ -1,0 +1,19 @@
+{
+  "id": "blue-team-defense",
+  "title": "蓝队防御安全：SOC 运营 / SIEM / 云安全 / 零信任",
+  "description": "安全攻防的另一半——从检测到响应的完整防御体系。SOC 安全运营中心（告警分级/事件响应/MITRE ATT&CK 映射）→ SIEM 日志工程（ELK Stack/Splunk/Sigma 规则/关联分析）→ 终端安全 EDR（进程监控/行为检测/内存取证/YARA 规则）→ 网络安全 NDR（流量分析/IDS-IPS/Zeek/Suricata/DNS 异常检测）→ 云安全（AWS GuardDuty/CloudTrail/Azure Sentinel/IAM 最小权限）→ 零信任架构（BeyondCorp/ZTNA/微分段/持续认证/SDP）→ 威胁情报（IOC/TTP/STIX-TAXII/威胁狩猎/ATT&CK Navigator）→ 应急响应（IR 流程/数字取证/恶意软件分析/复盘改进）。",
+  "category": "安全防御",
+  "level": "中高级",
+  "duration": "32h",
+  "tags": ["蓝队", "SOC", "SIEM", "ELK", "Splunk", "MITRE ATT&CK", "EDR", "NDR", "Zeek", "Suricata", "YARA", "零信任", "BeyondCorp", "CloudTrail", "GuardDuty", "威胁情报", "STIX", "应急响应", "数字取证"],
+  "modules": [
+    { "id": "soc",        "title": "模块一：SOC 安全运营中心 — 告警分级 / 事件响应 / MITRE ATT&CK", "lessonKey": "LessonSOC" },
+    { "id": "siem",       "title": "模块二：SIEM 日志工程 — ELK / Splunk / Sigma 规则 / 关联分析", "lessonKey": "LessonSIEM" },
+    { "id": "edr",        "title": "模块三：终端安全 EDR — 进程监控 / 行为检测 / YARA 规则", "lessonKey": "LessonEDR" },
+    { "id": "ndr",        "title": "模块四：网络安全 NDR — 流量分析 / Zeek / Suricata / DNS 检测", "lessonKey": "LessonNDR" },
+    { "id": "cloud-sec",  "title": "模块五：云安全 — GuardDuty / CloudTrail / Azure Sentinel / IAM", "lessonKey": "LessonCloudSec" },
+    { "id": "zero-trust", "title": "模块六：零信任架构 — BeyondCorp / ZTNA / 微分段 / 持续认证", "lessonKey": "LessonZeroTrust" },
+    { "id": "threat-intel","title": "模块七：威胁情报 — IOC / TTP / STIX-TAXII / ATT&CK Navigator", "lessonKey": "LessonThreatIntel" },
+    { "id": "incident",   "title": "模块八：应急响应 — IR 流程 / 数字取证 / 恶意软件分析 / 复盘", "lessonKey": "LessonIncident" }
+  ]
+}

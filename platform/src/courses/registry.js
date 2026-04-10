@@ -42,6 +42,7 @@ import nnsManifest   from '@course-nns/../course.manifest.json';
 import aifManifest   from '@course-aif/../course.manifest.json';
 import dssManifest   from '@course-dss/../course.manifest.json';
 import waeManifest   from '@course-wae/../course.manifest.json';
+import btdManifest   from '@course-btd/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -591,6 +592,19 @@ export const courseRegistry = {
       LessonEdgeRuntime: lazy(() => import('@course-wae/pages/LessonEdgeRuntime')),
       LessonEdgeAI:      lazy(() => import('@course-wae/pages/LessonEdgeAI')),
       LessonWasmProd:    lazy(() => import('@course-wae/pages/LessonWasmProd')),
+    }
+  },
+  'blue-team-defense': {
+    manifest: btdManifest,
+    components: {
+      LessonSOC:        lazy(() => import('@course-btd/pages/LessonSOC')),
+      LessonSIEM:       lazy(() => import('@course-btd/pages/LessonSIEM')),
+      LessonEDR:        lazy(() => import('@course-btd/pages/LessonEDR')),
+      LessonNDR:        lazy(() => import('@course-btd/pages/LessonNDR')),
+      LessonCloudSec:   lazy(() => import('@course-btd/pages/LessonCloudSec')),
+      LessonZeroTrust:  lazy(() => import('@course-btd/pages/LessonZeroTrust')),
+      LessonThreatIntel:lazy(() => import('@course-btd/pages/LessonThreatIntel')),
+      LessonIncident:   lazy(() => import('@course-btd/pages/LessonIncident')),
     }
   },
 };

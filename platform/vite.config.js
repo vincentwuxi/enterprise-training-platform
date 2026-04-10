@@ -51,7 +51,8 @@ export default defineConfig({
       '@course-nns':     path.resolve(__dirname, '../NodeNestJS/src'),
       '@course-aif':     path.resolve(__dirname, '../AIInfra/src'),
       '@course-dss':     path.resolve(__dirname, '../DesignSystem/src'),
-      '@course-wae':     path.resolve(__dirname, '../WasmEdge/src')
+      '@course-wae':     path.resolve(__dirname, '../WasmEdge/src'),
+      '@course-btd':     path.resolve(__dirname, '../BlueTeam/src')
     }
   }
 })

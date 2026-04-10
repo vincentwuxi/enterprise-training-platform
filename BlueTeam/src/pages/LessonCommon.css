@@ -1,0 +1,101 @@
+/* ==================================================
+   Blue Team Defense — Navy Blue + Shield Blue
+   Defense × Vigilance × Resilience
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --bt-bg:       #020810;
+  --bt-surface:  #061020;
+  --bt-card:     #0a1628;
+  --bt-card2:    #0e1c30;
+  --bt-border:   rgba(59,130,246,0.12);
+  --bt-blue:     #3b82f6;
+  --bt-sky:      #38bdf8;
+  --bt-indigo:   #6366f1;
+  --bt-cyan:     #06b6d4;
+  --bt-green:    #22c55e;
+  --bt-amber:    #fbbf24;
+  --bt-red:      #ef4444;
+  --bt-orange:   #f97316;
+  --bt-text:     #dbeafe;
+  --bt-muted:    #4a6a8a;
+  --bt-border2:  rgba(99,102,241,0.08);
+}
+
+.bt-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--bt-text); background: var(--bt-bg); min-height: 100vh;
+}
+
+.bt-hero { margin-bottom: 2.5rem; }
+.bt-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.25);
+  color: var(--bt-blue); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.bt-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #3b82f6, #38bdf8, #6366f1, #06b6d4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.bt-hero p { font-size: 0.97rem; color: var(--bt-muted); line-height: 1.8; max-width: 720px; }
+.bt-hero p strong { color: var(--bt-blue); -webkit-text-fill-color: var(--bt-blue); }
+
+.bt-section { margin: 2.5rem 0; }
+.bt-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--bt-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(59,130,246,0.08);
+}
+
+.bt-card { background: var(--bt-card); border: 1px solid var(--bt-border); border-radius: 10px; padding: 1.25rem; }
+.bt-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.bt-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.bt-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.bt-metric { background: var(--bt-card); border: 1px solid var(--bt-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.bt-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--bt-blue); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.bt-metric-label { font-size: 0.73rem; color: var(--bt-muted); }
+
+.bt-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(59,130,246,0.12); margin: 0.5rem 0; }
+.bt-code-head { background: #030810; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--bt-muted); font-family: 'JetBrains Mono', monospace; }
+.bt-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.bt-code { background: var(--bt-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #93c5fd; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.bt-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(59,130,246,0.15);
+  background: rgba(59,130,246,0.04); border-radius: 8px;
+  color: var(--bt-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.bt-btn:hover { background: rgba(59,130,246,0.08); color: var(--bt-blue); }
+.bt-btn.active { background: rgba(59,130,246,0.12); border-color: var(--bt-blue); color: var(--bt-blue); }
+
+.bt-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.bt-tag.blue   { background: rgba(59,130,246,0.1); color: var(--bt-blue); }
+.bt-tag.indigo { background: rgba(99,102,241,0.1); color: var(--bt-indigo); }
+.bt-tag.cyan   { background: rgba(6,182,212,0.1); color: var(--bt-cyan); }
+.bt-tag.green  { background: rgba(34,197,94,0.08); color: var(--bt-green); }
+.bt-tag.amber  { background: rgba(251,191,36,0.1); color: var(--bt-amber); }
+.bt-tag.red    { background: rgba(239,68,68,0.1); color: var(--bt-red); }
+.bt-tag.orange { background: rgba(249,115,22,0.1); color: var(--bt-orange); }
+
+.bt-tip    { background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--bt-muted); line-height: 1.7; }
+.bt-warn   { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--bt-muted); line-height: 1.7; }
+.bt-alert  { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--bt-muted); line-height: 1.7; }
+
+.bt-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.bt-table th { background: rgba(59,130,246,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--bt-blue); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(59,130,246,0.08); }
+.bt-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.bt-table tr:last-child td { border-bottom: none; }
+
+.bt-steps { display: flex; flex-direction: column; gap: 0; }
+.bt-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; }
+.bt-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.25); color: var(--bt-blue); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
