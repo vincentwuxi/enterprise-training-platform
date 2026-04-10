@@ -1,0 +1,92 @@
+/* ==================================================
+   PostgreSQL Mastery — Elephant Blue + Deep Indigo
+   Reliability × Depth × Modern
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --pg-bg:       #020612;
+  --pg-surface:  #060e1e;
+  --pg-card:     #0a1628;
+  --pg-card2:    #0e1c30;
+  --pg-border:   rgba(51,103,145,0.12);
+  --pg-blue:     #336791;
+  --pg-indigo:   #4f46e5;
+  --pg-sky:      #38bdf8;
+  --pg-cyan:     #06b6d4;
+  --pg-emerald:  #10b981;
+  --pg-amber:    #fbbf24;
+  --pg-orange:   #f97316;
+  --pg-red:      #ef4444;
+  --pg-violet:   #7c3aed;
+  --pg-text:     #c8dce8;
+  --pg-muted:    #4a6a80;
+}
+
+.pg-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--pg-text); background: var(--pg-bg); min-height: 100vh;
+}
+
+.pg-hero { margin-bottom: 2.5rem; }
+.pg-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(51,103,145,0.06); border: 1px solid rgba(51,103,145,0.25);
+  color: var(--pg-blue); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.pg-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #336791, #4f46e5, #38bdf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.pg-hero p { font-size: 0.97rem; color: var(--pg-muted); line-height: 1.8; max-width: 720px; }
+.pg-hero p strong { color: var(--pg-sky); -webkit-text-fill-color: var(--pg-sky); }
+
+.pg-section { margin: 2.5rem 0; }
+.pg-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--pg-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(51,103,145,0.08);
+}
+
+.pg-card { background: var(--pg-card); border: 1px solid var(--pg-border); border-radius: 10px; padding: 1.25rem; }
+.pg-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.pg-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.pg-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.pg-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(51,103,145,0.12); margin: 0.5rem 0; }
+.pg-code-head { background: #030810; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--pg-muted); font-family: 'JetBrains Mono', monospace; }
+.pg-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.pg-code { background: var(--pg-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #93c5fd; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.pg-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(51,103,145,0.15);
+  background: rgba(51,103,145,0.04); border-radius: 8px;
+  color: var(--pg-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.pg-btn:hover { background: rgba(51,103,145,0.08); color: var(--pg-sky); }
+.pg-btn.active { background: rgba(51,103,145,0.12); border-color: var(--pg-sky); color: var(--pg-sky); }
+
+.pg-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+.pg-tip { background: rgba(51,103,145,0.05); border: 1px solid rgba(51,103,145,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--pg-muted); line-height: 1.7; }
+
+.pg-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.pg-table th { background: rgba(51,103,145,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--pg-sky); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(51,103,145,0.08); }
+.pg-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.pg-table tr:last-child td { border-bottom: none; }
+
+.pg-steps { display: flex; flex-direction: column; gap: 0; }
+.pg-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; }
+.pg-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(51,103,145,0.08); border: 1px solid rgba(51,103,145,0.25); color: var(--pg-sky); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
+
+.pg-metric { background: var(--pg-card); border: 1px solid var(--pg-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.pg-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--pg-sky); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.pg-metric-label { font-size: 0.73rem; color: var(--pg-muted); }

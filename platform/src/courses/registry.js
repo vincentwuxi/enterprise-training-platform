@@ -45,6 +45,7 @@ import waeManifest   from '@course-wae/../course.manifest.json';
 import btdManifest   from '@course-btd/../course.manifest.json';
 import oscManifest   from '@course-osc/../course.manifest.json';
 import tseManifest   from '@course-tse/../course.manifest.json';
+import pgmManifest   from '@course-pgm/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -633,6 +634,19 @@ export const courseRegistry = {
       LessonPerfTest:  lazy(() => import('@course-tse/pages/LessonPerfTest')),
       LessonTDD:       lazy(() => import('@course-tse/pages/LessonTDD')),
       LessonTestArch:  lazy(() => import('@course-tse/pages/LessonTestArch')),
+    }
+  },
+  'postgresql-mastery': {
+    manifest: pgmManifest,
+    components: {
+      LessonInternals:   lazy(() => import('@course-pgm/pages/LessonInternals')),
+      LessonAdvancedSQL: lazy(() => import('@course-pgm/pages/LessonAdvancedSQL')),
+      LessonIndexing:    lazy(() => import('@course-pgm/pages/LessonIndexing')),
+      LessonPgvector:    lazy(() => import('@course-pgm/pages/LessonPgvector')),
+      LessonPartition:   lazy(() => import('@course-pgm/pages/LessonPartition')),
+      LessonReplication: lazy(() => import('@course-pgm/pages/LessonReplication')),
+      LessonTuning:      lazy(() => import('@course-pgm/pages/LessonTuning')),
+      LessonCloudPG:     lazy(() => import('@course-pgm/pages/LessonCloudPG')),
     }
   },
 };

@@ -54,7 +54,8 @@ export default defineConfig({
       '@course-wae':     path.resolve(__dirname, '../WasmEdge/src'),
       '@course-btd':     path.resolve(__dirname, '../BlueTeam/src'),
       '@course-osc':     path.resolve(__dirname, '../OpenSourceContrib/src'),
-      '@course-tse':     path.resolve(__dirname, '../TestingEngineering/src')
+      '@course-tse':     path.resolve(__dirname, '../TestingEngineering/src'),
+      '@course-pgm':     path.resolve(__dirname, '../PostgreSQLMastery/src')
     }
   }
 })
