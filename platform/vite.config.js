@@ -49,7 +49,8 @@ export default defineConfig({
       '@course-aae':     path.resolve(__dirname, '../AIAgentEngineering/src'),
       '@course-lfp':     path.resolve(__dirname, '../LLMFinetunePro/src'),
       '@course-nns':     path.resolve(__dirname, '../NodeNestJS/src'),
-      '@course-aif':     path.resolve(__dirname, '../AIInfra/src')
+      '@course-aif':     path.resolve(__dirname, '../AIInfra/src'),
+      '@course-dss':     path.resolve(__dirname, '../DesignSystem/src')
     }
   }
 })

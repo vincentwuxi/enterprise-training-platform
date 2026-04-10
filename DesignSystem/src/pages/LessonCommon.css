@@ -1,0 +1,100 @@
+/* ==================================================
+   Design System Engineering — Violet + Warm Pink
+   Craft × System × Aesthetics
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --ds-bg:       #09060e;
+  --ds-surface:  #110c18;
+  --ds-card:     #16101f;
+  --ds-card2:    #1a1426;
+  --ds-border:   rgba(124,58,237,0.12);
+  --ds-violet:   #7c3aed;
+  --ds-purple:   #a855f7;
+  --ds-pink:     #ec4899;
+  --ds-rose:     #f43f5e;
+  --ds-sky:      #38bdf8;
+  --ds-green:    #22c55e;
+  --ds-amber:    #fbbf24;
+  --ds-text:     #ede9fe;
+  --ds-muted:    #6b5a82;
+  --ds-border2:  rgba(168,85,247,0.08);
+}
+
+.ds-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ds-text); background: var(--ds-bg); min-height: 100vh;
+}
+
+.ds-hero { margin-bottom: 2.5rem; }
+.ds-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.25);
+  color: var(--ds-purple); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.ds-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899, #f43f5e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.ds-hero p { font-size: 0.97rem; color: var(--ds-muted); line-height: 1.8; max-width: 720px; }
+.ds-hero p strong { color: var(--ds-purple); -webkit-text-fill-color: var(--ds-purple); }
+
+.ds-section { margin: 2.5rem 0; }
+.ds-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--ds-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(124,58,237,0.08);
+}
+
+.ds-card { background: var(--ds-card); border: 1px solid var(--ds-border); border-radius: 10px; padding: 1.25rem; }
+.ds-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.ds-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.ds-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.ds-metric { background: var(--ds-card); border: 1px solid var(--ds-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.ds-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--ds-purple); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.ds-metric-label { font-size: 0.73rem; color: var(--ds-muted); }
+
+.ds-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(124,58,237,0.12); margin: 0.5rem 0; }
+.ds-code-head { background: #070410; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--ds-muted); font-family: 'JetBrains Mono', monospace; }
+.ds-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.ds-code { background: var(--ds-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #d8b4fe; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.ds-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(124,58,237,0.15);
+  background: rgba(124,58,237,0.04); border-radius: 8px;
+  color: var(--ds-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.ds-btn:hover { background: rgba(124,58,237,0.08); color: var(--ds-purple); }
+.ds-btn.active { background: rgba(124,58,237,0.12); border-color: var(--ds-purple); color: var(--ds-purple); }
+
+.ds-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ds-tag.violet { background: rgba(124,58,237,0.1); color: var(--ds-purple); }
+.ds-tag.pink   { background: rgba(236,72,153,0.1); color: var(--ds-pink); }
+.ds-tag.sky    { background: rgba(56,189,248,0.1); color: var(--ds-sky); }
+.ds-tag.green  { background: rgba(34,197,94,0.08); color: var(--ds-green); }
+.ds-tag.amber  { background: rgba(251,191,36,0.1); color: var(--ds-amber); }
+.ds-tag.rose   { background: rgba(244,63,94,0.08); color: var(--ds-rose); }
+
+.ds-tip    { background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--ds-muted); line-height: 1.7; }
+.ds-warn   { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--ds-muted); line-height: 1.7; }
+
+.ds-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.ds-table th { background: rgba(124,58,237,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--ds-purple); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(124,58,237,0.08); }
+.ds-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.ds-table tr:last-child td { border-bottom: none; }
+
+.ds-steps { display: flex; flex-direction: column; gap: 0; }
+.ds-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; }
+.ds-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.25); color: var(--ds-purple); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
+
+.ds-swatch { width: 100%; height: 32px; border-radius: 6px; margin-bottom: 0.35rem; }

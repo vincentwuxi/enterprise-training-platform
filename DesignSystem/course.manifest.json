@@ -1,0 +1,19 @@
+{
+  "id": "design-system",
+  "title": "设计系统工程：从 Figma 到生产级组件库",
+  "description": "前端工程的终极形态——将设计语言转化为可复用、可测量、可维护的工程体系。Design Token 架构（颜色/排版/间距/动效）→ Figma 设计规范（Auto Layout/组件变体/Design API）→ React 组件库（Compound Pattern/Polymorphic/Headless）→ Storybook 组件文档（Stories/Controls/Docs/Chromatic 视觉回归）→ CSS 架构（CSS-in-JS vs CSS Modules vs Vanilla Extract）→ 无障碍工程（WCAG 2.2/ARIA/键盘导航/屏幕阅读器）→ 暗色模式工程（主题切换/系统偏好/过渡动画）→ 组件库发布（Monorepo/Changesets/语义化版本/Tree-shaking）。",
+  "category": "前端工程",
+  "level": "中高级",
+  "duration": "28h",
+  "tags": ["Design System", "Figma", "Design Token", "React", "Storybook", "Chromatic", "a11y", "WCAG", "ARIA", "CSS-in-JS", "暗色模式", "组件库", "Monorepo", "Changesets"],
+  "modules": [
+    { "id": "design-token",  "title": "模块一：Design Token — 颜色 / 排版 / 间距 / 动效的变量化体系", "lessonKey": "LessonDesignToken" },
+    { "id": "figma",         "title": "模块二：Figma 设计规范 — Auto Layout / 组件变体 / Design API", "lessonKey": "LessonFigma" },
+    { "id": "component",     "title": "模块三：React 组件架构 — Compound / Polymorphic / Headless 模式", "lessonKey": "LessonComponent" },
+    { "id": "storybook",     "title": "模块四：Storybook 文档 — Stories / Controls / Docs / Chromatic 视觉回归", "lessonKey": "LessonStorybook" },
+    { "id": "css-arch",      "title": "模块五：CSS 架构 — CSS-in-JS vs Modules vs Vanilla Extract", "lessonKey": "LessonCSSArch" },
+    { "id": "a11y",          "title": "模块六：无障碍工程 — WCAG 2.2 / ARIA / 键盘导航 / 屏幕阅读器", "lessonKey": "LessonA11y" },
+    { "id": "dark-mode",     "title": "模块七：暗色模式工程 — 主题切换 / 系统偏好 / 过渡动画", "lessonKey": "LessonDarkMode" },
+    { "id": "publish",       "title": "模块八：组件库发布 — Monorepo / Changesets / 语义化版本 / Tree-shaking", "lessonKey": "LessonPublish" }
+  ]
+}

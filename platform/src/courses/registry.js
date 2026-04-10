@@ -40,6 +40,7 @@ import aaeManifest   from '@course-aae/../course.manifest.json';
 import lfpManifest   from '@course-lfp/../course.manifest.json';
 import nnsManifest   from '@course-nns/../course.manifest.json';
 import aifManifest   from '@course-aif/../course.manifest.json';
+import dssManifest   from '@course-dss/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -563,6 +564,19 @@ export const courseRegistry = {
       LessonDistributed: lazy(() => import('@course-aif/pages/LessonDistributed')),
       LessonCluster:     lazy(() => import('@course-aif/pages/LessonCluster')),
       LessonCost:        lazy(() => import('@course-aif/pages/LessonCost')),
+    }
+  },
+  'design-system': {
+    manifest: dssManifest,
+    components: {
+      LessonDesignToken: lazy(() => import('@course-dss/pages/LessonDesignToken')),
+      LessonFigma:       lazy(() => import('@course-dss/pages/LessonFigma')),
+      LessonComponent:   lazy(() => import('@course-dss/pages/LessonComponent')),
+      LessonStorybook:   lazy(() => import('@course-dss/pages/LessonStorybook')),
+      LessonCSSArch:     lazy(() => import('@course-dss/pages/LessonCSSArch')),
+      LessonA11y:        lazy(() => import('@course-dss/pages/LessonA11y')),
+      LessonDarkMode:    lazy(() => import('@course-dss/pages/LessonDarkMode')),
+      LessonPublish:     lazy(() => import('@course-dss/pages/LessonPublish')),
     }
   },
 };
