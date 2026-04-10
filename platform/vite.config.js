@@ -53,7 +53,8 @@ export default defineConfig({
       '@course-dss':     path.resolve(__dirname, '../DesignSystem/src'),
       '@course-wae':     path.resolve(__dirname, '../WasmEdge/src'),
       '@course-btd':     path.resolve(__dirname, '../BlueTeam/src'),
-      '@course-osc':     path.resolve(__dirname, '../OpenSourceContrib/src')
+      '@course-osc':     path.resolve(__dirname, '../OpenSourceContrib/src'),
+      '@course-tse':     path.resolve(__dirname, '../TestingEngineering/src')
     }
   }
 })

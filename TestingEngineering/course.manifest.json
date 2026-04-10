@@ -1,0 +1,19 @@
+{
+  "id": "testing-engineering",
+  "title": "测试工程：从单元测试到 E2E 的全链路质量保障",
+  "description": "TDD 不是口号，是工程纪律——测试金字塔（单元/集成/E2E 比例分配）→ Jest/Vitest 单元测试（Mock/Stub/Spy/覆盖率/快照测试）→ React Testing Library 组件测试（用户行为驱动/a11y 断言/异步测试）→ API 测试（Supertest/Pactum/契约测试/OpenAPI 验证）→ Playwright E2E（浏览器自动化/Page Object/视觉回归/CI 集成）→ 性能测试（k6 负载测试/压力测试/基准测试/SLA 验证）→ TDD 实战（Red-Green-Refactor/测试驱动设计/遗留代码加测试/覆盖率陷阱）→ 测试架构（测试策略文档/测试数据管理/Flaky Test 治理/质量门禁）。",
+  "category": "工程实践",
+  "level": "初级到高级",
+  "duration": "28h",
+  "tags": ["测试", "TDD", "Jest", "Vitest", "React Testing Library", "Playwright", "E2E", "k6", "性能测试", "Mock", "覆盖率", "契约测试", "Supertest", "快照测试", "质量保障"],
+  "modules": [
+    { "id": "pyramid",     "title": "模块一：测试金字塔 — 测试类型 / 比例分配 / ROI 分析", "lessonKey": "LessonPyramid" },
+    { "id": "unit-test",   "title": "模块二：单元测试 — Jest / Vitest / Mock / 覆盖率 / 快照", "lessonKey": "LessonUnitTest" },
+    { "id": "component",   "title": "模块三：React 组件测试 — Testing Library / 用户行为 / a11y", "lessonKey": "LessonComponent" },
+    { "id": "api-test",    "title": "模块四：API 测试 — Supertest / 契约测试 / OpenAPI 验证", "lessonKey": "LessonAPITest" },
+    { "id": "e2e",         "title": "模块五：E2E 测试 — Playwright / Page Object / 视觉回归", "lessonKey": "LessonE2E" },
+    { "id": "perf-test",   "title": "模块六：性能测试 — k6 / 负载测试 / 压力测试 / SLA", "lessonKey": "LessonPerfTest" },
+    { "id": "tdd",         "title": "模块七：TDD 实战 — Red-Green-Refactor / 测试驱动设计", "lessonKey": "LessonTDD" },
+    { "id": "test-arch",   "title": "模块八：测试架构 — 策略文档 / Flaky Test / 质量门禁", "lessonKey": "LessonTestArch" }
+  ]
+}

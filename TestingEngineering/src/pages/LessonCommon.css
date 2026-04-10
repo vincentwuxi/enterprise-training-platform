@@ -1,0 +1,101 @@
+/* ==================================================
+   Testing Engineering — Emerald Green + Electric Violet
+   Quality × Precision × Confidence
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --te-bg:       #020a06;
+  --te-surface:  #061210;
+  --te-card:     #0a1a14;
+  --te-card2:    #0e201a;
+  --te-border:   rgba(5,150,105,0.12);
+  --te-green:    #059669;
+  --te-emerald:  #10b981;
+  --te-lime:     #84cc16;
+  --te-violet:   #7c3aed;
+  --te-purple:   #a855f7;
+  --te-sky:      #38bdf8;
+  --te-amber:    #fbbf24;
+  --te-red:      #ef4444;
+  --te-orange:   #f97316;
+  --te-text:     #d1fae5;
+  --te-muted:    #4a7a6a;
+  --te-pass:     #22c55e;
+  --te-fail:     #ef4444;
+}
+
+.te-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--te-text); background: var(--te-bg); min-height: 100vh;
+}
+
+.te-hero { margin-bottom: 2.5rem; }
+.te-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(5,150,105,0.06); border: 1px solid rgba(5,150,105,0.25);
+  color: var(--te-green); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.te-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #059669, #10b981, #7c3aed, #a855f7);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.te-hero p { font-size: 0.97rem; color: var(--te-muted); line-height: 1.8; max-width: 720px; }
+.te-hero p strong { color: var(--te-emerald); -webkit-text-fill-color: var(--te-emerald); }
+
+.te-section { margin: 2.5rem 0; }
+.te-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--te-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(5,150,105,0.08);
+}
+
+.te-card { background: var(--te-card); border: 1px solid var(--te-border); border-radius: 10px; padding: 1.25rem; }
+.te-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.te-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.te-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.te-metric { background: var(--te-card); border: 1px solid var(--te-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.te-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--te-emerald); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.te-metric-label { font-size: 0.73rem; color: var(--te-muted); }
+
+.te-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(5,150,105,0.12); margin: 0.5rem 0; }
+.te-code-head { background: #030806; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--te-muted); font-family: 'JetBrains Mono', monospace; }
+.te-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.te-code { background: var(--te-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #6ee7b7; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.te-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(5,150,105,0.15);
+  background: rgba(5,150,105,0.04); border-radius: 8px;
+  color: var(--te-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.te-btn:hover { background: rgba(5,150,105,0.08); color: var(--te-emerald); }
+.te-btn.active { background: rgba(5,150,105,0.12); border-color: var(--te-emerald); color: var(--te-emerald); }
+
+.te-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.te-tag.green  { background: rgba(5,150,105,0.1); color: var(--te-emerald); }
+.te-tag.violet { background: rgba(124,58,237,0.1); color: var(--te-violet); }
+.te-tag.sky    { background: rgba(56,189,248,0.1); color: var(--te-sky); }
+.te-tag.amber  { background: rgba(251,191,36,0.1); color: var(--te-amber); }
+.te-tag.red    { background: rgba(239,68,68,0.1); color: var(--te-red); }
+.te-tag.pass   { background: rgba(34,197,94,0.1); color: var(--te-pass); }
+.te-tag.fail   { background: rgba(239,68,68,0.1); color: var(--te-fail); }
+
+.te-tip    { background: rgba(5,150,105,0.05); border: 1px solid rgba(5,150,105,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--te-muted); line-height: 1.7; }
+
+.te-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.te-table th { background: rgba(5,150,105,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--te-emerald); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(5,150,105,0.08); }
+.te-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.te-table tr:last-child td { border-bottom: none; }
+
+.te-steps { display: flex; flex-direction: column; gap: 0; }
+.te-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; }
+.te-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(5,150,105,0.08); border: 1px solid rgba(5,150,105,0.25); color: var(--te-emerald); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }

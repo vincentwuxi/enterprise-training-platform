@@ -44,6 +44,7 @@ import dssManifest   from '@course-dss/../course.manifest.json';
 import waeManifest   from '@course-wae/../course.manifest.json';
 import btdManifest   from '@course-btd/../course.manifest.json';
 import oscManifest   from '@course-osc/../course.manifest.json';
+import tseManifest   from '@course-tse/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -619,6 +620,19 @@ export const courseRegistry = {
       LessonGovernance:  lazy(() => import('@course-osc/pages/LessonGovernance')),
       LessonOwnProject:  lazy(() => import('@course-osc/pages/LessonOwnProject')),
       LessonCareer:      lazy(() => import('@course-osc/pages/LessonCareer')),
+    }
+  },
+  'testing-engineering': {
+    manifest: tseManifest,
+    components: {
+      LessonPyramid:   lazy(() => import('@course-tse/pages/LessonPyramid')),
+      LessonUnitTest:  lazy(() => import('@course-tse/pages/LessonUnitTest')),
+      LessonComponent: lazy(() => import('@course-tse/pages/LessonComponent')),
+      LessonAPITest:   lazy(() => import('@course-tse/pages/LessonAPITest')),
+      LessonE2E:       lazy(() => import('@course-tse/pages/LessonE2E')),
+      LessonPerfTest:  lazy(() => import('@course-tse/pages/LessonPerfTest')),
+      LessonTDD:       lazy(() => import('@course-tse/pages/LessonTDD')),
+      LessonTestArch:  lazy(() => import('@course-tse/pages/LessonTestArch')),
     }
   },
 };
