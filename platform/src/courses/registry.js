@@ -41,6 +41,7 @@ import lfpManifest   from '@course-lfp/../course.manifest.json';
 import nnsManifest   from '@course-nns/../course.manifest.json';
 import aifManifest   from '@course-aif/../course.manifest.json';
 import dssManifest   from '@course-dss/../course.manifest.json';
+import waeManifest   from '@course-wae/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -577,6 +578,19 @@ export const courseRegistry = {
       LessonA11y:        lazy(() => import('@course-dss/pages/LessonA11y')),
       LessonDarkMode:    lazy(() => import('@course-dss/pages/LessonDarkMode')),
       LessonPublish:     lazy(() => import('@course-dss/pages/LessonPublish')),
+    }
+  },
+  'wasm-edge': {
+    manifest: waeManifest,
+    components: {
+      LessonWasmCore:    lazy(() => import('@course-wae/pages/LessonWasmCore')),
+      LessonRustWasm:    lazy(() => import('@course-wae/pages/LessonRustWasm')),
+      LessonBrowserWasm: lazy(() => import('@course-wae/pages/LessonBrowserWasm')),
+      LessonWASI:        lazy(() => import('@course-wae/pages/LessonWASI')),
+      LessonCFWorkers:   lazy(() => import('@course-wae/pages/LessonCFWorkers')),
+      LessonEdgeRuntime: lazy(() => import('@course-wae/pages/LessonEdgeRuntime')),
+      LessonEdgeAI:      lazy(() => import('@course-wae/pages/LessonEdgeAI')),
+      LessonWasmProd:    lazy(() => import('@course-wae/pages/LessonWasmProd')),
     }
   },
 };
