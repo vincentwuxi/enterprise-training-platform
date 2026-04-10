@@ -39,6 +39,7 @@ import k8sManifest   from '@course-k8s/../course.manifest.json';
 import aaeManifest   from '@course-aae/../course.manifest.json';
 import lfpManifest   from '@course-lfp/../course.manifest.json';
 import nnsManifest   from '@course-nns/../course.manifest.json';
+import aifManifest   from '@course-aif/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -549,6 +550,19 @@ export const courseRegistry = {
       LessonRealtime:    lazy(() => import('@course-nns/pages/LessonRealtime')),
       LessonTesting:     lazy(() => import('@course-nns/pages/LessonTesting')),
       LessonProduction:  lazy(() => import('@course-nns/pages/LessonProduction')),
+    }
+  },
+  'ai-infra': {
+    manifest: aifManifest,
+    components: {
+      LessonGPUArch:     lazy(() => import('@course-aif/pages/LessonGPUArch')),
+      LessonCUDA:        lazy(() => import('@course-aif/pages/LessonCUDA')),
+      LessonPyTorch:     lazy(() => import('@course-aif/pages/LessonPyTorch')),
+      LessonQuant:       lazy(() => import('@course-aif/pages/LessonQuant')),
+      LessonInference:   lazy(() => import('@course-aif/pages/LessonInference')),
+      LessonDistributed: lazy(() => import('@course-aif/pages/LessonDistributed')),
+      LessonCluster:     lazy(() => import('@course-aif/pages/LessonCluster')),
+      LessonCost:        lazy(() => import('@course-aif/pages/LessonCost')),
     }
   },
 };

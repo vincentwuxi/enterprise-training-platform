@@ -1,0 +1,19 @@
+{
+  "id": "ai-infra",
+  "title": "AI 基础设施工程：GPU / CUDA / 推理优化全链路",
+  "description": "AI 技术栈最底层——从 GPU 硬件架构到生产级推理服务化的完整工程体系。GPU 架构原理（SM/CUDA Core/Tensor Core/HBM）→ CUDA 编程模型（Thread/Block/Grid/Shared Memory）→ PyTorch 底层与混合精度训练（AMP/bf16/tf32）→ 模型量化工程（GPTQ/AWQ/GGUF/INT4/INT8）→ 推理引擎深度（vLLM PagedAttention/TensorRT-LLM/SGLang）→ 分布式训练架构（DDP/FSDP/Megatron 张量/流水线/数据并行）→ 算力集群运维（NCCL/InfiniBand/GPU 监控/故障排查）→ 成本工程（Spot Instance/MIG/多租户/ROI 计算）。",
+  "category": "AI 基础设施",
+  "level": "高级",
+  "duration": "36h",
+  "tags": ["GPU", "CUDA", "Tensor Core", "vLLM", "TensorRT", "量化", "GPTQ", "AWQ", "分布式训练", "DDP", "FSDP", "Megatron", "NCCL", "InfiniBand", "HBM", "混合精度", "PagedAttention", "MIG", "推理优化"],
+  "modules": [
+    { "id": "gpu-arch",       "title": "模块一：GPU 硬件架构 — SM / CUDA Core / Tensor Core / HBM 内存层级", "lessonKey": "LessonGPUArch" },
+    { "id": "cuda",           "title": "模块二：CUDA 编程模型 — Thread / Block / Grid / Shared Memory 实战", "lessonKey": "LessonCUDA" },
+    { "id": "pytorch-deep",   "title": "模块三：PyTorch 底层 — 计算图 / Autograd / 混合精度训练（AMP）", "lessonKey": "LessonPyTorch" },
+    { "id": "quantization",   "title": "模块四：模型量化工程 — GPTQ / AWQ / GGUF / INT4→INT8 精度阶梯", "lessonKey": "LessonQuant" },
+    { "id": "inference",      "title": "模块五：推理引擎深度 — vLLM / TensorRT-LLM / SGLang 源码级理解", "lessonKey": "LessonInference" },
+    { "id": "distributed",    "title": "模块六：分布式训练架构 — DDP / FSDP / Megatron 三大并行策略", "lessonKey": "LessonDistributed" },
+    { "id": "cluster",        "title": "模块七：算力集群运维 — NCCL / InfiniBand / GPU 监控 / 故障排查", "lessonKey": "LessonCluster" },
+    { "id": "cost",           "title": "模块八：成本工程 — Spot Instance / MIG / 多租户 / ROI 计算", "lessonKey": "LessonCost" }
+  ]
+}

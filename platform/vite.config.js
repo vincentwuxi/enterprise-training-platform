@@ -48,7 +48,8 @@ export default defineConfig({
       '@course-k8s':     path.resolve(__dirname, '../KubernetesOps/src'),
       '@course-aae':     path.resolve(__dirname, '../AIAgentEngineering/src'),
       '@course-lfp':     path.resolve(__dirname, '../LLMFinetunePro/src'),
-      '@course-nns':     path.resolve(__dirname, '../NodeNestJS/src')
+      '@course-nns':     path.resolve(__dirname, '../NodeNestJS/src'),
+      '@course-aif':     path.resolve(__dirname, '../AIInfra/src')
     }
   }
 })
