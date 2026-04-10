@@ -1,0 +1,97 @@
+/* ==================================================
+   Open Source Contribution — GitHub Green + Community Orange
+   Collaboration × Impact × Growth
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --os-bg:       #040a06;
+  --os-surface:  #081210;
+  --os-card:     #0c1a14;
+  --os-card2:    #10201a;
+  --os-border:   rgba(34,197,94,0.12);
+  --os-green:    #22c55e;
+  --os-emerald:  #10b981;
+  --os-lime:     #84cc16;
+  --os-orange:   #f97316;
+  --os-amber:    #fbbf24;
+  --os-sky:      #38bdf8;
+  --os-purple:   #a855f7;
+  --os-red:      #ef4444;
+  --os-text:     #dcfce7;
+  --os-muted:    #4a7a5a;
+  --os-border2:  rgba(249,115,22,0.08);
+}
+
+.os-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--os-text); background: var(--os-bg); min-height: 100vh;
+}
+
+.os-hero { margin-bottom: 2.5rem; }
+.os-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.25);
+  color: var(--os-green); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.os-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #22c55e, #10b981, #f97316, #fbbf24);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.os-hero p { font-size: 0.97rem; color: var(--os-muted); line-height: 1.8; max-width: 720px; }
+.os-hero p strong { color: var(--os-green); -webkit-text-fill-color: var(--os-green); }
+
+.os-section { margin: 2.5rem 0; }
+.os-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--os-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(34,197,94,0.08);
+}
+
+.os-card { background: var(--os-card); border: 1px solid var(--os-border); border-radius: 10px; padding: 1.25rem; }
+.os-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.os-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.os-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.os-metric { background: var(--os-card); border: 1px solid var(--os-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.os-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--os-green); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.os-metric-label { font-size: 0.73rem; color: var(--os-muted); }
+
+.os-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(34,197,94,0.12); margin: 0.5rem 0; }
+.os-code-head { background: #030806; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--os-muted); font-family: 'JetBrains Mono', monospace; }
+.os-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.os-code { background: var(--os-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #86efac; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.os-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(34,197,94,0.15);
+  background: rgba(34,197,94,0.04); border-radius: 8px;
+  color: var(--os-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.os-btn:hover { background: rgba(34,197,94,0.08); color: var(--os-green); }
+.os-btn.active { background: rgba(34,197,94,0.12); border-color: var(--os-green); color: var(--os-green); }
+
+.os-tag { display: inline-block; padding: 0.18rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.os-tag.green  { background: rgba(34,197,94,0.1); color: var(--os-green); }
+.os-tag.orange { background: rgba(249,115,22,0.1); color: var(--os-orange); }
+.os-tag.sky    { background: rgba(56,189,248,0.1); color: var(--os-sky); }
+.os-tag.amber  { background: rgba(251,191,36,0.1); color: var(--os-amber); }
+.os-tag.purple { background: rgba(168,85,247,0.1); color: var(--os-purple); }
+
+.os-tip    { background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--os-muted); line-height: 1.7; }
+
+.os-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.os-table th { background: rgba(34,197,94,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--os-green); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(34,197,94,0.08); }
+.os-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.os-table tr:last-child td { border-bottom: none; }
+
+.os-steps { display: flex; flex-direction: column; gap: 0; }
+.os-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; }
+.os-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); color: var(--os-green); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }

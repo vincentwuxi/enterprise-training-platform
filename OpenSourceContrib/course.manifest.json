@@ -1,0 +1,19 @@
+{
+  "id": "opensource-contrib",
+  "title": "开源贡献实战：从第一个 PR 到核心维护者",
+  "description": "最被忽略的职业加速器——开源贡献经验是简历上最有说服力的技能证明。找到合适项目（Good First Issue/项目架构阅读/社区文化评估）→ 代码贡献全流程（Fork/Branch/Commit Convention/PR 模板/Code Review 应对）→ 非代码贡献（文档/翻译/Issue Triage/社区支持）→ Git 高级工作流（rebase/cherry-pick/bisect/worktree/submodule）→ CI/CD 贡献（GitHub Actions/测试/Lint/Release Automation）→ 项目治理（RFC 流程/GOVERNANCE.md/Decision Making/CoC）→ 自建开源项目（README/LICENSE/CONTRIBUTING/发布策略/社区运营）→ 职业变现（开源简历/技术影响力/商业模式/赞助/全职开源）。",
+  "category": "工程实践",
+  "level": "初中高级",
+  "duration": "24h",
+  "tags": ["开源", "GitHub", "Pull Request", "Code Review", "Git", "Rebase", "GitHub Actions", "RFC", "CNCF", "Apache", "社区运营", "技术影响力", "Good First Issue", "Conventional Commits"],
+  "modules": [
+    { "id": "find-project",   "title": "模块一：找到你的项目 — Good First Issue / 架构阅读 / 社区评估", "lessonKey": "LessonFindProject" },
+    { "id": "first-pr",       "title": "模块二：第一个 PR — Fork / Branch / Commit / Review 全流程", "lessonKey": "LessonFirstPR" },
+    { "id": "non-code",       "title": "模块三：非代码贡献 — 文档 / 翻译 / Issue Triage / 社区支持", "lessonKey": "LessonNonCode" },
+    { "id": "git-advanced",   "title": "模块四：Git 高级 — Rebase / Cherry-pick / Bisect / Worktree", "lessonKey": "LessonGitAdvanced" },
+    { "id": "ci-contrib",     "title": "模块五：CI/CD 贡献 — GitHub Actions / 测试 / Lint / Release", "lessonKey": "LessonCIContrib" },
+    { "id": "governance",     "title": "模块六：项目治理 — RFC / GOVERNANCE / Decision Making / CoC", "lessonKey": "LessonGovernance" },
+    { "id": "own-project",    "title": "模块七：自建开源项目 — README / LICENSE / 发布 / 社区运营", "lessonKey": "LessonOwnProject" },
+    { "id": "career",         "title": "模块八：职业变现 — 开源简历 / 技术影响力 / 商业模式 / 赞助", "lessonKey": "LessonCareer" }
+  ]
+}

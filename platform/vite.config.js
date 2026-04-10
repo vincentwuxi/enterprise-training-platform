@@ -52,7 +52,8 @@ export default defineConfig({
       '@course-aif':     path.resolve(__dirname, '../AIInfra/src'),
       '@course-dss':     path.resolve(__dirname, '../DesignSystem/src'),
       '@course-wae':     path.resolve(__dirname, '../WasmEdge/src'),
-      '@course-btd':     path.resolve(__dirname, '../BlueTeam/src')
+      '@course-btd':     path.resolve(__dirname, '../BlueTeam/src'),
+      '@course-osc':     path.resolve(__dirname, '../OpenSourceContrib/src')
     }
   }
 })

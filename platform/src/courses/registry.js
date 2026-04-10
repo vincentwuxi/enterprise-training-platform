@@ -43,6 +43,7 @@ import aifManifest   from '@course-aif/../course.manifest.json';
 import dssManifest   from '@course-dss/../course.manifest.json';
 import waeManifest   from '@course-wae/../course.manifest.json';
 import btdManifest   from '@course-btd/../course.manifest.json';
+import oscManifest   from '@course-osc/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -605,6 +606,19 @@ export const courseRegistry = {
       LessonZeroTrust:  lazy(() => import('@course-btd/pages/LessonZeroTrust')),
       LessonThreatIntel:lazy(() => import('@course-btd/pages/LessonThreatIntel')),
       LessonIncident:   lazy(() => import('@course-btd/pages/LessonIncident')),
+    }
+  },
+  'opensource-contrib': {
+    manifest: oscManifest,
+    components: {
+      LessonFindProject: lazy(() => import('@course-osc/pages/LessonFindProject')),
+      LessonFirstPR:     lazy(() => import('@course-osc/pages/LessonFirstPR')),
+      LessonNonCode:     lazy(() => import('@course-osc/pages/LessonNonCode')),
+      LessonGitAdvanced: lazy(() => import('@course-osc/pages/LessonGitAdvanced')),
+      LessonCIContrib:   lazy(() => import('@course-osc/pages/LessonCIContrib')),
+      LessonGovernance:  lazy(() => import('@course-osc/pages/LessonGovernance')),
+      LessonOwnProject:  lazy(() => import('@course-osc/pages/LessonOwnProject')),
+      LessonCareer:      lazy(() => import('@course-osc/pages/LessonCareer')),
     }
   },
 };
