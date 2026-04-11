@@ -5,4 +5,6 @@ export { default as LessonClaude }     from './pages/LessonClaude';
 export { default as LessonPrompt }     from './pages/LessonPrompt';
 export { default as LessonStreaming }  from './pages/LessonStreaming';
 export { default as LessonRouting }    from './pages/LessonRouting';
-export { default as LessonProduction } from './pages/LessonProduction';
+export { default as LessonProduction }   from './pages/LessonProduction';
+export { default as LessonParamBible }   from './pages/LessonParamBible';
+export { default as LessonResponsesAPI } from './pages/LessonResponsesAPI';

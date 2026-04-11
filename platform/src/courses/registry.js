@@ -374,7 +374,9 @@ export const courseRegistry = {
       LessonPrompt:     lazy(() => import('@course-ai-api/pages/LessonPrompt')),
       LessonStreaming:  lazy(() => import('@course-ai-api/pages/LessonStreaming')),
       LessonRouting:    lazy(() => import('@course-ai-api/pages/LessonRouting')),
-      LessonProduction: lazy(() => import('@course-ai-api/pages/LessonProduction')),
+      LessonProduction:    lazy(() => import('@course-ai-api/pages/LessonProduction')),
+      LessonParamBible:    lazy(() => import('@course-ai-api/pages/LessonParamBible')),
+      LessonResponsesAPI:  lazy(() => import('@course-ai-api/pages/LessonResponsesAPI')),
     }
   },
   'ml-engineering': {
