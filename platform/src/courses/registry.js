@@ -28,6 +28,7 @@ import aiApiManifest from '@course-ai-api/../course.manifest.json';
 import mlEngManifest from '@course-ml-eng/../course.manifest.json';
 import daManifest    from '@course-da/../course.manifest.json';
 import agentManifest from '@course-agent/../course.manifest.json';
+import safetyManifest from '@course-safety/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
@@ -665,4 +666,18 @@ export const courseRegistry = {
       LessonProduction: lazy(() => import('@course-obe/pages/LessonProduction')),
     }
   },
+  'ai-safety-alignment': {
+    manifest: safetyManifest,
+    components: {
+      LessonHallucination: lazy(() => import('@course-safety/pages/LessonHallucination')),
+      LessonRedTeam:       lazy(() => import('@course-safety/pages/LessonRedTeam')),
+      LessonXAI:           lazy(() => import('@course-safety/pages/LessonXAI')),
+      LessonFairness:      lazy(() => import('@course-safety/pages/LessonFairness')),
+      LessonAlignment:     lazy(() => import('@course-safety/pages/LessonAlignment')),
+      LessonCompliance:    lazy(() => import('@course-safety/pages/LessonCompliance')),
+      LessonWatermark:     lazy(() => import('@course-safety/pages/LessonWatermark')),
+      LessonAudit:         lazy(() => import('@course-safety/pages/LessonAudit')),
+    }
+  },
 };
+
