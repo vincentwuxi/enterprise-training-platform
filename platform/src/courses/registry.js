@@ -29,6 +29,7 @@ import mlEngManifest from '@course-ml-eng/../course.manifest.json';
 import daManifest    from '@course-da/../course.manifest.json';
 import agentManifest from '@course-agent/../course.manifest.json';
 import safetyManifest from '@course-safety/../course.manifest.json';
+import evalManifest   from '@course-eval/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
@@ -677,6 +678,19 @@ export const courseRegistry = {
       LessonCompliance:    lazy(() => import('@course-safety/pages/LessonCompliance')),
       LessonWatermark:     lazy(() => import('@course-safety/pages/LessonWatermark')),
       LessonAudit:         lazy(() => import('@course-safety/pages/LessonAudit')),
+    }
+  },
+  'ai-eval-engineering': {
+    manifest: evalManifest,
+    components: {
+      LessonEvalFundamentals: lazy(() => import('@course-eval/pages/LessonEvalFundamentals')),
+      LessonBenchmarks:       lazy(() => import('@course-eval/pages/LessonBenchmarks')),
+      LessonLLMJudge:         lazy(() => import('@course-eval/pages/LessonLLMJudge')),
+      LessonLangSmith:        lazy(() => import('@course-eval/pages/LessonLangSmith')),
+      LessonABTesting:        lazy(() => import('@course-eval/pages/LessonABTesting')),
+      LessonRAGEval:          lazy(() => import('@course-eval/pages/LessonRAGEval')),
+      LessonAgentEval:        lazy(() => import('@course-eval/pages/LessonAgentEval')),
+      LessonEvalPipeline:     lazy(() => import('@course-eval/pages/LessonEvalPipeline')),
     }
   },
 };

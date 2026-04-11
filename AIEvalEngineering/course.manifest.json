@@ -1,0 +1,20 @@
+{
+  "id": "ai-eval-engineering",
+  "title": "📊 AI 评估工程：Evals / A|B 测试 / LangSmith 全链路",
+  "description": "AI 产品的质量底线全靠「评估」守住。评估基础与方法论（Eval-Driven Development / 评估分类学）→ 基准测试百科（MMLU / HumanEval / HELM / MT-Bench）→ LLM-as-Judge（G-Eval / 打分校准 / 偏见规避）→ LangSmith & Langfuse（追踪 / 数据集 / 在线评估）→ A/B 测试与线上评估（统计显著性 / Interleaving / 漏斗指标）→ RAG 评估（RAGAS / 检索质量 / 忠实度）→ Agent 评估（工具调用 / 轨迹评估 / 任务完成率）→ 持续评估 Pipeline（CI/CD for Evals / 回归测试 / 评估驱动部署）。从「手动 vibe check」到「自动化评估门禁」的完整进化路径。",
+  "category": "AI 工程",
+  "level": "高级",
+  "totalHours": 36,
+  "instructor": "AI 评估工程师 · LLMOps 架构师 · 产品质量负责人",
+  "tags": ["Evals", "LangSmith", "Langfuse", "A/B Testing", "RAGAS", "LLM-as-Judge", "Benchmark", "CI/CD", "MLOps"],
+  "modules": [
+    { "id": "eval-fundamentals", "title": "模块一：评估基础 — Eval-Driven Development / 评估分类学",                   "lessonKey": "LessonEvalFundamentals" },
+    { "id": "benchmarks",        "title": "模块二：基准测试百科 — MMLU / HumanEval / HELM / MT-Bench",                "lessonKey": "LessonBenchmarks" },
+    { "id": "llm-judge",         "title": "模块三：LLM-as-Judge — G-Eval / 打分校准 / 偏见规避",                      "lessonKey": "LessonLLMJudge" },
+    { "id": "langsmith",         "title": "模块四：LangSmith & Langfuse — 追踪 / 数据集 / 在线评估",                  "lessonKey": "LessonLangSmith" },
+    { "id": "ab-testing",        "title": "模块五：A/B 测试与线上评估 — 统计显著性 / Interleaving / 漏斗指标",        "lessonKey": "LessonABTesting" },
+    { "id": "rag-eval",          "title": "模块六：RAG 评估 — RAGAS / 检索质量 / 忠实度 / 端到端评估",                "lessonKey": "LessonRAGEval" },
+    { "id": "agent-eval",        "title": "模块七：Agent 评估 — 工具调用 / 轨迹评估 / 任务完成率",                    "lessonKey": "LessonAgentEval" },
+    { "id": "eval-pipeline",     "title": "模块八：持续评估 Pipeline — CI/CD for Evals / 回归测试 / 评估门禁",        "lessonKey": "LessonEvalPipeline" }
+  ]
+}

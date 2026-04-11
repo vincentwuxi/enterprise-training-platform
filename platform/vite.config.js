@@ -57,7 +57,8 @@ export default defineConfig({
       '@course-tse':     path.resolve(__dirname, '../TestingEngineering/src'),
       '@course-pgm':     path.resolve(__dirname, '../PostgreSQLMastery/src'),
       '@course-obe':     path.resolve(__dirname, '../ObservabilityEngineering/src'),
-      '@course-safety':  path.resolve(__dirname, '../AISafetyAlignment/src')
+      '@course-safety':  path.resolve(__dirname, '../AISafetyAlignment/src'),
+      '@course-eval':    path.resolve(__dirname, '../AIEvalEngineering/src')
     }
   }
 })
