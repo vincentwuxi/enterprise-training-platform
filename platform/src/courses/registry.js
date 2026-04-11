@@ -46,6 +46,7 @@ import btdManifest   from '@course-btd/../course.manifest.json';
 import oscManifest   from '@course-osc/../course.manifest.json';
 import tseManifest   from '@course-tse/../course.manifest.json';
 import pgmManifest   from '@course-pgm/../course.manifest.json';
+import obeManifest   from '@course-obe/../course.manifest.json';
 
 // Simple registry mapping course manifest to its lazy-loaded components
 export const courseRegistry = {
@@ -647,6 +648,19 @@ export const courseRegistry = {
       LessonReplication: lazy(() => import('@course-pgm/pages/LessonReplication')),
       LessonTuning:      lazy(() => import('@course-pgm/pages/LessonTuning')),
       LessonCloudPG:     lazy(() => import('@course-pgm/pages/LessonCloudPG')),
+    }
+  },
+  'observability-engineering': {
+    manifest: obeManifest,
+    components: {
+      LessonPillars:    lazy(() => import('@course-obe/pages/LessonPillars')),
+      LessonPrometheus: lazy(() => import('@course-obe/pages/LessonPrometheus')),
+      LessonGrafana:    lazy(() => import('@course-obe/pages/LessonGrafana')),
+      LessonOTel:       lazy(() => import('@course-obe/pages/LessonOTel')),
+      LessonTracing:    lazy(() => import('@course-obe/pages/LessonTracing')),
+      LessonAlerting:   lazy(() => import('@course-obe/pages/LessonAlerting')),
+      LessonSLO:        lazy(() => import('@course-obe/pages/LessonSLO')),
+      LessonProduction: lazy(() => import('@course-obe/pages/LessonProduction')),
     }
   },
 };

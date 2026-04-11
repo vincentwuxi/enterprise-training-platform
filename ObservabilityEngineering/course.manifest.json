@@ -1,0 +1,19 @@
+{
+  "id": "observability-engineering",
+  "title": "可观测性工程：Prometheus + Grafana + OpenTelemetry 全链路",
+  "description": "生产部署的最后一公里——三大支柱（Metrics 指标/Logs 日志/Traces 链路追踪）→ Prometheus 时序数据库（PromQL 查询/Recording Rules/Alerting Rules/Federation/Thanos 长期存储）→ Grafana 可视化（Dashboard 设计/Panel 类型/变量/告警/Grafana Loki 日志聚合）→ OpenTelemetry（SDK 埋点/Collector 架构/自动注入/Span 传播/W3C Trace Context）→ Jaeger 分布式追踪（Trace 分析/Service Map/对比 Trace/性能瓶颈定位）→ 告警工程（Alertmanager/PagerDuty/Slack/告警降噪/Runbook）→ SLO/SLI/Error Budget（Google SRE 方法论/Burn Rate Alert/可用性目标）→ 生产实战（K8s 监控/Node Exporter/kube-state-metrics/日志管道/APM 全景）。",
+  "category": "DevOps & 可观测性",
+  "level": "中高级",
+  "duration": "26h",
+  "tags": ["Prometheus", "Grafana", "OpenTelemetry", "Jaeger", "PromQL", "Alertmanager", "SLO", "SLI", "Loki", "Thanos", "Metrics", "Tracing", "Logging", "APM", "SRE"],
+  "modules": [
+    { "id": "pillars",      "title": "模块一：三大支柱 — Metrics / Logs / Traces 统一观测", "lessonKey": "LessonPillars" },
+    { "id": "prometheus",   "title": "模块二：Prometheus — 时序数据库 / PromQL / Recording & Alerting Rules", "lessonKey": "LessonPrometheus" },
+    { "id": "grafana",      "title": "模块三：Grafana — Dashboard 设计 / Loki 日志 / 告警通道", "lessonKey": "LessonGrafana" },
+    { "id": "opentelemetry","title": "模块四：OpenTelemetry — SDK 埋点 / Collector / 自动注入", "lessonKey": "LessonOTel" },
+    { "id": "tracing",      "title": "模块五：分布式追踪 — Jaeger / Trace 分析 / 性能瓶颈定位", "lessonKey": "LessonTracing" },
+    { "id": "alerting",     "title": "模块六：告警工程 — Alertmanager / 降噪 / Runbook / On-Call", "lessonKey": "LessonAlerting" },
+    { "id": "slo",          "title": "模块七：SLO / SLI / Error Budget — Google SRE 可靠性工程", "lessonKey": "LessonSLO" },
+    { "id": "production",   "title": "模块八：生产实战 — K8s 监控 / 日志管道 / APM 全景", "lessonKey": "LessonProduction" }
+  ]
+}

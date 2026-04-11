@@ -1,0 +1,90 @@
+/* ==================================================
+   Observability Engineering — Signal Green + Alert Orange
+   Dashboard × Realtime × Monitoring
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --obs-bg:       #020a06;
+  --obs-surface:  #061210;
+  --obs-card:     #0a1a14;
+  --obs-card2:    #0e2018;
+  --obs-border:   rgba(34,197,94,0.10);
+  --obs-green:    #22c55e;
+  --obs-emerald:  #10b981;
+  --obs-orange:   #f97316;
+  --obs-amber:    #fbbf24;
+  --obs-red:      #ef4444;
+  --obs-blue:     #3b82f6;
+  --obs-cyan:     #06b6d4;
+  --obs-violet:   #8b5cf6;
+  --obs-sky:      #38bdf8;
+  --obs-lime:     #a3e635;
+  --obs-text:     #c4e8d4;
+  --obs-muted:    #4a7a62;
+}
+
+.obs-lesson {
+  max-width: 1000px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--obs-text); background: var(--obs-bg); min-height: 100vh;
+}
+
+.obs-hero { margin-bottom: 2.5rem; }
+.obs-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.25);
+  color: var(--obs-green); padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;
+}
+.obs-hero h1 {
+  font-size: clamp(1.75rem,4vw,2.5rem); font-weight: 900; line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #22c55e, #f97316, #fbbf24);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.obs-hero p { font-size: 0.97rem; color: var(--obs-muted); line-height: 1.8; max-width: 720px; }
+.obs-hero p strong { color: var(--obs-green); -webkit-text-fill-color: var(--obs-green); }
+
+.obs-section { margin: 2.5rem 0; }
+.obs-section-title {
+  font-size: 1rem; font-weight: 800; color: var(--obs-text);
+  margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+  padding-bottom: 0.65rem; border-bottom: 1px solid rgba(34,197,94,0.08);
+}
+
+.obs-card { background: var(--obs-card); border: 1px solid var(--obs-border); border-radius: 10px; padding: 1.25rem; }
+.obs-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.obs-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0.75rem; }
+.obs-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px,1fr)); gap: 0.75rem; }
+
+.obs-code-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(34,197,94,0.12); margin: 0.5rem 0; }
+.obs-code-head { background: #030a06; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--obs-muted); font-family: 'JetBrains Mono', monospace; }
+.obs-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.obs-code { background: var(--obs-bg); padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.775rem; color: #86efac; line-height: 1.85; white-space: pre; overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+.obs-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.9rem; border: 1px solid rgba(34,197,94,0.15);
+  background: rgba(34,197,94,0.04); border-radius: 8px;
+  color: var(--obs-muted); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+}
+.obs-btn:hover { background: rgba(34,197,94,0.08); color: var(--obs-green); }
+.obs-btn.active { background: rgba(34,197,94,0.12); border-color: var(--obs-green); color: var(--obs-green); }
+
+.obs-tip { background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.15); border-radius: 8px; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.87rem; color: var(--obs-muted); line-height: 1.7; }
+
+.obs-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.obs-table th { background: rgba(34,197,94,0.04); padding: 0.65rem 1rem; text-align: left; font-size: 0.71rem; font-weight: 700; color: var(--obs-green); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(34,197,94,0.08); }
+.obs-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
+.obs-table tr:last-child td { border-bottom: none; }
+
+.obs-metric { background: var(--obs-card); border: 1px solid var(--obs-border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+.obs-metric-val { font-size: 1.6rem; font-weight: 900; color: var(--obs-green); line-height: 1; margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+.obs-metric-label { font-size: 0.73rem; color: var(--obs-muted); }
+
+.obs-pulse { display: inline-block; width: 8px; height: 8px; border-radius: 50%; animation: obs-blink 2s ease-in-out infinite; }
+@keyframes obs-blink { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
