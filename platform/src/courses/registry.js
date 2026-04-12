@@ -30,6 +30,7 @@ import daManifest    from '@course-da/../course.manifest.json';
 import agentManifest from '@course-agent/../course.manifest.json';
 import safetyManifest from '@course-safety/../course.manifest.json';
 import evalManifest   from '@course-eval/../course.manifest.json';
+import deployManifest from '@course-deploy/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
@@ -691,6 +692,19 @@ export const courseRegistry = {
       LessonRAGEval:          lazy(() => import('@course-eval/pages/LessonRAGEval')),
       LessonAgentEval:        lazy(() => import('@course-eval/pages/LessonAgentEval')),
       LessonEvalPipeline:     lazy(() => import('@course-eval/pages/LessonEvalPipeline')),
+    }
+  },
+  'open-model-deploy': {
+    manifest: deployManifest,
+    components: {
+      LessonDeployFundamentals: lazy(() => import('@course-deploy/pages/LessonDeployFundamentals')),
+      LessonOllama:             lazy(() => import('@course-deploy/pages/LessonOllama')),
+      LessonVLLM:               lazy(() => import('@course-deploy/pages/LessonVLLM')),
+      LessonTGITriton:          lazy(() => import('@course-deploy/pages/LessonTGITriton')),
+      LessonQuantization:       lazy(() => import('@course-deploy/pages/LessonQuantization')),
+      LessonInferenceAPI:       lazy(() => import('@course-deploy/pages/LessonInferenceAPI')),
+      LessonContainerDeploy:    lazy(() => import('@course-deploy/pages/LessonContainerDeploy')),
+      LessonProductionArch:     lazy(() => import('@course-deploy/pages/LessonProductionArch')),
     }
   },
 };

@@ -58,7 +58,8 @@ export default defineConfig({
       '@course-pgm':     path.resolve(__dirname, '../PostgreSQLMastery/src'),
       '@course-obe':     path.resolve(__dirname, '../ObservabilityEngineering/src'),
       '@course-safety':  path.resolve(__dirname, '../AISafetyAlignment/src'),
-      '@course-eval':    path.resolve(__dirname, '../AIEvalEngineering/src')
+      '@course-eval':    path.resolve(__dirname, '../AIEvalEngineering/src'),
+      '@course-deploy':  path.resolve(__dirname, '../OpenModelDeploy/src')
     }
   }
 })
