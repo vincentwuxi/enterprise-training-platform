@@ -60,7 +60,8 @@ export default defineConfig({
       '@course-safety':  path.resolve(__dirname, '../AISafetyAlignment/src'),
       '@course-eval':    path.resolve(__dirname, '../AIEvalEngineering/src'),
       '@course-deploy':  path.resolve(__dirname, '../OpenModelDeploy/src'),
-      '@course-aifs':    path.resolve(__dirname, '../AIFullStackApps/src')
+      '@course-aifs':    path.resolve(__dirname, '../AIFullStackApps/src'),
+      '@course-mm':      path.resolve(__dirname, '../MultimodalAI/src')
     }
   }
 })

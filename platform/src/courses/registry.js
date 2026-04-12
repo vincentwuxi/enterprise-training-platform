@@ -32,6 +32,7 @@ import safetyManifest from '@course-safety/../course.manifest.json';
 import evalManifest   from '@course-eval/../course.manifest.json';
 import deployManifest from '@course-deploy/../course.manifest.json';
 import aifsManifest   from '@course-aifs/../course.manifest.json';
+import mmManifest     from '@course-mm/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
@@ -721,5 +722,17 @@ export const courseRegistry = {
       LessonGoLive:       lazy(() => import('@course-aifs/pages/LessonGoLive')),
     }
   },
+  'multimodal-ai-engineering': {
+    manifest: mmManifest,
+    components: {
+      LessonMMFoundations: lazy(() => import('@course-mm/pages/LessonMMFoundations')),
+      LessonVisionLLM:     lazy(() => import('@course-mm/pages/LessonVisionLLM')),
+      LessonSpeechEng:     lazy(() => import('@course-mm/pages/LessonSpeechEng')),
+      LessonVideoAI:       lazy(() => import('@course-mm/pages/LessonVideoAI')),
+      LessonImageGen:      lazy(() => import('@course-mm/pages/LessonImageGen')),
+      LessonDocIntel:      lazy(() => import('@course-mm/pages/LessonDocIntel')),
+      LessonMMRAG:         lazy(() => import('@course-mm/pages/LessonMMRAG')),
+      LessonMMProduction:  lazy(() => import('@course-mm/pages/LessonMMProduction')),
+    }
+  },
 };
-
