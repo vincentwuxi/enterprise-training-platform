@@ -31,6 +31,7 @@ import agentManifest from '@course-agent/../course.manifest.json';
 import safetyManifest from '@course-safety/../course.manifest.json';
 import evalManifest   from '@course-eval/../course.manifest.json';
 import deployManifest from '@course-deploy/../course.manifest.json';
+import aifsManifest   from '@course-aifs/../course.manifest.json';
 import algoManifest  from '@course-algo/../course.manifest.json';
 import pmManifest    from '@course-pm/../course.manifest.json';
 import llmpdManifest from '@course-llmpd/../course.manifest.json';
@@ -705,6 +706,19 @@ export const courseRegistry = {
       LessonInferenceAPI:       lazy(() => import('@course-deploy/pages/LessonInferenceAPI')),
       LessonContainerDeploy:    lazy(() => import('@course-deploy/pages/LessonContainerDeploy')),
       LessonProductionArch:     lazy(() => import('@course-deploy/pages/LessonProductionArch')),
+    }
+  },
+  'ai-fullstack-apps': {
+    manifest: aifsManifest,
+    components: {
+      LessonAIArch:       lazy(() => import('@course-aifs/pages/LessonAIArch')),
+      LessonChatBot:      lazy(() => import('@course-aifs/pages/LessonChatBot')),
+      LessonRAGApp:       lazy(() => import('@course-aifs/pages/LessonRAGApp')),
+      LessonTextToSQL:    lazy(() => import('@course-aifs/pages/LessonTextToSQL')),
+      LessonAIWorkflow:   lazy(() => import('@course-aifs/pages/LessonAIWorkflow')),
+      LessonMultimodal:   lazy(() => import('@course-aifs/pages/LessonMultimodal')),
+      LessonAISaaS:       lazy(() => import('@course-aifs/pages/LessonAISaaS')),
+      LessonGoLive:       lazy(() => import('@course-aifs/pages/LessonGoLive')),
     }
   },
 };

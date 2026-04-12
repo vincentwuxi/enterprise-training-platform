@@ -59,7 +59,8 @@ export default defineConfig({
       '@course-obe':     path.resolve(__dirname, '../ObservabilityEngineering/src'),
       '@course-safety':  path.resolve(__dirname, '../AISafetyAlignment/src'),
       '@course-eval':    path.resolve(__dirname, '../AIEvalEngineering/src'),
-      '@course-deploy':  path.resolve(__dirname, '../OpenModelDeploy/src')
+      '@course-deploy':  path.resolve(__dirname, '../OpenModelDeploy/src'),
+      '@course-aifs':    path.resolve(__dirname, '../AIFullStackApps/src')
     }
   }
 })
