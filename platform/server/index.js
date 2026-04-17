@@ -38,6 +38,43 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ── API Key authentication middleware ──
+// Set NL_API_KEY env var to enable. Protects mutating endpoints (import, etc).
+const API_KEY = process.env.NL_API_KEY || '';
+
+function requireApiKey(req, res, next) {
+  if (!API_KEY) return next(); // Skip if not configured (dev mode)
+  const provided = req.headers['x-api-key'] || req.query.apikey;
+  if (provided === API_KEY) return next();
+  return res.status(401).json({
+    success: false,
+    error: 'Unauthorized: invalid or missing API key. Set x-api-key header.',
+  });
+}
+
+// Simple rate limiter for import endpoint (in-memory)
+const rateLimitMap = new Map();
+function rateLimit(windowMs, maxReqs) {
+  return (req, res, next) => {
+    const ip = req.ip || req.connection?.remoteAddress || 'unknown';
+    const now = Date.now();
+    const entry = rateLimitMap.get(ip) || { count: 0, resetAt: now + windowMs };
+    if (now > entry.resetAt) {
+      entry.count = 0;
+      entry.resetAt = now + windowMs;
+    }
+    entry.count++;
+    rateLimitMap.set(ip, entry);
+    if (entry.count > maxReqs) {
+      return res.status(429).json({
+        success: false,
+        error: `Rate limited. Try again in ${Math.ceil((entry.resetAt - now) / 1000)}s`,
+      });
+    }
+    next();
+  };
+}
+
 const upload = multer({
   dest: UPLOADS_DIR,
   limits: { fileSize: 100 * 1024 * 1024 }, // 100MB max
@@ -138,7 +175,7 @@ app.get('/api/courses/:id/export', (req, res) => {
 });
 
 // ── POST /api/courses/import ──
-app.post('/api/courses/import', upload.single('course'), async (req, res) => {
+app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.single('course'), async (req, res) => {
   const uploadedFile = req.file;
   if (!uploadedFile) {
     return res.status(400).json({ success: false, error: 'No file uploaded' });

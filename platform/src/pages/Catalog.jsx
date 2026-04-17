@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Infinity, EyeOff } from 'lucide-react';
+import { Infinity, EyeOff, Search, X } from 'lucide-react';
 import { courseRegistry } from '../courses/registry';
 import { useAuth } from '../context/AuthContext';
 import './Catalog.css';
@@ -40,23 +40,69 @@ export default function Catalog() {
   const [searchParams] = useSearchParams();
   const activeCategory = searchParams.get('category') || 'all';
   const { canUserAccessCourse, isCourseOnline, isAdmin } = useAuth();
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const courses = Object.keys(courseRegistry).map(key => ({
-    id: key,
-    ...courseRegistry[key].manifest,
-    online: isCourseOnline(key),
-  })).filter(course => {
-    // ACL-aware: admins see all, learners only see courses they can access
-    if (!isAdmin && !canUserAccessCourse(course.id)) return false;
-    if (activeCategory === 'all') return true;
+  const courses = useMemo(() => {
+    const query = searchQuery.toLowerCase().trim();
+
+    return Object.keys(courseRegistry).map(key => ({
+      id: key,
+      ...courseRegistry[key].manifest,
+      online: isCourseOnline(key),
+    })).filter(course => {
+      // ACL-aware: admins see all, learners only see courses they can access
+      if (!isAdmin && !canUserAccessCourse(course.id)) return false;
+
+      // Category filter
+      if (activeCategory !== 'all') {
+        const targetCategory = CATEGORY_FILTER_MAP[activeCategory];
+        if (!targetCategory || course.category !== targetCategory) return false;
+      }
+
+      // Search filter — match title, description, category, or course id
+      if (query) {
+        const searchTarget = [
+          course.title, course.description, course.category, course.id
+        ].filter(Boolean).join(' ').toLowerCase();
+        return searchTarget.includes(query);
+      }
+
+      return true;
+    });
+  }, [searchQuery, activeCategory, isAdmin, canUserAccessCourse, isCourseOnline]);
+
+  const totalInCategory = useMemo(() => {
+    if (activeCategory === 'all') return Object.keys(courseRegistry).length;
     const targetCategory = CATEGORY_FILTER_MAP[activeCategory];
-    return targetCategory && course.category === targetCategory;
-  });
+    return Object.values(courseRegistry).filter(r => r.manifest?.category === targetCategory).length;
+  }, [activeCategory]);
 
   return (
     <div className="catalog-page page-container">
       <header className="catalog-header">
-        <h1>探索课程</h1>
+        <div className="catalog-title-row">
+          <h1>探索课程</h1>
+          <span className="catalog-count">{courses.length} 门课程</span>
+        </div>
+
+        {/* Search box */}
+        <div className="search-box">
+          <Search size={18} className="search-icon" />
+          <input
+            id="catalog-search"
+            type="text"
+            className="search-input"
+            placeholder="搜索课程名称、描述、分类..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button className="search-clear" onClick={() => setSearchQuery('')}>
+              <X size={16} />
+            </button>
+          )}
+        </div>
+
         <div className="filter-tabs">
           {CATEGORIES.map(f => (
             <button key={f.key}
@@ -92,7 +138,12 @@ export default function Catalog() {
             </div>
           ))
         ) : (
-          <div className="empty-state"><p>该分类下暂无课程</p></div>
+          <div className="empty-state">
+            {searchQuery
+              ? <p>未找到包含 "<strong>{searchQuery}</strong>" 的课程</p>
+              : <p>该分类下暂无课程</p>
+            }
+          </div>
         )}
       </div>
     </div>
