@@ -5,6 +5,7 @@
  *   nl_users:          { [userId]: UserRecord }
  *   nl_current_user:   userId | null
  *   nl_course_status:  { [courseId]: 'online' | 'offline' }
+ *   nl_course_access:  { [courseId]: 'all' | string[] }  — per-user ACL
  *   nl_progress_{uid}: { [courseId]: { [lessonId]: true, timeSpent: N } }
  */
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
@@ -17,6 +18,7 @@ const KEYS = {
   users: 'nl_users',
   currentUser: 'nl_current_user',
   courseStatus: 'nl_course_status',
+  courseAccess: 'nl_course_access',
 };
 
 function progressKey(userId) { return `nl_progress_${userId}`; }
@@ -34,6 +36,13 @@ function getCourseStatus() {
 }
 function saveCourseStatus(status) {
   localStorage.setItem(KEYS.courseStatus, JSON.stringify(status));
+}
+function getCourseAccess() {
+  try { return JSON.parse(localStorage.getItem(KEYS.courseAccess) || '{}'); }
+  catch { return {}; }
+}
+function saveCourseAccess(access) {
+  localStorage.setItem(KEYS.courseAccess, JSON.stringify(access));
 }
 function getProgress(userId) {
   try { return JSON.parse(localStorage.getItem(progressKey(userId)) || '{}'); }
@@ -94,6 +103,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [courseStatus, setCourseStatus] = useState({});
+  const [courseAccessMap, setCourseAccessMap] = useState({});
 
   // Login attempt tracking (in-memory, resets on page refresh)
   const loginAttempts = React.useRef({});
@@ -109,6 +119,7 @@ export function AuthProvider({ children }) {
       setUser(sanitizeUser(users[currentId]));  // SEC-005: never put passwordHash in state
     }
     setCourseStatus(getCourseStatus());
+    setCourseAccessMap(getCourseAccess());
     setLoading(false);
   }, []);
 
@@ -186,6 +197,40 @@ export function AuthProvider({ children }) {
     return courseStatus[courseId] !== 'offline';
   }, [courseStatus]);
 
+  // ── Course access control (per-user ACL) ──
+  const setCourseAccessControl = useCallback((courseId, userIds) => {
+    if (user?.role !== 'admin') return;
+    const access = getCourseAccess();
+    // null / empty array / 'all' → visible to everyone
+    if (!userIds || (Array.isArray(userIds) && userIds.length === 0)) {
+      access[courseId] = 'all';
+    } else {
+      access[courseId] = userIds;
+    }
+    saveCourseAccess(access);
+    setCourseAccessMap({ ...access });
+  }, [user]);
+
+  const getCourseAccessList = useCallback((courseId) => {
+    // Returns 'all' or an array of userId strings
+    const val = courseAccessMap[courseId];
+    if (!val || val === 'all') return 'all';
+    if (Array.isArray(val) && val.length > 0) return val;
+    return 'all';
+  }, [courseAccessMap]);
+
+  const canUserAccessCourse = useCallback((courseId) => {
+    // Admin can always see everything
+    if (user?.role === 'admin') return true;
+    // Must be online first
+    if (courseStatus[courseId] === 'offline') return false;
+    // Check ACL
+    const acl = courseAccessMap[courseId];
+    if (!acl || acl === 'all') return true; // default: visible to all
+    if (Array.isArray(acl)) return acl.includes(user?.id);
+    return true;
+  }, [user, courseStatus, courseAccessMap]);
+
   // ── Progress actions ──
   const markLessonComplete = useCallback((courseId, lessonId) => {
     if (!user) return;
@@ -228,15 +273,17 @@ export function AuthProvider({ children }) {
       id,
       manifest: reg.manifest,
       online: isCourseOnline(id),
+      accessList: getCourseAccessList(id),
     }));
-  }, [isCourseOnline]);
+  }, [isCourseOnline, getCourseAccessList]);
 
   const value = {
     user, loading,
     isAdmin: user?.role === 'admin',
-    courseStatus,
+    courseStatus, courseAccessMap,
     login, register, logout,
     setCourseOnline, isCourseOnline,
+    setCourseAccessControl, getCourseAccessList, canUserAccessCourse,
     markLessonComplete, getUserProgress,
     getAllUsers, updateUserRole, deleteUser,
     getVisibleCourses,

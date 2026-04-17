@@ -1,15 +1,22 @@
 import React, { Suspense } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { courseRegistry } from '../courses/registry';
+import { useAuth } from '../context/AuthContext';
 import CourseSidebar from '../components/CourseSidebar';
 import { ChevronRight } from 'lucide-react';
 import './LessonView.css';
 
 export default function LessonView() {
   const { courseId, lessonId } = useParams();
+  const { canUserAccessCourse, isAdmin } = useAuth();
   const courseData = courseRegistry[courseId];
 
   if (!courseData) return <div className="page-container">Course not found.</div>;
+
+  // ACL guard: redirect unauthorized users to course detail (shows 'no access' message)
+  if (!isAdmin && !canUserAccessCourse(courseId)) {
+    return <Navigate to={`/course/${courseId}`} replace />;
+  }
 
   const course = courseData.manifest;
 

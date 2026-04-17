@@ -1,15 +1,32 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Play, Circle, Clock, BookOpen, Layers } from 'lucide-react';
+import { Play, Circle, Clock, BookOpen, Layers, ShieldAlert } from 'lucide-react';
 import { courseRegistry } from '../courses/registry';
+import { useAuth } from '../context/AuthContext';
 import './CourseDetail.css';
 
 export default function CourseDetail() {
   const { courseId } = useParams();
   const navigate = useNavigate();
+  const { canUserAccessCourse, isAdmin } = useAuth();
 
   const courseData = courseRegistry[courseId];
   if (!courseData) return <div className="page-container">Course not found.</div>;
+
+  // ACL check: non-admin users without access see a restricted message
+  if (!isAdmin && !canUserAccessCourse(courseId)) {
+    return (
+      <div className="page-container" style={{ textAlign: 'center', paddingTop: '6rem' }}>
+        <ShieldAlert size={48} color="#f59e0b" style={{ marginBottom: '1rem' }} />
+        <h2 style={{ color: '#f1f5f9', marginBottom: '0.5rem' }}>无权访问此课程</h2>
+        <p style={{ color: '#6b7280', marginBottom: '1.5rem' }}>该课程尚未对您开放，请联系管理员获取访问权限。</p>
+        <button onClick={() => navigate('/catalog')} style={{
+          padding: '0.6rem 1.5rem', borderRadius: '8px', border: 'none',
+          background: '#4f46e5', color: 'white', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit'
+        }}>返回课程目录</button>
+      </div>
+    );
+  }
 
   const course = courseData.manifest;
 

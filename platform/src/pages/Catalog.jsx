@@ -39,15 +39,15 @@ export default function Catalog() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const activeCategory = searchParams.get('category') || 'all';
-  const { isCourseOnline, isAdmin } = useAuth();
+  const { canUserAccessCourse, isCourseOnline, isAdmin } = useAuth();
 
   const courses = Object.keys(courseRegistry).map(key => ({
     id: key,
     ...courseRegistry[key].manifest,
     online: isCourseOnline(key),
   })).filter(course => {
-    // Learners only see online courses; admins see all (with offline badge)
-    if (!isAdmin && !course.online) return false;
+    // ACL-aware: admins see all, learners only see courses they can access
+    if (!isAdmin && !canUserAccessCourse(course.id)) return false;
     if (activeCategory === 'all') return true;
     const targetCategory = CATEGORY_FILTER_MAP[activeCategory];
     return targetCategory && course.category === targetCategory;
