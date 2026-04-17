@@ -293,9 +293,12 @@ app.get('/api/status', (req, res) => {
 // ── Serve static files in production ──
 if (process.env.NODE_ENV === 'production' && fs.existsSync(DIST_DIR)) {
   app.use(express.static(DIST_DIR));
-  app.get('*', (req, res) => {
+  // SPA fallback — Express 5 / path-to-regexp v8+ requires '{*path}' instead of '*'
+  app.use((req, res, next) => {
     if (!req.path.startsWith('/api')) {
       res.sendFile(path.join(DIST_DIR, 'index.html'));
+    } else {
+      next();
     }
   });
 }
