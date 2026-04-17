@@ -4,15 +4,25 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "gen:registry": "node scripts/generate-registry.js",
+    "predev": "npm run gen:registry",
+    "prebuild": "npm run gen:registry",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "node server/index.js",
+    "export:course": "node scripts/export-course.js",
+    "import:course": "node scripts/import-course.js"
   },
   "dependencies": {
+    "adm-zip": "^0.5.16",
     "classnames": "^2.5.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "katex": "^0.16.44",
     "lucide-react": "^1.7.0",
+    "multer": "^2.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router": "^7.14.0",

@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Auto-generated files
+src/courses/registry.generated.js
+vite.aliases.generated.js
+
+# Course import/export temp dirs
+exports/
+uploads/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { courseRegistry } from '../courses/registry';
 import {
   BarChart3, Users, BookOpen, TrendingUp, Shield,
   ToggleLeft, ToggleRight, Eye, AlertTriangle, CheckCircle, ChevronRight,
-  UserCheck, Search, X, Globe, Lock
+  UserCheck, Search, X, Globe, Lock, Download, Upload, Package, Loader, RefreshCw
 } from 'lucide-react';
 import './Admin.css';
 
@@ -153,6 +153,149 @@ function CourseAccessModal({ courseId, courseName, accessList, allUsers, onSave,
   );
 }
 
+// ── Import Course Modal ──
+function ImportCourseModal({ onClose, onImported }) {
+  const fileInputRef = useRef(null);
+  const [dragActive, setDragActive] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [result, setResult] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [overwrite, setOverwrite] = useState(false);
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') setDragActive(true);
+    else if (e.type === 'dragleave') setDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files?.[0]) {
+      setSelectedFile(e.dataTransfer.files[0]);
+      setResult(null);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files?.[0]) {
+      setSelectedFile(e.target.files[0]);
+      setResult(null);
+    }
+  };
+
+  const handleImport = async () => {
+    if (!selectedFile) return;
+    setImporting(true);
+    setResult(null);
+
+    try {
+      const formData = new FormData();
+      formData.append('course', selectedFile);
+
+      const url = overwrite ? '/api/courses/import?overwrite=true' : '/api/courses/import';
+      const resp = await fetch(url, { method: 'POST', body: formData });
+      const data = await resp.json();
+
+      if (data.success) {
+        setResult({ type: 'success', message: data.message, course: data.course, note: data.note });
+        onImported?.();
+      } else {
+        setResult({ type: 'error', message: data.error, existingCourse: data.existingCourse });
+      }
+    } catch (err) {
+      setResult({ type: 'error', message: `Network error: ${err.message}` });
+    } finally {
+      setImporting(false);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box import-modal" onClick={e => e.stopPropagation()}>
+        <div className="access-modal-header">
+          <div>
+            <h3><Upload size={18} /> 导入课程包</h3>
+            <p className="access-course-name">上传 .nexuscourse.zip 文件</p>
+          </div>
+          <button className="access-close-btn" onClick={onClose}><X size={18} /></button>
+        </div>
+
+        {/* Drag & drop zone */}
+        <div
+          className={`import-drop-zone ${dragActive ? 'drag-active' : ''} ${selectedFile ? 'has-file' : ''}`}
+          onDragEnter={handleDrag}
+          onDragLeave={handleDrag}
+          onDragOver={handleDrag}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".zip"
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
+          {selectedFile ? (
+            <div className="import-file-info">
+              <Package size={32} color="#818cf8" />
+              <p className="import-file-name">{selectedFile.name}</p>
+              <p className="import-file-size">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+            </div>
+          ) : (
+            <div className="import-placeholder">
+              <Upload size={32} color="#64748b" />
+              <p>拖拽文件到此处，或点击选择</p>
+              <span>支持 .zip / .nexuscourse.zip</span>
+            </div>
+          )}
+        </div>
+
+        {/* Overwrite checkbox */}
+        <label className="import-overwrite-label">
+          <input type="checkbox" checked={overwrite} onChange={e => setOverwrite(e.target.checked)} />
+          覆盖已有同名课程
+        </label>
+
+        {/* Result feedback */}
+        {result && (
+          <div className={`import-result ${result.type}`}>
+            {result.type === 'success' ? <CheckCircle size={16} /> : <AlertTriangle size={16} />}
+            <div>
+              <p>{result.message}</p>
+              {result.note && <span className="import-result-note">{result.note}</span>}
+              {result.course && (
+                <span className="import-result-note">
+                  模块数: {result.course.modulesCount} · 目录: {result.course.dirName}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Actions */}
+        <div className="modal-actions">
+          <button className="modal-cancel" onClick={onClose}>关闭</button>
+          <button
+            className="modal-confirm confirm-green"
+            onClick={handleImport}
+            disabled={!selectedFile || importing}
+          >
+            {importing ? (
+              <><Loader size={14} className="spin-icon" /> 导入中...</>
+            ) : (
+              <><Upload size={14} /> 开始导入</>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main AdminCourses ──
 export default function AdminCourses() {
   const navigate = useNavigate();
@@ -168,6 +311,8 @@ export default function AdminCourses() {
 
   const [confirmToggle, setConfirmToggle] = useState(null); // { courseId, toOnline }
   const [accessModal, setAccessModal] = useState(null);     // { courseId, courseName }
+  const [importModal, setImportModal] = useState(false);
+  const [exportingId, setExportingId] = useState(null);
   const [filter, setFilter] = useState('all'); // 'all' | 'online' | 'offline'
 
   const courses = Object.entries(courseRegistry).map(([id, reg]) => ({
@@ -196,6 +341,33 @@ export default function AdminCourses() {
     setCourseAccessControl(courseId, userIds);
   };
 
+  const handleExport = async (courseId) => {
+    setExportingId(courseId);
+    try {
+      const resp = await fetch(`/api/courses/${courseId}/export`);
+      if (!resp.ok) {
+        const data = await resp.json();
+        alert(`导出失败: ${data.error || resp.statusText}`);
+        return;
+      }
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const disposition = resp.headers.get('Content-Disposition') || '';
+      const match = disposition.match(/filename="(.+)"/);
+      a.download = match?.[1] || `${courseId}.nexuscourse.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert(`导出失败: ${err.message}`);
+    } finally {
+      setExportingId(null);
+    }
+  };
+
   // Count restricted courses
   const restrictedCount = Object.keys(courseRegistry).filter(id => {
     const acl = getCourseAccessList(id);
@@ -215,9 +387,14 @@ export default function AdminCourses() {
           <h1>课程上线管理</h1>
           <p className="admin-subtitle">控制哪些课程对学员可见，并可指定课程仅对特定用户开放。</p>
         </div>
-        <button className="admin-nav-btn" onClick={() => navigate('/admin/users')}>
-          <Users size={16} /> 用户管理
-        </button>
+        <div className="admin-header-actions">
+          <button className="admin-action-btn import-btn" onClick={() => setImportModal(true)}>
+            <Upload size={16} /> 导入课程
+          </button>
+          <button className="admin-nav-btn" onClick={() => navigate('/admin/users')}>
+            <Users size={16} /> 用户管理
+          </button>
+        </div>
       </header>
 
       {/* Stats row */}
@@ -288,6 +465,17 @@ export default function AdminCourses() {
                       <Eye size={14} /> 预览
                     </button>
                     <button
+                      className="export-btn"
+                      onClick={() => handleExport(id)}
+                      disabled={exportingId === id}
+                      title="导出课程包"
+                    >
+                      {exportingId === id
+                        ? <><Loader size={14} className="spin-icon" /></>
+                        : <><Download size={14} /> 导出</>
+                      }
+                    </button>
+                    <button
                       className="access-assign-btn"
                       onClick={() => setAccessModal({ courseId: id, courseName: manifest?.title || id })}
                       title="设置可见范围"
@@ -343,6 +531,17 @@ export default function AdminCourses() {
           allUsers={allUsers}
           onSave={handleSaveAccess}
           onClose={() => setAccessModal(null)}
+        />
+      )}
+
+      {/* Import course modal */}
+      {importModal && (
+        <ImportCourseModal
+          onClose={() => setImportModal(false)}
+          onImported={() => {
+            // In dev mode, Vite HMR handles reload.
+            // In production, page reload picks up the new build.
+          }}
         />
       )}
     </div>
