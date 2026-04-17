@@ -10,10 +10,12 @@ const courseAliases = getCourseAliases(__dirname_resolved);
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    dedupe: ['react', 'react-dom', 'react-router-dom', 'lucide-react'],
+    dedupe: ['react', 'react-dom', 'react-router-dom', 'lucide-react', 'katex'],
     alias: {
       '@': path.resolve(__dirname_resolved, './src'),
       ...courseAliases,
+      // Ensure external course dirs can resolve shared dependencies
+      'katex': path.resolve(__dirname_resolved, 'node_modules/katex'),
     }
   },
   server: {
