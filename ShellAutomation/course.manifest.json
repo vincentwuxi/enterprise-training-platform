@@ -1,0 +1,56 @@
+{
+  "id": "shell-automation",
+  "title": "🐚 Shell 脚本 — 自动化运维与效率利器",
+  "description": "从 Bash 基础到高级自动化：变量/控制流/函数、文本处理三剑客(grep/sed/awk)、正则表达式、进程管理、系统监控脚本、定时任务、Ansible 批量运维。含 50+ 实战脚本案例。",
+  "category": "基础设施与运维",
+  "level": "初级到高级",
+  "totalHours": 24,
+  "cover": {
+    "gradient": [
+      "#22c55e",
+      "#15803d"
+    ]
+  },
+  "modules": [
+    {
+      "id": "bash-basics",
+      "title": "模块一：Bash 基础 — 变量 / 运算 / 条件 / 循环",
+      "component": "LessonBashBasics"
+    },
+    {
+      "id": "text-processing",
+      "title": "模块二：文本处理 — grep / sed / awk / sort / uniq",
+      "component": "LessonTextProcessing"
+    },
+    {
+      "id": "regex",
+      "title": "模块三：正则表达式精讲 — BRE / ERE / PCRE / 实战",
+      "component": "LessonRegex"
+    },
+    {
+      "id": "functions-modules",
+      "title": "模块四：函数与模块化 — 函数定义 / source / 库文件",
+      "component": "LessonFunctionsModules"
+    },
+    {
+      "id": "process-signals",
+      "title": "模块五：进程与信号 — 后台任务 / trap / 子进程 / xargs",
+      "component": "LessonProcessSignals"
+    },
+    {
+      "id": "system-scripts",
+      "title": "模块六：系统管理脚本 — 监控 / 日志 / 备份 / 定时任务",
+      "component": "LessonSystemScripts"
+    },
+    {
+      "id": "ansible-auto",
+      "title": "模块七：Ansible 自动化 — Playbook / Role / Galaxy / 批量运维",
+      "component": "LessonAnsibleAuto"
+    },
+    {
+      "id": "shell-project",
+      "title": "模块八：实战项目 — 服务器健康监控 + 自动部署系统",
+      "component": "LessonShellProject"
+    }
+  ]
+}

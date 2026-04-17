@@ -1,0 +1,99 @@
+{
+  "id": "ai-data-analytics-bi",
+  "title": "📊 AI 数据分析与商业智能：从 Text2SQL 到决策自动化",
+  "subtitle": "Text2SQL / AutoML / AI Agent 分析 / 智能报表 / 数据叙事全栈实战",
+  "description": "数据分析师的角色正在被 AI 重新定义。本课程从现代数据分析基础出发，系统覆盖 Text2SQL (自然语言查询数据库) → AutoML (自动化建模) → AI 驱动的探索性分析 → 智能可视化与数据叙事 → LLM 数据 Agent (代码解释器/数据助手) → 实时 BI 与决策引擎 → 数据治理与质量 → 分析工程化部署。让你掌握 AI 时代数据分析师的核心竞争力。",
+  "category": "AI 行业应用",
+  "level": "中级",
+  "icon": "📊",
+  "modules": [
+    {
+      "id": "modern-analytics-foundation",
+      "title": "模块一：现代数据分析基础 — Python 分析栈 / 统计思维 / 数据素养",
+      "component": "LessonModernAnalytics",
+      "lessons": [
+        {
+          "id": "modern-analytics-foundation",
+          "title": "模块一：现代数据分析基础 — Python 分析栈 / 统计思维 / 数据素养"
+        }
+      ]
+    },
+    {
+      "id": "text2sql",
+      "title": "模块二：Text2SQL — 自然语言查询数据库 / NL2SQL / 语义解析",
+      "component": "LessonText2SQL",
+      "lessons": [
+        {
+          "id": "text2sql",
+          "title": "模块二：Text2SQL — 自然语言查询数据库 / NL2SQL / 语义解析"
+        }
+      ]
+    },
+    {
+      "id": "automl-modeling",
+      "title": "模块三：AutoML 自动化建模 — 特征工程 / 模型选择 / 超参优化",
+      "component": "LessonAutoML",
+      "lessons": [
+        {
+          "id": "automl-modeling",
+          "title": "模块三：AutoML 自动化建模 — 特征工程 / 模型选择 / 超参优化"
+        }
+      ]
+    },
+    {
+      "id": "ai-eda",
+      "title": "模块四：AI 驱动探索性分析 — 异常检测 / 模式发现 / 因果推断",
+      "component": "LessonAIExploration",
+      "lessons": [
+        {
+          "id": "ai-eda",
+          "title": "模块四：AI 驱动探索性分析 — 异常检测 / 模式发现 / 因果推断"
+        }
+      ]
+    },
+    {
+      "id": "smart-visualization",
+      "title": "模块五：智能可视化与数据叙事 — AI 图表 / 自动报告 / 数据故事",
+      "component": "LessonSmartVisualization",
+      "lessons": [
+        {
+          "id": "smart-visualization",
+          "title": "模块五：智能可视化与数据叙事 — AI 图表 / 自动报告 / 数据故事"
+        }
+      ]
+    },
+    {
+      "id": "data-agent",
+      "title": "模块六：LLM 数据 Agent — 代码解释器 / 数据助手 / 多轮分析",
+      "component": "LessonDataAgent",
+      "lessons": [
+        {
+          "id": "data-agent",
+          "title": "模块六：LLM 数据 Agent — 代码解释器 / 数据助手 / 多轮分析"
+        }
+      ]
+    },
+    {
+      "id": "realtime-bi",
+      "title": "模块七：实时 BI 与决策引擎 — 流分析 / 预测看板 / 告警系统",
+      "component": "LessonRealtimeBI",
+      "lessons": [
+        {
+          "id": "realtime-bi",
+          "title": "模块七：实时 BI 与决策引擎 — 流分析 / 预测看板 / 告警系统"
+        }
+      ]
+    },
+    {
+      "id": "analytics-engineering",
+      "title": "模块八：分析工程化 — 数据建模 / 指标体系 / dbt / 分析部署",
+      "component": "LessonAnalyticsEngineering",
+      "lessons": [
+        {
+          "id": "analytics-engineering",
+          "title": "模块八：分析工程化 — 数据建模 / 指标体系 / dbt / 分析部署"
+        }
+      ]
+    }
+  ]
+}

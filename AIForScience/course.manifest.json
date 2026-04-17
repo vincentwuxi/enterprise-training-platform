@@ -1,0 +1,51 @@
+{
+  "id": "ai-for-science",
+  "title": "🔬 AI for Science：从 AlphaFold 到 GenCast — AI 驱动科学发现",
+  "subtitle": "蛋白质折叠 / 药物发现 / 天气预测 / 材料设计 / 数学推理",
+  "description": "AlphaFold 3 获 2024 诺贝尔化学奖，GenCast 天气预报精度超越 ECMWF，GNoME 发现 200 万种新材料——AI 正在改写科学发现的方式。本课程从科学 AI 范式出发，深入 AlphaFold 蛋白质折叠 → AI 药物发现 (分子表征/虚拟筛选) → AI 天气与气候 (GraphCast/GenCast) → AI 材料设计 (GNoME/晶体预测) → AI 数学推理 (AlphaProof/LeanDojo) → AI 基因组学 (ESM-3/Evo) → 科学 AI 工程化 (HPC/实验管理/可复现性)。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "totalHours": 40,
+  "modules": [
+    {
+      "id": "scientific-ai-paradigm",
+      "title": "模块一：科学 AI 范式 — 四次范式 / Foundation Model for Science / 科学大模型",
+      "component": "LessonScientificParadigm"
+    },
+    {
+      "id": "alphafold-protein",
+      "title": "模块二：AlphaFold 深度 — 蛋白质折叠 / MSA Transformer / 结构预测 / 药物对接",
+      "component": "LessonAlphaFold"
+    },
+    {
+      "id": "ai-drug-discovery",
+      "title": "模块三：AI 药物发现 — 分子表征 / GNN / ADMET / 虚拟筛选 / Lead 优化",
+      "component": "LessonDrugDiscovery"
+    },
+    {
+      "id": "ai-weather-climate",
+      "title": "模块四：AI 天气与气候 — GraphCast / GenCast / FourCastNet / 气候模拟",
+      "component": "LessonWeatherClimate"
+    },
+    {
+      "id": "ai-materials-design",
+      "title": "模块五：AI 材料设计 — GNoME / 晶体结构预测 / 性质预测 / 逆设计",
+      "component": "LessonMaterialsDesign"
+    },
+    {
+      "id": "ai-math-reasoning",
+      "title": "模块六：AI 数学推理 — AlphaProof / AlphaGeometry / LeanDojo / 自动定理证明",
+      "component": "LessonMathReasoning"
+    },
+    {
+      "id": "ai-genomics",
+      "title": "模块七：AI 基因组学 — Evo / ESM-3 / 基因表达预测 / 单细胞分析 / 蛋白质设计",
+      "component": "LessonGenomics"
+    },
+    {
+      "id": "scientific-ai-engineering",
+      "title": "模块八：科学 AI 工程 — HPC+AI / 大规模实验管理 / 可复现性 / MLflow for Science",
+      "component": "LessonScienceEngineering"
+    }
+  ]
+}

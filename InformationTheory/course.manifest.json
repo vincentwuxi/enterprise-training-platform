@@ -1,0 +1,56 @@
+{
+  "id": "information-theory",
+  "title": "📡 信息论与编码 — 从香农到深度学习",
+  "description": "信息论是通信与机器学习的理论基石。系统讲解熵、互信息、信道容量、率失真理论、Huffman/LZ 编码、纠错码与信息论在深度学习中的应用（交叉熵、KL 散度、ELBO）。",
+  "category": "数学基础",
+  "level": "中级到高级",
+  "totalHours": 28,
+  "cover": {
+    "gradient": [
+      "#06b6d4",
+      "#3b82f6"
+    ]
+  },
+  "modules": [
+    {
+      "id": "entropy",
+      "title": "模块一：信息与熵 — 自信息 / 香农熵 / 联合熵 / 条件熵",
+      "component": "LessonEntropy"
+    },
+    {
+      "id": "mutual-info",
+      "title": "模块二：互信息与 KL 散度 — 信道模型 / 数据处理不等式",
+      "component": "LessonMutualInfo"
+    },
+    {
+      "id": "source-coding",
+      "title": "模块三：信源编码 — Huffman / 算术编码 / LZ 系列",
+      "component": "LessonSourceCoding"
+    },
+    {
+      "id": "channel-capacity",
+      "title": "模块四：信道容量 — BSC / BEC / 高斯信道 / 香农极限",
+      "component": "LessonChannelCapacity"
+    },
+    {
+      "id": "error-correction",
+      "title": "模块五：纠错编码 — 汉明码 / Reed-Solomon / LDPC / Polar",
+      "component": "LessonErrorCorrection"
+    },
+    {
+      "id": "rate-distortion",
+      "title": "模块六：率失真理论 — 有损压缩 / 量化 / VQ",
+      "component": "LessonRateDistortion"
+    },
+    {
+      "id": "info-ml",
+      "title": "模块七：信息论与机器学习 — 交叉熵 / ELBO / InfoNCE",
+      "component": "LessonInfoML"
+    },
+    {
+      "id": "info-project",
+      "title": "模块八：实战项目 — 文本压缩引擎 + 信道模拟器",
+      "component": "LessonInfoProject"
+    }
+  ]
+}

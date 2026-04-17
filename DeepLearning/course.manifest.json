@@ -1,0 +1,51 @@
+{
+  "id": "deep-learning",
+  "title": "🧬 深度学习理论与实战：从神经网络到前沿架构 — 补全 ML→DL→LLM 技术栈",
+  "subtitle": "神经网络 / CNN / Transformer / 生成模型 / GNN / 自监督学习 / 模型压缩",
+  "description": "深度学习是 AI 革命的核心引擎。本课程从神经网络基础出发，深入 CNN 图像识别 → RNN/LSTM/Transformer 序列建模 → VAE/GAN/Diffusion 生成模型 → 图神经网络 → 自监督与对比学习 (CLIP/DINO) → 模型压缩与高效推理 → 前沿架构 (Mamba/MoE/RWKV)。每个模块配合 PyTorch 实战代码，让你真正理解从反向传播到 Attention 的每一个数学细节。",
+  "category": "AI 基础与理论",
+  "level": "中级-高级",
+  "totalHours": 48,
+  "modules": [
+    {
+      "id": "neural-networks-fundamentals",
+      "title": "模块一：神经网络基础 — 前向传播 / 反向传播 / 梯度下降 / 正则化",
+      "component": "LessonNeuralNetworks"
+    },
+    {
+      "id": "convolutional-neural-networks",
+      "title": "模块二：卷积神经网络 — CNN 架构 / ResNet / EfficientNet / 目标检测",
+      "component": "LessonCNN"
+    },
+    {
+      "id": "sequence-models-transformer",
+      "title": "模块三：序列模型与 Transformer — RNN / LSTM / Attention / GPT / BERT",
+      "component": "LessonSequenceModels"
+    },
+    {
+      "id": "generative-models",
+      "title": "模块四：生成模型 — VAE / GAN / Diffusion Model / 数学与实现",
+      "component": "LessonGenerativeModels"
+    },
+    {
+      "id": "graph-neural-networks",
+      "title": "模块五：图神经网络 — GCN / GAT / GraphSAGE / 分子图 / 社交网络",
+      "component": "LessonGraphNN"
+    },
+    {
+      "id": "self-supervised-learning",
+      "title": "模块六：自监督与对比学习 — SimCLR / CLIP / MAE / DINO v2",
+      "component": "LessonSelfSupervised"
+    },
+    {
+      "id": "model-compression",
+      "title": "模块七：模型压缩与高效推理 — 知识蒸馏 / 剪枝 / 量化 / NAS",
+      "component": "LessonModelCompression"
+    },
+    {
+      "id": "frontier-architectures",
+      "title": "模块八：前沿架构 — Mamba / RWKV / Mixture of Experts / 超长上下文",
+      "component": "LessonFrontierArch"
+    }
+  ]
+}

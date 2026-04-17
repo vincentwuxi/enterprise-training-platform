@@ -2,18 +2,70 @@
   "id": "postgresql-mastery",
   "title": "PostgreSQL 深度实战：从 MVCC 到 pgvector 的现代数据库",
   "description": "现代应用首选数据库——MVCC 多版本并发控制 / WAL 预写日志 / 事务隔离级别（Read Committed vs Serializable）→ 高级 SQL（窗口函数/CTE/LATERAL JOIN/JSONB 文档查询/全文搜索）→ 索引深度（B-tree/GIN/GiST/BRIN/覆盖索引/部分索引/EXPLAIN ANALYZE 读计划）→ pgvector 向量搜索（嵌入存储/ANN 索引 IVFFlat+HNSW/与 RAG 闭环）→ 分区与分片（Range/List/Hash 分区/Citus 分布式/Foreign Data Wrapper）→ 复制与高可用（流复制/逻辑复制/Patroni 自动切换/pg_basebackup）→ 性能调优（shared_buffers/work_mem/pg_stat_statements/慢查询分析/VACUUM/Autovacuum）→ 云服务实战（Supabase/Neon Serverless/Vercel Postgres/RDS）。",
-  "category": "数据库 & 存储",
+  "category": "编程与开发",
   "level": "中高级",
-  "duration": "28h",
-  "tags": ["PostgreSQL", "MVCC", "WAL", "pgvector", "RAG", "窗口函数", "CTE", "JSONB", "GIN", "B-tree", "EXPLAIN", "分区", "Citus", "Patroni", "Supabase", "Neon", "流复制", "VACUUM", "性能调优"],
+  "totalHours": 28,
+  "tags": [
+    "PostgreSQL",
+    "MVCC",
+    "WAL",
+    "pgvector",
+    "RAG",
+    "窗口函数",
+    "CTE",
+    "JSONB",
+    "GIN",
+    "B-tree",
+    "EXPLAIN",
+    "分区",
+    "Citus",
+    "Patroni",
+    "Supabase",
+    "Neon",
+    "流复制",
+    "VACUUM",
+    "性能调优"
+  ],
   "modules": [
-    { "id": "internals",    "title": "模块一：PG 内核 — MVCC / WAL / 事务隔离 / 进程架构", "lessonKey": "LessonInternals" },
-    { "id": "advanced-sql", "title": "模块二：高级 SQL — 窗口函数 / CTE / LATERAL / JSONB / 全文搜索", "lessonKey": "LessonAdvancedSQL" },
-    { "id": "indexing",     "title": "模块三：索引深度 — B-tree / GIN / GiST / BRIN / EXPLAIN ANALYZE", "lessonKey": "LessonIndexing" },
-    { "id": "pgvector",     "title": "模块四：pgvector 向量搜索 — 嵌入存储 / ANN 索引 / RAG 闭环", "lessonKey": "LessonPgvector" },
-    { "id": "partition",    "title": "模块五：分区与分片 — Range / List / Hash / Citus / FDW", "lessonKey": "LessonPartition" },
-    { "id": "replication",  "title": "模块六：复制与高可用 — 流复制 / 逻辑复制 / Patroni / 备份", "lessonKey": "LessonReplication" },
-    { "id": "tuning",       "title": "模块七：性能调优 — shared_buffers / pg_stat / VACUUM / 慢查询", "lessonKey": "LessonTuning" },
-    { "id": "cloud-pg",     "title": "模块八：云服务实战 — Supabase / Neon / Vercel Postgres / RDS", "lessonKey": "LessonCloudPG" }
+    {
+      "id": "internals",
+      "title": "模块一：PG 内核 — MVCC / WAL / 事务隔离 / 进程架构",
+      "lessonKey": "LessonInternals"
+    },
+    {
+      "id": "advanced-sql",
+      "title": "模块二：高级 SQL — 窗口函数 / CTE / LATERAL / JSONB / 全文搜索",
+      "lessonKey": "LessonAdvancedSQL"
+    },
+    {
+      "id": "indexing",
+      "title": "模块三：索引深度 — B-tree / GIN / GiST / BRIN / EXPLAIN ANALYZE",
+      "lessonKey": "LessonIndexing"
+    },
+    {
+      "id": "pgvector",
+      "title": "模块四：pgvector 向量搜索 — 嵌入存储 / ANN 索引 / RAG 闭环",
+      "lessonKey": "LessonPgvector"
+    },
+    {
+      "id": "partition",
+      "title": "模块五：分区与分片 — Range / List / Hash / Citus / FDW",
+      "lessonKey": "LessonPartition"
+    },
+    {
+      "id": "replication",
+      "title": "模块六：复制与高可用 — 流复制 / 逻辑复制 / Patroni / 备份",
+      "lessonKey": "LessonReplication"
+    },
+    {
+      "id": "tuning",
+      "title": "模块七：性能调优 — shared_buffers / pg_stat / VACUUM / 慢查询",
+      "lessonKey": "LessonTuning"
+    },
+    {
+      "id": "cloud-pg",
+      "title": "模块八：云服务实战 — Supabase / Neon / Vercel Postgres / RDS",
+      "lessonKey": "LessonCloudPG"
+    }
   ]
 }

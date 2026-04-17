@@ -1,0 +1,61 @@
+{
+  "id": "mcp-tool-ecosystem",
+  "title": "🔌 AI 工具生态工程：MCP 协议 / Function Calling / Computer Use — 构建 AI 的手和脚",
+  "description": "AI 模型再强大，也需要工具才能与世界交互。本课程从 MCP (Model Context Protocol) 协议深度解析出发，系统覆盖 MCP Server 开发 → Function Calling 高级模式（并行/嵌套/动态Schema）→ AI 浏览器自动化（Browser Use / Playwright AI）→ Computer Use（Claude 屏幕操控/Screen Agent）→ GPTs & Custom Actions 企业级构建 → AI 工具安全（权限/沙盒/审计链）→ 企业工具平台（统一注册/发现/编排）。每个模块配有完整的生产级代码和真实集成案例。",
+  "category": "AI Agent 工程",
+  "level": "高级",
+  "totalHours": 36,
+  "instructor": "AI 工具链架构师 · MCP 协议专家 · 自动化工程师",
+  "tags": [
+    "MCP",
+    "Function Calling",
+    "Tool Use",
+    "Computer Use",
+    "Browser Use",
+    "GPTs",
+    "AI Agent",
+    "Automation"
+  ],
+  "modules": [
+    {
+      "id": "mcp-protocol",
+      "title": "模块一：MCP 协议深度 — 架构 / Server 开发 / Transport 层",
+      "lessonKey": "LessonMCPProtocol"
+    },
+    {
+      "id": "mcp-servers",
+      "title": "模块二：MCP 实战 — 数据库 / API / 文件系统 Tool Server",
+      "lessonKey": "LessonMCPServers"
+    },
+    {
+      "id": "function-calling",
+      "title": "模块三：Function Calling 高级 — 并行 / 嵌套 / 动态 Schema",
+      "lessonKey": "LessonFunctionCalling"
+    },
+    {
+      "id": "browser-use",
+      "title": "模块四：AI 浏览器自动化 — Browser Use / Playwright AI",
+      "lessonKey": "LessonBrowserUse"
+    },
+    {
+      "id": "computer-use",
+      "title": "模块五：Computer Use — Claude 屏幕操控 / Screen Agent",
+      "lessonKey": "LessonComputerUse"
+    },
+    {
+      "id": "gpts-actions",
+      "title": "模块六：GPTs & Custom Actions — 企业级 GPT 构建",
+      "lessonKey": "LessonGPTsActions"
+    },
+    {
+      "id": "tool-security",
+      "title": "模块七：AI 工具安全 — 权限模型 / 沙盒 / 审计链",
+      "lessonKey": "LessonToolSecurity"
+    },
+    {
+      "id": "tool-platform",
+      "title": "模块八：企业工具平台 — 统一注册 / 发现 / 编排",
+      "lessonKey": "LessonToolPlatform"
+    }
+  ]
+}

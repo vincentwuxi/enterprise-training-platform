@@ -1,0 +1,56 @@
+{
+  "id": "golang-engineering",
+  "title": "🐹 Go 语言工程实战 — 并发·微服务·云原生",
+  "description": "系统学习 Go 语言：从语法基础到高性能工程实践。覆盖 goroutine 并发模型、Channel 通信、标准库深度使用、gRPC 微服务、数据库操作、性能调优与 Docker/K8s 云原生部署。",
+  "category": "编程与开发",
+  "level": "中级",
+  "totalHours": 36,
+  "cover": {
+    "gradient": [
+      "#00add8",
+      "#00758d"
+    ]
+  },
+  "modules": [
+    {
+      "id": "go-basics",
+      "title": "模块一：Go 基础 — 类型系统 / 函数 / 错误处理 / 包管理",
+      "component": "LessonGoBasics"
+    },
+    {
+      "id": "go-struct",
+      "title": "模块二：结构体与接口 — 组合优于继承 / 接口鸭子类型",
+      "component": "LessonGoStruct"
+    },
+    {
+      "id": "go-concurrency",
+      "title": "模块三：并发编程 — Goroutine / Channel / Select / WaitGroup",
+      "component": "LessonGoConcurrency"
+    },
+    {
+      "id": "go-stdlib",
+      "title": "模块四：标准库精讲 — net/http / encoding/json / io / context",
+      "component": "LessonGoStdlib"
+    },
+    {
+      "id": "go-testing",
+      "title": "模块五：测试与质量 — 单元测试 / Benchmark / Fuzzing / 覆盖率",
+      "component": "LessonGoTesting"
+    },
+    {
+      "id": "go-grpc",
+      "title": "模块六：gRPC 微服务 — Protobuf / 流式 RPC / 拦截器",
+      "component": "LessonGoGRPC"
+    },
+    {
+      "id": "go-database",
+      "title": "模块七：数据库与缓存 — GORM / sqlx / Redis / MongoDB",
+      "component": "LessonGoDatabase"
+    },
+    {
+      "id": "go-deploy",
+      "title": "模块八：性能调优与部署 — pprof / trace / Docker / K8s",
+      "component": "LessonGoDeploy"
+    }
+  ]
+}

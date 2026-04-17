@@ -2,21 +2,56 @@
   "id": "devops-mastery",
   "title": "Docker & Kubernetes 从入门到精通：云原生工程师之路",
   "description": "从容器基础到 Kubernetes 生产集群，系统掌握云原生技术栈。含交互式命令模拟器、架构可视化、HPA 弹性伸缩演示、Prometheus 监控仪表盘，以及从代码到生产的完整 DevOps 实战路径。",
-  "category": "DevOps & 云原生",
+  "category": "基础设施与运维",
   "level": "中高级",
   "totalHours": 38,
   "cover": {
-    "gradient": ["#0c1a2e", "#0d3b72"]
+    "gradient": [
+      "#0c1a2e",
+      "#0d3b72"
+    ]
   },
   "instructor": "高级云原生架构师 · CNCF 认证 Kubernetes 管理员 (CKA)",
   "modules": [
-    { "id": "containers",    "title": "模块一：容器革命 — 为什么容器改变了软件世界",       "lessonKey": "LessonContainers" },
-    { "id": "docker",        "title": "模块二：Docker 实战 — 镜像、容器与核心命令",       "lessonKey": "LessonDocker" },
-    { "id": "dockerfile",    "title": "模块三：Dockerfile 精通 — 多阶段构建与最佳实践",   "lessonKey": "LessonDockerfile" },
-    { "id": "compose",       "title": "模块四：Docker Compose — 多服务应用编排",          "lessonKey": "LessonCompose" },
-    { "id": "k8score",       "title": "模块五：Kubernetes 核心 — Pod、Service、Deployment", "lessonKey": "LessonK8sCore" },
-    { "id": "k8sadvanced",   "title": "模块六：K8s 进阶 — 调度、弹性伸缩与滚动更新",     "lessonKey": "LessonK8sAdvanced" },
-    { "id": "observability", "title": "模块七：可观测性 — Prometheus、Grafana 与日志",    "lessonKey": "LessonObservability" },
-    { "id": "production",    "title": "模块八：生产实战 — 从代码到 K8s 生产环境",         "lessonKey": "LessonProduction" }
+    {
+      "id": "containers",
+      "title": "模块一：容器革命 — 为什么容器改变了软件世界",
+      "lessonKey": "LessonContainers"
+    },
+    {
+      "id": "docker",
+      "title": "模块二：Docker 实战 — 镜像、容器与核心命令",
+      "lessonKey": "LessonDocker"
+    },
+    {
+      "id": "dockerfile",
+      "title": "模块三：Dockerfile 精通 — 多阶段构建与最佳实践",
+      "lessonKey": "LessonDockerfile"
+    },
+    {
+      "id": "compose",
+      "title": "模块四：Docker Compose — 多服务应用编排",
+      "lessonKey": "LessonCompose"
+    },
+    {
+      "id": "k8score",
+      "title": "模块五：Kubernetes 核心 — Pod、Service、Deployment",
+      "lessonKey": "LessonK8sCore"
+    },
+    {
+      "id": "k8sadvanced",
+      "title": "模块六：K8s 进阶 — 调度、弹性伸缩与滚动更新",
+      "lessonKey": "LessonK8sAdvanced"
+    },
+    {
+      "id": "observability",
+      "title": "模块七：可观测性 — Prometheus、Grafana 与日志",
+      "lessonKey": "LessonObservability"
+    },
+    {
+      "id": "production",
+      "title": "模块八：生产实战 — 从代码到 K8s 生产环境",
+      "lessonKey": "LessonProduction"
+    }
   ]
 }

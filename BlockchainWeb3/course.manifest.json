@@ -2,19 +2,56 @@
   "id": "blockchain-web3",
   "title": "区块链 & Web3：从 Solidity 到 DeFi 全栈",
   "description": "从零掌握 Web3 开发全链路！区块链密码学原理 → Solidity 智能合约 → DeFi 协议（AMM/借贷/收益农场）→ NFT 标准 → 智能合约安全审计（重入攻击/闪电贷）→ Layer2（Rollup/ZK）扩容 → Web3 全栈（ethers.js / wagmi / MetaMask）。配套 AMM 价格曲线模拟器、合约攻击路径动画、L1/L2吞吐量对比，助你成为 Solidity & DeFi 全栈工程师。",
-  "category": "区块链 & Web3",
+  "category": "产品与职业",
   "level": "中高级",
   "totalHours": 48,
-  "cover": { "gradient": ["#0d0514", "#0a0d1a"] },
+  "cover": {
+    "gradient": [
+      "#0d0514",
+      "#0a0d1a"
+    ]
+  },
   "instructor": "Ethereum Foundation 贡献者 · OpenZeppelin 安全审计员 · DeFi 协议前工程师 · Scroll ZK-Rollup 团队",
   "modules": [
-    { "id": "foundation",  "title": "模块一：区块链基础 — 密码学 / 共识 / 以太坊账户模型",     "lessonKey": "LessonFoundation" },
-    { "id": "solidity",    "title": "模块二：Solidity 智能合约 — 语法精讲 / 合约设计模式",     "lessonKey": "LessonSolidity" },
-    { "id": "defi",        "title": "模块三：DeFi 协议 — AMM / DEX / 借贷 / 收益农场",          "lessonKey": "LessonDeFi" },
-    { "id": "nft",         "title": "模块四：NFT & 代币标准 — ERC-20/721/1155 / IPFS 元数据",   "lessonKey": "LessonNFT" },
-    { "id": "security",    "title": "模块五：智能合约安全 — 重入 / 闪电贷 / 访问控制审计",       "lessonKey": "LessonSecurity" },
-    { "id": "oracle",      "title": "模块六：Oracle & 存储 — Chainlink / IPFS / The Graph",      "lessonKey": "LessonOracle" },
-    { "id": "layer2",      "title": "模块七：Layer2 扩容 — Optimistic / ZK-Rollup / Bridge",    "lessonKey": "LessonLayer2" },
-    { "id": "fullstack",   "title": "模块八：Web3 全栈 — ethers.js / wagmi / MetaMask dApp",    "lessonKey": "LessonFullstack" }
+    {
+      "id": "foundation",
+      "title": "模块一：区块链基础 — 密码学 / 共识 / 以太坊账户模型",
+      "lessonKey": "LessonFoundation"
+    },
+    {
+      "id": "solidity",
+      "title": "模块二：Solidity 智能合约 — 语法精讲 / 合约设计模式",
+      "lessonKey": "LessonSolidity"
+    },
+    {
+      "id": "defi",
+      "title": "模块三：DeFi 协议 — AMM / DEX / 借贷 / 收益农场",
+      "lessonKey": "LessonDeFi"
+    },
+    {
+      "id": "nft",
+      "title": "模块四：NFT & 代币标准 — ERC-20/721/1155 / IPFS 元数据",
+      "lessonKey": "LessonNFT"
+    },
+    {
+      "id": "security",
+      "title": "模块五：智能合约安全 — 重入 / 闪电贷 / 访问控制审计",
+      "lessonKey": "LessonSecurity"
+    },
+    {
+      "id": "oracle",
+      "title": "模块六：Oracle & 存储 — Chainlink / IPFS / The Graph",
+      "lessonKey": "LessonOracle"
+    },
+    {
+      "id": "layer2",
+      "title": "模块七：Layer2 扩容 — Optimistic / ZK-Rollup / Bridge",
+      "lessonKey": "LessonLayer2"
+    },
+    {
+      "id": "fullstack",
+      "title": "模块八：Web3 全栈 — ethers.js / wagmi / MetaMask dApp",
+      "lessonKey": "LessonFullstack"
+    }
   ]
 }

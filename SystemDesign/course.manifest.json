@@ -2,19 +2,56 @@
   "id": "system-design",
   "title": "系统设计：大规模分布式架构",
   "description": "从 0 到 1 掌握大厂面试必考的系统设计！CAP 定理 / 高可用 / 缓存穿透雪崩 / 一致性哈希 / 分布式事务 / 消息队列 / 微服务 / API 网关。配套设计 60+ 经典面试题：设计 Twitter Feed、URL 短链、电商秒杀、分布式搜索，从容应对 Google / Meta / 字节跳动系统设计面试。",
-  "category": "架构设计",
+  "category": "基础设施与运维",
   "level": "高级",
   "totalHours": 48,
-  "cover": { "gradient": ["#0f172a", "#1e293b"] },
+  "cover": {
+    "gradient": [
+      "#0f172a",
+      "#1e293b"
+    ]
+  },
   "instructor": "前 Google Principal Engineer · Meta 系统架构师 · 《Designing Data-Intensive Applications》中文版技术审阅 · 10 年分布式系统经验",
   "modules": [
-    { "id": "fundamentals",  "title": "模块一：设计方法论 — 需求分析 / 估算 / CAP 定理",         "lessonKey": "LessonFundamentals" },
-    { "id": "high-avail",   "title": "模块二：高可用架构 — 负载均衡 / 主从 / 熔断降级",          "lessonKey": "LessonHighAvail" },
-    { "id": "cache",        "title": "模块三：缓存系统 — Redis 架构 / 穿透击穿雪崩",              "lessonKey": "LessonCache" },
-    { "id": "mq",           "title": "模块四：消息队列 — Kafka / 可靠性 / 顺序性",               "lessonKey": "LessonMQ" },
-    { "id": "database",     "title": "模块五：数据库扩展 — 分库分表 / 一致性哈希",               "lessonKey": "LessonDatabase" },
-    { "id": "distributed",  "title": "模块六：分布式系统 — Raft / 分布式事务 / 分布式锁",        "lessonKey": "LessonDistributed" },
-    { "id": "microservice", "title": "模块七：微服务架构 — 服务发现 / API 网关 / 服务网格",       "lessonKey": "LessonMicroservice" },
-    { "id": "interview",    "title": "模块八：面试实战 — URL短链 / Twitter Feed / 电商秒杀",      "lessonKey": "LessonInterview" }
+    {
+      "id": "fundamentals",
+      "title": "模块一：设计方法论 — 需求分析 / 估算 / CAP 定理",
+      "lessonKey": "LessonFundamentals"
+    },
+    {
+      "id": "high-avail",
+      "title": "模块二：高可用架构 — 负载均衡 / 主从 / 熔断降级",
+      "lessonKey": "LessonHighAvail"
+    },
+    {
+      "id": "cache",
+      "title": "模块三：缓存系统 — Redis 架构 / 穿透击穿雪崩",
+      "lessonKey": "LessonCache"
+    },
+    {
+      "id": "mq",
+      "title": "模块四：消息队列 — Kafka / 可靠性 / 顺序性",
+      "lessonKey": "LessonMQ"
+    },
+    {
+      "id": "database",
+      "title": "模块五：数据库扩展 — 分库分表 / 一致性哈希",
+      "lessonKey": "LessonDatabase"
+    },
+    {
+      "id": "distributed",
+      "title": "模块六：分布式系统 — Raft / 分布式事务 / 分布式锁",
+      "lessonKey": "LessonDistributed"
+    },
+    {
+      "id": "microservice",
+      "title": "模块七：微服务架构 — 服务发现 / API 网关 / 服务网格",
+      "lessonKey": "LessonMicroservice"
+    },
+    {
+      "id": "interview",
+      "title": "模块八：面试实战 — URL短链 / Twitter Feed / 电商秒杀",
+      "lessonKey": "LessonInterview"
+    }
   ]
 }

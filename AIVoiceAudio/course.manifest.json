@@ -1,0 +1,99 @@
+{
+  "id": "ai-voice-audio-engineering",
+  "title": "🗣️ AI 语音与音频工程：从识别合成到 Voice Agent",
+  "subtitle": "Whisper / GPT-SoVITS / CosyVoice / 流式语音对话 / 音乐生成全栈实战",
+  "description": "语音是人机交互最自然的模态。本课程从音频信号基础出发，系统覆盖语音识别 (Whisper v3 / FunASR / 流式 ASR) → 语音合成 (GPT-SoVITS / CosyVoice / 声音克隆) → 语音大模型 (Qwen2-Audio / 语音理解) → Voice Agent (实时语音对话 / 低延迟管线) → 音乐与音效生成 (Suno / MusicGen) → 音频处理工程 (降噪 / 分离 / 说话人日志) → 语音产品部署 (WebRTC / 流式推理 / 端侧)。让你具备从信号处理到产品上线的完整能力。",
+  "category": "AI 行业应用",
+  "level": "中级",
+  "icon": "🗣️",
+  "modules": [
+    {
+      "id": "audio-fundamentals",
+      "title": "模块一：音频信号基础 — 信号处理 / 特征提取 / 数据增强",
+      "component": "LessonAudioFundamentals",
+      "lessons": [
+        {
+          "id": "audio-fundamentals",
+          "title": "模块一：音频信号基础 — 信号处理 / 特征提取 / 数据增强"
+        }
+      ]
+    },
+    {
+      "id": "speech-recognition",
+      "title": "模块二：语音识别 (ASR) — Whisper v3 / FunASR / 流式识别",
+      "component": "LessonSpeechRecognition",
+      "lessons": [
+        {
+          "id": "speech-recognition",
+          "title": "模块二：语音识别 (ASR) — Whisper v3 / FunASR / 流式识别"
+        }
+      ]
+    },
+    {
+      "id": "speech-synthesis",
+      "title": "模块三：语音合成 (TTS) — GPT-SoVITS / CosyVoice / 声音克隆",
+      "component": "LessonSpeechSynthesis",
+      "lessons": [
+        {
+          "id": "speech-synthesis",
+          "title": "模块三：语音合成 (TTS) — GPT-SoVITS / CosyVoice / 声音克隆"
+        }
+      ]
+    },
+    {
+      "id": "speech-llm",
+      "title": "模块四：语音大模型 — Qwen2-Audio / 语音理解 / Audio LLM",
+      "component": "LessonSpeechLLM",
+      "lessons": [
+        {
+          "id": "speech-llm",
+          "title": "模块四：语音大模型 — Qwen2-Audio / 语音理解 / Audio LLM"
+        }
+      ]
+    },
+    {
+      "id": "voice-agent",
+      "title": "模块五：Voice Agent — 实时语音对话 / 低延迟管线 / VAD",
+      "component": "LessonVoiceAgent",
+      "lessons": [
+        {
+          "id": "voice-agent",
+          "title": "模块五：Voice Agent — 实时语音对话 / 低延迟管线 / VAD"
+        }
+      ]
+    },
+    {
+      "id": "music-generation",
+      "title": "模块六：音乐与音效生成 — Suno / MusicGen / 音频创意",
+      "component": "LessonMusicGeneration",
+      "lessons": [
+        {
+          "id": "music-generation",
+          "title": "模块六：音乐与音效生成 — Suno / MusicGen / 音频创意"
+        }
+      ]
+    },
+    {
+      "id": "audio-processing",
+      "title": "模块七：音频处理工程 — 降噪 / 分离 / 增强 / 说话人日志",
+      "component": "LessonAudioProcessing",
+      "lessons": [
+        {
+          "id": "audio-processing",
+          "title": "模块七：音频处理工程 — 降噪 / 分离 / 增强 / 说话人日志"
+        }
+      ]
+    },
+    {
+      "id": "voice-deployment",
+      "title": "模块八：语音产品部署 — WebRTC / 流式推理 / 端侧 ASR",
+      "component": "LessonVoiceDeployment",
+      "lessons": [
+        {
+          "id": "voice-deployment",
+          "title": "模块八：语音产品部署 — WebRTC / 流式推理 / 端侧 ASR"
+        }
+      ]
+    }
+  ]
+}

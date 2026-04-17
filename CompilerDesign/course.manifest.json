@@ -1,0 +1,56 @@
+{
+  "id": "compiler-design",
+  "title": "⚙️ 编译原理 — 从词法分析到代码生成",
+  "description": "系统学习编译器前端与后端：词法分析(正则/NFA/DFA)、语法分析(LL/LR)、语义分析、中间表示(IR)、优化Pass、代码生成与 LLVM 框架。完成一门小型语言的编译器实战。",
+  "category": "编程与开发",
+  "level": "高级",
+  "totalHours": 36,
+  "cover": {
+    "gradient": [
+      "#7c3aed",
+      "#2563eb"
+    ]
+  },
+  "modules": [
+    {
+      "id": "lexical",
+      "title": "模块一：词法分析 — 正则表达式 / NFA / DFA / Lexer",
+      "component": "LessonLexical"
+    },
+    {
+      "id": "parsing",
+      "title": "模块二：语法分析 — CFG / LL(1) / LR(1) / Parser 生成器",
+      "component": "LessonParsing"
+    },
+    {
+      "id": "ast-semantic",
+      "title": "模块三：AST 与语义分析 — 类型检查 / 符号表 / 作用域",
+      "component": "LessonASTSemantic"
+    },
+    {
+      "id": "ir-generation",
+      "title": "模块四：中间表示 — 三地址码 / SSA / 控制流图",
+      "component": "LessonIRGeneration"
+    },
+    {
+      "id": "optimization",
+      "title": "模块五：编译优化 — 常量折叠 / 死代码消除 / 循环优化",
+      "component": "LessonOptimization"
+    },
+    {
+      "id": "codegen",
+      "title": "模块六：代码生成 — 寄存器分配 / 指令选择 / 目标代码",
+      "component": "LessonCodegen"
+    },
+    {
+      "id": "llvm",
+      "title": "模块七：LLVM 框架 — IR / Pass / Clang / 自定义后端",
+      "component": "LessonLLVM"
+    },
+    {
+      "id": "compiler-project",
+      "title": "模块八：实战项目 — 设计并实现一门小型语言",
+      "component": "LessonCompilerProject"
+    }
+  ]
+}

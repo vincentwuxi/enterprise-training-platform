@@ -2,10 +2,23 @@
   "id": "open-model-finetune",
   "title": "开源小模型微调实战：从入门到精通",
   "description": "系统掌握 Llama 3/Mistral/Qwen/Gemma 等主流开源模型的微调全链路。覆盖 LoRA/QLoRA/SFT/DPO 核心技术，Unsloth/TRL/LLaMA-Factory 实战工具，量化部署（GGUF/vLLM/Ollama），从零打造领域专家模型并上线推理服务。",
-  "category": "AI 模型工程",
+  "category": "大模型与 LLM",
   "level": "进阶到专家",
-  "duration": "30h",
-  "tags": ["微调", "LoRA", "QLoRA", "SFT", "DPO", "Unsloth", "vLLM", "Ollama", "Llama3", "Qwen", "量化", "GGUF"],
+  "totalHours": 30,
+  "tags": [
+    "微调",
+    "LoRA",
+    "QLoRA",
+    "SFT",
+    "DPO",
+    "Unsloth",
+    "vLLM",
+    "Ollama",
+    "Llama3",
+    "Qwen",
+    "量化",
+    "GGUF"
+  ],
   "modules": [
     {
       "id": "LessonFTIntro",

@@ -4,8 +4,14 @@
   "title": "AI Skill 工程师实战营",
   "subtitle": "基于 Anthropic 14 个官方 Skill 全面掌握设计、编写、测试与验证 AI Skill 的完整方法论",
   "description": "从零理解什么是 AI Skill，到动手写一个通过测试的高质量 Skill。基于 Anthropic 官方 14 个 Skills 原文深度解析，学完即可为你的 AI Agent 编写可复用、可测试、可维护的工程级 Skill。",
-  "category": "AI 工程与 Agent 开发",
-  "tags": ["AI Skill", "Agent工程", "TDD", "提示词工程", "Anthropic"],
+  "category": "大模型与 LLM",
+  "tags": [
+    "AI Skill",
+    "Agent工程",
+    "TDD",
+    "提示词工程",
+    "Anthropic"
+  ],
   "difficulty": "intermediate-to-advanced",
   "estimatedHours": 16,
   "language": "zh-CN",
@@ -14,7 +20,10 @@
     "avatar": ""
   },
   "cover": {
-    "gradient": ["#1e1b4b", "#4c1d95"],
+    "gradient": [
+      "#1e1b4b",
+      "#4c1d95"
+    ],
     "icon": "cpu"
   },
   "prerequisites": [

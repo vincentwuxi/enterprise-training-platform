@@ -1,0 +1,99 @@
+{
+  "id": "ai-realtime-media",
+  "title": "🎙️ AI 实时交互与生成媒体：语音/视频/数字人全栈",
+  "subtitle": "从 GPT-4o Realtime 到 Sora，构建下一代人机交互与内容生成系统",
+  "description": "GPT-4o Realtime API、Gemini Live 重新定义了人机交互，Sora/Veo/Kling 加速视频生成商业化。本课程覆盖实时语音 AI (WebRTC/VAD/TTS) → Voice Agent 全栈 → AI 数字人 (HeyGen/D-ID) → AI 音乐生成 (Suno/MusicGen) → AI 视频生成 (Sora/Veo/Kling) → AI 视频编辑 → AI 3D 与空间计算 → 流式架构/边缘推理生产工程。帮助开发者和创作者构建实时、多模态的 AI 应用。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "icon": "🎙️",
+  "modules": [
+    {
+      "id": "realtime-voice",
+      "title": "模块一：实时语音 AI — GPT-4o Realtime API / Gemini Live / WebRTC 集成",
+      "component": "LessonRealtimeVoice",
+      "lessons": [
+        {
+          "id": "realtime-voice",
+          "title": "模块一：实时语音 AI — GPT-4o Realtime API / Gemini Live / WebRTC 集成"
+        }
+      ]
+    },
+    {
+      "id": "voice-agent",
+      "title": "模块二：Voice Agent 全栈 — VAD / Whisper / TTS / 情感感知 / 打断处理",
+      "component": "LessonVoiceAgent",
+      "lessons": [
+        {
+          "id": "voice-agent",
+          "title": "模块二：Voice Agent 全栈 — VAD / Whisper / TTS / 情感感知 / 打断处理"
+        }
+      ]
+    },
+    {
+      "id": "digital-human",
+      "title": "模块三：AI 数字人 — 面部驱动 / Lip Sync / HeyGen / D-ID 实战",
+      "component": "LessonDigitalHuman",
+      "lessons": [
+        {
+          "id": "digital-human",
+          "title": "模块三：AI 数字人 — 面部驱动 / Lip Sync / HeyGen / D-ID 实战"
+        }
+      ]
+    },
+    {
+      "id": "music-gen",
+      "title": "模块四：AI 音乐生成 — Suno API / MusicGen / 版权合规 / 商用场景",
+      "component": "LessonMusicGen",
+      "lessons": [
+        {
+          "id": "music-gen",
+          "title": "模块四：AI 音乐生成 — Suno API / MusicGen / 版权合规 / 商用场景"
+        }
+      ]
+    },
+    {
+      "id": "video-gen",
+      "title": "模块五：AI 视频生成 — Sora / Veo 2 / Kling / Runway 文生视频工程",
+      "component": "LessonVideoGen",
+      "lessons": [
+        {
+          "id": "video-gen",
+          "title": "模块五：AI 视频生成 — Sora / Veo 2 / Kling / Runway 文生视频工程"
+        }
+      ]
+    },
+    {
+      "id": "video-editing",
+      "title": "模块六：AI 视频编辑 — 自动剪辑 / 内容理解 / 视频字幕 / 视频摘要",
+      "component": "LessonVideoEditing",
+      "lessons": [
+        {
+          "id": "video-editing",
+          "title": "模块六：AI 视频编辑 — 自动剪辑 / 内容理解 / 视频字幕 / 视频摘要"
+        }
+      ]
+    },
+    {
+      "id": "3d-spatial",
+      "title": "模块七：AI 3D & 空间 — 高斯溅射 / NeRF / 3D 生成 / 空间计算",
+      "component": "Lesson3DSpatial",
+      "lessons": [
+        {
+          "id": "3d-spatial",
+          "title": "模块七：AI 3D & 空间 — 高斯溅射 / NeRF / 3D 生成 / 空间计算"
+        }
+      ]
+    },
+    {
+      "id": "production-engineering",
+      "title": "模块八：生产工程 — 延迟优化 / 流式架构 / 边缘推理 / CDN 分发",
+      "component": "LessonProductionEngineering",
+      "lessons": [
+        {
+          "id": "production-engineering",
+          "title": "模块八：生产工程 — 延迟优化 / 流式架构 / 边缘推理 / CDN 分发"
+        }
+      ]
+    }
+  ]
+}

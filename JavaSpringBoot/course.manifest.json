@@ -1,0 +1,56 @@
+{
+  "id": "java-spring-boot",
+  "title": "☕ Java / Spring Boot 企业级开发",
+  "description": "系统学习 Java 生态与 Spring Boot。覆盖 Java 17+ 新特性、Spring IoC/AOP、Spring MVC/WebFlux、JPA/MyBatis 持久化、Spring Security 认证授权、微服务(Spring Cloud)、消息队列与性能调优。",
+  "category": "编程与开发",
+  "level": "中级",
+  "totalHours": 48,
+  "cover": {
+    "gradient": [
+      "#b91c1c",
+      "#f59e0b"
+    ]
+  },
+  "modules": [
+    {
+      "id": "java-modern",
+      "title": "模块一：Java 17+ 新特性 — Record / Sealed / Pattern / Virtual Thread",
+      "component": "LessonJavaModern"
+    },
+    {
+      "id": "spring-core",
+      "title": "模块二：Spring 核心 — IoC 容器 / AOP / Bean 生命周期",
+      "component": "LessonSpringCore"
+    },
+    {
+      "id": "spring-web",
+      "title": "模块三：Web 开发 — Spring MVC / REST / WebFlux 响应式",
+      "component": "LessonSpringWeb"
+    },
+    {
+      "id": "spring-data",
+      "title": "模块四：数据持久化 — JPA / MyBatis / Redis / 事务管理",
+      "component": "LessonSpringData"
+    },
+    {
+      "id": "spring-security",
+      "title": "模块五：安全认证 — Spring Security / OAuth2 / JWT",
+      "component": "LessonSpringSecurity"
+    },
+    {
+      "id": "spring-cloud",
+      "title": "模块六：微服务架构 — Spring Cloud / 注册中心 / 网关 / 熔断",
+      "component": "LessonSpringCloud"
+    },
+    {
+      "id": "spring-mq",
+      "title": "模块七：消息驱动 — Kafka / RabbitMQ / 事件驱动架构",
+      "component": "LessonSpringMQ"
+    },
+    {
+      "id": "spring-deploy",
+      "title": "模块八：部署与调优 — Docker / K8s / JVM 调优 / 监控",
+      "component": "LessonSpringDeploy"
+    }
+  ]
+}

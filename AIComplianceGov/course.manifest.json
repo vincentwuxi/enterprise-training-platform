@@ -1,0 +1,61 @@
+{
+  "id": "ai-compliance-gov",
+  "title": "⚖️ AI 合规与治理：EU AI Act / 数据隐私 / 企业 AI 治理体系",
+  "description": "EU AI Act 2025 正式执行，中国《生成式 AI 管理办法》已生效，全球 AI 监管浪潮势不可挡。本课程从全球 AI 监管全景出发，深入 EU AI Act 风险分级与合规流程 → 中国 AI 合规（算法备案/深度合成/数据出境）→ AI 数据隐私（GDPR×AI/匿名化/DPIA）→ AI 公平性与可解释性（偏见检测/SHAP/LIME/XAI）→ AI 风险管理（NIST AI RMF/ISO 42001）→ 企业 AI 治理体系（治理委员会/模型审计/供应商管理）→ AI 版权与伦理（训练数据版权/生成内容归属/水印技术）。",
+  "category": "AI 平台与安全",
+  "level": "中级",
+  "totalHours": 36,
+  "instructor": "AI 合规专家 · 数据隐私律师 · 企业治理顾问",
+  "tags": [
+    "EU AI Act",
+    "AI合规",
+    "GDPR",
+    "AI治理",
+    "AI伦理",
+    "风险管理",
+    "数据隐私",
+    "可解释AI"
+  ],
+  "modules": [
+    {
+      "id": "global-ai-regulation",
+      "title": "模块一：全球 AI 监管全景 — EU AI Act / 中国管理办法 / 美国各州法案",
+      "lessonKey": "LessonGlobalRegulation"
+    },
+    {
+      "id": "eu-ai-act",
+      "title": "模块二：EU AI Act 深度 — 风险分级 / 合规流程 / 技术文档要求",
+      "lessonKey": "LessonEUAIAct"
+    },
+    {
+      "id": "china-ai-compliance",
+      "title": "模块三：中国 AI 合规 — 算法备案 / 生成式 AI 管理 / 深度合成 / 数据出境",
+      "lessonKey": "LessonChinaCompliance"
+    },
+    {
+      "id": "ai-data-privacy",
+      "title": "模块四：AI 数据隐私 — GDPR×AI / 数据最小化 / 匿名化 / DPIA",
+      "lessonKey": "LessonDataPrivacy"
+    },
+    {
+      "id": "ai-fairness-xai",
+      "title": "模块五：AI 公平与可解释 — 偏见检测 / 公平性指标 / SHAP / LIME / XAI",
+      "lessonKey": "LessonFairnessXAI"
+    },
+    {
+      "id": "ai-risk-management",
+      "title": "模块六：AI 风险管理 — NIST AI RMF / ISO 42001 / 影响评估 / 红队测试",
+      "lessonKey": "LessonRiskManagement"
+    },
+    {
+      "id": "enterprise-ai-gov",
+      "title": "模块七：企业 AI 治理 — 治理委员会 / 模型审计 / 使用策略 / 供应商评估",
+      "lessonKey": "LessonEnterpriseGov"
+    },
+    {
+      "id": "ai-copyright-ethics",
+      "title": "模块八：AI 版权与伦理 — 训练数据版权 / 生成内容归属 / 水印技术",
+      "lessonKey": "LessonCopyrightEthics"
+    }
+  ]
+}

@@ -2,21 +2,56 @@
   "id": "tcpip-mastery",
   "title": "TCP/IP 从入门到精通：说透互联网通信原理",
   "description": "不只是记协议名称，而是真正理解数据如何穿越千万台设备送达目的地。从比特到应用，深度解析 TCP/IP 协议栈的每一层，配备交互式握手动画、子网计算器、抓包模拟器，学完即可胜任网络工程师岗位。",
-  "category": "网络与通信",
+  "category": "数据与存储",
   "level": "全级别",
   "totalHours": 36,
   "cover": {
-    "gradient": ["#0c4a6e", "#0e7490"]
+    "gradient": [
+      "#0c4a6e",
+      "#0e7490"
+    ]
   },
   "instructor": "高级网络专家",
   "modules": [
-    { "id": "overview",    "title": "模块一：网络世界观 — 互联网如何运作", "lessonKey": "LessonOverview" },
-    { "id": "model",       "title": "模块二：OSI 与 TCP/IP 层次模型精讲", "lessonKey": "LessonModel" },
-    { "id": "ip",          "title": "模块三：IP 协议 — 互联网的寻址语言", "lessonKey": "LessonIP" },
-    { "id": "tcp",         "title": "模块四：TCP — 可靠传输的艺术", "lessonKey": "LessonTCP" },
-    { "id": "udp",         "title": "模块五：UDP — 简约高效的哲学", "lessonKey": "LessonUDP" },
-    { "id": "application", "title": "模块六：应用层协议精讲（HTTP/DNS/TLS）", "lessonKey": "LessonApplication" },
-    { "id": "security",    "title": "模块七：网络安全攻防实战", "lessonKey": "LessonSecurity" },
-    { "id": "diagnosis",   "title": "模块八：网络诊断与运维实战", "lessonKey": "LessonDiagnosis" }
+    {
+      "id": "overview",
+      "title": "模块一：网络世界观 — 互联网如何运作",
+      "lessonKey": "LessonOverview"
+    },
+    {
+      "id": "model",
+      "title": "模块二：OSI 与 TCP/IP 层次模型精讲",
+      "lessonKey": "LessonModel"
+    },
+    {
+      "id": "ip",
+      "title": "模块三：IP 协议 — 互联网的寻址语言",
+      "lessonKey": "LessonIP"
+    },
+    {
+      "id": "tcp",
+      "title": "模块四：TCP — 可靠传输的艺术",
+      "lessonKey": "LessonTCP"
+    },
+    {
+      "id": "udp",
+      "title": "模块五：UDP — 简约高效的哲学",
+      "lessonKey": "LessonUDP"
+    },
+    {
+      "id": "application",
+      "title": "模块六：应用层协议精讲（HTTP/DNS/TLS）",
+      "lessonKey": "LessonApplication"
+    },
+    {
+      "id": "security",
+      "title": "模块七：网络安全攻防实战",
+      "lessonKey": "LessonSecurity"
+    },
+    {
+      "id": "diagnosis",
+      "title": "模块八：网络诊断与运维实战",
+      "lessonKey": "LessonDiagnosis"
+    }
   ]
 }

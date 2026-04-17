@@ -2,21 +2,56 @@
   "id": "data-engineering",
   "title": "数据工程 & 实时计算：Kafka + Flink + Spark 实战",
   "description": "从 Lambda/Kappa 架构到实时数仓，全链路掌握大数据工程。含 Kafka 消息队列可视化、Kafka Streams 流处理 DSL、Flink 窗口与 Watermark 动画、Spark 结构化流处理、CDC 数据变更捕获、Data Lakehouse 架构，以及完整的电商实时大屏项目。",
-  "category": "数据工程",
+  "category": "数据与存储",
   "level": "高级",
   "totalHours": 44,
   "cover": {
-    "gradient": ["#000a1a", "#001428"]
+    "gradient": [
+      "#000a1a",
+      "#001428"
+    ]
   },
   "instructor": "前 Databricks 工程师 · Confluent 认证架构师 · Apache Flink Committer · 实时数仓资深专家",
   "modules": [
-    { "id": "data-arch",      "title": "模块一：数据架构 — Lambda / Kappa / 流批一体设计",     "lessonKey": "LessonDataArch" },
-    { "id": "kafka",          "title": "模块二：Kafka 核心 — Topic / Partition / 消费者组",      "lessonKey": "LessonKafka" },
-    { "id": "kafka-streams",  "title": "模块三：Kafka Streams — KStream / KTable / DSL 流处理",  "lessonKey": "LessonKafkaStreams" },
-    { "id": "flink",          "title": "模块四：Apache Flink — 窗口 / Watermark / 状态管理",     "lessonKey": "LessonFlink" },
-    { "id": "spark",          "title": "模块五：Apache Spark — DataFrame / Structured Streaming",  "lessonKey": "LessonSpark" },
-    { "id": "pipeline",       "title": "模块六：数据管道 — CDC / Debezium / Delta Lake / Iceberg", "lessonKey": "LessonPipeline" },
-    { "id": "monitor",        "title": "模块七：监控与调优 — Lag 监控 / 背压 / 性能参数",          "lessonKey": "LessonMonitor" },
-    { "id": "project",        "title": "模块八：生产实战 — 电商实时大屏完整项目",                   "lessonKey": "LessonProject" }
+    {
+      "id": "data-arch",
+      "title": "模块一：数据架构 — Lambda / Kappa / 流批一体设计",
+      "lessonKey": "LessonDataArch"
+    },
+    {
+      "id": "kafka",
+      "title": "模块二：Kafka 核心 — Topic / Partition / 消费者组",
+      "lessonKey": "LessonKafka"
+    },
+    {
+      "id": "kafka-streams",
+      "title": "模块三：Kafka Streams — KStream / KTable / DSL 流处理",
+      "lessonKey": "LessonKafkaStreams"
+    },
+    {
+      "id": "flink",
+      "title": "模块四：Apache Flink — 窗口 / Watermark / 状态管理",
+      "lessonKey": "LessonFlink"
+    },
+    {
+      "id": "spark",
+      "title": "模块五：Apache Spark — DataFrame / Structured Streaming",
+      "lessonKey": "LessonSpark"
+    },
+    {
+      "id": "pipeline",
+      "title": "模块六：数据管道 — CDC / Debezium / Delta Lake / Iceberg",
+      "lessonKey": "LessonPipeline"
+    },
+    {
+      "id": "monitor",
+      "title": "模块七：监控与调优 — Lag 监控 / 背压 / 性能参数",
+      "lessonKey": "LessonMonitor"
+    },
+    {
+      "id": "project",
+      "title": "模块八：生产实战 — 电商实时大屏完整项目",
+      "lessonKey": "LessonProject"
+    }
   ]
 }

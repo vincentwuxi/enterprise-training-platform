@@ -4,26 +4,32 @@
   "title": "Cloudflare 企业级全栈技术实战",
   "subtitle": "从单一 CDN 到覆盖全球的 Zero Trust 与边缘计算生态",
   "description": "掌握 Cloudflare 核心架构原理，具备独立完成站点接入、性能优化、安全防御（WAF/抗D）、故障排查以及零信任内网改造的能力。本特训营专为 SRE、网络安全工程师、全栈开发者及 IT 架构师设计。",
-  
-  "category": "架构与运维安全",
-  "tags": ["CDN", "WAF", "Zero Trust", "Serverless", "SRE"],
+  "category": "基础设施与运维",
+  "tags": [
+    "CDN",
+    "WAF",
+    "Zero Trust",
+    "Serverless",
+    "SRE"
+  ],
   "difficulty": "advanced",
   "estimatedHours": 18,
   "language": "zh-CN",
-
   "author": {
     "name": "NexusLearn 架构师",
     "avatar": ""
   },
-
   "cover": {
     "image": "",
-    "gradient": ["#f58220", "#ab4b0b"], 
+    "gradient": [
+      "#f58220",
+      "#ab4b0b"
+    ],
     "icon": "cloud"
   },
-
-  "prerequisites": ["了解基础 HTTP 协议、DNS 概念及基本网络架构"],
-
+  "prerequisites": [
+    "了解基础 HTTP 协议、DNS 概念及基本网络架构"
+  ],
   "chapters": [
     {
       "id": "c-architecture",
@@ -176,7 +182,6 @@
       ]
     }
   ],
-
   "features": {
     "hasSandbox": true,
     "hasQuiz": true,

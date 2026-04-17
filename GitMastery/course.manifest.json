@@ -1,0 +1,56 @@
+{
+  "id": "git-mastery",
+  "title": "🔀 Git 版本控制精通 — 从入门到团队协作",
+  "description": "全面掌握 Git 版本控制：从基础操作到高级技巧——分支策略、Rebase vs Merge、Submodule/Subtree、Monorepo 管理、Git Hooks、CI/CD 集成。涵盖 GitHub/GitLab 协作流程与代码审查最佳实践。",
+  "category": "编程与开发",
+  "level": "初级到高级",
+  "totalHours": 20,
+  "cover": {
+    "gradient": [
+      "#f97316",
+      "#dc2626"
+    ]
+  },
+  "modules": [
+    {
+      "id": "git-basics",
+      "title": "模块一：Git 基础 — 仓库 / 暂存区 / 提交 / 历史",
+      "component": "LessonGitBasics"
+    },
+    {
+      "id": "branching",
+      "title": "模块二：分支与合并 — 分支策略 / Merge / Rebase / Cherry-pick",
+      "component": "LessonBranching"
+    },
+    {
+      "id": "remote-collab",
+      "title": "模块三：远程协作 — Push / Pull / Fork / PR / Code Review",
+      "component": "LessonRemoteCollab"
+    },
+    {
+      "id": "advanced-ops",
+      "title": "模块四：高级操作 — Stash / Reset / Reflog / Bisect / Blame",
+      "component": "LessonAdvancedOps"
+    },
+    {
+      "id": "git-flow",
+      "title": "模块五：分支策略 — Git Flow / GitHub Flow / Trunk-Based",
+      "component": "LessonGitFlow"
+    },
+    {
+      "id": "hooks-ci",
+      "title": "模块六：Git Hooks 与 CI/CD — Pre-commit / Lint / 自动化",
+      "component": "LessonHooksCI"
+    },
+    {
+      "id": "monorepo",
+      "title": "模块七：Monorepo 与大型仓库 — Submodule / Subtree / Nx / Turborepo",
+      "component": "LessonMonorepo"
+    },
+    {
+      "id": "git-internals",
+      "title": "模块八：Git 内部原理 — 对象模型 / Packfile / 自定义命令",
+      "component": "LessonGitInternals"
+    }
+  ]
+}

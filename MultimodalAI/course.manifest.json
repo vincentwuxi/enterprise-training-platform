@@ -2,19 +2,60 @@
   "id": "multimodal-ai-engineering",
   "title": "🎨 多模态 AI 工程：语音 / 视觉 / 视频 / 生成式媒体 — 全感知应用实战",
   "description": "AI 不只是处理文字——它能看、能听、能说、能创作。本课程从多模态基础理论（模态表征/对齐/Tokenization）出发，深入计算机视觉+LLM（GPT-4o Vision/OCR/物体检测）→ 语音工程（Whisper/TTS/实时语音Agent）→ 视频理解与生成（Gemini原生视频/Sora/Runway）→ 图像生成（DALL-E 3/Stable Diffusion/ControlNet/ComfyUI）→ 文档智能（PDF/表格/图表结构化提取）→ 多模态RAG（图文混合检索/跨模态搜索）→ 生产部署（多模态Pipeline/延迟优化/边缘推理）。每个模块都配有完整的生产级代码和真实业务案例。",
-  "category": "AI 工程",
+  "category": "AI 行业应用",
   "level": "高级",
   "totalHours": 42,
   "instructor": "多模态 AI 工程师 · 计算机视觉专家 · 语音技术架构师",
-  "tags": ["多模态", "Vision", "Speech", "Video", "图像生成", "文档AI", "Whisper", "Stable Diffusion"],
+  "tags": [
+    "多模态",
+    "Vision",
+    "Speech",
+    "Video",
+    "图像生成",
+    "文档AI",
+    "Whisper",
+    "Stable Diffusion"
+  ],
   "modules": [
-    { "id": "mm-foundations",   "title": "模块一：多模态基础 — 模态表征 / 对齐理论 / Tokenization",         "lessonKey": "LessonMMFoundations" },
-    { "id": "vision-llm",       "title": "模块二：视觉 + LLM — GPT-4o Vision / OCR / 物体理解",            "lessonKey": "LessonVisionLLM" },
-    { "id": "speech-eng",       "title": "模块三：语音工程 — Whisper / TTS / 实时语音 Agent",               "lessonKey": "LessonSpeechEng" },
-    { "id": "video-ai",         "title": "模块四：视频理解与生成 — Gemini 原生 / Sora / Runway",            "lessonKey": "LessonVideoAI" },
-    { "id": "image-gen",        "title": "模块五：图像生成 — DALL-E 3 / Stable Diffusion / ControlNet",     "lessonKey": "LessonImageGen" },
-    { "id": "doc-intelligence", "title": "模块六：文档智能 — PDF / 表格 / 图表结构化提取",                  "lessonKey": "LessonDocIntel" },
-    { "id": "mm-rag",           "title": "模块七：多模态 RAG — 图文混合检索 / 跨模态搜索",                  "lessonKey": "LessonMMRAG" },
-    { "id": "mm-production",    "title": "模块八：生产部署 — 多模态 Pipeline / 延迟优化 / 边缘推理",        "lessonKey": "LessonMMProduction" }
+    {
+      "id": "mm-foundations",
+      "title": "模块一：多模态基础 — 模态表征 / 对齐理论 / Tokenization",
+      "lessonKey": "LessonMMFoundations"
+    },
+    {
+      "id": "vision-llm",
+      "title": "模块二：视觉 + LLM — GPT-4o Vision / OCR / 物体理解",
+      "lessonKey": "LessonVisionLLM"
+    },
+    {
+      "id": "speech-eng",
+      "title": "模块三：语音工程 — Whisper / TTS / 实时语音 Agent",
+      "lessonKey": "LessonSpeechEng"
+    },
+    {
+      "id": "video-ai",
+      "title": "模块四：视频理解与生成 — Gemini 原生 / Sora / Runway",
+      "lessonKey": "LessonVideoAI"
+    },
+    {
+      "id": "image-gen",
+      "title": "模块五：图像生成 — DALL-E 3 / Stable Diffusion / ControlNet",
+      "lessonKey": "LessonImageGen"
+    },
+    {
+      "id": "doc-intelligence",
+      "title": "模块六：文档智能 — PDF / 表格 / 图表结构化提取",
+      "lessonKey": "LessonDocIntel"
+    },
+    {
+      "id": "mm-rag",
+      "title": "模块七：多模态 RAG — 图文混合检索 / 跨模态搜索",
+      "lessonKey": "LessonMMRAG"
+    },
+    {
+      "id": "mm-production",
+      "title": "模块八：生产部署 — 多模态 Pipeline / 延迟优化 / 边缘推理",
+      "lessonKey": "LessonMMProduction"
+    }
   ]
 }

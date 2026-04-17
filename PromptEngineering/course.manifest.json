@@ -4,26 +4,32 @@
   "title": "大模型驾驭术：Prompt Engineering 实战集训营",
   "subtitle": "AI 时代的核心生产力",
   "description": "专为期望实现 10 倍提效的职场人士打造的实战营。兼顾“去魅与认知建立”、“核心心法传授”、“高阶技巧演练”以及最重要的“业务场景落地”。",
-  
-  "category": "进阶实战",
-  "tags": ["Prompt", "生产力提效", "实战工作坊", "AI办公"],
+  "category": "大模型与 LLM",
+  "tags": [
+    "Prompt",
+    "生产力提效",
+    "实战工作坊",
+    "AI办公"
+  ],
   "difficulty": "intermediate",
   "estimatedHours": 14,
   "language": "zh-CN",
-
   "author": {
     "name": "NexusLearn 特级教研组",
     "avatar": ""
   },
-
   "cover": {
     "image": "",
-    "gradient": ["#f59e0b", "#ec4899"], 
+    "gradient": [
+      "#f59e0b",
+      "#ec4899"
+    ],
     "icon": "zap"
   },
-
-  "prerequisites": ["了解基础大语言模型概念最佳", "带着实际业务痛点学习"],
-
+  "prerequisites": [
+    "了解基础大语言模型概念最佳",
+    "带着实际业务痛点学习"
+  ],
   "chapters": [
     {
       "id": "module-1-icebreaker",
@@ -92,11 +98,11 @@
       "icon": "shield-check",
       "lessons": [
         {
-           "id": "enterprise",
-           "title": "知识库、智能体与合规防线",
-           "type": "lesson",
-           "component": "LessonEnterprise",
-           "estimatedMinutes": 60
+          "id": "enterprise",
+          "title": "知识库、智能体与合规防线",
+          "type": "lesson",
+          "component": "LessonEnterprise",
+          "estimatedMinutes": 60
         }
       ]
     },
@@ -107,16 +113,15 @@
       "icon": "trophy",
       "lessons": [
         {
-           "id": "workshop",
-           "title": "带着干货与小抄满载而归",
-           "type": "lesson",
-           "component": "LessonWorkshop",
-           "estimatedMinutes": 120
+          "id": "workshop",
+          "title": "带着干货与小抄满载而归",
+          "type": "lesson",
+          "component": "LessonWorkshop",
+          "estimatedMinutes": 120
         }
       ]
     }
   ],
-
   "features": {
     "hasSandbox": false,
     "hasQuiz": false,

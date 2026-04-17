@@ -2,18 +2,63 @@
   "id": "ai-agent-engineering",
   "title": "AI Agent 工程实战：从 ReAct 到 Multi-Agent 系统",
   "description": "系统掌握 AI Agent 全栈工程能力。Agent 原理与推理模式（ReAct/Plan-Execute/Reflection）→ Tool Use & Function Calling → Memory 系统四类型设计 → LangGraph 状态机（Nodes/Edges/State/条件路由）→ Multi-Agent 系统（CrewAI/AutoGen/Orchestrator 模式）→ Agent 生产级实战（LangSmith 可观测性/成本控制）→ 六大 Agent 设计模式 → Agent 安全（Prompt Injection/沙盒/人工监督）。含 Research/Code/Browser/Data Analysis Agent 完整实现。",
-  "category": "AI 工程",
+  "category": "AI Agent 工程",
   "level": "高级",
-  "duration": "28h",
-  "tags": ["AI Agent", "LangGraph", "LangChain", "Tool Use", "Function Calling", "CrewAI", "AutoGen", "ReAct", "Memory", "Multi-Agent", "LangSmith", "Prompt Injection"],
+  "totalHours": 28,
+  "tags": [
+    "AI Agent",
+    "LangGraph",
+    "LangChain",
+    "Tool Use",
+    "Function Calling",
+    "CrewAI",
+    "AutoGen",
+    "ReAct",
+    "Memory",
+    "Multi-Agent",
+    "LangSmith",
+    "Prompt Injection"
+  ],
   "modules": [
-    { "id": "foundation",   "title": "模块一：Agent 原理与推理架构 — ReAct / Plan-Execute / Reflection", "lessonKey": "LessonFoundation" },
-    { "id": "tools",        "title": "模块二：Tool Use & Function Calling — 让 Agent 调用外部世界", "lessonKey": "LessonTools" },
-    { "id": "memory",       "title": "模块三：Memory 系统设计 — 四类记忆让 Agent 更聪明", "lessonKey": "LessonMemory" },
-    { "id": "langgraph",    "title": "模块四：LangGraph 状态机 — 精准控制 Agent 工作流", "lessonKey": "LessonLangGraph" },
-    { "id": "multiagent",   "title": "模块五：Multi-Agent 系统 — 协作智能体网络", "lessonKey": "LessonMultiAgent" },
-    { "id": "production",   "title": "模块六：Agent 生产实战 — 可观测性/成本/稳定性", "lessonKey": "LessonProduction" },
-    { "id": "patterns",     "title": "模块七：六大 Agent 设计模式 — Research/Code/Browser/Data", "lessonKey": "LessonPatterns" },
-    { "id": "security",     "title": "模块八：Agent 安全工程 — Prompt Injection / 沙盒 / 人工监督", "lessonKey": "LessonSecurity" }
+    {
+      "id": "foundation",
+      "title": "模块一：Agent 原理与推理架构 — ReAct / Plan-Execute / Reflection",
+      "lessonKey": "LessonFoundation"
+    },
+    {
+      "id": "tools",
+      "title": "模块二：Tool Use & Function Calling — 让 Agent 调用外部世界",
+      "lessonKey": "LessonTools"
+    },
+    {
+      "id": "memory",
+      "title": "模块三：Memory 系统设计 — 四类记忆让 Agent 更聪明",
+      "lessonKey": "LessonMemory"
+    },
+    {
+      "id": "langgraph",
+      "title": "模块四：LangGraph 状态机 — 精准控制 Agent 工作流",
+      "lessonKey": "LessonLangGraph"
+    },
+    {
+      "id": "multiagent",
+      "title": "模块五：Multi-Agent 系统 — 协作智能体网络",
+      "lessonKey": "LessonMultiAgent"
+    },
+    {
+      "id": "production",
+      "title": "模块六：Agent 生产实战 — 可观测性/成本/稳定性",
+      "lessonKey": "LessonProduction"
+    },
+    {
+      "id": "patterns",
+      "title": "模块七：六大 Agent 设计模式 — Research/Code/Browser/Data",
+      "lessonKey": "LessonPatterns"
+    },
+    {
+      "id": "security",
+      "title": "模块八：Agent 安全工程 — Prompt Injection / 沙盒 / 人工监督",
+      "lessonKey": "LessonSecurity"
+    }
   ]
 }

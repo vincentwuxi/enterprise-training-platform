@@ -1,0 +1,99 @@
+{
+  "id": "privacy-federated-learning",
+  "title": "🔐 隐私计算与联邦学习：金融/医疗数据合规刚需",
+  "subtitle": "从差分隐私到联邦 LLM，构建数据不出域的 AI 系统",
+  "description": "数据隐私是企业 AI 落地的最大合规障碍。本课程覆盖隐私计算全技术栈：差分隐私 (DP-SGD) → 联邦学习 (FedAvg/横向/纵向) → 安全多方计算 (MPC/同态加密) → 可信执行环境 (TEE/SGX) → 联邦 LLM 微调与 RAG → 金融风控/医疗影像行业落地 → FATE/Flower/PySyft 开源框架实战。帮助企业在满足 GDPR/《数据安全法》合规要求的前提下释放数据价值。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "icon": "🔐",
+  "modules": [
+    {
+      "id": "privacy-fundamentals",
+      "title": "模块一：隐私计算概论 — 数据隐私威胁 / 技术路线 / 监管要求",
+      "component": "LessonPrivacyFundamentals",
+      "lessons": [
+        {
+          "id": "privacy-fundamentals",
+          "title": "模块一：隐私计算概论 — 数据隐私威胁 / 技术路线 / 监管要求"
+        }
+      ]
+    },
+    {
+      "id": "federated-learning",
+      "title": "模块二：联邦学习基础 — FedAvg / 横向联邦 / 纵向联邦 / 通信优化",
+      "component": "LessonFederatedLearning",
+      "lessons": [
+        {
+          "id": "federated-learning",
+          "title": "模块二：联邦学习基础 — FedAvg / 横向联邦 / 纵向联邦 / 通信优化"
+        }
+      ]
+    },
+    {
+      "id": "differential-privacy",
+      "title": "模块三：差分隐私 — DP-SGD / 隐私预算 / 组合定理 / 实战",
+      "component": "LessonDifferentialPrivacy",
+      "lessons": [
+        {
+          "id": "differential-privacy",
+          "title": "模块三：差分隐私 — DP-SGD / 隐私预算 / 组合定理 / 实战"
+        }
+      ]
+    },
+    {
+      "id": "secure-computation",
+      "title": "模块四：安全多方计算 — 秘密共享 / 混淆电路 / 同态加密",
+      "component": "LessonSecureComputation",
+      "lessons": [
+        {
+          "id": "secure-computation",
+          "title": "模块四：安全多方计算 — 秘密共享 / 混淆电路 / 同态加密"
+        }
+      ]
+    },
+    {
+      "id": "federated-llm",
+      "title": "模块五：联邦 LLM — 联邦微调 / 联邦 RAG / 隐私推理",
+      "component": "LessonFederatedLLM",
+      "lessons": [
+        {
+          "id": "federated-llm",
+          "title": "模块五：联邦 LLM — 联邦微调 / 联邦 RAG / 隐私推理"
+        }
+      ]
+    },
+    {
+      "id": "trusted-execution",
+      "title": "模块六：可信执行环境 — TEE / SGX / TDX / 机密计算",
+      "component": "LessonTrustedExecution",
+      "lessons": [
+        {
+          "id": "trusted-execution",
+          "title": "模块六：可信执行环境 — TEE / SGX / TDX / 机密计算"
+        }
+      ]
+    },
+    {
+      "id": "industry-applications",
+      "title": "模块七：行业落地 — 金融风控 / 医疗影像 / 跨机构协作",
+      "component": "LessonIndustryApplications",
+      "lessons": [
+        {
+          "id": "industry-applications",
+          "title": "模块七：行业落地 — 金融风控 / 医疗影像 / 跨机构协作"
+        }
+      ]
+    },
+    {
+      "id": "opensource-frameworks",
+      "title": "模块八：开源框架实战 — FATE / Flower / PySyft / OpenFL",
+      "component": "LessonOpenSourceFrameworks",
+      "lessons": [
+        {
+          "id": "opensource-frameworks",
+          "title": "模块八：开源框架实战 — FATE / Flower / PySyft / OpenFL"
+        }
+      ]
+    }
+  ]
+}

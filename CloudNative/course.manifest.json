@@ -2,21 +2,56 @@
   "id": "cloud-native",
   "title": "云原生架构从入门到精通：AWS / GCP / Serverless",
   "description": "从云计算核心模型到多云生产架构，含交互式 AWS/GCP 服务地图、Serverless 冷启动对比模拟器、Terraform IaC 代码演示、成本优化计算器、容器云 EKS/GKE 对比，以及多云电商平台完整实战架构设计。",
-  "category": "云计算 & 架构",
+  "category": "基础设施与运维",
   "level": "高级",
   "totalHours": 38,
   "cover": {
-    "gradient": ["#00050f", "#000a1a"]
+    "gradient": [
+      "#00050f",
+      "#000a1a"
+    ]
   },
   "instructor": "认证云架构师 (AWS SAP / GCP PCA) · 多云实践专家 · SRE 工程师",
   "modules": [
-    { "id": "cloud-core",       "title": "模块一：云原生基础 — IaaS/PaaS/SaaS 与 12-Factor",     "lessonKey": "LessonCloudCore" },
-    { "id": "aws-core",         "title": "模块二：AWS 核心 — EC2/S3/RDS/VPC/IAM 实战",          "lessonKey": "LessonAWSCore" },
-    { "id": "gcp-core",         "title": "模块三：GCP 核心 — GCE/GCS/BigQuery/Pub/Sub",         "lessonKey": "LessonGCPCore" },
-    { "id": "serverless",       "title": "模块四：Serverless — Lambda/Cloud Functions/事件驱动",  "lessonKey": "LessonServerless" },
-    { "id": "container-cloud",  "title": "模块五：容器云 — EKS/GKE/Cloud Run 生产实战",          "lessonKey": "LessonContainerCloud" },
-    { "id": "iac",              "title": "模块六：基础设施即代码 — Terraform/CDK/Pulumi",         "lessonKey": "LessonIaC" },
-    { "id": "cost-obs",         "title": "模块七：成本优化与可观测性 — FinOps + OpenTelemetry",   "lessonKey": "LessonCostObs" },
-    { "id": "production",       "title": "模块八：生产实战 — 多云电商平台架构设计",               "lessonKey": "LessonProduction" }
+    {
+      "id": "cloud-core",
+      "title": "模块一：云原生基础 — IaaS/PaaS/SaaS 与 12-Factor",
+      "lessonKey": "LessonCloudCore"
+    },
+    {
+      "id": "aws-core",
+      "title": "模块二：AWS 核心 — EC2/S3/RDS/VPC/IAM 实战",
+      "lessonKey": "LessonAWSCore"
+    },
+    {
+      "id": "gcp-core",
+      "title": "模块三：GCP 核心 — GCE/GCS/BigQuery/Pub/Sub",
+      "lessonKey": "LessonGCPCore"
+    },
+    {
+      "id": "serverless",
+      "title": "模块四：Serverless — Lambda/Cloud Functions/事件驱动",
+      "lessonKey": "LessonServerless"
+    },
+    {
+      "id": "container-cloud",
+      "title": "模块五：容器云 — EKS/GKE/Cloud Run 生产实战",
+      "lessonKey": "LessonContainerCloud"
+    },
+    {
+      "id": "iac",
+      "title": "模块六：基础设施即代码 — Terraform/CDK/Pulumi",
+      "lessonKey": "LessonIaC"
+    },
+    {
+      "id": "cost-obs",
+      "title": "模块七：成本优化与可观测性 — FinOps + OpenTelemetry",
+      "lessonKey": "LessonCostObs"
+    },
+    {
+      "id": "production",
+      "title": "模块八：生产实战 — 多云电商平台架构设计",
+      "lessonKey": "LessonProduction"
+    }
   ]
 }

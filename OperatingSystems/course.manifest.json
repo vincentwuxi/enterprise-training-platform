@@ -1,0 +1,56 @@
+{
+  "id": "operating-systems",
+  "title": "🖥️ 操作系统原理 — 进程·内存·文件·虚拟化",
+  "description": "深入操作系统核心：进程与线程管理、CPU 调度、内存管理（分页/分段/虚拟内存）、文件系统、I/O 与设备驱动、同步与死锁、虚拟化与容器原理。含 xv6 实验与 Linux 内核源码分析。",
+  "category": "编程与开发",
+  "level": "中级",
+  "totalHours": 40,
+  "cover": {
+    "gradient": [
+      "#475569",
+      "#1e293b"
+    ]
+  },
+  "modules": [
+    {
+      "id": "os-intro",
+      "title": "模块一：操作系统概述 — 演进 / 架构 / 系统调用 / 中断",
+      "component": "LessonOSIntro"
+    },
+    {
+      "id": "process-thread",
+      "title": "模块二：进程与线程 — 创建 / 状态 / 调度 / 线程模型",
+      "component": "LessonProcessThread"
+    },
+    {
+      "id": "scheduling",
+      "title": "模块三：CPU 调度 — FCFS / SJF / RR / MLFQ / CFS",
+      "component": "LessonScheduling"
+    },
+    {
+      "id": "sync-deadlock",
+      "title": "模块四：同步与死锁 — 互斥 / 信号量 / 死锁检测与预防",
+      "component": "LessonSyncDeadlock"
+    },
+    {
+      "id": "memory-mgmt",
+      "title": "模块五：内存管理 — 分页 / 分段 / 虚拟内存 / 页面置换",
+      "component": "LessonMemoryMgmt"
+    },
+    {
+      "id": "filesystem",
+      "title": "模块六：文件系统 — VFS / ext4 / 日志 / FUSE",
+      "component": "LessonFilesystem"
+    },
+    {
+      "id": "io-devices",
+      "title": "模块七：I/O 与设备管理 — 驱动模型 / DMA / 磁盘调度",
+      "component": "LessonIODevices"
+    },
+    {
+      "id": "virtualization",
+      "title": "模块八：虚拟化与容器 — Hypervisor / KVM / 容器原理 / cgroups",
+      "component": "LessonVirtualization"
+    }
+  ]
+}

@@ -4,26 +4,29 @@
   "title": "微积分 — 直觉互动体验",
   "subtitle": "从零开始建立微积分的直觉理解",
   "description": "通过交互式可视化沙盒，帮助你理解极限、导数和积分的本质。不需要记住公式，只需要建立直觉。",
-  
-  "category": "数学与逻辑",
-  "tags": ["微积分", "数学", "可视化", "互动学习"],
+  "category": "数学基础",
+  "tags": [
+    "微积分",
+    "数学",
+    "可视化",
+    "互动学习"
+  ],
   "difficulty": "intermediate",
   "estimatedHours": 8,
   "language": "zh-CN",
-
   "author": {
     "name": "NexusLearn 团队",
     "avatar": ""
   },
-
   "cover": {
     "image": "",
-    "gradient": ["#3b82f6", "#8b5cf6"],
+    "gradient": [
+      "#3b82f6",
+      "#8b5cf6"
+    ],
     "icon": "infinity"
   },
-
   "prerequisites": [],
-
   "chapters": [
     {
       "id": "limits",
@@ -47,11 +50,11 @@
       "icon": "activity",
       "lessons": [
         {
-           "id": "derivatives-intro",
-           "title": "导数的直觉",
-           "type": "lesson",
-           "component": "LessonDerivatives",
-           "estimatedMinutes": 20
+          "id": "derivatives-intro",
+          "title": "导数的直觉",
+          "type": "lesson",
+          "component": "LessonDerivatives",
+          "estimatedMinutes": 20
         }
       ]
     },
@@ -71,7 +74,6 @@
       ]
     }
   ],
-
   "features": {
     "hasSandbox": true,
     "hasQuiz": true,

@@ -1,0 +1,51 @@
+{
+  "id": "nlp-text-intelligence",
+  "title": "📝 NLP 深度与文本智能：企业级文本工程技术栈",
+  "subtitle": "分词 / 词向量 / 预训练模型 / 命名实体 / 关系抽取 / 文本分类 / 情感分析 / 文本生成",
+  "description": "NLP 是 AI 落地最广泛的领域，几乎所有企业都有文本处理需求。本课程从经典 NLP 基础 (分词/词向量/TF-IDF) 到预训练模型 (BERT/RoBERTa/DeBERTa) → 信息抽取 (NER/RE/事件抽取) → 文本分类与情感分析 → 文本生成与摘要 → 搜索/问答/RAG → 低资源/多语言 NLP → 企业级 NLP 工程化部署。打造完整的企业文本智能技术栈。",
+  "category": "AI 基础与理论",
+  "level": "中级",
+  "totalHours": 40,
+  "modules": [
+    {
+      "id": "nlp-foundations",
+      "title": "模块一：NLP 基础 — 分词 / 词向量 / 文本表示",
+      "component": "LessonNLPFoundations"
+    },
+    {
+      "id": "pretrained-models",
+      "title": "模块二：预训练语言模型 — BERT / RoBERTa / DeBERTa / 微调范式",
+      "component": "LessonPretrainedModels"
+    },
+    {
+      "id": "information-extraction",
+      "title": "模块三：信息抽取 — NER / 关系抽取 / 事件抽取 / UIE",
+      "component": "LessonInfoExtraction"
+    },
+    {
+      "id": "text-classification",
+      "title": "模块四：文本分类与情感分析 — 多标签 / 层次分类 / ABSA",
+      "component": "LessonTextClassification"
+    },
+    {
+      "id": "text-generation",
+      "title": "模块五：文本生成与摘要 — Seq2Seq / 可控生成 / 事实一致性",
+      "component": "LessonTextGeneration"
+    },
+    {
+      "id": "search-qa-rag",
+      "title": "模块六：搜索 / 问答 / RAG — 语义检索 / 阅读理解 / 检索增强",
+      "component": "LessonSearchQA"
+    },
+    {
+      "id": "multilingual-lowresource",
+      "title": "模块七：多语言与低资源 NLP — 跨语言迁移 / 少样本 / 数据增强",
+      "component": "LessonMultilingual"
+    },
+    {
+      "id": "nlp-engineering",
+      "title": "模块八：企业级 NLP 工程化 — 标注平台 / 模型服务 / 质量监控",
+      "component": "LessonNLPEngineering"
+    }
+  ]
+}

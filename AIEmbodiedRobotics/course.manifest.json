@@ -1,0 +1,99 @@
+{
+  "id": "ai-embodied-robotics",
+  "title": "🤖 AI 具身智能与机器人：人形机器人爆发，市场最大蓝海",
+  "subtitle": "从 RT-2 到 Figure 02，构建物理世界的 AI 系统",
+  "description": "2025-2026 年人形机器人进入爆发期：Figure 02、Tesla Optimus、宇树 H1 相继量产，Google RT-2 开创了机器人 Foundation Model 范式。本课程覆盖具身智能概论 (世界模型/Sim-to-Real) → 机器人基础模型 (RT-2/Octo/π₀) → 仿真环境 (Isaac Sim/MuJoCo) → 端侧 AI 部署 (TensorRT/NPU) → 3D 感知 (点云/SLAM) → 自动驾驶 (BEV/端到端) → 人形机器人 (步态/灵巧操作) → 系统集成 (ROS 2/安全认证)。帮助开发者掌握物理世界 AI 的完整技术栈。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "icon": "🤖",
+  "modules": [
+    {
+      "id": "embodied-overview",
+      "title": "模块一：具身智能概论 — 世界模型 / 具身大模型 / Sim-to-Real 范式",
+      "component": "LessonEmbodiedOverview",
+      "lessons": [
+        {
+          "id": "embodied-overview",
+          "title": "模块一：具身智能概论 — 世界模型 / 具身大模型 / Sim-to-Real 范式"
+        }
+      ]
+    },
+    {
+      "id": "robot-foundation",
+      "title": "模块二：机器人基础模型 — RT-2 / Octo / π₀ / SayCan",
+      "component": "LessonRobotFoundation",
+      "lessons": [
+        {
+          "id": "robot-foundation",
+          "title": "模块二：机器人基础模型 — RT-2 / Octo / π₀ / SayCan"
+        }
+      ]
+    },
+    {
+      "id": "simulation-env",
+      "title": "模块三：仿真环境 — NVIDIA Isaac Sim / MuJoCo / Sim-to-Real Transfer",
+      "component": "LessonSimulationEnv",
+      "lessons": [
+        {
+          "id": "simulation-env",
+          "title": "模块三：仿真环境 — NVIDIA Isaac Sim / MuJoCo / Sim-to-Real Transfer"
+        }
+      ]
+    },
+    {
+      "id": "edge-ai-deploy",
+      "title": "模块四：端侧 AI 部署 — TensorRT / ONNX Runtime / NPU / 量化推理",
+      "component": "LessonEdgeAIDeploy",
+      "lessons": [
+        {
+          "id": "edge-ai-deploy",
+          "title": "模块四：端侧 AI 部署 — TensorRT / ONNX Runtime / NPU / 量化推理"
+        }
+      ]
+    },
+    {
+      "id": "3d-perception",
+      "title": "模块五：3D 感知 — 点云处理 / Depth Estimation / SLAM / 场景理解",
+      "component": "Lesson3DPerception",
+      "lessons": [
+        {
+          "id": "3d-perception",
+          "title": "模块五：3D 感知 — 点云处理 / Depth Estimation / SLAM / 场景理解"
+        }
+      ]
+    },
+    {
+      "id": "autonomous-driving",
+      "title": "模块六：自动驾驶 — BEV 感知 / 端到端驾驶 / 规划决策 / 仿真测试",
+      "component": "LessonAutonomousDriving",
+      "lessons": [
+        {
+          "id": "autonomous-driving",
+          "title": "模块六：自动驾驶 — BEV 感知 / 端到端驾驶 / 规划决策 / 仿真测试"
+        }
+      ]
+    },
+    {
+      "id": "humanoid-robot",
+      "title": "模块七：人形机器人 — 步态控制 / 灵巧操作 / 双臂协调 / 感知融合",
+      "component": "LessonHumanoidRobot",
+      "lessons": [
+        {
+          "id": "humanoid-robot",
+          "title": "模块七：人形机器人 — 步态控制 / 灵巧操作 / 双臂协调 / 感知融合"
+        }
+      ]
+    },
+    {
+      "id": "system-integration",
+      "title": "模块八：系统集成 — ROS 2 + AI / 安全认证 / 实时控制 / 部署运维",
+      "component": "LessonSystemIntegration",
+      "lessons": [
+        {
+          "id": "system-integration",
+          "title": "模块八：系统集成 — ROS 2 + AI / 安全认证 / 实时控制 / 部署运维"
+        }
+      ]
+    }
+  ]
+}

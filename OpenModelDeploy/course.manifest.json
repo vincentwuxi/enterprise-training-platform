@@ -2,19 +2,62 @@
   "id": "open-model-deploy",
   "title": "🚀 开源模型部署实战：Ollama / vLLM / Groq — 从本地到生产",
   "description": "微调完的模型怎么上线？开源模型部署从零到生产的完整路径。部署基础（模型格式 / 量化基础 / 硬件选型）→ Ollama 本地部署（Modelfile / GPU 加速 / 多模型管理）→ vLLM 高性能推理（PagedAttention / Continuous Batching / Throughput 优化）→ TGI & Triton（HuggingFace TGI / NVIDIA Triton Server）→ 量化部署（GGUF / GPTQ / AWQ / llama.cpp 性能实测）→ 推理即服务（Groq / Together / Fireworks / Replicate API）→ 容器化编排（Docker + K8s / GPU 调度 / 弹性伸缩）→ 生产架构（负载均衡 / KV Cache / 监控告警 / 成本优化）。让你的模型从实验室走向千万用户。",
-  "category": "AI 工程",
+  "category": "AI 平台与安全",
   "level": "高级",
   "totalHours": 36,
   "instructor": "MLOps 架构师 · GPU 推理工程师 · 云原生专家",
-  "tags": ["Ollama", "vLLM", "Groq", "TGI", "Triton", "GGUF", "llama.cpp", "Docker", "K8s", "Inference"],
+  "tags": [
+    "Ollama",
+    "vLLM",
+    "Groq",
+    "TGI",
+    "Triton",
+    "GGUF",
+    "llama.cpp",
+    "Docker",
+    "K8s",
+    "Inference"
+  ],
   "modules": [
-    { "id": "deploy-fundamentals", "title": "模块一：部署基础 — 模型格式 / 量化原理 / 硬件选型",                "lessonKey": "LessonDeployFundamentals" },
-    { "id": "ollama",              "title": "模块二：Ollama 本地部署 — Modelfile / GPU 加速 / 多模型管理",      "lessonKey": "LessonOllama" },
-    { "id": "vllm",                "title": "模块三：vLLM 高性能推理 — PagedAttention / Continuous Batching",   "lessonKey": "LessonVLLM" },
-    { "id": "tgi-triton",          "title": "模块四：TGI & Triton — HuggingFace TGI / NVIDIA Triton Server",   "lessonKey": "LessonTGITriton" },
-    { "id": "quantization",        "title": "模块五：量化部署 — GGUF / GPTQ / AWQ / llama.cpp 性能实测",       "lessonKey": "LessonQuantization" },
-    { "id": "inference-api",       "title": "模块六：推理即服务 — Groq / Together / Fireworks / Replicate",     "lessonKey": "LessonInferenceAPI" },
-    { "id": "container-deploy",    "title": "模块七：容器化编排 — Docker + K8s / GPU 调度 / 弹性伸缩",         "lessonKey": "LessonContainerDeploy" },
-    { "id": "production-arch",     "title": "模块八：生产架构 — 负载均衡 / KV Cache / 监控 / 成本优化",        "lessonKey": "LessonProductionArch" }
+    {
+      "id": "deploy-fundamentals",
+      "title": "模块一：部署基础 — 模型格式 / 量化原理 / 硬件选型",
+      "lessonKey": "LessonDeployFundamentals"
+    },
+    {
+      "id": "ollama",
+      "title": "模块二：Ollama 本地部署 — Modelfile / GPU 加速 / 多模型管理",
+      "lessonKey": "LessonOllama"
+    },
+    {
+      "id": "vllm",
+      "title": "模块三：vLLM 高性能推理 — PagedAttention / Continuous Batching",
+      "lessonKey": "LessonVLLM"
+    },
+    {
+      "id": "tgi-triton",
+      "title": "模块四：TGI & Triton — HuggingFace TGI / NVIDIA Triton Server",
+      "lessonKey": "LessonTGITriton"
+    },
+    {
+      "id": "quantization",
+      "title": "模块五：量化部署 — GGUF / GPTQ / AWQ / llama.cpp 性能实测",
+      "lessonKey": "LessonQuantization"
+    },
+    {
+      "id": "inference-api",
+      "title": "模块六：推理即服务 — Groq / Together / Fireworks / Replicate",
+      "lessonKey": "LessonInferenceAPI"
+    },
+    {
+      "id": "container-deploy",
+      "title": "模块七：容器化编排 — Docker + K8s / GPU 调度 / 弹性伸缩",
+      "lessonKey": "LessonContainerDeploy"
+    },
+    {
+      "id": "production-arch",
+      "title": "模块八：生产架构 — 负载均衡 / KV Cache / 监控 / 成本优化",
+      "lessonKey": "LessonProductionArch"
+    }
   ]
 }

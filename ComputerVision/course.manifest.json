@@ -1,0 +1,99 @@
+{
+  "id": "computer-vision-engineering",
+  "title": "👁️ 计算机视觉工程：从检测分割到工业部署",
+  "subtitle": "YOLO / SAM 2 / OCR / 视频分析 / 边缘推理全栈实战",
+  "description": "计算机视觉是 AI 落地最广泛的领域之一。本课程从 CV 基础出发，系统覆盖目标检测 (YOLO v9/v10 / RT-DETR) → 图像分割 (SAM 2 / 全景分割) → OCR 与文档理解 → 视频分析 (动作识别/追踪) → 人脸与人体 (姿态估计/ReID) → 工业视觉 (缺陷检测/3D 测量) → 生产部署 (TensorRT/OpenVINO/ONNX)。强调工程化能力，从算法到边缘设备一站式掌握。",
+  "category": "AI 行业应用",
+  "level": "中级",
+  "icon": "👁️",
+  "modules": [
+    {
+      "id": "cv-fundamentals",
+      "title": "模块一：CV 基础 — 图像处理 / 特征提取 / 数据增强 / 标注工具",
+      "component": "LessonCVFundamentals",
+      "lessons": [
+        {
+          "id": "cv-fundamentals",
+          "title": "模块一：CV 基础 — 图像处理 / 特征提取 / 数据增强 / 标注工具"
+        }
+      ]
+    },
+    {
+      "id": "object-detection",
+      "title": "模块二：目标检测 — YOLO v9/v10 / RT-DETR / 小目标检测",
+      "component": "LessonObjectDetection",
+      "lessons": [
+        {
+          "id": "object-detection",
+          "title": "模块二：目标检测 — YOLO v9/v10 / RT-DETR / 小目标检测"
+        }
+      ]
+    },
+    {
+      "id": "image-segmentation",
+      "title": "模块三：图像分割 — SAM 2 / 语义分割 / 实例分割 / 全景分割",
+      "component": "LessonImageSegmentation",
+      "lessons": [
+        {
+          "id": "image-segmentation",
+          "title": "模块三：图像分割 — SAM 2 / 语义分割 / 实例分割 / 全景分割"
+        }
+      ]
+    },
+    {
+      "id": "ocr-document",
+      "title": "模块四：OCR 与文档理解 — PaddleOCR / 表格识别 / 版面分析",
+      "component": "LessonOCRDocument",
+      "lessons": [
+        {
+          "id": "ocr-document",
+          "title": "模块四：OCR 与文档理解 — PaddleOCR / 表格识别 / 版面分析"
+        }
+      ]
+    },
+    {
+      "id": "video-analysis",
+      "title": "模块五：视频分析 — 动作识别 / 目标跟踪 / 异常检测",
+      "component": "LessonVideoAnalysis",
+      "lessons": [
+        {
+          "id": "video-analysis",
+          "title": "模块五：视频分析 — 动作识别 / 目标跟踪 / 异常检测"
+        }
+      ]
+    },
+    {
+      "id": "face-body",
+      "title": "模块六：人脸与人体 — 人脸检测 / 人体姿态 / ReID / 隐私合规",
+      "component": "LessonFaceBody",
+      "lessons": [
+        {
+          "id": "face-body",
+          "title": "模块六：人脸与人体 — 人脸检测 / 人体姿态 / ReID / 隐私合规"
+        }
+      ]
+    },
+    {
+      "id": "industrial-vision",
+      "title": "模块七：工业视觉 — 质检 / 缺陷检测 / 3D 测量 / 边缘部署",
+      "component": "LessonIndustrialVision",
+      "lessons": [
+        {
+          "id": "industrial-vision",
+          "title": "模块七：工业视觉 — 质检 / 缺陷检测 / 3D 测量 / 边缘部署"
+        }
+      ]
+    },
+    {
+      "id": "cv-production",
+      "title": "模块八：生产部署 — TensorRT / OpenVINO / 模型优化 / 性能测试",
+      "component": "LessonCVProduction",
+      "lessons": [
+        {
+          "id": "cv-production",
+          "title": "模块八：生产部署 — TensorRT / OpenVINO / 模型优化 / 性能测试"
+        }
+      ]
+    }
+  ]
+}

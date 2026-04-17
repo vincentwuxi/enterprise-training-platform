@@ -2,21 +2,56 @@
   "id": "seo-mastery",
   "title": "SEO 从入门到精通：用数据驱动自然流量增长",
   "description": "从搜索引擎工作原理到实战排名策略，系统掌握关键词研究、技术SEO、内容优化、外链建设、数据分析全链路。配备关键词矩阵构建器、SERP预览工具、技术审计清单等实战工具，让你的网站持续获得高质量自然流量。",
-  "category": "营销与增长",
+  "category": "产品与职业",
   "level": "全级别",
   "totalHours": 32,
   "cover": {
-    "gradient": ["#064e3b", "#065f46"]
+    "gradient": [
+      "#064e3b",
+      "#065f46"
+    ]
   },
   "instructor": "高级营销专家 · SEO 战略顾问",
   "modules": [
-    { "id": "foundation",  "title": "模块一：SEO 认知基础 — 搜索引擎如何工作", "lessonKey": "LessonFoundation" },
-    { "id": "keyword",     "title": "模块二：关键词研究 — 找到用户真实需求", "lessonKey": "LessonKeyword" },
-    { "id": "technical",   "title": "模块三：技术 SEO — 让搜索引擎读懂你的网站", "lessonKey": "LessonTechnical" },
-    { "id": "onpage",      "title": "模块四：页面优化 — On-Page SEO 精要", "lessonKey": "LessonOnPage" },
-    { "id": "offpage",     "title": "模块五：外链建设 — 权威度的核心", "lessonKey": "LessonOffPage" },
-    { "id": "content",     "title": "模块六：内容营销 — 用内容赢得搜索份额", "lessonKey": "LessonContent" },
-    { "id": "analytics",   "title": "模块七：SEO 数据分析 — 用数据驱动决策", "lessonKey": "LessonAnalytics" },
-    { "id": "case",        "title": "模块八：实战案例 — 从 0 到 10 万月流量", "lessonKey": "LessonCase" }
+    {
+      "id": "foundation",
+      "title": "模块一：SEO 认知基础 — 搜索引擎如何工作",
+      "lessonKey": "LessonFoundation"
+    },
+    {
+      "id": "keyword",
+      "title": "模块二：关键词研究 — 找到用户真实需求",
+      "lessonKey": "LessonKeyword"
+    },
+    {
+      "id": "technical",
+      "title": "模块三：技术 SEO — 让搜索引擎读懂你的网站",
+      "lessonKey": "LessonTechnical"
+    },
+    {
+      "id": "onpage",
+      "title": "模块四：页面优化 — On-Page SEO 精要",
+      "lessonKey": "LessonOnPage"
+    },
+    {
+      "id": "offpage",
+      "title": "模块五：外链建设 — 权威度的核心",
+      "lessonKey": "LessonOffPage"
+    },
+    {
+      "id": "content",
+      "title": "模块六：内容营销 — 用内容赢得搜索份额",
+      "lessonKey": "LessonContent"
+    },
+    {
+      "id": "analytics",
+      "title": "模块七：SEO 数据分析 — 用数据驱动决策",
+      "lessonKey": "LessonAnalytics"
+    },
+    {
+      "id": "case",
+      "title": "模块八：实战案例 — 从 0 到 10 万月流量",
+      "lessonKey": "LessonCase"
+    }
   ]
 }

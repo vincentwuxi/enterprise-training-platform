@@ -2,10 +2,19 @@
   "id": "llm-product-design",
   "title": "LLM 应用产品设计：从 AI 工程到 AI 产品",
   "description": "写得了代码后，如何设计出用户真正喜欢的 AI 产品？课程覆盖 LLM 产品类型矩阵、AI UX 设计原则、Prompt 工程与产品结合、商业模式设计与冷启动，精析 Cursor/Notion AI/Perplexity 等 10 个成功案例，完整交付一份 AI 原生产品设计方案。",
-  "category": "产品与 AI",
+  "category": "AI 创意与效率",
   "level": "进阶",
-  "duration": "24h",
-  "tags": ["LLM", "AI产品", "产品设计", "AI UX", "商业模式", "案例分析", "Cursor", "Copilot"],
+  "totalHours": 24,
+  "tags": [
+    "LLM",
+    "AI产品",
+    "产品设计",
+    "AI UX",
+    "商业模式",
+    "案例分析",
+    "Cursor",
+    "Copilot"
+  ],
   "modules": [
     {
       "id": "LessonProductMatrix",

@@ -4,8 +4,16 @@
   "title": "大模型微调实战营：从入门到精通",
   "subtitle": "8 大模块 · 覆盖数据工程、SFT、LoRA/QLoRA、RLHF/DPO、评估与生产部署全链路",
   "description": "从零理解大模型微调原理，到动手训练属于自己的专属模型。覆盖主流方法论：SFT、LoRA、QLoRA、RLHF、DPO，配备交互式可视化工具，学完即可在企业落地。",
-  "category": "AI 工程与模型训练",
-  "tags": ["大模型", "Fine-tuning", "LoRA", "RLHF", "DPO", "SFT", "AI工程"],
+  "category": "大模型与 LLM",
+  "tags": [
+    "大模型",
+    "Fine-tuning",
+    "LoRA",
+    "RLHF",
+    "DPO",
+    "SFT",
+    "AI工程"
+  ],
   "difficulty": "intermediate-to-advanced",
   "estimatedHours": 32,
   "language": "zh-CN",
@@ -14,7 +22,10 @@
     "avatar": ""
   },
   "cover": {
-    "gradient": ["#0f172a", "#1e3a5f"],
+    "gradient": [
+      "#0f172a",
+      "#1e3a5f"
+    ],
     "icon": "cpu"
   },
   "prerequisites": [

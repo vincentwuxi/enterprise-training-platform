@@ -2,19 +2,56 @@
   "id": "cicd-gitops",
   "title": "CI/CD & GitOps：GitHub Actions + ArgoCD + Kubernetes",
   "description": "从零构建企业级 GitOps 流水线：GitHub Actions 自动化测试与构建、Docker 多阶段镜像优化、Helm Chart 管理、ArgoCD 声明式部署、Kubernetes 蓝绿/金丝雀发布、Prometheus 全链路监控。实现「代码提交 → 自动上线」60 秒全流程。",
-  "category": "DevOps",
+  "category": "基础设施与运维",
   "level": "高级",
   "totalHours": 40,
-  "cover": { "gradient": ["#0d1117", "#161b22"] },
+  "cover": {
+    "gradient": [
+      "#0d1117",
+      "#161b22"
+    ]
+  },
   "instructor": "前 GitHub Staff Engineer · Google SRE · CNCF Ambassador · Kubernetes Contributor · 10年DevOps实战",
   "modules": [
-    { "id": "cicd-core",      "title": "模块一：CI/CD 核心 — 流水线原理 / 主流工具对比",           "lessonKey": "LessonCICDCore" },
-    { "id": "github-actions", "title": "模块二：GitHub Actions — Workflow / Job / Step / Secrets",   "lessonKey": "LessonGitActions" },
-    { "id": "docker-build",   "title": "模块三：容器化最佳实践 — 多阶段构建 / 镜像扫描 / SBOM",     "lessonKey": "LessonDockerBuild" },
-    { "id": "helm-chart",     "title": "模块四：Helm Chart — 模板 / Values / Release / 版本管理",   "lessonKey": "LessonHelmChart" },
-    { "id": "argocd",         "title": "模块五：ArgoCD — GitOps 同步 / App of Apps / 健康检查",     "lessonKey": "LessonArgoCD" },
-    { "id": "kube-deploy",    "title": "模块六：K8s 部署策略 — Rolling / Blue-Green / Canary",       "lessonKey": "LessonKubeDeploy" },
-    { "id": "monitor-alert",  "title": "模块七：监控告警 — Prometheus / Grafana / AlertManager",     "lessonKey": "LessonMonitorAlert" },
-    { "id": "project",        "title": "模块八：生产实战 — 代码提交到上线全链路 GitOps 项目",        "lessonKey": "LessonProject" }
+    {
+      "id": "cicd-core",
+      "title": "模块一：CI/CD 核心 — 流水线原理 / 主流工具对比",
+      "lessonKey": "LessonCICDCore"
+    },
+    {
+      "id": "github-actions",
+      "title": "模块二：GitHub Actions — Workflow / Job / Step / Secrets",
+      "lessonKey": "LessonGitActions"
+    },
+    {
+      "id": "docker-build",
+      "title": "模块三：容器化最佳实践 — 多阶段构建 / 镜像扫描 / SBOM",
+      "lessonKey": "LessonDockerBuild"
+    },
+    {
+      "id": "helm-chart",
+      "title": "模块四：Helm Chart — 模板 / Values / Release / 版本管理",
+      "lessonKey": "LessonHelmChart"
+    },
+    {
+      "id": "argocd",
+      "title": "模块五：ArgoCD — GitOps 同步 / App of Apps / 健康检查",
+      "lessonKey": "LessonArgoCD"
+    },
+    {
+      "id": "kube-deploy",
+      "title": "模块六：K8s 部署策略 — Rolling / Blue-Green / Canary",
+      "lessonKey": "LessonKubeDeploy"
+    },
+    {
+      "id": "monitor-alert",
+      "title": "模块七：监控告警 — Prometheus / Grafana / AlertManager",
+      "lessonKey": "LessonMonitorAlert"
+    },
+    {
+      "id": "project",
+      "title": "模块八：生产实战 — 代码提交到上线全链路 GitOps 项目",
+      "lessonKey": "LessonProject"
+    }
   ]
 }

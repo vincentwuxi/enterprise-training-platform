@@ -1,0 +1,51 @@
+{
+  "id": "reinforcement-learning",
+  "title": "🎮 强化学习与决策智能：从 Q-Learning 到 RLHF/DPO — 让 AI 学会决策",
+  "subtitle": "MDP / Q-Learning / Policy Gradient / PPO / RLHF / DPO / 多智能体 / 游戏AI",
+  "description": "强化学习是让 AI 在交互中学会最优决策的核心技术。本课程从马尔可夫决策过程 (MDP) 出发，深入 Q-Learning / DQN → Policy Gradient / Actor-Critic → PPO / TRPO → RLHF (ChatGPT 的对齐核心) → DPO / GRPO (无需奖励模型的新范式) → 多智能体 RL → 游戏 AI (AlphaGo/OpenAI Five)。补全从深度学习到 LLM 对齐的关键技术断层。",
+  "category": "AI 基础与理论",
+  "level": "中级-高级",
+  "totalHours": 42,
+  "modules": [
+    {
+      "id": "mdp-foundations",
+      "title": "模块一：强化学习基础 — MDP / 贝尔曼方程 / 动态规划",
+      "component": "LessonMDPFoundations"
+    },
+    {
+      "id": "value-based-methods",
+      "title": "模块二：值函数方法 — Q-Learning / DQN / Rainbow / 经验回放",
+      "component": "LessonValueBased"
+    },
+    {
+      "id": "policy-gradient",
+      "title": "模块三：策略梯度 — REINFORCE / Actor-Critic / A2C / A3C",
+      "component": "LessonPolicyGradient"
+    },
+    {
+      "id": "ppo-trpo",
+      "title": "模块四：PPO 与信赖域方法 — TRPO / PPO / GAE / 工程实战",
+      "component": "LessonPPO"
+    },
+    {
+      "id": "rlhf-alignment",
+      "title": "模块五：RLHF — 人类反馈强化学习 / 奖励模型 / ChatGPT 对齐",
+      "component": "LessonRLHF"
+    },
+    {
+      "id": "dpo-modern-alignment",
+      "title": "模块六：DPO 与现代对齐 — DPO / GRPO / KTO / 在线对齐",
+      "component": "LessonDPO"
+    },
+    {
+      "id": "multi-agent-rl",
+      "title": "模块七：多智能体强化学习 — 合作 / 竞争 / 通信 / 涌现行为",
+      "component": "LessonMultiAgent"
+    },
+    {
+      "id": "rl-applications",
+      "title": "模块八：RL 应用前沿 — 游戏 AI / 机器人 / 推理增强 / 自动驾驶",
+      "component": "LessonRLApplications"
+    }
+  ]
+}

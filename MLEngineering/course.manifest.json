@@ -2,18 +2,50 @@
   "id": "ml-engineering",
   "title": "🧠 机器学习工程：PyTorch + MLOps 全链路",
   "description": "从ML数学基础到生产落地！线性代数/概率论速成 → sklearn传统ML → PyTorch从零实现（Tensor/自动微分/训练循环）→ CNN/RNN/Transformer架构 → BERT/GPT Fine-tuning → MLflow实验追踪 → DVC数据版本化 → W&B可视化 → TorchServe/Triton模型服务化 → 数据漂移监控 → LoRA高效微调 + RLHF实践。含交互式神经网络可视化、Attention机制动画、训练曲线监控器，填补LLM应用与底层工程之间的空白。",
-  "category": "AI & 机器学习",
+  "category": "AI 平台与安全",
   "level": "中高级",
   "totalHours": 52,
   "instructor": "Google Brain / DeepMind Alumni · 10+ ML论文作者 · Kaggle Grandmaster · MLOps架构师",
   "modules": [
-    { "id": "ml-foundation",    "title": "模块一：ML数学基础 — 线性代数 / 概率 / 优化算法",       "lessonKey": "LessonMLFoundation" },
-    { "id": "pytorch",          "title": "模块二：PyTorch 核心 — Tensor / 自动微分 / 训练循环",    "lessonKey": "LessonPyTorch" },
-    { "id": "cnn",              "title": "模块三：CNN 视觉网络 — 卷积/池化/ResNet/YOLO",           "lessonKey": "LessonCNN" },
-    { "id": "transformer",      "title": "模块四：Transformer — Attention机制 / BERT / GPT结构",   "lessonKey": "LessonTransformer" },
-    { "id": "finetuning",       "title": "模块五：Fine-tuning — LoRA / QLoRA / RLHF / PEFT",      "lessonKey": "LessonFineTuning" },
-    { "id": "mlops",            "title": "模块六：MLOps — MLflow / DVC / W&B / 实验管理",          "lessonKey": "LessonMLOps" },
-    { "id": "serving",          "title": "模块七：模型服务化 — TorchServe / Triton / FastAPI推理",  "lessonKey": "LessonServing" },
-    { "id": "monitoring",       "title": "模块八：生产监控 — 数据漂移 / 模型衰减 / A/B测试",       "lessonKey": "LessonMonitoring" }
+    {
+      "id": "ml-foundation",
+      "title": "模块一：ML数学基础 — 线性代数 / 概率 / 优化算法",
+      "lessonKey": "LessonMLFoundation"
+    },
+    {
+      "id": "pytorch",
+      "title": "模块二：PyTorch 核心 — Tensor / 自动微分 / 训练循环",
+      "lessonKey": "LessonPyTorch"
+    },
+    {
+      "id": "cnn",
+      "title": "模块三：CNN 视觉网络 — 卷积/池化/ResNet/YOLO",
+      "lessonKey": "LessonCNN"
+    },
+    {
+      "id": "transformer",
+      "title": "模块四：Transformer — Attention机制 / BERT / GPT结构",
+      "lessonKey": "LessonTransformer"
+    },
+    {
+      "id": "finetuning",
+      "title": "模块五：Fine-tuning — LoRA / QLoRA / RLHF / PEFT",
+      "lessonKey": "LessonFineTuning"
+    },
+    {
+      "id": "mlops",
+      "title": "模块六：MLOps — MLflow / DVC / W&B / 实验管理",
+      "lessonKey": "LessonMLOps"
+    },
+    {
+      "id": "serving",
+      "title": "模块七：模型服务化 — TorchServe / Triton / FastAPI推理",
+      "lessonKey": "LessonServing"
+    },
+    {
+      "id": "monitoring",
+      "title": "模块八：生产监控 — 数据漂移 / 模型衰减 / A/B测试",
+      "lessonKey": "LessonMonitoring"
+    }
   ]
 }

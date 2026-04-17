@@ -1,0 +1,61 @@
+{
+  "id": "ai-native-dev",
+  "title": "🤖 AI-Native 开发工程：Cursor / Claude Code / Agentic Coding 实战",
+  "description": "AI 正在重塑软件开发。本课程从 AI IDE 工程（Cursor Rules/Windsurf/Context 管理）出发，深入 Agentic Coding（Claude Code/Codex CLI/OpenHands 自主编程）→ AI Code Review（自动审查/安全扫描/Tech Debt 检测）→ AI 测试工程（自动生成测试/突变测试/TDD with AI）→ Prompt-to-App（v0.dev/bolt.new/Lovable 全栈原型）→ AI 重构（框架迁移/代码现代化）→ AI DevOps（日志智能分析/故障自愈/AI CI/CD）→ 团队 AI 工作流（编码规范/PR 自动化/知识管理/质量门禁）。",
+  "category": "AI Agent 工程",
+  "level": "中级",
+  "totalHours": 36,
+  "instructor": "AI IDE 专家 · Agentic Coding 工程师 · DevOps 架构师",
+  "tags": [
+    "Cursor",
+    "Claude Code",
+    "Agentic Coding",
+    "AI编程",
+    "AI测试",
+    "Prompt-to-App",
+    "AI重构",
+    "AI DevOps"
+  ],
+  "modules": [
+    {
+      "id": "ai-ide-engineering",
+      "title": "模块一：AI IDE 工程 — Cursor Rules / Windsurf / Context 管理",
+      "lessonKey": "LessonAIIDE"
+    },
+    {
+      "id": "agentic-coding",
+      "title": "模块二：Agentic Coding — Claude Code / Codex CLI / OpenHands 自主编程",
+      "lessonKey": "LessonAgenticCoding"
+    },
+    {
+      "id": "ai-code-review",
+      "title": "模块三：AI Code Review — 自动审查 / 安全扫描 / Tech Debt 检测",
+      "lessonKey": "LessonAICodeReview"
+    },
+    {
+      "id": "ai-testing",
+      "title": "模块四：AI 测试工程 — 自动生成测试 / 突变测试 / TDD with AI",
+      "lessonKey": "LessonAITesting"
+    },
+    {
+      "id": "prompt-to-app",
+      "title": "模块五：Prompt-to-App — v0.dev / bolt.new / Lovable 全栈原型",
+      "lessonKey": "LessonPromptToApp"
+    },
+    {
+      "id": "ai-refactoring",
+      "title": "模块六：AI 重构大师 — 框架迁移 / 架构升级 / 代码现代化",
+      "lessonKey": "LessonAIRefactoring"
+    },
+    {
+      "id": "ai-devops",
+      "title": "模块七：AI DevOps — 日志智能分析 / 故障自愈 / AI 驱动 CI/CD",
+      "lessonKey": "LessonAIDevOps"
+    },
+    {
+      "id": "team-ai-workflow",
+      "title": "模块八：团队 AI 工作流 — 编码规范 / PR 自动化 / 知识管理 / 质量门禁",
+      "lessonKey": "LessonTeamAIWorkflow"
+    }
+  ]
+}

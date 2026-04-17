@@ -1,0 +1,61 @@
+{
+  "id": "knowledge-graph-rag",
+  "title": "🕸️ 知识图谱 + GraphRAG：从实体抽取到多跳推理 — RAG 的下一代进化",
+  "description": "RAG 的下一代形态——不只检索文本片段，而是在知识图谱上进行结构化推理。本课程从知识图谱基础（本体论/属性图/RDF）出发，深入 Neo4j 图数据库实战（Cypher/建模/性能调优）→ LLM 驱动知识抽取（NER/关系提取/三元组生成/自动构建）→ 微软 GraphRAG 深度（社区检测/Leiden/Map-Reduce 摘要/全局查询）→ 混合检索引擎（Vector + Graph + BM25 三路融合 Reranking）→ 多跳推理（推理链/因果分析/复杂多步 QA）→ 行业知识图谱（金融/医疗/法律领域 KG）→ 生产工程（增量更新/图谱演化/质量保证/成本优化）。",
+  "category": "大模型与 LLM",
+  "level": "高级",
+  "totalHours": 40,
+  "instructor": "知识图谱架构师 · GraphRAG 专家 · 图数据库工程师",
+  "tags": [
+    "知识图谱",
+    "GraphRAG",
+    "Neo4j",
+    "实体抽取",
+    "图数据库",
+    "多跳推理",
+    "Cypher",
+    "知识推理"
+  ],
+  "modules": [
+    {
+      "id": "kg-foundation",
+      "title": "模块一：知识图谱基础 — 本体论 / RDF vs 属性图 / 图论速通",
+      "lessonKey": "LessonKGFoundation"
+    },
+    {
+      "id": "neo4j",
+      "title": "模块二：Neo4j 图数据库实战 — Cypher 查询 / 建模模式 / 性能调优",
+      "lessonKey": "LessonNeo4j"
+    },
+    {
+      "id": "kg-extraction",
+      "title": "模块三：LLM 驱动知识抽取 — NER / 关系提取 / 三元组生成 / 自动构建",
+      "lessonKey": "LessonKGExtraction"
+    },
+    {
+      "id": "graphrag",
+      "title": "模块四：微软 GraphRAG 深度 — 社区检测 / Leiden / Map-Reduce 摘要",
+      "lessonKey": "LessonGraphRAG"
+    },
+    {
+      "id": "hybrid-kg-search",
+      "title": "模块五：混合检索引擎 — Vector + Graph + BM25 三路融合 Reranking",
+      "lessonKey": "LessonHybridKGSearch"
+    },
+    {
+      "id": "multi-hop-reasoning",
+      "title": "模块六：多跳推理 — 推理链 / 因果分析 / 复杂多步 QA",
+      "lessonKey": "LessonMultiHopReasoning"
+    },
+    {
+      "id": "industry-kg",
+      "title": "模块七：行业知识图谱 — 金融 / 医疗 / 法律 领域 KG 实战",
+      "lessonKey": "LessonIndustryKG"
+    },
+    {
+      "id": "kg-production",
+      "title": "模块八：生产工程 — 增量更新 / 图谱演化 / 质量保证 / 成本优化",
+      "lessonKey": "LessonKGProduction"
+    }
+  ]
+}

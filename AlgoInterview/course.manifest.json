@@ -2,10 +2,18 @@
   "id": "algo-interview",
   "title": "算法与数据结构精讲：LeetCode 高频题 + 面试题解",
   "description": "面向技术面试的系统化算法训练。覆盖数组双指针、链表与树、动态规划、图论等核心专题，精讲 150+ LeetCode 高频题解题模板，配合系统设计课构建完整面试能力体系。",
-  "category": "编程与技术",
+  "category": "编程与开发",
   "level": "中级到高级",
-  "duration": "40h",
-  "tags": ["算法", "数据结构", "LeetCode", "面试", "动态规划", "图论", "双指针"],
+  "totalHours": 40,
+  "tags": [
+    "算法",
+    "数据结构",
+    "LeetCode",
+    "面试",
+    "动态规划",
+    "图论",
+    "双指针"
+  ],
   "modules": [
     {
       "id": "LessonArrayPtr",

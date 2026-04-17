@@ -2,19 +2,60 @@
   "id": "ai-fullstack-apps",
   "title": "🧩 AI 全栈应用实战：ChatBot / RAG / Text-to-SQL — 从 0 到 SaaS",
   "description": "学了 API、学了微调、学了部署——然后呢？本课程把所有 AI 技能串成端到端的全栈应用。AI 全栈架构（技术选型/系统设计/成本模型）→ 智能 ChatBot（多轮对话/流式输出/工具调用/记忆系统）→ RAG 知识库（文档处理/向量检索/混合搜索/引用溯源）→ Text-to-SQL（Schema Linking/查询生成/安全执行/可视化）→ AI 工作流引擎（LangGraph/多步编排/人机协作）→ 多模态应用（图像理解/语音/视频分析）→ AI SaaS 平台（多租户/计费/限流/鉴权）→ 上线运营（灰度发布/AB 测试/用户反馈闭环）。每个模块都是可上线的完整项目。",
-  "category": "AI 工程",
+  "category": "AI Agent 工程",
   "level": "高级",
   "totalHours": 48,
   "instructor": "全栈工程师 · AI 产品架构师 · SaaS 创业者",
-  "tags": ["ChatBot", "RAG", "Text-to-SQL", "LangGraph", "SaaS", "全栈", "Agent", "多模态"],
+  "tags": [
+    "ChatBot",
+    "RAG",
+    "Text-to-SQL",
+    "LangGraph",
+    "SaaS",
+    "全栈",
+    "Agent",
+    "多模态"
+  ],
   "modules": [
-    { "id": "ai-arch",       "title": "模块一：AI 全栈架构 — 技术选型 / 系统设计 / 成本模型",           "lessonKey": "LessonAIArch" },
-    { "id": "chatbot",       "title": "模块二：智能 ChatBot — 多轮对话 / 流式输出 / 工具调用 / 记忆",   "lessonKey": "LessonChatBot" },
-    { "id": "rag-app",       "title": "模块三：RAG 知识库应用 — 文档处理 / 向量检索 / 混合搜索",       "lessonKey": "LessonRAGApp" },
-    { "id": "text-to-sql",   "title": "模块四：Text-to-SQL — Schema Linking / 查询生成 / 安全执行",     "lessonKey": "LessonTextToSQL" },
-    { "id": "ai-workflow",   "title": "模块五：AI 工作流引擎 — LangGraph / 多步编排 / 人机协作",       "lessonKey": "LessonAIWorkflow" },
-    { "id": "multimodal",    "title": "模块六：多模态应用 — 图像理解 / 语音交互 / 视频分析",           "lessonKey": "LessonMultimodal" },
-    { "id": "ai-saas",       "title": "模块七：AI SaaS 平台 — 多租户 / 计费系统 / 限流 / 鉴权",       "lessonKey": "LessonAISaaS" },
-    { "id": "go-live",       "title": "模块八：上线与运营 — 灰度发布 / A/B 测试 / 反馈闭环",          "lessonKey": "LessonGoLive" }
+    {
+      "id": "ai-arch",
+      "title": "模块一：AI 全栈架构 — 技术选型 / 系统设计 / 成本模型",
+      "lessonKey": "LessonAIArch"
+    },
+    {
+      "id": "chatbot",
+      "title": "模块二：智能 ChatBot — 多轮对话 / 流式输出 / 工具调用 / 记忆",
+      "lessonKey": "LessonChatBot"
+    },
+    {
+      "id": "rag-app",
+      "title": "模块三：RAG 知识库应用 — 文档处理 / 向量检索 / 混合搜索",
+      "lessonKey": "LessonRAGApp"
+    },
+    {
+      "id": "text-to-sql",
+      "title": "模块四：Text-to-SQL — Schema Linking / 查询生成 / 安全执行",
+      "lessonKey": "LessonTextToSQL"
+    },
+    {
+      "id": "ai-workflow",
+      "title": "模块五：AI 工作流引擎 — LangGraph / 多步编排 / 人机协作",
+      "lessonKey": "LessonAIWorkflow"
+    },
+    {
+      "id": "multimodal",
+      "title": "模块六：多模态应用 — 图像理解 / 语音交互 / 视频分析",
+      "lessonKey": "LessonMultimodal"
+    },
+    {
+      "id": "ai-saas",
+      "title": "模块七：AI SaaS 平台 — 多租户 / 计费系统 / 限流 / 鉴权",
+      "lessonKey": "LessonAISaaS"
+    },
+    {
+      "id": "go-live",
+      "title": "模块八：上线与运营 — 灰度发布 / A/B 测试 / 反馈闭环",
+      "lessonKey": "LessonGoLive"
+    }
   ]
 }

@@ -2,18 +2,59 @@
   "id": "interview-mastery",
   "title": "🎯 技术面试全攻略：算法 + 系统设计 + 行为面试",
   "description": "6个月备考计划，从0到拿下大厂Offer！LeetCode高频100题解析（双指针/滑窗/BFS/DP动态规划）→ 时间/空间复杂度分析 → 数据结构深度（树/图/堆/Trie）→ 系统设计面试框架（FAANG模板）→ 经典大题：设计推特/URL缩短器/分布式缓存 → STAR法则行为面试 → 薪资谈判实战 → 模拟面试计时器 → 个性化备考Roadmap。含交互式算法动画、面试计时器、Offer对比器，让你从容应对FAANG、国内大厂面试。",
-  "category": "职业发展",
+  "category": "产品与职业",
   "level": "所有级别",
   "totalHours": 60,
+  "coverGradient": "linear-gradient(135deg, #b45309, #a16207, #854d0e)",
   "instructor": "Google/Facebook/字节 前工程师 · 100+ 面试经验 · LeetCode Top 1% · 职业导师",
   "modules": [
-    { "id": "algorithm",        "title": "模块一：算法核心 — 双指针 / 滑窗 / BFS/DFS / 回溯",    "lessonKey": "LessonAlgorithm" },
-    { "id": "complexity",       "title": "模块二：复杂度分析 — 时间/空间 / 均摊分析 / 面试陷阱",  "lessonKey": "LessonComplexity" },
-    { "id": "data-structure",   "title": "模块三：数据结构深度 — 树/图/堆/Trie 全掌握",           "lessonKey": "LessonDataStructure" },
-    { "id": "dynamic-prog",     "title": "模块四：动态规划 — DP方程推导 + 经典套路20种",          "lessonKey": "LessonDP" },
-    { "id": "system-design",    "title": "模块五：系统设计 — FAANG框架 + 经典题全解",             "lessonKey": "LessonSystemDesign" },
-    { "id": "behavioral",       "title": "模块六：行为面试 — STAR法则 + 30道高频题解析",          "lessonKey": "LessonBehavioral" },
-    { "id": "mock",             "title": "模块七：模拟面试 — 计时器 + 实战演练 + 复盘",           "lessonKey": "LessonMock" },
-    { "id": "offer",            "title": "模块八：Offer&薪资 — 谈判策略 + Offer对比 + 入职准备",  "lessonKey": "LessonOffer" }
+    {
+      "id": "algorithm",
+      "title": "模块一：算法核心 — 双指针 / 滑窗 / BFS/DFS / 回溯",
+      "component": "LessonAlgorithm",
+      "lessonKey": "LessonAlgorithm"
+    },
+    {
+      "id": "complexity",
+      "title": "模块二：复杂度分析 — 时间/空间 / 均摊分析 / 面试陷阱",
+      "component": "LessonComplexity",
+      "lessonKey": "LessonComplexity"
+    },
+    {
+      "id": "data-structure",
+      "title": "模块三：数据结构深度 — 树/图/堆/Trie 全掌握",
+      "component": "LessonDataStructure",
+      "lessonKey": "LessonDataStructure"
+    },
+    {
+      "id": "dynamic-prog",
+      "title": "模块四：动态规划 — DP方程推导 + 经典套路20种",
+      "component": "LessonDP",
+      "lessonKey": "LessonDP"
+    },
+    {
+      "id": "system-design",
+      "title": "模块五：系统设计 — FAANG框架 + 经典题全解",
+      "component": "LessonSystemDesign",
+      "lessonKey": "LessonSystemDesign"
+    },
+    {
+      "id": "behavioral",
+      "title": "模块六：行为面试 — STAR法则 + 30道高频题解析",
+      "component": "LessonBehavioral",
+      "lessonKey": "LessonBehavioral"
+    },
+    {
+      "id": "mock",
+      "title": "模块七：模拟面试 — 计时器 + 实战演练 + 复盘",
+      "component": "LessonMock",
+      "lessonKey": "LessonMock"
+    },
+    {
+      "id": "offer",
+      "title": "模块八：Offer&薪资 — 谈判策略 + Offer对比 + 入职准备",
+      "component": "LessonOffer",
+      "lessonKey": "LessonOffer"
+    }
   ]
 }

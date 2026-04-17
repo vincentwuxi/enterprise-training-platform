@@ -1,0 +1,54 @@
+{
+  "id": "linear-algebra",
+  "title": "📐 线性代数 — 从向量直觉到矩阵精通",
+  "subtitle": "向量空间 / 矩阵变换 / 特征分解 / SVD / PCA — AI 数学核心",
+  "description": "线性代数是深度学习的「数学操作系统」。本课程通过交互式可视化，从向量的几何直觉出发，深入矩阵变换、特征值分解、SVD 与 PCA。理解 Transformer Attention、Embedding、CNN 卷积背后的数学原理。配备 NumPy/PyTorch 实战代码，让你真正看懂每一篇 AI 论文的数学部分。",
+  "category": "数学基础",
+  "level": "中级",
+  "totalHours": 32,
+  "cover": {
+    "gradient": ["#3b82f6", "#06b6d4"]
+  },
+  "modules": [
+    {
+      "id": "vectors-spaces",
+      "title": "模块一：向量与向量空间 — 几何直觉 / 线性组合 / 基与维度",
+      "component": "LessonVectors"
+    },
+    {
+      "id": "linear-transforms",
+      "title": "模块二：线性变换 — 矩阵即函数 / 旋转 / 缩放 / 投影",
+      "component": "LessonTransforms"
+    },
+    {
+      "id": "matrix-operations",
+      "title": "模块三：矩阵运算 — 乘法 / 逆矩阵 / 行列式 / LU 分解",
+      "component": "LessonMatrixOps"
+    },
+    {
+      "id": "linear-systems",
+      "title": "模块四：线性方程组 — 高斯消元 / Rank / 解空间结构",
+      "component": "LessonLinearSystems"
+    },
+    {
+      "id": "eigenvalues",
+      "title": "模块五：特征值与特征向量 — 几何意义 / 对角化 / 谱定理",
+      "component": "LessonEigenvalues"
+    },
+    {
+      "id": "svd",
+      "title": "模块六：奇异值分解 — SVD 原理 / 图像压缩 / 推荐系统",
+      "component": "LessonSVD"
+    },
+    {
+      "id": "pca-ml",
+      "title": "模块七：PCA 与机器学习 — 降维 / 数据可视化 / 人脸识别",
+      "component": "LessonPCA"
+    },
+    {
+      "id": "advanced-topics",
+      "title": "模块八：高级专题 — 张量 / 稀疏矩阵 / GPU 加速线性代数",
+      "component": "LessonAdvanced"
+    }
+  ]
+}

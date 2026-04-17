@@ -1,0 +1,56 @@
+{
+  "id": "discrete-math",
+  "title": "🔢 离散数学 — 逻辑·集合·图论·组合",
+  "description": "从命题逻辑到图论算法，掌握计算机科学的数学基石。覆盖集合论、关系、函数、递推、计数、图的遍历与最短路径、树与网络流。含交互式图论 playground 与组合计数器。",
+  "category": "数学基础",
+  "level": "中级",
+  "totalHours": 32,
+  "cover": {
+    "gradient": [
+      "#f59e0b",
+      "#ef4444"
+    ]
+  },
+  "modules": [
+    {
+      "id": "logic-prop",
+      "title": "模块一：命题逻辑 — 联结词 / 真值表 / 等价重写",
+      "component": "LessonPropLogic"
+    },
+    {
+      "id": "sets-relations",
+      "title": "模块二：集合与关系 — 集合运算 / 等价关系 / 偏序",
+      "component": "LessonSetsRelations"
+    },
+    {
+      "id": "functions-seq",
+      "title": "模块三：函数与序列 — 函数类型 / 递推 / 生成函数",
+      "component": "LessonFunctionsSeq"
+    },
+    {
+      "id": "counting",
+      "title": "模块四：计数与组合 — 排列 / 组合 / 容斥原理",
+      "component": "LessonCounting"
+    },
+    {
+      "id": "graph-basics",
+      "title": "模块五：图论基础 — 图的表示 / 遍历 / 连通性",
+      "component": "LessonGraphBasics"
+    },
+    {
+      "id": "graph-algos",
+      "title": "模块六：图论算法 — 最短路径 / 最小生成树 / 着色",
+      "component": "LessonGraphAlgos"
+    },
+    {
+      "id": "trees-networks",
+      "title": "模块七：树与网络流 — 树的遍历 / 最大流 / 匹配",
+      "component": "LessonTreesNetworks"
+    },
+    {
+      "id": "boolean-crypto",
+      "title": "模块八：布尔代数与应用 — 逻辑门 / 编码 / 密码学基础",
+      "component": "LessonBooleanCrypto"
+    }
+  ]
+}

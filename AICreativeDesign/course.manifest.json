@@ -1,0 +1,99 @@
+{
+  "id": "ai-creative-design",
+  "title": "🎨 AI 创意设计与视觉生成：Midjourney / ComfyUI / DALL·E 全栈",
+  "subtitle": "从 Prompt 到产品级视觉内容生产管线",
+  "description": "AI 视觉生成正在重塑创意产业：Midjourney V7 实现照片级想象力，ComfyUI 构建可复现的专业工作流，DALL·E 3 / Imagen 3 打通文生图商业化。本课程覆盖 AI 绘画基础 (Diffusion/Prompt) → Midjourney 精通 → ComfyUI 工作流 → ControlNet 精确控制 → Logo/品牌设计 → 电商视觉 → 动态设计 (动图/短视频) → 商业落地 (版权/效率/团队)。面向设计师、创意从业者和技术人员，构建 AI 视觉生产力全栈。",
+  "category": "AI 创意与效率",
+  "level": "中级",
+  "icon": "🎨",
+  "modules": [
+    {
+      "id": "ai-art-fundamentals",
+      "title": "模块一：AI 绘画基础 — Diffusion 原理 / Prompt 工程 / 主流平台对比",
+      "component": "LessonAIArtFundamentals",
+      "lessons": [
+        {
+          "id": "ai-art-fundamentals",
+          "title": "模块一：AI 绘画基础 — Diffusion 原理 / Prompt 工程 / 主流平台对比"
+        }
+      ]
+    },
+    {
+      "id": "midjourney-mastery",
+      "title": "模块二：Midjourney 精通 — V7 特性 / 参数体系 / 风格控制 / 高级技巧",
+      "component": "LessonMidjourneyMastery",
+      "lessons": [
+        {
+          "id": "midjourney-mastery",
+          "title": "模块二：Midjourney 精通 — V7 特性 / 参数体系 / 风格控制 / 高级技巧"
+        }
+      ]
+    },
+    {
+      "id": "comfyui-workflow",
+      "title": "模块三：ComfyUI 工作流 — 节点编程 / 自定义管线 / 批量生产",
+      "component": "LessonComfyUIWorkflow",
+      "lessons": [
+        {
+          "id": "comfyui-workflow",
+          "title": "模块三：ComfyUI 工作流 — 节点编程 / 自定义管线 / 批量生产"
+        }
+      ]
+    },
+    {
+      "id": "controlnet-precision",
+      "title": "模块四：ControlNet 精确控制 — 姿态 / 线稿 / 深度 / IP-Adapter",
+      "component": "LessonControlNetPrecision",
+      "lessons": [
+        {
+          "id": "controlnet-precision",
+          "title": "模块四：ControlNet 精确控制 — 姿态 / 线稿 / 深度 / IP-Adapter"
+        }
+      ]
+    },
+    {
+      "id": "logo-brand-design",
+      "title": "模块五：Logo 与品牌设计 — AI 辅助标志 / VI 系统 / 品牌视觉",
+      "component": "LessonLogoBrandDesign",
+      "lessons": [
+        {
+          "id": "logo-brand-design",
+          "title": "模块五：Logo 与品牌设计 — AI 辅助标志 / VI 系统 / 品牌视觉"
+        }
+      ]
+    },
+    {
+      "id": "ecommerce-visual",
+      "title": "模块六：电商视觉 — 商品图 / 场景图 / 模特换装 / A/B 测试",
+      "component": "LessonEcommerceVisual",
+      "lessons": [
+        {
+          "id": "ecommerce-visual",
+          "title": "模块六：电商视觉 — 商品图 / 场景图 / 模特换装 / A/B 测试"
+        }
+      ]
+    },
+    {
+      "id": "motion-design",
+      "title": "模块七：动态设计 — AI 动图 / 短视频素材 / 动态海报 / Lottie",
+      "component": "LessonMotionDesign",
+      "lessons": [
+        {
+          "id": "motion-design",
+          "title": "模块七：动态设计 — AI 动图 / 短视频素材 / 动态海报 / Lottie"
+        }
+      ]
+    },
+    {
+      "id": "commercial-production",
+      "title": "模块八：商业落地 — 版权合规 / 效率提升 / 团队协作 / 定价策略",
+      "component": "LessonCommercialProduction",
+      "lessons": [
+        {
+          "id": "commercial-production",
+          "title": "模块八：商业落地 — 版权合规 / 效率提升 / 团队协作 / 定价策略"
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,36 @@ import { courseRegistry } from '../courses/registry';
 import { useAuth } from '../context/AuthContext';
 import './Catalog.css';
 
+const CATEGORIES = [
+  { key: 'all',             label: '全部',           icon: '📚' },
+  { key: 'math-foundations', label: '数学基础',       icon: '📐' },
+  { key: 'ai-fundamentals', label: 'AI 基础与理论',  icon: '🧠' },
+  { key: 'llm-engineering', label: '大模型与 LLM',   icon: '🤖' },
+  { key: 'ai-agent',        label: 'AI Agent 工程',  icon: '⚡' },
+  { key: 'ai-applications', label: 'AI 行业应用',    icon: '🏭' },
+  { key: 'ai-platform',     label: 'AI 平台与安全',  icon: '🛡️' },
+  { key: 'ai-creative',     label: 'AI 创意与效率',  icon: '🎨' },
+  { key: 'programming',     label: '编程与开发',     icon: '💻' },
+  { key: 'infra-devops',    label: '基础设施与运维', icon: '🔧' },
+  { key: 'data-engineering', label: '数据与存储',    icon: '🗄️' },
+  { key: 'product-career',  label: '产品与职业',     icon: '🚀' },
+];
+
+// Map filter key -> manifest category value
+const CATEGORY_FILTER_MAP = {
+  'math-foundations': '数学基础',
+  'ai-fundamentals': 'AI 基础与理论',
+  'llm-engineering': '大模型与 LLM',
+  'ai-agent':        'AI Agent 工程',
+  'ai-applications': 'AI 行业应用',
+  'ai-platform':     'AI 平台与安全',
+  'ai-creative':     'AI 创意与效率',
+  'programming':     '编程与开发',
+  'infra-devops':    '基础设施与运维',
+  'data-engineering': '数据与存储',
+  'product-career':  '产品与职业',
+};
+
 export default function Catalog() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -19,12 +49,8 @@ export default function Catalog() {
     // Learners only see online courses; admins see all (with offline badge)
     if (!isAdmin && !course.online) return false;
     if (activeCategory === 'all') return true;
-    if (activeCategory === 'math' && course.category === '数学与逻辑') return true;
-    if (activeCategory === 'code' && course.category === '编程与技术') return true;
-    if (activeCategory === 'ops'  && course.category === '操作系统与运维') return true;
-    if (activeCategory === 'ai'   && (course.category === 'AI 工程与模型训练' || course.category === 'AI技能')) return true;
-    if (activeCategory === 'sci'  && course.category === '科学与技术') return true;
-    return false;
+    const targetCategory = CATEGORY_FILTER_MAP[activeCategory];
+    return targetCategory && course.category === targetCategory;
   });
 
   return (
@@ -32,17 +58,11 @@ export default function Catalog() {
       <header className="catalog-header">
         <h1>探索课程</h1>
         <div className="filter-tabs">
-          {[
-            { key: 'all',  label: '全部' },
-            { key: 'ai',   label: 'AI 技术' },
-            { key: 'ops',  label: '运维与系统' },
-            { key: 'code', label: '编程与技术' },
-            { key: 'math', label: '数学与逻辑' },
-            { key: 'sci',  label: '科学与技术' },
-          ].map(f => (
+          {CATEGORIES.map(f => (
             <button key={f.key}
               className={`filter-tab ${activeCategory === f.key ? 'active' : ''}`}
               onClick={() => navigate(f.key === 'all' ? '/catalog' : `/catalog?category=${f.key}`)}>
+              <span className="filter-icon">{f.icon}</span>
               {f.label}
             </button>
           ))}

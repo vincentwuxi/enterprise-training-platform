@@ -2,18 +2,67 @@
   "id": "wasm-edge",
   "title": "WebAssembly + Edge Computing：从浏览器到边缘的极速计算",
   "description": "打破浏览器性能天花板，让代码在全球 300+ 边缘节点以接近原生速度执行。WebAssembly 核心（线性内存/模块/表/Instance）→ Rust→Wasm 工具链（wasm-pack/wasm-bindgen/wee_alloc）→ 浏览器 Wasm 实战（图像处理/加密/SQLite/Figma 架构）→ WASI 系统接口（文件/网络/时钟/沙箱安全）→ Cloudflare Workers 深度（KV/D1/R2/Durable Objects/Queues）→ Vercel/Deno Edge Runtime → Edge AI（ONNX Runtime Web/Whisper.cpp/llama.cpp Wasm）→ 生产工程（性能基准/调试/监控/渐进迁移策略）。",
-  "category": "前沿技术",
+  "category": "编程与开发",
   "level": "中高级",
-  "duration": "30h",
-  "tags": ["WebAssembly", "Wasm", "WASI", "Rust", "wasm-pack", "wasm-bindgen", "Cloudflare Workers", "Edge Computing", "KV", "D1", "R2", "Durable Objects", "Vercel Edge", "Deno Deploy", "ONNX", "Edge AI"],
+  "totalHours": 30,
+  "tags": [
+    "WebAssembly",
+    "Wasm",
+    "WASI",
+    "Rust",
+    "wasm-pack",
+    "wasm-bindgen",
+    "Cloudflare Workers",
+    "Edge Computing",
+    "KV",
+    "D1",
+    "R2",
+    "Durable Objects",
+    "Vercel Edge",
+    "Deno Deploy",
+    "ONNX",
+    "Edge AI"
+  ],
   "modules": [
-    { "id": "wasm-core",     "title": "模块一：WebAssembly 核心 — 线性内存 / 模块 / 表 / 二进制格式", "lessonKey": "LessonWasmCore" },
-    { "id": "rust-wasm",     "title": "模块二：Rust → Wasm 工具链 — wasm-pack / wasm-bindgen / 体积优化", "lessonKey": "LessonRustWasm" },
-    { "id": "browser-wasm",  "title": "模块三：浏览器 Wasm 实战 — 图像处理 / 加密 / SQLite / Figma 架构", "lessonKey": "LessonBrowserWasm" },
-    { "id": "wasi",          "title": "模块四：WASI 系统接口 — 文件 / 网络 / 沙箱安全 / 组件模型", "lessonKey": "LessonWASI" },
-    { "id": "cf-workers",    "title": "模块五：Cloudflare Workers 深度 — KV / D1 / R2 / Durable Objects", "lessonKey": "LessonCFWorkers" },
-    { "id": "edge-runtime",  "title": "模块六：Edge Runtime — Vercel / Deno Deploy / Fastly Compute", "lessonKey": "LessonEdgeRuntime" },
-    { "id": "edge-ai",       "title": "模块七：Edge AI — ONNX Web / Whisper Wasm / 端侧推理", "lessonKey": "LessonEdgeAI" },
-    { "id": "production",    "title": "模块八：生产工程 — 性能基准 / 调试 / 监控 / 渐进迁移", "lessonKey": "LessonWasmProd" }
+    {
+      "id": "wasm-core",
+      "title": "模块一：WebAssembly 核心 — 线性内存 / 模块 / 表 / 二进制格式",
+      "lessonKey": "LessonWasmCore"
+    },
+    {
+      "id": "rust-wasm",
+      "title": "模块二：Rust → Wasm 工具链 — wasm-pack / wasm-bindgen / 体积优化",
+      "lessonKey": "LessonRustWasm"
+    },
+    {
+      "id": "browser-wasm",
+      "title": "模块三：浏览器 Wasm 实战 — 图像处理 / 加密 / SQLite / Figma 架构",
+      "lessonKey": "LessonBrowserWasm"
+    },
+    {
+      "id": "wasi",
+      "title": "模块四：WASI 系统接口 — 文件 / 网络 / 沙箱安全 / 组件模型",
+      "lessonKey": "LessonWASI"
+    },
+    {
+      "id": "cf-workers",
+      "title": "模块五：Cloudflare Workers 深度 — KV / D1 / R2 / Durable Objects",
+      "lessonKey": "LessonCFWorkers"
+    },
+    {
+      "id": "edge-runtime",
+      "title": "模块六：Edge Runtime — Vercel / Deno Deploy / Fastly Compute",
+      "lessonKey": "LessonEdgeRuntime"
+    },
+    {
+      "id": "edge-ai",
+      "title": "模块七：Edge AI — ONNX Web / Whisper Wasm / 端侧推理",
+      "lessonKey": "LessonEdgeAI"
+    },
+    {
+      "id": "production",
+      "title": "模块八：生产工程 — 性能基准 / 调试 / 监控 / 渐进迁移",
+      "lessonKey": "LessonWasmProd"
+    }
   ]
 }

@@ -1,0 +1,99 @@
+{
+  "id": "ai-system-optimization",
+  "title": "⚡ AI 系统优化与推理加速：从量化压缩到生产级部署",
+  "subtitle": "推理成本砍半、吞吐翻倍的工程实战手册",
+  "description": "推理成本是企业 AI 最大痛点：GPU 账单居高不下、延迟无法满足 SLA、扩容成本线性增长。本课程覆盖 GPU/NPU 硬件原理 → 量化压缩 (INT4/AWQ/GPTQ) → 推理引擎 (vLLM/TensorRT/SGLang) → KV Cache & Speculative Decoding → 分布式推理 → 边缘部署 → 成本建模与弹性伸缩 → 生产监控与 SLA 保障。面向 AI 工程师与平台架构师，构建企业级推理优化能力。",
+  "category": "AI 平台与安全",
+  "level": "高级",
+  "icon": "⚡",
+  "modules": [
+    {
+      "id": "inference-foundations",
+      "title": "模块一：推理基础 — GPU/NPU 架构 / 计算图优化 / 内存层次",
+      "component": "LessonInferenceFoundations",
+      "lessons": [
+        {
+          "id": "inference-foundations",
+          "title": "模块一：推理基础 — GPU/NPU 架构 / 计算图优化 / 内存层次"
+        }
+      ]
+    },
+    {
+      "id": "model-compression",
+      "title": "模块二：模型压缩 — 量化 (INT8/INT4/AWQ/GPTQ) / 剪枝 / 知识蒸馏",
+      "component": "LessonModelCompression",
+      "lessons": [
+        {
+          "id": "model-compression",
+          "title": "模块二：模型压缩 — 量化 (INT8/INT4/AWQ/GPTQ) / 剪枝 / 知识蒸馏"
+        }
+      ]
+    },
+    {
+      "id": "inference-engines",
+      "title": "模块三：推理引擎 — vLLM / TensorRT-LLM / SGLang / ONNX Runtime",
+      "component": "LessonInferenceEngines",
+      "lessons": [
+        {
+          "id": "inference-engines",
+          "title": "模块三：推理引擎 — vLLM / TensorRT-LLM / SGLang / ONNX Runtime"
+        }
+      ]
+    },
+    {
+      "id": "kvcache-optimization",
+      "title": "模块四：KV Cache 优化 — PagedAttention / Continuous Batching / Speculative Decoding",
+      "component": "LessonKVCacheOptimization",
+      "lessons": [
+        {
+          "id": "kvcache-optimization",
+          "title": "模块四：KV Cache 优化 — PagedAttention / Continuous Batching / Speculative Decoding"
+        }
+      ]
+    },
+    {
+      "id": "distributed-inference",
+      "title": "模块五：分布式推理 — Tensor Parallel / Pipeline Parallel / 多机推理",
+      "component": "LessonDistributedInference",
+      "lessons": [
+        {
+          "id": "distributed-inference",
+          "title": "模块五：分布式推理 — Tensor Parallel / Pipeline Parallel / 多机推理"
+        }
+      ]
+    },
+    {
+      "id": "edge-deployment",
+      "title": "模块六：边缘与端侧推理 — ONNX / Core ML / TFLite / WebGPU",
+      "component": "LessonEdgeDeployment",
+      "lessons": [
+        {
+          "id": "edge-deployment",
+          "title": "模块六：边缘与端侧推理 — ONNX / Core ML / TFLite / WebGPU"
+        }
+      ]
+    },
+    {
+      "id": "cost-optimization",
+      "title": "模块七：成本优化 — 推理成本建模 / Auto-scaling / Spot Instance / 混合部署",
+      "component": "LessonCostOptimization",
+      "lessons": [
+        {
+          "id": "cost-optimization",
+          "title": "模块七：成本优化 — 推理成本建模 / Auto-scaling / Spot Instance / 混合部署"
+        }
+      ]
+    },
+    {
+      "id": "production-monitoring",
+      "title": "模块八：生产监控与 SLA — 延迟分位 / 吞吐监控 / 灰度发布 / 容灾",
+      "component": "LessonProductionMonitoring",
+      "lessons": [
+        {
+          "id": "production-monitoring",
+          "title": "模块八：生产监控与 SLA — 延迟分位 / 吞吐监控 / 灰度发布 / 容灾"
+        }
+      ]
+    }
+  ]
+}

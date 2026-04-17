@@ -2,10 +2,19 @@
   "id": "pm-ai-mastery",
   "title": "PM AI 升级手册：产品经理的 AI 时代生存指南",
   "description": "专为产品经理、运营、创业者设计的 AI 实战课。无需编程基础，掌握 AI 辅助需求分析、PRD 写作、竞品调研、数据洞察、无代码产品搭建，成为 AI 时代不可替代的产品人。",
-  "category": "产品与运营",
+  "category": "AI 创意与效率",
   "level": "入门到实战",
-  "duration": "20h",
-  "tags": ["产品经理", "AI工具", "PRD", "Dify", "Coze", "无代码", "需求分析", "非技术"],
+  "totalHours": 20,
+  "tags": [
+    "产品经理",
+    "AI工具",
+    "PRD",
+    "Dify",
+    "Coze",
+    "无代码",
+    "需求分析",
+    "非技术"
+  ],
   "modules": [
     {
       "id": "LessonPMmindset",

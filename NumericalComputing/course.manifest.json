@@ -1,0 +1,56 @@
+{
+  "id": "numerical-computing",
+  "title": "🔬 数值计算 — 从浮点数到科学模拟",
+  "description": "掌握数值分析的核心方法：浮点运算、插值拟合、数值积分、ODE/PDE 求解器、FFT、稀疏矩阵、并行计算。用 NumPy/SciPy/CuPy 实现科学计算实战。为物理模拟和 AI 计算打下坚实基础。",
+  "category": "数学基础",
+  "level": "中级到高级",
+  "totalHours": 28,
+  "cover": {
+    "gradient": [
+      "#a855f7",
+      "#6366f1"
+    ]
+  },
+  "modules": [
+    {
+      "id": "floating-point",
+      "title": "模块一：浮点数与误差 — IEEE 754 / 舍入误差 / 数值稳定性",
+      "component": "LessonFloatingPoint"
+    },
+    {
+      "id": "linear-systems",
+      "title": "模块二：线性方程组 — LU 分解 / Cholesky / 迭代法",
+      "component": "LessonLinearSystems"
+    },
+    {
+      "id": "interpolation",
+      "title": "模块三：插值与拟合 — Lagrange / 样条 / 最小二乘",
+      "component": "LessonInterpolation"
+    },
+    {
+      "id": "integration",
+      "title": "模块四：数值积分 — 梯形法 / Simpson / Gauss 求积",
+      "component": "LessonIntegration"
+    },
+    {
+      "id": "ode-solvers",
+      "title": "模块五：常微分方程 — Euler / RK4 / 刚性问题 / 自适应步长",
+      "component": "LessonODESolvers"
+    },
+    {
+      "id": "fft-spectral",
+      "title": "模块六：FFT 与频谱分析 — DFT / FFT / 卷积定理",
+      "component": "LessonFFTSpectral"
+    },
+    {
+      "id": "sparse-eigen",
+      "title": "模块七：稀疏矩阵与特征值 — CSR / 幂迭代 / SVD 截断",
+      "component": "LessonSparseEigen"
+    },
+    {
+      "id": "parallel-sim",
+      "title": "模块八：并行计算与科学模拟 — NumPy / CuPy / PDE 模拟",
+      "component": "LessonParallelSim"
+    }
+  ]
+}

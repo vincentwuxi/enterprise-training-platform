@@ -2,21 +2,56 @@
   "id": "database-mastery",
   "title": "MySQL + Redis 从入门到精通：掌握数据存储核心技术",
   "description": "系统掌握关系型数据库与缓存数据库。含交互式 SQL 编辑器、EXPLAIN 执行计划分析器、Redis 五大类型命令演示、分布式锁模拟器、电商缓存架构实战，覆盖数据库工程师必备的全部核心技能。",
-  "category": "数据库 & 存储",
+  "category": "数据与存储",
   "level": "中高级",
   "totalHours": 36,
   "cover": {
-    "gradient": ["#110700", "#2d1200"]
+    "gradient": [
+      "#110700",
+      "#2d1200"
+    ]
   },
   "instructor": "资深数据库架构师 · MySQL DBA · Redis 专家",
   "modules": [
-    { "id": "fundamentals", "title": "模块一：数据库基础 — 关系型 vs NoSQL 选型指南",     "lessonKey": "LessonFundamentals" },
-    { "id": "mysql",        "title": "模块二：MySQL 核心 — DDL、DML 与查询实战",          "lessonKey": "LessonMySQL" },
-    { "id": "sqladvanced",  "title": "模块三：高级 SQL — JOIN、事务与窗口函数",            "lessonKey": "LessonSQLAdvanced" },
-    { "id": "index",        "title": "模块四：索引与优化 — EXPLAIN 执行计划深度剖析",      "lessonKey": "LessonIndex" },
-    { "id": "redis",        "title": "模块五：Redis 核心 — 五大数据类型与使用场景",        "lessonKey": "LessonRedis" },
-    { "id": "redisadvanced","title": "模块六：Redis 进阶 — 持久化、集群与分布式锁",       "lessonKey": "LessonRedisAdvanced" },
-    { "id": "design",       "title": "模块七：数据库设计 — 范式、ER 图与分库分表",        "lessonKey": "LessonDesign" },
-    { "id": "projects",     "title": "模块八：实战项目 — 电商系统数据库与缓存架构",       "lessonKey": "LessonProjects" }
+    {
+      "id": "fundamentals",
+      "title": "模块一：数据库基础 — 关系型 vs NoSQL 选型指南",
+      "lessonKey": "LessonFundamentals"
+    },
+    {
+      "id": "mysql",
+      "title": "模块二：MySQL 核心 — DDL、DML 与查询实战",
+      "lessonKey": "LessonMySQL"
+    },
+    {
+      "id": "sqladvanced",
+      "title": "模块三：高级 SQL — JOIN、事务与窗口函数",
+      "lessonKey": "LessonSQLAdvanced"
+    },
+    {
+      "id": "index",
+      "title": "模块四：索引与优化 — EXPLAIN 执行计划深度剖析",
+      "lessonKey": "LessonIndex"
+    },
+    {
+      "id": "redis",
+      "title": "模块五：Redis 核心 — 五大数据类型与使用场景",
+      "lessonKey": "LessonRedis"
+    },
+    {
+      "id": "redisadvanced",
+      "title": "模块六：Redis 进阶 — 持久化、集群与分布式锁",
+      "lessonKey": "LessonRedisAdvanced"
+    },
+    {
+      "id": "design",
+      "title": "模块七：数据库设计 — 范式、ER 图与分库分表",
+      "lessonKey": "LessonDesign"
+    },
+    {
+      "id": "projects",
+      "title": "模块八：实战项目 — 电商系统数据库与缓存架构",
+      "lessonKey": "LessonProjects"
+    }
   ]
 }

@@ -1,0 +1,99 @@
+{
+  "id": "agent-productionization-ops",
+  "title": "🤖 Agent 产品化与生产运维：从原型到企业级落地",
+  "subtitle": "评估 / 可观测 / 护栏 / 人机协作 / 故障排查 / 成本控制 / 合规 / 规模化运营",
+  "description": "2026 年 AI Agent 从实验室走向生产环境，企业面临的第一难题不是'怎么搭建 Agent'，而是'怎么让 Agent 稳定、安全、可控地运行'。本课程聚焦 Agent 落地的最后一公里，覆盖评估体系 → 可观测性 → 安全护栏 → 人机协作 → 故障排查 → 成本优化 → 合规治理 → 规模化运营全链路。",
+  "category": "AI Agent 工程",
+  "level": "高级",
+  "icon": "🤖",
+  "modules": [
+    {
+      "id": "agent-evaluation",
+      "title": "模块一：Agent 评估体系 — 基准测试 / 回归检测 / 质量门禁",
+      "component": "LessonAgentEvaluation",
+      "lessons": [
+        {
+          "id": "agent-evaluation",
+          "title": "模块一：Agent 评估体系 — 基准测试 / 回归检测 / 质量门禁"
+        }
+      ]
+    },
+    {
+      "id": "agent-observability",
+      "title": "模块二：Agent 可观测性 — Trace / Span / 日志 / 指标 / 调试",
+      "component": "LessonAgentObservability",
+      "lessons": [
+        {
+          "id": "agent-observability",
+          "title": "模块二：Agent 可观测性 — Trace / Span / 日志 / 指标 / 调试"
+        }
+      ]
+    },
+    {
+      "id": "agent-guardrails",
+      "title": "模块三：安全护栏工程 — 输入过滤 / 输出校验 / 工具权限 / 沙箱",
+      "component": "LessonAgentGuardrails",
+      "lessons": [
+        {
+          "id": "agent-guardrails",
+          "title": "模块三：安全护栏工程 — 输入过滤 / 输出校验 / 工具权限 / 沙箱"
+        }
+      ]
+    },
+    {
+      "id": "human-agent-collab",
+      "title": "模块四：人机协作设计 — HITL / 审批流 / 置信度路由 / 回退策略",
+      "component": "LessonHumanAgentCollab",
+      "lessons": [
+        {
+          "id": "human-agent-collab",
+          "title": "模块四：人机协作设计 — HITL / 审批流 / 置信度路由 / 回退策略"
+        }
+      ]
+    },
+    {
+      "id": "agent-debugging",
+      "title": "模块五：Agent 故障排查 — 幻觉诊断 / 工具失败 / 循环检测 / 死锁",
+      "component": "LessonAgentDebugging",
+      "lessons": [
+        {
+          "id": "agent-debugging",
+          "title": "模块五：Agent 故障排查 — 幻觉诊断 / 工具失败 / 循环检测 / 死锁"
+        }
+      ]
+    },
+    {
+      "id": "agent-cost-optimization",
+      "title": "模块六：Agent 成本工程 — Token 优化 / 缓存 / 模型路由 / 预算控制",
+      "component": "LessonAgentCost",
+      "lessons": [
+        {
+          "id": "agent-cost-optimization",
+          "title": "模块六：Agent 成本工程 — Token 优化 / 缓存 / 模型路由 / 预算控制"
+        }
+      ]
+    },
+    {
+      "id": "agent-compliance",
+      "title": "模块七：Agent 合规治理 — 审计日志 / 数据主权 / 责任归属 / 风控",
+      "component": "LessonAgentCompliance",
+      "lessons": [
+        {
+          "id": "agent-compliance",
+          "title": "模块七：Agent 合规治理 — 审计日志 / 数据主权 / 责任归属 / 风控"
+        }
+      ]
+    },
+    {
+      "id": "agent-platform",
+      "title": "模块八：Agent 平台化运营 — 多 Agent 编排 / A/B 测试 / 灰度 / SRE",
+      "component": "LessonAgentPlatform",
+      "lessons": [
+        {
+          "id": "agent-platform",
+          "title": "模块八：Agent 平台化运营 — 多 Agent 编排 / A/B 测试 / 灰度 / SRE"
+        }
+      ]
+    }
+  ]
+}

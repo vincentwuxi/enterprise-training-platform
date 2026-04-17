@@ -2,21 +2,56 @@
   "id": "llm-dev",
   "title": "LLM 应用开发：RAG + Agent + Fine-tuning 实战",
   "description": "从 Transformer 原理到企业知识库 AI 助手的完整工程路径。含交互式 Prompt 沙箱、向量检索可视化、RAG Pipeline 构建器、ReAct Agent 步骤追踪、LoRA 微调参数计算器、vLLM 推理部署，以及完整的企业级 AI 客服系统实战项目。",
-  "category": "AI & 大模型",
+  "category": "大模型与 LLM",
   "level": "高级",
   "totalHours": 42,
   "cover": {
-    "gradient": ["#020010", "#03001a"]
+    "gradient": [
+      "#020010",
+      "#03001a"
+    ]
   },
   "instructor": "前 Google Brain 研究员 · LangChain 贡献者 · MLOps 工程师 · AI 应用架构师",
   "modules": [
-    { "id": "llm-core",      "title": "模块一：LLM 基础 — Transformer 架构与大模型原理",      "lessonKey": "LessonLLMCore" },
-    { "id": "prompting",     "title": "模块二：Prompt Engineering — CoT / Few-Shot / 结构化",  "lessonKey": "LessonPrompting" },
-    { "id": "rag-basics",    "title": "模块三：RAG 基础 — 文档解析 / 嵌入 / 向量检索",         "lessonKey": "LessonRAGBasics" },
-    { "id": "rag-advanced",  "title": "模块四：RAG 进阶 — 混合检索 / 重排序 / 评估体系",        "lessonKey": "LessonRAGAdvanced" },
-    { "id": "agent",         "title": "模块五：AI Agent — ReAct / 工具调用 / 多 Agent 协作",    "lessonKey": "LessonAgent" },
-    { "id": "finetune",      "title": "模块六：Fine-tuning — LoRA / QLoRA / RLHF / DPO",       "lessonKey": "LessonFinetune" },
-    { "id": "deploy",        "title": "模块七：部署与优化 — 量化 / vLLM / API 服务",            "lessonKey": "LessonDeploy" },
-    { "id": "project",       "title": "模块八：生产实战 — 企业知识库 AI 助手完整项目",           "lessonKey": "LessonProject" }
+    {
+      "id": "llm-core",
+      "title": "模块一：LLM 基础 — Transformer 架构与大模型原理",
+      "lessonKey": "LessonLLMCore"
+    },
+    {
+      "id": "prompting",
+      "title": "模块二：Prompt Engineering — CoT / Few-Shot / 结构化",
+      "lessonKey": "LessonPrompting"
+    },
+    {
+      "id": "rag-basics",
+      "title": "模块三：RAG 基础 — 文档解析 / 嵌入 / 向量检索",
+      "lessonKey": "LessonRAGBasics"
+    },
+    {
+      "id": "rag-advanced",
+      "title": "模块四：RAG 进阶 — 混合检索 / 重排序 / 评估体系",
+      "lessonKey": "LessonRAGAdvanced"
+    },
+    {
+      "id": "agent",
+      "title": "模块五：AI Agent — ReAct / 工具调用 / 多 Agent 协作",
+      "lessonKey": "LessonAgent"
+    },
+    {
+      "id": "finetune",
+      "title": "模块六：Fine-tuning — LoRA / QLoRA / RLHF / DPO",
+      "lessonKey": "LessonFinetune"
+    },
+    {
+      "id": "deploy",
+      "title": "模块七：部署与优化 — 量化 / vLLM / API 服务",
+      "lessonKey": "LessonDeploy"
+    },
+    {
+      "id": "project",
+      "title": "模块八：生产实战 — 企业知识库 AI 助手完整项目",
+      "lessonKey": "LessonProject"
+    }
   ]
 }

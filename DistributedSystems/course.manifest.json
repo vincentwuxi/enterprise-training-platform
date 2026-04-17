@@ -1,0 +1,56 @@
+{
+  "id": "distributed-systems",
+  "title": "🌐 分布式系统 — 共识·一致性·容错·扩展",
+  "description": "深入分布式系统核心原理：CAP/BASE 理论、Paxos/Raft 共识、分布式事务(2PC/3PC/Saga)、分布式存储(LSM/B+Tree)、分布式计算(MapReduce/Spark)、微服务治理与混沌工程。",
+  "category": "基础设施与运维",
+  "level": "高级",
+  "totalHours": 40,
+  "cover": {
+    "gradient": [
+      "#0ea5e9",
+      "#6366f1"
+    ]
+  },
+  "modules": [
+    {
+      "id": "dist-fundamentals",
+      "title": "模块一：分布式基础 — 网络模型 / 时钟 / 故障模型 / FLP",
+      "component": "LessonDistFundamentals"
+    },
+    {
+      "id": "consensus",
+      "title": "模块二：共识算法 — Paxos / Raft / Zab / PBFT",
+      "component": "LessonConsensus"
+    },
+    {
+      "id": "consistency",
+      "title": "模块三：一致性模型 — 强一致 / 最终一致 / 因果一致 / CRDT",
+      "component": "LessonConsistency"
+    },
+    {
+      "id": "dist-txn",
+      "title": "模块四：分布式事务 — 2PC / 3PC / Saga / TCC",
+      "component": "LessonDistTxn"
+    },
+    {
+      "id": "dist-storage",
+      "title": "模块五：分布式存储 — 分片 / 复制 / LSM-Tree / 一致性哈希",
+      "component": "LessonDistStorage"
+    },
+    {
+      "id": "dist-computing",
+      "title": "模块六：分布式计算 — MapReduce / Spark / Stream Processing",
+      "component": "LessonDistComputing"
+    },
+    {
+      "id": "microservice-gov",
+      "title": "模块七：微服务治理 — 注册发现 / 熔断 / 限流 / Mesh",
+      "component": "LessonMicroserviceGov"
+    },
+    {
+      "id": "chaos-eng",
+      "title": "模块八：混沌工程与实战 — 故障注入 / 韧性测试 / 生产演练",
+      "component": "LessonChaosEng"
+    }
+  ]
+}

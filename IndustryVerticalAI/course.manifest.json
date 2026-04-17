@@ -1,0 +1,61 @@
+{
+  "id": "industry-vertical-ai",
+  "title": "🏭 行业垂直 AI：金融 / 电商 / 医疗 / 法律 — 企业客户最关心的 AI 落地实战",
+  "description": "AI 技术的真正价值在于行业落地。本课程从行业 AI 落地方法论（场景选择/ROI 评估/MVP 策略）出发，深入四大高价值垂直领域：金融 AI（风控/量化/反欺诈/智能投顾）→ 电商 AI（推荐/搜索/动态定价/智能客服/供应链）→ 医疗 AI（影像诊断/药物发现/临床 NLP/健康管理）→ 法律 AI（合同审查/类案检索/法律问答/合规）→ 制造 AI（质检/预测维护/数字孪生）→ 教育 AI（自适应学习/智能批改/虚拟教师）→ 行业部署（合规/私有化/行业大模型微调/数据安全）。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "totalHours": 42,
+  "instructor": "行业 AI 架构师 · 金融科技专家 · 医疗 AI 工程师 · 智能法律顾问",
+  "tags": [
+    "金融AI",
+    "电商AI",
+    "医疗AI",
+    "法律AI",
+    "行业落地",
+    "垂直领域",
+    "企业AI",
+    "行业大模型"
+  ],
+  "modules": [
+    {
+      "id": "ai-landing-methodology",
+      "title": "模块一：行业 AI 落地方法论 — 场景选择 / ROI 评估 / MVP 策略",
+      "lessonKey": "LessonAILanding"
+    },
+    {
+      "id": "finance-ai",
+      "title": "模块二：金融 AI — 风控 / 量化 / 反欺诈 / 智能投顾",
+      "lessonKey": "LessonFinanceAI"
+    },
+    {
+      "id": "ecommerce-ai",
+      "title": "模块三：电商 AI — 推荐 / 搜索 / 动态定价 / 智能客服 / 供应链",
+      "lessonKey": "LessonEcommerceAI"
+    },
+    {
+      "id": "medical-ai",
+      "title": "模块四：医疗 AI — 影像诊断 / 药物发现 / 临床 NLP / 健康管理",
+      "lessonKey": "LessonMedicalAI"
+    },
+    {
+      "id": "legal-ai",
+      "title": "模块五：法律 AI — 合同审查 / 类案检索 / 法律问答 / 合规",
+      "lessonKey": "LessonLegalAI"
+    },
+    {
+      "id": "manufacturing-ai",
+      "title": "模块六：制造 AI — 视觉质检 / 预测维护 / 供应链优化 / 数字孪生",
+      "lessonKey": "LessonManufacturingAI"
+    },
+    {
+      "id": "education-ai",
+      "title": "模块七：教育 AI — 自适应学习 / 智能批改 / 知识图谱 / 虚拟教师",
+      "lessonKey": "LessonEducationAI"
+    },
+    {
+      "id": "industry-deployment",
+      "title": "模块八：行业 AI 部署 — 合规 / 私有化 / 行业大模型微调 / 数据安全",
+      "lessonKey": "LessonIndustryDeployment"
+    }
+  ]
+}

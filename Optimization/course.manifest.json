@@ -1,0 +1,56 @@
+{
+  "id": "optimization-methods",
+  "title": "🎯 最优化方法 — 从梯度下降到凸优化",
+  "description": "最优化是机器学习的引擎。覆盖梯度下降族、凸优化理论、约束优化(KKT)、线性规划/整数规划、随机优化(SGD/Adam)、进化算法与自动微分。含交互式优化轨迹可视化。",
+  "category": "数学基础",
+  "level": "中级",
+  "totalHours": 30,
+  "cover": {
+    "gradient": [
+      "#10b981",
+      "#059669"
+    ]
+  },
+  "modules": [
+    {
+      "id": "unconstrained",
+      "title": "模块一：无约束优化 — 梯度下降 / 牛顿法 / 拟牛顿法",
+      "component": "LessonUnconstrained"
+    },
+    {
+      "id": "convex",
+      "title": "模块二：凸优化基础 — 凸集 / 凸函数 / 对偶理论",
+      "component": "LessonConvex"
+    },
+    {
+      "id": "constrained",
+      "title": "模块三：约束优化 — KKT 条件 / 拉格朗日乘子 / SQP",
+      "component": "LessonConstrained"
+    },
+    {
+      "id": "linear-prog",
+      "title": "模块四：线性规划 — 单纯形法 / 对偶 / 灵敏度分析",
+      "component": "LessonLinearProg"
+    },
+    {
+      "id": "stochastic-opt",
+      "title": "模块五：随机优化 — SGD / Momentum / Adam / Learning Rate",
+      "component": "LessonStochasticOpt"
+    },
+    {
+      "id": "integer-comb",
+      "title": "模块六：整数与组合优化 — 分支定界 / 启发式 / TSP",
+      "component": "LessonIntegerComb"
+    },
+    {
+      "id": "evolutionary",
+      "title": "模块七：进化算法 — 遗传算法 / 粒子群 / 贝叶斯优化",
+      "component": "LessonEvolutionary"
+    },
+    {
+      "id": "autodiff",
+      "title": "模块八：自动微分与实战 — PyTorch Autograd / JAX",
+      "component": "LessonAutodiff"
+    }
+  ]
+}

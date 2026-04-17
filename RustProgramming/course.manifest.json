@@ -1,0 +1,56 @@
+{
+  "id": "rust-programming",
+  "title": "🦀 Rust 系统编程 — 所有权·零成本抽象·高性能",
+  "description": "从零掌握 Rust：所有权系统、生命周期、Trait 泛型、异步编程(Tokio)、unsafe 与 FFI、WebAssembly。构建 CLI 工具、Web 服务、嵌入式程序。感受零成本抽象带来的安全与性能。",
+  "category": "编程与开发",
+  "level": "中级到高级",
+  "totalHours": 40,
+  "cover": {
+    "gradient": [
+      "#b7410e",
+      "#f74c00"
+    ]
+  },
+  "modules": [
+    {
+      "id": "rust-basics",
+      "title": "模块一：Rust 基础 — 所有权 / 借用 / 生命周期",
+      "component": "LessonRustBasics"
+    },
+    {
+      "id": "rust-types",
+      "title": "模块二：类型系统 — Enum / Pattern Match / Trait / 泛型",
+      "component": "LessonRustTypes"
+    },
+    {
+      "id": "rust-errors",
+      "title": "模块三：错误处理与集合 — Result / Option / Vec / HashMap",
+      "component": "LessonRustErrors"
+    },
+    {
+      "id": "rust-concurrency",
+      "title": "模块四：并发编程 — 线程 / Arc<Mutex> / Channel / Rayon",
+      "component": "LessonRustConcurrency"
+    },
+    {
+      "id": "rust-async",
+      "title": "模块五：异步编程 — async/await / Tokio / 异步 IO",
+      "component": "LessonRustAsync"
+    },
+    {
+      "id": "rust-unsafe",
+      "title": "模块六：Unsafe 与 FFI — 原始指针 / C 互操作 / 内存布局",
+      "component": "LessonRustUnsafe"
+    },
+    {
+      "id": "rust-wasm",
+      "title": "模块七：WebAssembly — wasm-bindgen / wasm-pack / 浏览器集成",
+      "component": "LessonRustWasm"
+    },
+    {
+      "id": "rust-project",
+      "title": "模块八：实战项目 — CLI 工具 + HTTP 服务 + 嵌入式",
+      "component": "LessonRustProject"
+    }
+  ]
+}

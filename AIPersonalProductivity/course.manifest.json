@@ -1,0 +1,99 @@
+{
+  "id": "ai-personal-productivity",
+  "title": "🧠 AI 个人效率与知识管理：全员 AI 素养提升",
+  "subtitle": "人人都能用 AI 提效 10 倍的实战指南",
+  "description": "AI 不是程序员的专利。ChatGPT / Claude / Gemini / 豆包等工具已经可以帮助每个人提升写作、阅读、分析、协作和学习效率。本课程覆盖 AI 助手基础 (Prompt 工程) → AI 写作与文档 → 信息处理与阅读 → 知识库构建 → 会议与协作 → 数据分析 → 自动化工作流 → 学习与成长。零技术门槛，面向所有岗位，是企业 AI 转型的第一课。",
+  "category": "AI 创意与效率",
+  "level": "入门",
+  "icon": "🧠",
+  "modules": [
+    {
+      "id": "ai-assistant-basics",
+      "title": "模块一：AI 助手入门 — ChatGPT / Claude / Gemini / 豆包 与 Prompt 技巧",
+      "component": "LessonAIAssistantBasics",
+      "lessons": [
+        {
+          "id": "ai-assistant-basics",
+          "title": "模块一：AI 助手入门 — ChatGPT / Claude / Gemini / 豆包 与 Prompt 技巧"
+        }
+      ]
+    },
+    {
+      "id": "ai-writing-docs",
+      "title": "模块二：AI 写作与文档 — 报告 / 邮件 / PPT / 文案 AI 辅助创作",
+      "component": "LessonAIWritingDocs",
+      "lessons": [
+        {
+          "id": "ai-writing-docs",
+          "title": "模块二：AI 写作与文档 — 报告 / 邮件 / PPT / 文案 AI 辅助创作"
+        }
+      ]
+    },
+    {
+      "id": "ai-info-processing",
+      "title": "模块三：AI 信息处理 — 阅读 / 总结 / 翻译 / 知识提取",
+      "component": "LessonAIInfoProcessing",
+      "lessons": [
+        {
+          "id": "ai-info-processing",
+          "title": "模块三：AI 信息处理 — 阅读 / 总结 / 翻译 / 知识提取"
+        }
+      ]
+    },
+    {
+      "id": "ai-knowledge-base",
+      "title": "模块四：AI 知识库构建 — Notion AI / 飞书 / 个人 RAG 知识管理",
+      "component": "LessonAIKnowledgeBase",
+      "lessons": [
+        {
+          "id": "ai-knowledge-base",
+          "title": "模块四：AI 知识库构建 — Notion AI / 飞书 / 个人 RAG 知识管理"
+        }
+      ]
+    },
+    {
+      "id": "ai-meeting-collab",
+      "title": "模块五：AI 会议与协作 — 会议纪要 / 日程管理 / 团队协作自动化",
+      "component": "LessonAIMeetingCollab",
+      "lessons": [
+        {
+          "id": "ai-meeting-collab",
+          "title": "模块五：AI 会议与协作 — 会议纪要 / 日程管理 / 团队协作自动化"
+        }
+      ]
+    },
+    {
+      "id": "ai-data-analysis",
+      "title": "模块六：AI 数据分析 — Excel / 表格 / 数据可视化 AI 辅助分析",
+      "component": "LessonAIDataAnalysis",
+      "lessons": [
+        {
+          "id": "ai-data-analysis",
+          "title": "模块六：AI 数据分析 — Excel / 表格 / 数据可视化 AI 辅助分析"
+        }
+      ]
+    },
+    {
+      "id": "ai-workflow-automation",
+      "title": "模块七：AI 自动化工作流 — Zapier / Make / n8n / RPA 无代码自动化",
+      "component": "LessonAIWorkflowAutomation",
+      "lessons": [
+        {
+          "id": "ai-workflow-automation",
+          "title": "模块七：AI 自动化工作流 — Zapier / Make / n8n / RPA 无代码自动化"
+        }
+      ]
+    },
+    {
+      "id": "ai-learning-growth",
+      "title": "模块八：AI 学习与成长 — AI 辅助学习 / 技能提升 / 个人品牌",
+      "component": "LessonAILearningGrowth",
+      "lessons": [
+        {
+          "id": "ai-learning-growth",
+          "title": "模块八：AI 学习与成长 — AI 辅助学习 / 技能提升 / 个人品牌"
+        }
+      ]
+    }
+  ]
+}

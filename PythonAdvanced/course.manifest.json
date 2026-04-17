@@ -2,21 +2,56 @@
   "id": "python-advanced",
   "title": "Python 高级进阶：异步编程 / FastAPI / 测试驱动开发",
   "description": "从 asyncio 事件循环原理到 FastAPI 生产级 API 构建，再到 TDD 全流程实践。含交互式 async/await 执行可视化、FastAPI 接口设计模拟器、pytest 测试用例沙盒、性能对比仪表盘，以及电商 API 完整实战项目。",
-  "category": "Python & 后端开发",
+  "category": "编程与开发",
   "level": "高级",
   "totalHours": 36,
   "cover": {
-    "gradient": ["#0d0015", "#0a001f"]
+    "gradient": [
+      "#0d0015",
+      "#0a001f"
+    ]
   },
   "instructor": "资深 Python 工程师 · FastAPI 贡献者 · TDD 实践者",
   "modules": [
-    { "id": "async-core",     "title": "模块一：asyncio 核心 — 事件循环与协程原理",         "lessonKey": "LessonAsyncCore" },
-    { "id": "async-patterns", "title": "模块二：异步编程模式 — gather/Queue/Semaphore",       "lessonKey": "LessonAsyncPatterns" },
-    { "id": "fastapi-basics", "title": "模块三：FastAPI 基础 — 路由、参数验证与响应模型",     "lessonKey": "LessonFastAPIBasics" },
-    { "id": "fastapi-auth",   "title": "模块四：FastAPI 进阶 — JWT 认证与中间件",             "lessonKey": "LessonFastAPIAuth" },
-    { "id": "fastapi-db",     "title": "模块五：FastAPI + 数据库 — SQLAlchemy Async ORM",    "lessonKey": "LessonFastAPIDB" },
-    { "id": "tdd-basics",     "title": "模块六：测试驱动开发 — pytest 与测试策略",            "lessonKey": "LessonTDD" },
-    { "id": "performance",    "title": "模块七：性能优化 — Profiling、缓存与任务队列",        "lessonKey": "LessonPerformance" },
-    { "id": "projects",       "title": "模块八：生产实战 — 构建电商 API 完整项目",             "lessonKey": "LessonProjects" }
+    {
+      "id": "async-core",
+      "title": "模块一：asyncio 核心 — 事件循环与协程原理",
+      "lessonKey": "LessonAsyncCore"
+    },
+    {
+      "id": "async-patterns",
+      "title": "模块二：异步编程模式 — gather/Queue/Semaphore",
+      "lessonKey": "LessonAsyncPatterns"
+    },
+    {
+      "id": "fastapi-basics",
+      "title": "模块三：FastAPI 基础 — 路由、参数验证与响应模型",
+      "lessonKey": "LessonFastAPIBasics"
+    },
+    {
+      "id": "fastapi-auth",
+      "title": "模块四：FastAPI 进阶 — JWT 认证与中间件",
+      "lessonKey": "LessonFastAPIAuth"
+    },
+    {
+      "id": "fastapi-db",
+      "title": "模块五：FastAPI + 数据库 — SQLAlchemy Async ORM",
+      "lessonKey": "LessonFastAPIDB"
+    },
+    {
+      "id": "tdd-basics",
+      "title": "模块六：测试驱动开发 — pytest 与测试策略",
+      "lessonKey": "LessonTDD"
+    },
+    {
+      "id": "performance",
+      "title": "模块七：性能优化 — Profiling、缓存与任务队列",
+      "lessonKey": "LessonPerformance"
+    },
+    {
+      "id": "projects",
+      "title": "模块八：生产实战 — 构建电商 API 完整项目",
+      "lessonKey": "LessonProjects"
+    }
   ]
 }

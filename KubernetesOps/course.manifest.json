@@ -2,18 +2,63 @@
   "id": "kubernetes-ops",
   "title": "Kubernetes 深度运维实战",
   "description": "从 K8s 架构原理到生产故障排查的完整 DevOps/SRE 技能体系。Control Plane 组件深度解析 → 工作负载高级编排（Deployment/StatefulSet/DaemonSet）→ 网络深度实战（Ingress/NetworkPolicy/CNI）→ 存储与配置管理 → 资源调度优化（HPA/VPA/KEDA）→ Prometheus+Grafana 全栈可观测性 → RBAC+PSS 安全加固 → 生产故障排查手册（CrashLoopBackOff/OOM/节点故障）。含 50+ 生产级 YAML 和 kubectl 命令。",
-  "category": "DevOps & 云原生",
+  "category": "基础设施与运维",
   "level": "中高级",
-  "duration": "20h",
-  "tags": ["Kubernetes", "K8s", "DevOps", "SRE", "Prometheus", "Grafana", "RBAC", "Helm", "Ingress", "NetworkPolicy", "HPA", "故障排查"],
+  "totalHours": 20,
+  "tags": [
+    "Kubernetes",
+    "K8s",
+    "DevOps",
+    "SRE",
+    "Prometheus",
+    "Grafana",
+    "RBAC",
+    "Helm",
+    "Ingress",
+    "NetworkPolicy",
+    "HPA",
+    "故障排查"
+  ],
   "modules": [
-    { "id": "architecture", "title": "模块一：K8s 架构深度解析 — 每个请求背后发生了什么", "lessonKey": "LessonArchitecture" },
-    { "id": "workloads",    "title": "模块二：工作负载高级编排 — Deployment/StatefulSet/DaemonSet", "lessonKey": "LessonWorkloads" },
-    { "id": "networking",   "title": "模块三：网络深度实战 — Service/Ingress/NetworkPolicy/CNI", "lessonKey": "LessonNetworking" },
-    { "id": "storage",      "title": "模块四：存储与配置管理 — PV/PVC/StorageClass/Secret", "lessonKey": "LessonStorage" },
-    { "id": "scheduling",   "title": "模块五：资源管理与调度优化 — HPA/VPA/Affinity/KEDA", "lessonKey": "LessonScheduling" },
-    { "id": "observability","title": "模块六：可观测性全栈 — Prometheus/Grafana/Loki/Jaeger", "lessonKey": "LessonObservability" },
-    { "id": "security",     "title": "模块七：安全加固 — RBAC/NetworkPolicy/PSS/Vault", "lessonKey": "LessonSecurity" },
-    { "id": "troubleshoot", "title": "模块八：生产故障排查手册 — CrashLoop/OOM/节点故障", "lessonKey": "LessonTroubleshoot" }
+    {
+      "id": "architecture",
+      "title": "模块一：K8s 架构深度解析 — 每个请求背后发生了什么",
+      "lessonKey": "LessonArchitecture"
+    },
+    {
+      "id": "workloads",
+      "title": "模块二：工作负载高级编排 — Deployment/StatefulSet/DaemonSet",
+      "lessonKey": "LessonWorkloads"
+    },
+    {
+      "id": "networking",
+      "title": "模块三：网络深度实战 — Service/Ingress/NetworkPolicy/CNI",
+      "lessonKey": "LessonNetworking"
+    },
+    {
+      "id": "storage",
+      "title": "模块四：存储与配置管理 — PV/PVC/StorageClass/Secret",
+      "lessonKey": "LessonStorage"
+    },
+    {
+      "id": "scheduling",
+      "title": "模块五：资源管理与调度优化 — HPA/VPA/Affinity/KEDA",
+      "lessonKey": "LessonScheduling"
+    },
+    {
+      "id": "observability",
+      "title": "模块六：可观测性全栈 — Prometheus/Grafana/Loki/Jaeger",
+      "lessonKey": "LessonObservability"
+    },
+    {
+      "id": "security",
+      "title": "模块七：安全加固 — RBAC/NetworkPolicy/PSS/Vault",
+      "lessonKey": "LessonSecurity"
+    },
+    {
+      "id": "troubleshoot",
+      "title": "模块八：生产故障排查手册 — CrashLoop/OOM/节点故障",
+      "lessonKey": "LessonTroubleshoot"
+    }
   ]
 }

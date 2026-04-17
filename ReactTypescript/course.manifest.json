@@ -2,18 +2,50 @@
   "id": "react-typescript",
   "title": "🎨 React 18 + TypeScript 全栈：从组件到生产部署",
   "description": "系统掌握现代前端开发！React 18 Hooks深度（useState/useEffect/useCallback/useMemo/useRef）→ TypeScript类型系统（泛型/联合类型/类型守卫）→ 状态管理（Zustand + TanStack Query）→ Next.js 14 App Router（SSR/SSG/ISR/Server Components）→ Tailwind CSS + Shadcn/UI组件库 → Vitest + Playwright测试 → Bundle优化 → Vercel生产部署。含交互式Hooks演示、类型推导可视化、性能火焰图分析，打造高薪全栈前端工程师。",
-  "category": "前端开发",
+  "category": "编程与开发",
   "level": "初级到高级",
   "totalHours": 48,
   "instructor": "Meta / Vercel 前工程师 · React Core Team Contributor · TypeScript 深度实践者",
   "modules": [
-    { "id": "foundation",       "title": "模块一：React 核心 — JSX / 组件 / Hooks 深度",          "lessonKey": "LessonFoundation" },
-    { "id": "typescript",       "title": "模块二：TypeScript 全面掌握 — 类型系统 / 泛型 / 实战",   "lessonKey": "LessonTypeScript" },
-    { "id": "state",            "title": "模块三：状态管理 — Zustand / TanStack Query / Context",   "lessonKey": "LessonState" },
-    { "id": "nextjs",           "title": "模块四：Next.js 14 — App Router / RSC / 数据获取策略",   "lessonKey": "LessonNextjs" },
-    { "id": "styling",          "title": "模块五：样式系统 — Tailwind CSS / Shadcn/UI / 动画",     "lessonKey": "LessonStyling" },
-    { "id": "testing",          "title": "模块六：测试体系 — Vitest / Playwright / MSW",             "lessonKey": "LessonTesting" },
-    { "id": "performance",      "title": "模块七：性能优化 — Bundle 分析 / Lazy Load / Profiler",   "lessonKey": "LessonPerformance" },
-    { "id": "deployment",       "title": "模块八：生产部署 — Vercel / CDN / CI⁄CD / 监控",          "lessonKey": "LessonDeployment" }
+    {
+      "id": "foundation",
+      "title": "模块一：React 核心 — JSX / 组件 / Hooks 深度",
+      "lessonKey": "LessonFoundation"
+    },
+    {
+      "id": "typescript",
+      "title": "模块二：TypeScript 全面掌握 — 类型系统 / 泛型 / 实战",
+      "lessonKey": "LessonTypeScript"
+    },
+    {
+      "id": "state",
+      "title": "模块三：状态管理 — Zustand / TanStack Query / Context",
+      "lessonKey": "LessonState"
+    },
+    {
+      "id": "nextjs",
+      "title": "模块四：Next.js 14 — App Router / RSC / 数据获取策略",
+      "lessonKey": "LessonNextjs"
+    },
+    {
+      "id": "styling",
+      "title": "模块五：样式系统 — Tailwind CSS / Shadcn/UI / 动画",
+      "lessonKey": "LessonStyling"
+    },
+    {
+      "id": "testing",
+      "title": "模块六：测试体系 — Vitest / Playwright / MSW",
+      "lessonKey": "LessonTesting"
+    },
+    {
+      "id": "performance",
+      "title": "模块七：性能优化 — Bundle 分析 / Lazy Load / Profiler",
+      "lessonKey": "LessonPerformance"
+    },
+    {
+      "id": "deployment",
+      "title": "模块八：生产部署 — Vercel / CDN / CI⁄CD / 监控",
+      "lessonKey": "LessonDeployment"
+    }
   ]
 }

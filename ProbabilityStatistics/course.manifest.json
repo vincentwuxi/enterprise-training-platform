@@ -1,0 +1,54 @@
+{
+  "id": "probability-statistics",
+  "title": "🎲 概率统计 — 从随机直觉到贝叶斯推断",
+  "subtitle": "概率空间 / 分布族 / 统计推断 / 贝叶斯 / 随机过程 — AI 的概率语言",
+  "description": "概率统计是机器学习的「母语」。本课程从概率的公理化定义出发，系统讲解随机变量、常见分布族、极限定理、贝叶斯推断、假设检验、信息论基础与随机过程。用 NumPy/SciPy/PyTorch 实现蒙特卡洛模拟、MLE/MAP 估计、MCMC 采样等核心算法。让你真正理解 Diffusion Model、VAE、GPT 的概率基础。",
+  "category": "数学基础",
+  "level": "中级",
+  "totalHours": 36,
+  "cover": {
+    "gradient": ["#8b5cf6", "#ec4899"]
+  },
+  "modules": [
+    {
+      "id": "probability-foundations",
+      "title": "模块一：概率空间 — 样本空间 / 事件 / 公理化概率 / 条件概率",
+      "component": "LessonProbFoundations"
+    },
+    {
+      "id": "random-variables",
+      "title": "模块二：随机变量 — 离散与连续 / PMF·PDF·CDF / 期望与方差",
+      "component": "LessonRandomVariables"
+    },
+    {
+      "id": "distribution-families",
+      "title": "模块三：分布族 — 高斯 / 伯努利 / Poisson / 指数族 / 混合分布",
+      "component": "LessonDistributions"
+    },
+    {
+      "id": "joint-limit-theorems",
+      "title": "模块四：联合分布与极限定理 — 协方差 / 大数定律 / 中心极限",
+      "component": "LessonJointLimit"
+    },
+    {
+      "id": "statistical-estimation",
+      "title": "模块五：统计推断 — MLE / MAP / 充分统计量 / Fisher 信息",
+      "component": "LessonEstimation"
+    },
+    {
+      "id": "bayesian-inference",
+      "title": "模块六：贝叶斯推断 — 先验 / 后验 / 共轭 / MCMC / 变分推断",
+      "component": "LessonBayesian"
+    },
+    {
+      "id": "hypothesis-testing",
+      "title": "模块七：假设检验与信息论 — p值 / AB测试 / KL散度 / 交叉熵",
+      "component": "LessonHypothesisInfo"
+    },
+    {
+      "id": "stochastic-processes",
+      "title": "模块八：随机过程与AI — Markov链 / 扩散过程 / 概率图模型",
+      "component": "LessonStochastic"
+    }
+  ]
+}

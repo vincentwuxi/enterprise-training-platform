@@ -3,21 +3,61 @@
   "title": "数据分析 & 可视化：从数据到洞察的完整实战",
   "subtitle": "Pandas / SQL分析 / Plotly / A/B测试 / 业务仪表盘",
   "description": "面向数据分析师、产品经理、运营人员。掌握 Pandas 数据处理、SQL 进阶分析、Plotly 交互可视化、A/B 测试统计推断、用户行为漏斗分析，最终独立构建业务仪表盘。",
-  "category": "数据分析",
+  "category": "数据与存储",
   "level": "初级到高级",
-  "duration": "44h",
+  "totalHours": 44,
   "icon": "📊",
   "color": "#06b6d4",
   "gradient": "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 40%, #10b981 100%)",
-  "tags": ["Python", "Pandas", "SQL", "Plotly", "统计", "A/B测试", "可视化"],
+  "tags": [
+    "Python",
+    "Pandas",
+    "SQL",
+    "Plotly",
+    "统计",
+    "A/B测试",
+    "可视化"
+  ],
   "modules": [
-    { "id": "pandas-core",    "title": "模块一：Pandas 核心 — 数据清洗与转换",            "lessonKey": "LessonPandasCore" },
-    { "id": "sql-analytics",  "title": "模块二：SQL 进阶分析 — 窗口函数与复杂查询",        "lessonKey": "LessonSQLAnalytics" },
-    { "id": "plotly-viz",     "title": "模块三：Plotly 交互可视化 — 让数据会说话",         "lessonKey": "LessonPlotlyViz" },
-    { "id": "stats-ab",       "title": "模块四：统计推断 & A/B 测试 — 数据驱动决策",      "lessonKey": "LessonStatsAB" },
-    { "id": "user-behavior",  "title": "模块五：用户行为分析 — 漏斗 / 留存 / 路径",       "lessonKey": "LessonUserBehavior" },
-    { "id": "business-dash",  "title": "模块六：业务仪表盘 — Metabase + Grafana 实战",   "lessonKey": "LessonBusinessDash" },
-    { "id": "ml-analysis",    "title": "模块七：分析遇上机器学习 — 预测与异常检测",        "lessonKey": "LessonMLAnalysis" },
-    { "id": "case-study",     "title": "模块八：实战项目 — 电商用户增长分析报告",          "lessonKey": "LessonCaseStudy" }
+    {
+      "id": "pandas-core",
+      "title": "模块一：Pandas 核心 — 数据清洗与转换",
+      "lessonKey": "LessonPandasCore"
+    },
+    {
+      "id": "sql-analytics",
+      "title": "模块二：SQL 进阶分析 — 窗口函数与复杂查询",
+      "lessonKey": "LessonSQLAnalytics"
+    },
+    {
+      "id": "plotly-viz",
+      "title": "模块三：Plotly 交互可视化 — 让数据会说话",
+      "lessonKey": "LessonPlotlyViz"
+    },
+    {
+      "id": "stats-ab",
+      "title": "模块四：统计推断 & A/B 测试 — 数据驱动决策",
+      "lessonKey": "LessonStatsAB"
+    },
+    {
+      "id": "user-behavior",
+      "title": "模块五：用户行为分析 — 漏斗 / 留存 / 路径",
+      "lessonKey": "LessonUserBehavior"
+    },
+    {
+      "id": "business-dash",
+      "title": "模块六：业务仪表盘 — Metabase + Grafana 实战",
+      "lessonKey": "LessonBusinessDash"
+    },
+    {
+      "id": "ml-analysis",
+      "title": "模块七：分析遇上机器学习 — 预测与异常检测",
+      "lessonKey": "LessonMLAnalysis"
+    },
+    {
+      "id": "case-study",
+      "title": "模块八：实战项目 — 电商用户增长分析报告",
+      "lessonKey": "LessonCaseStudy"
+    }
   ]
 }

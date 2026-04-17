@@ -1,0 +1,61 @@
+{
+  "id": "ai-search-recommend",
+  "title": "🔍 AI 搜索与推荐系统：语义搜索 / 向量检索 / 个性化推荐 — AI 最成熟的工业级场景",
+  "description": "搜索与推荐是 AI 落地最成熟、ROI 最高的场景。本课程从 Embedding 原理和向量数据库出发，系统覆盖语义搜索 → 混合检索 (BM25+Dense+Rerank) → 个性化推荐 (协同过滤/深度学习/多目标) → LLM 增强搜索 (Query 理解/RAG 搜索) → 实时推荐引擎 (特征工程/在线学习) → 搜索质量评估 (NDCG/MRR/A-B Test) → 企业级搜索平台架构 (多模态/知识图谱增强)。每个模块配有完整代码和业界实战案例。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "totalHours": 40,
+  "instructor": "搜索推荐架构师 · Embedding 专家 · 推荐系统工程师",
+  "tags": [
+    "语义搜索",
+    "向量数据库",
+    "Embedding",
+    "推荐系统",
+    "Reranking",
+    "RAG",
+    "个性化",
+    "实时推荐"
+  ],
+  "modules": [
+    {
+      "id": "semantic-search",
+      "title": "模块一：语义搜索基础 — Embedding / 向量相似度 / 检索管线",
+      "lessonKey": "LessonSemanticSearch"
+    },
+    {
+      "id": "vector-db",
+      "title": "模块二：向量数据库实战 — Pinecone / Weaviate / Milvus / Qdrant",
+      "lessonKey": "LessonVectorDB"
+    },
+    {
+      "id": "hybrid-search",
+      "title": "模块三：混合检索 — BM25 + Dense + Cross-Encoder Reranking",
+      "lessonKey": "LessonHybridSearch"
+    },
+    {
+      "id": "rec-system",
+      "title": "模块四：推荐系统核心 — 协同过滤 / 内容过滤 / 深度学习推荐",
+      "lessonKey": "LessonRecSystem"
+    },
+    {
+      "id": "llm-search",
+      "title": "模块五：LLM 增强搜索 — Query 理解 / RAG 搜索 / 对话式检索",
+      "lessonKey": "LessonLLMSearch"
+    },
+    {
+      "id": "realtime-rec",
+      "title": "模块六：实时推荐引擎 — 特征工程 / 在线学习 / A-B 测试",
+      "lessonKey": "LessonRealtimeRec"
+    },
+    {
+      "id": "search-eval",
+      "title": "模块七：搜索质量评估 — NDCG / MRR / 离线在线指标体系",
+      "lessonKey": "LessonSearchEval"
+    },
+    {
+      "id": "enterprise-search",
+      "title": "模块八：企业搜索平台 — 统一架构 / 多模态 / 知识图谱",
+      "lessonKey": "LessonEnterpriseSearch"
+    }
+  ]
+}

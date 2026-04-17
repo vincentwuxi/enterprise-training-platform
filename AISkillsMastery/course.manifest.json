@@ -4,8 +4,15 @@
   "title": "AI 全能实战营：从入门到精通",
   "subtitle": "8 大模块 · 覆盖 AI 认知、提示词、写作、编程、数据、自动化、创作与AI搭建",
   "description": "彻底从【听说过AI】升级为【用AI10倍提效】的实战特训营。不讲数学公式，只讲落地场景。每个模块配备互动训练工具，学完即用。",
-  "category": "人工智能与效率提升",
-  "tags": ["AI入门", "提示词", "AI写作", "AI编程", "工作流", "自动化"],
+  "category": "大模型与 LLM",
+  "tags": [
+    "AI入门",
+    "提示词",
+    "AI写作",
+    "AI编程",
+    "工作流",
+    "自动化"
+  ],
   "difficulty": "beginner-to-advanced",
   "estimatedHours": 24,
   "language": "zh-CN",
@@ -15,10 +22,15 @@
   },
   "cover": {
     "image": "",
-    "gradient": ["#7c3aed", "#2563eb"],
+    "gradient": [
+      "#7c3aed",
+      "#2563eb"
+    ],
     "icon": "brain"
   },
-  "prerequisites": ["会用电脑浏览网页，无需任何编程或数学基础"],
+  "prerequisites": [
+    "会用电脑浏览网页，无需任何编程或数学基础"
+  ],
   "chapters": [
     {
       "id": "c-foundation",

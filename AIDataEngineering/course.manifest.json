@@ -1,0 +1,61 @@
+{
+  "id": "ai-data-engineering",
+  "title": "🏗️ AI 数据工程：合成数据 / 标注 / 数据飞轮 — 模型质量的根基",
+  "description": "数据是 AI 的石油，但原油需要精炼。本课程系统覆盖训练数据基础（质量/偏差/生命周期）→ 数据标注工程（流程/工具/质量控制/众包管理）→ 合成数据生成（LLM 合成/对抗生成/仿真数据/隐私保护）→ 数据飞轮（闭环反馈/主动学习/持续改进）→ 数据策展（选择/去重/过滤/混合比例/课程学习）→ 评估数据工程（Benchmark 构建/测试集设计/数据污染检测）→ 多模态数据（图像/音频/视频标注/跨模态对齐）→ 数据治理与合规（版权/隐私/数据血缘/成本优化）。",
+  "category": "AI 行业应用",
+  "level": "高级",
+  "totalHours": 40,
+  "instructor": "AI 数据工程师 · 标注体系架构师 · 数据飞轮专家",
+  "tags": [
+    "合成数据",
+    "数据标注",
+    "数据飞轮",
+    "数据质量",
+    "主动学习",
+    "数据策展",
+    "训练数据",
+    "数据治理"
+  ],
+  "modules": [
+    {
+      "id": "training-data-fundamentals",
+      "title": "模块一：训练数据基础 — 数据质量 / 数据偏差 / 数据生命周期",
+      "lessonKey": "LessonTrainingDataFundamentals"
+    },
+    {
+      "id": "data-labeling",
+      "title": "模块二：数据标注工程 — 标注流程 / 标注工具 / 质量控制 / 众包",
+      "lessonKey": "LessonDataLabeling"
+    },
+    {
+      "id": "synthetic-data",
+      "title": "模块三：合成数据生成 — LLM 合成 / 对抗生成 / 仿真数据 / 隐私保护",
+      "lessonKey": "LessonSyntheticData"
+    },
+    {
+      "id": "data-flywheel",
+      "title": "模块四：数据飞轮 — 闭环反馈 / 主动学习 / 数据增强 / 持续改进",
+      "lessonKey": "LessonDataFlywheel"
+    },
+    {
+      "id": "data-curation",
+      "title": "模块五：数据策展 — 选择 / 去重 / 过滤 / 混合比例 / 课程学习",
+      "lessonKey": "LessonDataCuration"
+    },
+    {
+      "id": "eval-data",
+      "title": "模块六：评估数据工程 — Benchmark 构建 / 测试集设计 / 污染检测",
+      "lessonKey": "LessonEvalData"
+    },
+    {
+      "id": "multimodal-data",
+      "title": "模块七：多模态数据 — 图像/音频/视频标注 / 跨模态对齐 / 管线",
+      "lessonKey": "LessonMultimodalData"
+    },
+    {
+      "id": "data-governance",
+      "title": "模块八：数据治理与合规 — 版权 / 隐私 / 数据血缘 / 成本优化",
+      "lessonKey": "LessonDataGovernance"
+    }
+  ]
+}

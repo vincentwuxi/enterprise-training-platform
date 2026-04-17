@@ -30,7 +30,7 @@ export default function LessonView() {
     const mod = course.modules.find(m => m.id === lessonId);
     if (mod) {
       currentLesson = { id: mod.id, title: mod.title };
-      componentKey = mod.lessonKey;
+      componentKey = mod.component || mod.lessonKey;
     }
   }
 

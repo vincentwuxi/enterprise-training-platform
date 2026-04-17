@@ -2,18 +2,50 @@
   "id": "perf-optimization",
   "title": "⚡ 性能优化专项：全链路调优实战",
   "description": "从性能思维到工具链全覆盖！火焰图解读 → Linux perf/top/eBPF → Python cProfile/asyncio优化 → JS Core Web Vitals/React性能 → 数据库索引/执行计划/慢查询 → APM/OpenTelemetry/Grafana → 内存泄漏检测/GC调优 → k6压测/容量规划/SLO落地。配套交互式火焰图模拟器、慢查询分析工具、响应时间分布可视化，助你成为性能工程专家。",
-  "category": "性能优化",
+  "category": "数据与存储",
   "level": "中高级",
   "totalHours": 40,
   "instructor": "Google SRE 前工程师 · Linux 内核贡献者 · Web Performance 专家 · 数据库调优顾问",
   "modules": [
-    { "id": "foundation",  "title": "模块一：性能分析基础 — 指标体系 / 火焰图 / 方法论",    "lessonKey": "LessonFoundation" },
-    { "id": "linux",       "title": "模块二：Linux 系统调优 — perf / eBPF / CPU/IO分析",    "lessonKey": "LessonLinux" },
-    { "id": "python",      "title": "模块三：Python 性能优化 — cProfile / 异步 / 向量化",    "lessonKey": "LessonPython" },
-    { "id": "javascript",  "title": "模块四：JavaScript 性能 — DevTools / CWV / React优化",  "lessonKey": "LessonJavaScript" },
-    { "id": "database",    "title": "模块五：数据库调优 — 索引设计 / 执行计划 / 连接池",      "lessonKey": "LessonDatabase" },
-    { "id": "apm",         "title": "模块六：APM & 可观测性 — OpenTelemetry / Grafana",       "lessonKey": "LessonAPM" },
-    { "id": "memory",      "title": "模块七：内存优化 — 泄漏检测 / GC调优 / 对象池",          "lessonKey": "LessonMemory" },
-    { "id": "stress",      "title": "模块八：压测 & 容量规划 — k6 / Locust / SLO落地",        "lessonKey": "LessonStress" }
+    {
+      "id": "foundation",
+      "title": "模块一：性能分析基础 — 指标体系 / 火焰图 / 方法论",
+      "lessonKey": "LessonFoundation"
+    },
+    {
+      "id": "linux",
+      "title": "模块二：Linux 系统调优 — perf / eBPF / CPU/IO分析",
+      "lessonKey": "LessonLinux"
+    },
+    {
+      "id": "python",
+      "title": "模块三：Python 性能优化 — cProfile / 异步 / 向量化",
+      "lessonKey": "LessonPython"
+    },
+    {
+      "id": "javascript",
+      "title": "模块四：JavaScript 性能 — DevTools / CWV / React优化",
+      "lessonKey": "LessonJavaScript"
+    },
+    {
+      "id": "database",
+      "title": "模块五：数据库调优 — 索引设计 / 执行计划 / 连接池",
+      "lessonKey": "LessonDatabase"
+    },
+    {
+      "id": "apm",
+      "title": "模块六：APM & 可观测性 — OpenTelemetry / Grafana",
+      "lessonKey": "LessonAPM"
+    },
+    {
+      "id": "memory",
+      "title": "模块七：内存优化 — 泄漏检测 / GC调优 / 对象池",
+      "lessonKey": "LessonMemory"
+    },
+    {
+      "id": "stress",
+      "title": "模块八：压测 & 容量规划 — k6 / Locust / SLO落地",
+      "lessonKey": "LessonStress"
+    }
   ]
 }
