@@ -67,14 +67,10 @@ app.use(cors());
 app.use(express.json());
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// L1: Cloudflare Access Gateway (production only)
-// Verifies Cf-Access-Jwt-Assertion header from Cloudflare Zero Trust
+// Route modules (CF Access verification is applied to API routes only)
+// CF Access is an optional L1 layer; app-level JWT auth is the primary security
 // ═══════════════════════════════════════════════════════════════════════════════
-app.use(verifyCfAccess);
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// Route modules
-// ═══════════════════════════════════════════════════════════════════════════════
+app.use('/api', verifyCfAccess);
 app.use('/api/auth', authRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/admin', adminRoutes);

@@ -90,13 +90,14 @@ async function verifyCfToken(token) {
 }
 
 /**
- * Express Middleware: Verify Cloudflare Access JWT
+ * Express Middleware: Verify Cloudflare Access JWT (Optional Layer)
  *
  * Behavior:
  * - NODE_ENV !== 'production': skip (allow direct access)
- * - CF_TEAM_DOMAIN not set: skip with warning
- * - Missing/invalid CF JWT: 403 Forbidden
- * - Valid CF JWT: attach identity to req.cfIdentity and continue
+ * - CF_TEAM_DOMAIN not set: skip
+ * - No CF JWT header: pass through (app-level JWT auth is primary security)
+ * - Valid CF JWT: attach identity to req.cfIdentity
+ * - Invalid CF JWT: log warning and pass through (don't block)
  */
 export function verifyCfAccess(req, res, next) {
   // Skip in non-production
@@ -113,16 +114,12 @@ export function verifyCfAccess(req, res, next) {
 
   const cfJwt = req.headers['cf-access-jwt-assertion'];
 
-  // No CF JWT header — request didn't come through Cloudflare
+  // No CF JWT header — pass through (app-level auth handles security)
   if (!cfJwt) {
-    console.warn(`[CF Access] Blocked: no CF JWT from ${req.ip} → ${req.method} ${req.path}`);
-    return res.status(403).json({
-      success: false,
-      error: '访问被拒绝：请通过 learn.aivolo.com 访问',
-    });
+    return next();
   }
 
-  // Verify the CF JWT
+  // Verify the CF JWT (optional enrichment)
   verifyCfToken(cfJwt)
     .then(payload => {
       req.cfIdentity = {
@@ -134,10 +131,8 @@ export function verifyCfAccess(req, res, next) {
     })
     .catch(err => {
       console.warn(`[CF Access] Invalid CF JWT from ${req.ip}: ${err.message}`);
-      return res.status(403).json({
-        success: false,
-        error: 'Cloudflare Access 认证无效',
-      });
+      // Don't block — app-level JWT auth is the primary gate
+      next();
     });
 }
 
