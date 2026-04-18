@@ -51,6 +51,7 @@ import { execSync } from 'child_process';
 import authRoutes from './routes/auth.routes.js';
 import progressRoutes from './routes/progress.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import { verifyCfAccess } from './middleware/cfAccess.js';
 
 const PLATFORM_DIR = path.resolve(__dirname, '..');
 const TRAINING_ROOT = path.resolve(PLATFORM_DIR, '..');
@@ -64,6 +65,12 @@ const UPLOADS_DIR = path.resolve(PLATFORM_DIR, 'uploads');
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// L1: Cloudflare Access Gateway (production only)
+// Verifies Cf-Access-Jwt-Assertion header from Cloudflare Zero Trust
+// ═══════════════════════════════════════════════════════════════════════════════
+app.use(verifyCfAccess);
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Route modules
@@ -371,6 +378,7 @@ app.listen(PORT, () => {
   console.log(`   Env:  ${process.env.NODE_ENV || 'development'}`);
   console.log(`   DB:   PostgreSQL (Prisma)`);
   console.log(`   Auth: JWT + bcrypt`);
+  console.log(`   CF:   ${process.env.CF_TEAM_DOMAIN ? `✅ Access enforced (${process.env.CF_TEAM_DOMAIN})` : '⏭️  Skipped (no CF_TEAM_DOMAIN)'}`);
   console.log(`   Root: ${TRAINING_ROOT}`);
   console.log(`   Courses: ${discoverCourses().length}`);
   console.log(`\n📡 Endpoints:`);

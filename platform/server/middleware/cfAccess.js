@@ -1,0 +1,133 @@
+/**
+ * Cloudflare Access JWT Verification Middleware
+ * ─────────────────────────────────────────────
+ * Validates the Cf-Access-Jwt-Assertion header injected by
+ * Cloudflare Access after a user passes the gateway authentication.
+ *
+ * - Production: Enforced — blocks requests without valid CF JWT
+ * - Development: Skipped — allows direct localhost access
+ *
+ * Env vars:
+ *   CF_TEAM_DOMAIN   — e.g. "your-team" (for https://your-team.cloudflareaccess.com)
+ *   CF_ACCESS_AUD    — Application Audience Tag from CF Access dashboard
+ */
+import jwt from 'jsonwebtoken';
+import https from 'https';
+
+// ── Configuration ──
+const CF_TEAM_DOMAIN = process.env.CF_TEAM_DOMAIN || '';
+const CF_ACCESS_AUD = process.env.CF_ACCESS_AUD || '';
+const CERTS_URL = CF_TEAM_DOMAIN
+  ? `https://${CF_TEAM_DOMAIN}.cloudflareaccess.com/cdn-cgi/access/certs`
+  : '';
+
+// ── JWKS Cache ──
+let cachedKeys = null;
+let cacheExpiresAt = 0;
+const CACHE_TTL = 3600000; // 1 hour
+
+/**
+ * Fetch Cloudflare's public signing keys (JWKS)
+ */
+function fetchCfPublicKeys() {
+  return new Promise((resolve, reject) => {
+    if (cachedKeys && Date.now() < cacheExpiresAt) {
+      return resolve(cachedKeys);
+    }
+
+    if (!CERTS_URL) {
+      return reject(new Error('CF_TEAM_DOMAIN not configured'));
+    }
+
+    https.get(CERTS_URL, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          cachedKeys = parsed.public_certs || parsed.keys || [];
+          cacheExpiresAt = Date.now() + CACHE_TTL;
+          resolve(cachedKeys);
+        } catch (e) {
+          reject(new Error(`Failed to parse CF JWKS: ${e.message}`));
+        }
+      });
+    }).on('error', reject);
+  });
+}
+
+/**
+ * Verify a Cloudflare Access JWT token
+ */
+async function verifyCfToken(token) {
+  const keys = await fetchCfPublicKeys();
+
+  // Cloudflare returns public_certs as array of {kid, cert}
+  // Try each cert until one matches
+  const decoded = jwt.decode(token, { complete: true });
+  if (!decoded) throw new Error('Invalid JWT format');
+
+  const matchingKey = keys.find(k => k.kid === decoded.header.kid);
+  if (!matchingKey) throw new Error('No matching signing key found');
+
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, matchingKey.cert, {
+      audience: CF_ACCESS_AUD,
+      issuer: `https://${CF_TEAM_DOMAIN}.cloudflareaccess.com`,
+      algorithms: ['RS256'],
+    }, (err, payload) => {
+      if (err) reject(err);
+      else resolve(payload);
+    });
+  });
+}
+
+/**
+ * Express Middleware: Verify Cloudflare Access JWT
+ *
+ * Behavior:
+ * - NODE_ENV !== 'production': skip (allow direct access)
+ * - CF_TEAM_DOMAIN not set: skip with warning
+ * - Missing/invalid CF JWT: 403 Forbidden
+ * - Valid CF JWT: attach identity to req.cfIdentity and continue
+ */
+export function verifyCfAccess(req, res, next) {
+  // Skip in non-production
+  if (process.env.NODE_ENV !== 'production') {
+    return next();
+  }
+
+  // Skip if CF Access not configured
+  if (!CF_TEAM_DOMAIN || !CF_ACCESS_AUD) {
+    return next();
+  }
+
+  const cfJwt = req.headers['cf-access-jwt-assertion'];
+
+  // No CF JWT header — request didn't come through Cloudflare
+  if (!cfJwt) {
+    console.warn(`[CF Access] Blocked: no CF JWT from ${req.ip} → ${req.method} ${req.path}`);
+    return res.status(403).json({
+      success: false,
+      error: '访问被拒绝：请通过 learn.aivolo.com 访问',
+    });
+  }
+
+  // Verify the CF JWT
+  verifyCfToken(cfJwt)
+    .then(payload => {
+      req.cfIdentity = {
+        email: payload.email,
+        sub: payload.sub,
+        iss: payload.iss,
+      };
+      next();
+    })
+    .catch(err => {
+      console.warn(`[CF Access] Invalid CF JWT from ${req.ip}: ${err.message}`);
+      return res.status(403).json({
+        success: false,
+        error: 'Cloudflare Access 认证无效',
+      });
+    });
+}
