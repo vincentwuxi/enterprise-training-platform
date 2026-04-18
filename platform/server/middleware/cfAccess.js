@@ -63,8 +63,9 @@ function fetchCfPublicKeys() {
 
 /**
  * Verify a Cloudflare Access JWT token
+ * Exported for use by SSO endpoint
  */
-async function verifyCfToken(token) {
+export async function verifyCfToken(token) {
   const keys = await fetchCfPublicKeys();
 
   // Cloudflare returns public_certs as array of {kid, cert}

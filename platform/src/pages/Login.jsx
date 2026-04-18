@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { BookOpen, Mail, Lock, User, Building2, Eye, EyeOff, Sparkles } from 'lucide-react';
+import { BookOpen, Mail, Lock, User, Building2, Eye, EyeOff, Sparkles, Shield } from 'lucide-react';
 import './Login.css';
 
 export default function Login() {
-  const { user, login, register } = useAuth();
+  const { user, ssoLoading, login, register } = useAuth();
   const navigate = useNavigate();
   const [mode, setMode] = useState('login'); // 'login' | 'register'
   const [showPassword, setShowPassword] = useState(false);
@@ -51,6 +51,25 @@ export default function Login() {
     setLoading(false);
   };
 
+  // SSO in progress — show loading screen
+  if (ssoLoading) {
+    return (
+      <div className="login-page">
+        <div className="login-bg-orb orb-1" />
+        <div className="login-bg-orb orb-2" />
+        <div className="login-bg-orb orb-3" />
+        <div className="login-container" style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ textAlign: 'center', color: 'var(--text-primary)' }}>
+            <Shield size={48} style={{ marginBottom: 16, opacity: 0.7, animation: 'pulse 1.5s ease-in-out infinite' }} />
+            <h2 style={{ fontSize: '1.5rem', marginBottom: 8 }}>正在通过 Cloudflare 安全登录...</h2>
+            <p style={{ opacity: 0.6 }}>正在验证您的身份，请稍候</p>
+            <span className="loading-spinner" style={{ marginTop: 24, display: 'inline-block' }} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="login-page">
       {/* Background decoration */}
@@ -77,8 +96,8 @@ export default function Login() {
           {import.meta.env.DEV && (
             <div className="quick-login-hints">
               <p className="ql-title">⚠️ 仅开发模式可见 · 快速体验：</p>
-              <button className="ql-btn" onClick={() => quickLogin('admin@nexuslearn.com', 'admin123')}>
-                🔑 管理员账号 (admin / admin123)
+              <button className="ql-btn" onClick={() => quickLogin('wenyun@gmail.com', 'admin123')}>
+                🔑 管理员账号 (wenyun@gmail.com)
               </button>
               <button className="ql-btn" onClick={() => quickLogin('demo@nexuslearn.com', 'demo123')}>
                 👤 学员账号 (demo / demo123)

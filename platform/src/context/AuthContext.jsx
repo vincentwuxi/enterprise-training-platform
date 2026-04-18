@@ -18,34 +18,57 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [ssoLoading, setSsoLoading] = useState(false);
   const [courseStatus, setCourseStatus] = useState({});
   const [courseAccessMap, setCourseAccessMap] = useState({});
   const [progressCache, setProgressCache] = useState({});
 
-  // ── Initialize: restore session from JWT ──
+  // ── Helper: load user progress ──
+  const loadProgress = useCallback(async () => {
+    try {
+      const data = await api.get('/api/progress');
+      setProgressCache(data.progress || {});
+    } catch { /* non-fatal */ }
+  }, []);
+
+  // ── Initialize: restore session from JWT or CF Access SSO ──
   useEffect(() => {
     const token = localStorage.getItem('nl_token');
-    if (!token) {
-      setLoading(false);
-      return;
-    }
 
-    // Verify token and load user
-    api.get('/api/auth/me')
-      .then(data => {
-        setUser(data.user);
-        // Load progress after user is confirmed
-        return api.get('/api/progress');
-      })
-      .then(data => {
-        setProgressCache(data.progress || {});
-      })
-      .catch(() => {
-        // Token invalid/expired — clear it
-        clearToken();
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    if (token) {
+      // Existing JWT — verify and restore session
+      api.get('/api/auth/me')
+        .then(data => {
+          setUser(data.user);
+          return api.get('/api/progress');
+        })
+        .then(data => {
+          setProgressCache(data.progress || {});
+        })
+        .catch(() => {
+          clearToken();
+        })
+        .finally(() => setLoading(false));
+    } else {
+      // No JWT — attempt Cloudflare Access SSO
+      setSsoLoading(true);
+      api.get('/api/auth/cf-sso')
+        .then(data => {
+          if (data.success && data.token) {
+            setToken(data.token);
+            setUser(data.user);
+            return loadProgress();
+          }
+        })
+        .catch(() => {
+          // SSO not available — user will see login form
+        })
+        .finally(() => {
+          setSsoLoading(false);
+          setLoading(false);
+        });
+    }
+  }, [loadProgress]);
 
   // ── Auth actions ──
   const login = useCallback(async (email, password) => {
@@ -203,7 +226,7 @@ export function AuthProvider({ children }) {
   }, [isCourseOnline, getCourseAccessList]);
 
   const value = {
-    user, loading,
+    user, loading, ssoLoading,
     isAdmin: user?.role === 'admin',
     courseStatus, courseAccessMap,
     login, register, logout,

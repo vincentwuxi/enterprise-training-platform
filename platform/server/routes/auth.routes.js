@@ -1,17 +1,88 @@
 /**
  * Auth Routes — /api/auth/*
  * ─────────────────────────
+ * GET  /api/auth/cf-sso    — Cloudflare Access SSO auto-login
  * POST /api/auth/register  — Create account
  * POST /api/auth/login     — Login, returns JWT
  * GET  /api/auth/me        — Get current user (requires JWT)
  */
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 import prisma from '../config/database.js';
 import { signToken, requireAuth } from '../middleware/auth.js';
+import { verifyCfToken } from '../middleware/cfAccess.js';
 
 const router = Router();
 const SALT_ROUNDS = 12;
+
+// Default admin email (matches Cloudflare Access identity)
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'wenyun@gmail.com';
+
+// ── GET /api/auth/cf-sso — Cloudflare Access SSO ──
+router.get('/cf-sso', async (req, res) => {
+  try {
+    const cfJwt = req.headers['cf-access-jwt-assertion'];
+    if (!cfJwt) {
+      return res.status(401).json({ success: false, error: 'No CF Access token', sso: false });
+    }
+
+    // Verify the Cloudflare Access JWT
+    let payload;
+    try {
+      payload = await verifyCfToken(cfJwt);
+    } catch (err) {
+      return res.status(401).json({ success: false, error: 'Invalid CF token: ' + err.message, sso: false });
+    }
+
+    const email = payload.email;
+    if (!email) {
+      return res.status(400).json({ success: false, error: 'CF token missing email' });
+    }
+
+    // Find or create user by email
+    let user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user) {
+      // Auto-create account for new CF Access users
+      const randomPassword = crypto.randomBytes(32).toString('hex');
+      const passwordHash = await bcrypt.hash(randomPassword, SALT_ROUNDS);
+      const isAdmin = email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+      user = await prisma.user.create({
+        data: {
+          email,
+          name: email.split('@')[0],
+          passwordHash,
+          role: isAdmin ? 'admin' : 'learner',
+          department: '未分配',
+        },
+      });
+      console.log(`[CF SSO] Auto-created user: ${email} (${isAdmin ? 'admin' : 'learner'})`);
+    } else {
+      // Ensure admin email always has admin role
+      if (email.toLowerCase() === ADMIN_EMAIL.toLowerCase() && user.role !== 'admin') {
+        user = await prisma.user.update({
+          where: { id: user.id },
+          data: { role: 'admin' },
+        });
+      }
+    }
+
+    // Update last login
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() },
+    });
+
+    const token = signToken(user);
+    const { passwordHash: _, ...safeUser } = user;
+    res.json({ success: true, token, user: safeUser, sso: true });
+  } catch (err) {
+    console.error('CF SSO error:', err);
+    res.status(500).json({ success: false, error: 'SSO 登录失败' });
+  }
+});
 
 // ── POST /api/auth/register ──
 router.post('/register', async (req, res) => {
