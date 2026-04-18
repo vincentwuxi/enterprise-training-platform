@@ -19,12 +19,16 @@ const SALT_ROUNDS = 12;
 // Default admin email (matches Cloudflare Access identity)
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'wenyun@gmail.com';
 
-// ── GET /api/auth/cf-sso — Cloudflare Access SSO ──
+// ── GET /api/auth/cf-sso — Cloudflare Access SSO (redirect-based) ──
+// Flow: Browser navigates here → CF Access shows OTP → after auth,
+// this endpoint verifies CF JWT, creates/finds user, generates app JWT,
+// and redirects back to frontend with token in URL fragment.
 router.get('/cf-sso', async (req, res) => {
   try {
     const cfJwt = req.headers['cf-access-jwt-assertion'];
     if (!cfJwt) {
-      return res.status(401).json({ success: false, error: 'No CF Access token', sso: false });
+      // No CF JWT — redirect to login page with error
+      return res.redirect('/?sso_error=no_cf_token');
     }
 
     // Verify the Cloudflare Access JWT
@@ -32,12 +36,13 @@ router.get('/cf-sso', async (req, res) => {
     try {
       payload = await verifyCfToken(cfJwt);
     } catch (err) {
-      return res.status(401).json({ success: false, error: 'Invalid CF token: ' + err.message, sso: false });
+      console.warn(`[CF SSO] Invalid token: ${err.message}`);
+      return res.redirect('/?sso_error=invalid_token');
     }
 
     const email = payload.email;
     if (!email) {
-      return res.status(400).json({ success: false, error: 'CF token missing email' });
+      return res.redirect('/?sso_error=missing_email');
     }
 
     // Find or create user by email
@@ -75,12 +80,14 @@ router.get('/cf-sso', async (req, res) => {
       data: { lastLogin: new Date() },
     });
 
+    // Sign app JWT and redirect to frontend with token
     const token = signToken(user);
-    const { passwordHash: _, ...safeUser } = user;
-    res.json({ success: true, token, user: safeUser, sso: true });
+    console.log(`[CF SSO] Login success: ${email} (${user.role})`);
+    // Use URL fragment (#) so token doesn't appear in server logs
+    res.redirect(`/#sso_token=${token}`);
   } catch (err) {
     console.error('CF SSO error:', err);
-    res.status(500).json({ success: false, error: 'SSO 登录失败' });
+    res.redirect('/?sso_error=server_error');
   }
 });
 

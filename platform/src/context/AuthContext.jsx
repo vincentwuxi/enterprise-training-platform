@@ -31,8 +31,35 @@ export function AuthProvider({ children }) {
     } catch { /* non-fatal */ }
   }, []);
 
-  // ── Initialize: restore session from JWT or CF Access SSO ──
+  // ── Initialize: restore session from JWT or CF Access SSO token ──
   useEffect(() => {
+    // Check for SSO token in URL fragment (from /api/auth/cf-sso redirect)
+    const hash = window.location.hash;
+    const ssoMatch = hash.match(/^#sso_token=(.+)$/);
+
+    if (ssoMatch) {
+      // SSO redirect — extract token from URL fragment
+      const ssoToken = ssoMatch[1];
+      window.location.hash = ''; // Clean up URL
+      setToken(ssoToken);
+      setSsoLoading(true);
+
+      api.get('/api/auth/me')
+        .then(data => {
+          setUser(data.user);
+          return loadProgress();
+        })
+        .catch(() => {
+          clearToken();
+        })
+        .finally(() => {
+          setSsoLoading(false);
+          setLoading(false);
+        });
+      return;
+    }
+
+    // Check for existing JWT in localStorage
     const token = localStorage.getItem('nl_token');
 
     if (token) {
@@ -50,23 +77,8 @@ export function AuthProvider({ children }) {
         })
         .finally(() => setLoading(false));
     } else {
-      // No JWT — attempt Cloudflare Access SSO
-      setSsoLoading(true);
-      api.get('/api/auth/cf-sso')
-        .then(data => {
-          if (data.success && data.token) {
-            setToken(data.token);
-            setUser(data.user);
-            return loadProgress();
-          }
-        })
-        .catch(() => {
-          // SSO not available — user will see login form
-        })
-        .finally(() => {
-          setSsoLoading(false);
-          setLoading(false);
-        });
+      // No JWT, no SSO token — show login page
+      setLoading(false);
     }
   }, [loadProgress]);
 

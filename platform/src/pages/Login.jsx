@@ -157,6 +157,18 @@ export default function Login() {
               {loading ? <span className="loading-spinner" /> : <Sparkles size={16} />}
               {loading ? '处理中...' : (mode === 'login' ? '登录' : '注册并开始学习')}
             </button>
+
+            {mode === 'login' && (
+              <>
+                <div className="sso-divider">
+                  <span>或</span>
+                </div>
+                <a href="/api/auth/cf-sso" className="sso-btn">
+                  <Shield size={16} />
+                  Cloudflare 安全登录 (OTP)
+                </a>
+              </>
+            )}
           </form>
 
           <p className="form-footer">
