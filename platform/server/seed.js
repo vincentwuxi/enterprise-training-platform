@@ -20,14 +20,15 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🌱 Seeding NexusLearn database...');
 
-  // Create admin account
-  const adminHash = await bcrypt.hash('admin123', 12);
+  // Create admin account (email matches Cloudflare Access identity)
+  const adminPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'admin123';
+  const adminHash = await bcrypt.hash(adminPassword, 12);
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@nexuslearn.com' },
-    update: {},
+    where: { email: 'wenyun@gmail.com' },
+    update: { role: 'admin' },  // Ensure admin role even if account exists
     create: {
-      email: 'admin@nexuslearn.com',
-      name: '系统管理员',
+      email: 'wenyun@gmail.com',
+      name: 'Wenyun',
       passwordHash: adminHash,
       role: 'admin',
       department: '技术部',
@@ -75,7 +76,7 @@ async function main() {
   console.log(`  ✅ Demo progress: ${demoProgress.length} lessons`);
 
   console.log('\n🎉 Seed complete!');
-  console.log('  Login: admin@nexuslearn.com / admin123');
+  console.log('  Login: wenyun@gmail.com / (ADMIN_DEFAULT_PASSWORD or admin123)');
   console.log('  Login: demo@nexuslearn.com / demo123');
 }
 
