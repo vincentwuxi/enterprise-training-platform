@@ -1,0 +1,63 @@
+// NexusLearn Database Schema (Prisma 6)
+// ─────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  name         String
+  passwordHash String   @map("password_hash")
+  role         String   @default("learner")
+  department   String   @default("未分配")
+  createdAt    DateTime @default(now()) @map("created_at")
+  lastLogin    DateTime? @map("last_login")
+
+  progress     LessonProgress[]
+  courseAccess  CourseAccess[]
+
+  @@map("users")
+}
+
+model LessonProgress {
+  id          String    @id @default(uuid())
+  userId      String    @map("user_id")
+  courseId     String    @map("course_id")
+  lessonId    String    @map("lesson_id")
+  status      String    @default("completed")
+  timeSpent   Int       @default(0)
+  completedAt DateTime  @default(now()) @map("completed_at")
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId, lessonId])
+  @@index([userId])
+  @@index([courseId])
+  @@map("lesson_progress")
+}
+
+model CourseStatus {
+  courseId   String   @id @map("course_id")
+  status    String   @default("online")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("course_status")
+}
+
+model CourseAccess {
+  courseId String @map("course_id")
+  userId  String @map("user_id")
+
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([courseId, userId])
+  @@index([userId])
+  @@map("course_access")
+}

@@ -22,29 +22,33 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    await new Promise(r => setTimeout(r, 400)); // simulate network
 
-    if (mode === 'login') {
-      const res = login(form.email, form.password);
-      if (res.error) { setError(res.error); setLoading(false); return; }
-      navigate('/dashboard');
-    } else {
-      if (!form.name.trim()) { setError('请输入姓名'); setLoading(false); return; }
-      if (!form.email.includes('@')) { setError('请输入有效邮箱'); setLoading(false); return; }
-      if (form.password.length < 6) { setError('密码至少 6 位'); setLoading(false); return; }
-      const res = register(form.name, form.email, form.password, form.department || '未分配');
-      if (res.error) { setError(res.error); setLoading(false); return; }
-      navigate('/dashboard');
+    try {
+      if (mode === 'login') {
+        const res = await login(form.email, form.password);
+        if (res.error) { setError(res.error); setLoading(false); return; }
+        navigate('/dashboard');
+      } else {
+        if (!form.name.trim()) { setError('请输入姓名'); setLoading(false); return; }
+        if (!form.email.includes('@')) { setError('请输入有效邮箱'); setLoading(false); return; }
+        if (form.password.length < 6) { setError('密码至少 6 位'); setLoading(false); return; }
+        const res = await register(form.name, form.email, form.password, form.department || '未分配');
+        if (res.error) { setError(res.error); setLoading(false); return; }
+        navigate('/dashboard');
+      }
+    } catch (err) {
+      setError(err.message || '操作失败，请重试');
     }
     setLoading(false);
   };
 
-  const quickLogin = (email, password) => {
+  const quickLogin = async (email, password) => {
     setForm(f => ({ ...f, email, password }));
-    setTimeout(() => {
-      const res = login(email, password);
-      if (!res.error) navigate('/dashboard');
-    }, 100);
+    setLoading(true);
+    const res = await login(email, password);
+    if (res.error) { setError(res.error); setLoading(false); return; }
+    navigate('/dashboard');
+    setLoading(false);
   };
 
   return (

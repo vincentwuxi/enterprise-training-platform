@@ -1,30 +1,57 @@
 #!/usr/bin/env node
 /**
- * Course Platform API Server
- * ──────────────────────────
- * Provides REST APIs for course import/export and serves static files in production.
+ * NexusLearn API Server
+ * ─────────────────────
+ * Express server with PostgreSQL + JWT authentication.
  *
  * Endpoints:
- *   GET  /api/courses                  — List all registered courses
- *   GET  /api/courses/:id/export       — Export a course as .nexuscourse.zip
- *   POST /api/courses/import           — Import a .nexuscourse.zip
- *   GET  /api/status                   — Server health check
+ *   Auth:
+ *     POST /api/auth/register       — Create account
+ *     POST /api/auth/login          — Login, returns JWT
+ *     GET  /api/auth/me             — Get current user
+ *   Progress:
+ *     GET  /api/progress            — Get my learning progress
+ *     POST /api/progress            — Mark lesson complete
+ *     GET  /api/progress/:courseId   — Course-specific progress
+ *   Admin:
+ *     GET    /api/admin/users              — List users
+ *     PUT    /api/admin/users/:id/role     — Change role
+ *     DELETE /api/admin/users/:id          — Delete user
+ *     PUT    /api/admin/courses/:id/status — Online/offline
+ *     GET    /api/admin/courses/:id/access — Get ACL
+ *     PUT    /api/admin/courses/:id/access — Set ACL
+ *     GET    /api/admin/analytics          — Learning analytics
+ *   Courses:
+ *     GET  /api/courses             — List all courses
+ *     GET  /api/courses/:id/export  — Export course as zip
+ *     POST /api/courses/import      — Import course zip
+ *     GET  /api/status              — Health check
  *
  * Run: node server/index.js
- *   or: npm run server
  */
+
+import 'dotenv/config';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+// Load .env from server/ directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+import dotenv from 'dotenv';
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import AdmZip from 'adm-zip';
-import path from 'path';
 import fs from 'fs';
 import { execSync } from 'child_process';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Import route modules
+import authRoutes from './routes/auth.routes.js';
+import progressRoutes from './routes/progress.routes.js';
+import adminRoutes from './routes/admin.routes.js';
+
 const PLATFORM_DIR = path.resolve(__dirname, '..');
 const TRAINING_ROOT = path.resolve(PLATFORM_DIR, '..');
 const DIST_DIR = path.resolve(PLATFORM_DIR, 'dist');
@@ -38,12 +65,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ── API Key authentication middleware ──
-// Set NL_API_KEY env var to enable. Protects mutating endpoints (import, etc).
+// ═══════════════════════════════════════════════════════════════════════════════
+// Route modules
+// ═══════════════════════════════════════════════════════════════════════════════
+app.use('/api/auth', authRoutes);
+app.use('/api/progress', progressRoutes);
+app.use('/api/admin', adminRoutes);
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Course API (unchanged from original)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── API Key authentication middleware (for import) ──
 const API_KEY = process.env.NL_API_KEY || '';
 
 function requireApiKey(req, res, next) {
-  if (!API_KEY) return next(); // Skip if not configured (dev mode)
+  if (!API_KEY) return next();
   const provided = req.headers['x-api-key'] || req.query.apikey;
   if (provided === API_KEY) return next();
   return res.status(401).json({
@@ -52,7 +89,7 @@ function requireApiKey(req, res, next) {
   });
 }
 
-// Simple rate limiter for import endpoint (in-memory)
+// Simple rate limiter (in-memory)
 const rateLimitMap = new Map();
 function rateLimit(windowMs, maxReqs) {
   return (req, res, next) => {
@@ -77,7 +114,7 @@ function rateLimit(windowMs, maxReqs) {
 
 const upload = multer({
   dest: UPLOADS_DIR,
-  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB max
+  limits: { fileSize: 100 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (file.originalname.endsWith('.zip') || file.originalname.endsWith('.nexuscourse.zip')) {
       cb(null, true);
@@ -149,13 +186,8 @@ app.get('/api/courses/:id/export', (req, res) => {
     const manifestPath = path.join(courseDir, 'course.manifest.json');
     const srcDir = path.join(courseDir, 'src');
 
-    // Create zip
     const zip = new AdmZip();
-
-    // Add manifest
     zip.addLocalFile(manifestPath);
-
-    // Add src/ directory recursively
     if (fs.existsSync(srcDir)) {
       zip.addLocalFolder(srcDir, 'src');
     }
@@ -182,11 +214,9 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
   }
 
   try {
-    // 1. Read the zip
     const zip = new AdmZip(uploadedFile.path);
     const zipEntries = zip.getEntries();
 
-    // 2. Find course.manifest.json inside the zip
     const manifestEntry = zipEntries.find(e =>
       e.entryName === 'course.manifest.json' ||
       e.entryName.endsWith('/course.manifest.json')
@@ -200,7 +230,6 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
       });
     }
 
-    // 3. Parse manifest
     const manifestData = JSON.parse(manifestEntry.getData().toString('utf8'));
     if (!manifestData.id) {
       fs.unlinkSync(uploadedFile.path);
@@ -211,13 +240,9 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
     }
 
     const courseId = manifestData.id;
-
-    // 4. Determine target directory name (use CamelCase from id)
-    // e.g. "deep-learning" → "DeepLearning"
     const dirName = courseId.replace(/(^|-)([a-z])/g, (_, _sep, c) => c.toUpperCase());
     const targetDir = path.join(TRAINING_ROOT, dirName);
 
-    // 5. Check for conflict
     const existingCourses = discoverCourses();
     const existing = existingCourses.find(c => c.id === courseId);
     const overwrite = req.body?.overwrite === 'true' || req.query.overwrite === 'true';
@@ -231,8 +256,6 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
       });
     }
 
-    // 6. Extract to target directory
-    // If zip has a root folder, strip it
     const prefix = manifestEntry.entryName.includes('/')
       ? manifestEntry.entryName.split('/')[0] + '/'
       : '';
@@ -241,12 +264,10 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
 
     for (const entry of zipEntries) {
       if (entry.isDirectory) continue;
-
       let relativePath = entry.entryName;
       if (prefix && relativePath.startsWith(prefix)) {
         relativePath = relativePath.substring(prefix.length);
       }
-
       const targetPath = path.join(targetDir, relativePath);
       fs.mkdirSync(path.dirname(targetPath), { recursive: true });
       fs.writeFileSync(targetPath, entry.getData());
@@ -254,7 +275,6 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
 
     console.log(`📂 Extracted to: ${targetDir}`);
 
-    // 7. Regenerate registry
     try {
       execSync('node scripts/generate-registry.js', {
         cwd: PLATFORM_DIR,
@@ -266,7 +286,6 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
       console.error('⚠️  Registry regeneration failed:', genErr.message);
     }
 
-    // 8. Trigger rebuild (production only)
     let buildStatus = 'skipped';
     const isProduction = process.env.NODE_ENV === 'production';
     if (isProduction) {
@@ -286,7 +305,6 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
       }
     }
 
-    // 9. Cleanup upload
     fs.unlinkSync(uploadedFile.path);
 
     res.json({
@@ -306,7 +324,6 @@ app.post('/api/courses/import', requireApiKey, rateLimit(60000, 5), upload.singl
 
     console.log(`🎉 Import complete: ${courseId}`);
   } catch (err) {
-    // Cleanup on error
     if (uploadedFile?.path && fs.existsSync(uploadedFile.path)) {
       fs.unlinkSync(uploadedFile.path);
     }
@@ -320,17 +337,17 @@ app.get('/api/status', (req, res) => {
   res.json({
     success: true,
     server: 'NexusLearn Course API',
-    version: '1.0.0',
+    version: '2.0.0',
     coursesCount: courses.length,
     uptime: process.uptime(),
     env: process.env.NODE_ENV || 'development',
+    features: ['jwt-auth', 'postgresql', 'progress-sync'],
   });
 });
 
 // ── Serve static files in production ──
 if (process.env.NODE_ENV === 'production' && fs.existsSync(DIST_DIR)) {
   app.use(express.static(DIST_DIR));
-  // SPA fallback — Express 5 / path-to-regexp v8+ requires '{*path}' instead of '*'
   app.use((req, res, next) => {
     if (!req.path.startsWith('/api')) {
       res.sendFile(path.join(DIST_DIR, 'index.html'));
@@ -340,18 +357,33 @@ if (process.env.NODE_ENV === 'production' && fs.existsSync(DIST_DIR)) {
   });
 }
 
+// ── Global error handler ──
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ success: false, error: '服务器内部错误' });
+});
+
 // ── Start server ──
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`\n🚀 NexusLearn Course API Server`);
+  console.log(`\n🚀 NexusLearn API Server v2.0`);
   console.log(`   Port: ${PORT}`);
   console.log(`   Env:  ${process.env.NODE_ENV || 'development'}`);
+  console.log(`   DB:   PostgreSQL (Prisma)`);
+  console.log(`   Auth: JWT + bcrypt`);
   console.log(`   Root: ${TRAINING_ROOT}`);
   console.log(`   Courses: ${discoverCourses().length}`);
   console.log(`\n📡 Endpoints:`);
-  console.log(`   GET  /api/status`);
+  console.log(`   POST /api/auth/register`);
+  console.log(`   POST /api/auth/login`);
+  console.log(`   GET  /api/auth/me`);
+  console.log(`   GET  /api/progress`);
+  console.log(`   POST /api/progress`);
+  console.log(`   GET  /api/admin/users`);
+  console.log(`   GET  /api/admin/analytics`);
   console.log(`   GET  /api/courses`);
   console.log(`   GET  /api/courses/:id/export`);
   console.log(`   POST /api/courses/import`);
+  console.log(`   GET  /api/status`);
   console.log('');
 });
