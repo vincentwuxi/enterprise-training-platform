@@ -8,18 +8,22 @@
  * - Development: Skipped — allows direct localhost access
  *
  * Env vars:
- *   CF_TEAM_DOMAIN   — e.g. "your-team" (for https://your-team.cloudflareaccess.com)
+ *   CF_TEAM_DOMAIN   — e.g. "aivolo" (for https://aivolo.cloudflareaccess.com)
  *   CF_ACCESS_AUD    — Application Audience Tag from CF Access dashboard
+ *
+ * NOTE: Env vars are read at runtime (not import time) because ES module
+ * imports are hoisted before dotenv.config() runs.
  */
 import jwt from 'jsonwebtoken';
 import https from 'https';
 
-// ── Configuration ──
-const CF_TEAM_DOMAIN = process.env.CF_TEAM_DOMAIN || '';
-const CF_ACCESS_AUD = process.env.CF_ACCESS_AUD || '';
-const CERTS_URL = CF_TEAM_DOMAIN
-  ? `https://${CF_TEAM_DOMAIN}.cloudflareaccess.com/cdn-cgi/access/certs`
-  : '';
+// ── Runtime config getters (avoid ES module import timing issue) ──
+function getCfTeamDomain() { return process.env.CF_TEAM_DOMAIN || ''; }
+function getCfAccessAud()  { return process.env.CF_ACCESS_AUD || ''; }
+function getCertsUrl() {
+  const domain = getCfTeamDomain();
+  return domain ? `https://${domain}.cloudflareaccess.com/cdn-cgi/access/certs` : '';
+}
 
 // ── JWKS Cache ──
 let cachedKeys = null;
@@ -35,11 +39,12 @@ function fetchCfPublicKeys() {
       return resolve(cachedKeys);
     }
 
-    if (!CERTS_URL) {
+    const certsUrl = getCertsUrl();
+    if (!certsUrl) {
       return reject(new Error('CF_TEAM_DOMAIN not configured'));
     }
 
-    https.get(CERTS_URL, (res) => {
+    https.get(certsUrl, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
@@ -63,17 +68,19 @@ async function verifyCfToken(token) {
   const keys = await fetchCfPublicKeys();
 
   // Cloudflare returns public_certs as array of {kid, cert}
-  // Try each cert until one matches
   const decoded = jwt.decode(token, { complete: true });
   if (!decoded) throw new Error('Invalid JWT format');
 
   const matchingKey = keys.find(k => k.kid === decoded.header.kid);
   if (!matchingKey) throw new Error('No matching signing key found');
 
+  const cfAud = getCfAccessAud();
+  const cfDomain = getCfTeamDomain();
+
   return new Promise((resolve, reject) => {
     jwt.verify(token, matchingKey.cert, {
-      audience: CF_ACCESS_AUD,
-      issuer: `https://${CF_TEAM_DOMAIN}.cloudflareaccess.com`,
+      audience: cfAud,
+      issuer: `https://${cfDomain}.cloudflareaccess.com`,
       algorithms: ['RS256'],
     }, (err, payload) => {
       if (err) reject(err);
@@ -97,8 +104,10 @@ export function verifyCfAccess(req, res, next) {
     return next();
   }
 
-  // Skip if CF Access not configured
-  if (!CF_TEAM_DOMAIN || !CF_ACCESS_AUD) {
+  // Skip if CF Access not configured (read at runtime!)
+  const cfDomain = getCfTeamDomain();
+  const cfAud = getCfAccessAud();
+  if (!cfDomain || !cfAud) {
     return next();
   }
 
@@ -131,3 +140,4 @@ export function verifyCfAccess(req, res, next) {
       });
     });
 }
+
