@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { BookOpen, Shield, AlertTriangle, Mail } from 'lucide-react';
+import { courseRegistry } from '../courses/registry';
 import './Login.css';
 
 const SSO_ERRORS = {
@@ -15,6 +16,18 @@ const SSO_ERRORS = {
 export default function Login() {
   const { user, ssoLoading } = useAuth();
   const [searchParams] = useSearchParams();
+
+  const { totalCourses, totalModules, totalCategories } = useMemo(() => {
+    const entries = Object.entries(courseRegistry);
+    let modules = 0;
+    const catSet = new Set();
+    entries.forEach(([, reg]) => {
+      const m = reg.manifest;
+      modules += (m?.modules || m?.chapters || []).length;
+      if (m?.category) catSet.add(m.category);
+    });
+    return { totalCourses: entries.length, totalModules: modules, totalCategories: catSet.size };
+  }, []);
 
   // Already logged in
   if (user) return <Navigate to="/dashboard" replace />;
@@ -56,11 +69,11 @@ export default function Login() {
             <span>AivoloLearn</span>
           </div>
           <h2 className="brand-headline">企业级交互式<br />培训中心</h2>
-          <p className="brand-sub">专业课程 · 交互式学习 · 多端同步<br />从 AI 到 Linux，让学习真正发生</p>
+          <p className="brand-sub">专业课程 · 交互式学习 · 多端同步<br />从 AI 到基础设施，让学习真正发生</p>
           <div className="brand-stats">
-            <div className="bstat"><span className="bstat-num">9</span><span className="bstat-label">门课程</span></div>
-            <div className="bstat"><span className="bstat-num">40h+</span><span className="bstat-label">学习内容</span></div>
-            <div className="bstat"><span className="bstat-num">100%</span><span className="bstat-label">交互式</span></div>
+            <div className="bstat"><span className="bstat-num">{totalCourses}</span><span className="bstat-label">精品课程</span></div>
+            <div className="bstat"><span className="bstat-num">{totalModules}+</span><span className="bstat-label">交互章节</span></div>
+            <div className="bstat"><span className="bstat-num">{totalCategories}</span><span className="bstat-label">知识领域</span></div>
           </div>
         </div>
 
