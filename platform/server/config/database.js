@@ -1,7 +1,7 @@
 /**
  * Database Configuration
  * ──────────────────────
- * Singleton Prisma client for the NexusLearn API server.
+ * Singleton Prisma client for the AivoloLearn API server.
  */
 import { PrismaClient } from '@prisma/client';
 

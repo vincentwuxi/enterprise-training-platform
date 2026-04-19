@@ -18,7 +18,7 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Seeding NexusLearn database...');
+  console.log('🌱 Seeding AivoloLearn database...');
 
   // Create admin account (email matches Cloudflare Access identity)
   const adminPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'admin123';

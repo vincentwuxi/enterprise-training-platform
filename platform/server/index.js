@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * NexusLearn API Server
+ * AivoloLearn API Server
  * ─────────────────────
  * Express server with PostgreSQL + JWT authentication.
  *
@@ -339,7 +339,7 @@ app.get('/api/status', (req, res) => {
   const courses = discoverCourses();
   res.json({
     success: true,
-    server: 'NexusLearn Course API',
+    server: 'AivoloLearn Course API',
     version: '2.0.0',
     coursesCount: courses.length,
     uptime: process.uptime(),
@@ -369,7 +369,7 @@ app.use((err, req, res, next) => {
 // ── Start server ──
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`\n🚀 NexusLearn API Server v2.0`);
+  console.log(`\n🚀 AivoloLearn API Server v2.0`);
   console.log(`   Port: ${PORT}`);
   console.log(`   Env:  ${process.env.NODE_ENV || 'development'}`);
   console.log(`   DB:   PostgreSQL (Prisma)`);

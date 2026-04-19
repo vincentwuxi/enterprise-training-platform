@@ -32,7 +32,7 @@ export default function PlatformNavbar() {
       <div className="navbar-left">
         <NavLink to="/" className="logo-container">
           <BookOpen className="logo-icon" size={28} />
-          <span className="logo-text text-gradient">NexusLearn</span>
+          <span className="logo-text text-gradient">AivoloLearn</span>
         </NavLink>
       </div>
 

@@ -53,7 +53,7 @@ export default function Login() {
         <div className="login-brand-panel">
           <div className="brand-logo">
             <BookOpen size={36} />
-            <span>NexusLearn</span>
+            <span>AivoloLearn</span>
           </div>
           <h2 className="brand-headline">企业级交互式<br />培训中心</h2>
           <p className="brand-sub">专业课程 · 交互式学习 · 多端同步<br />从 AI 到 Linux，让学习真正发生</p>
