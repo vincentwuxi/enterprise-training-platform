@@ -5,6 +5,40 @@ import { courseRegistry } from '../courses/registry';
 import { useAuth } from '../context/AuthContext';
 import './CourseDetail.css';
 
+const CATEGORY_FILTER_MAP = {
+  'math-foundations': '数学基础',
+  'ai-fundamentals': 'AI 基础与理论',
+  'llm-engineering': '大模型与 LLM',
+  'ai-agent':        'AI Agent 工程',
+  'ai-applications': 'AI 行业应用',
+  'ai-platform':     'AI 平台与安全',
+  'ai-creative':     'AI 创意与效率',
+  'programming':     '编程与开发',
+  'infra-devops':    '基础设施与运维',
+  'data-engineering': '数据与存储',
+  'product-career':  '产品与职业',
+};
+
+const CATEGORY_IMAGES = {
+  'math-foundations': 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80',
+  'ai-fundamentals': 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80',
+  'llm-engineering': 'https://images.unsplash.com/photo-1555949963-aa79dcee57d5?auto=format&fit=crop&w=1200&q=80',
+  'ai-agent': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80',
+  'ai-applications': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+  'ai-platform': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+  'ai-creative': 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80',
+  'programming': 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+  'infra-devops': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+  'data-engineering': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+  'product-career': 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+  'default': 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80'
+};
+
+function getCourseImage(categoryName) {
+  const entry = Object.entries(CATEGORY_FILTER_MAP).find(([k, v]) => v === categoryName);
+  return CATEGORY_IMAGES[entry ? entry[0] : 'default'];
+}
+
 export default function CourseDetail() {
   const { courseId } = useParams();
   const navigate = useNavigate();
@@ -60,7 +94,6 @@ export default function CourseDetail() {
           <div className="course-stats">
             {course.difficulty && <span className="stat-badge">难度: {course.difficulty}</span>}
             {course.level && <span className="stat-badge">级别: {course.level}</span>}
-            {totalHours && <span className="stat-badge">时长: ~{totalHours}h</span>}
             <span className="stat-badge">章节: {chapters.length}</span>
           </div>
 
@@ -76,8 +109,15 @@ export default function CourseDetail() {
           </div>
         </div>
         <div className="course-hero-visual"
-          style={{ background: `linear-gradient(135deg, ${course.cover?.gradient?.[0] || '#1e293b'}, ${course.cover?.gradient?.[1] || '#0f172a'})` }}
-        />
+          style={{ 
+            backgroundImage: `url(${getCourseImage(course.category)})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative'
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(15,23,42,1) 0%, rgba(15,23,42,0.4) 100%)' }} />
+        </div>
       </div>
 
       <div className="course-content-layout">
@@ -99,7 +139,6 @@ export default function CourseDetail() {
                     >
                       <Circle size={18} className="lesson-status-icon pending" />
                       <span className="lesson-title">{lesson.title}</span>
-                      {lesson.estimatedMinutes && <span className="lesson-duration">{lesson.estimatedMinutes} min</span>}
                     </div>
                   ))}
                 </div>
