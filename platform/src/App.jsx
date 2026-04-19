@@ -5,7 +5,6 @@ import PlatformLayout from './components/PlatformLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Lazy load pages
-const Landing    = React.lazy(() => import('./pages/Landing'));
 const Login      = React.lazy(() => import('./pages/Login'));
 const Catalog    = React.lazy(() => import('./pages/Catalog'));
 const CourseDetail = React.lazy(() => import('./pages/CourseDetail'));
@@ -33,31 +32,28 @@ export default function App() {
     <AuthProvider>
       <Suspense fallback={<Loader />}>
         <Routes>
-          {/* Public */}
+          {/* Public — only login is accessible without auth */}
           <Route path="/login" element={<Login />} />
 
-          {/* Platform layout shell */}
-          <Route path="/" element={<PlatformLayout />}>
-            <Route index element={<Landing />} />
+          {/* All content requires authentication */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <PlatformLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Catalog />} />
             <Route path="catalog" element={<Catalog />} />
             <Route path="course/:courseId" element={<CourseDetail />} />
+            <Route path="course/:courseId/lesson/:lessonId" element={<LessonView />} />
+            <Route path="dashboard" element={<Dashboard />} />
 
-            {/* Protected — requires login */}
-            <Route path="course/:courseId/lesson/:lessonId" element={
-              <ProtectedRoute><LessonView /></ProtectedRoute>
-            } />
-            <Route path="dashboard" element={
-              <ProtectedRoute><Dashboard /></ProtectedRoute>
-            } />
-
-            {/* Protected — requires admin role */}
+            {/* Admin-only routes */}
             <Route path="admin/courses" element={
               <ProtectedRoute requireAdmin><AdminCourses /></ProtectedRoute>
             } />
             <Route path="admin/users" element={
               <ProtectedRoute requireAdmin><AdminUsers /></ProtectedRoute>
             } />
-            {/* Default admin redirect */}
             <Route path="admin" element={
               <ProtectedRoute requireAdmin><AdminCourses /></ProtectedRoute>
             } />
