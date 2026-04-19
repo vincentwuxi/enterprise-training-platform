@@ -304,7 +304,21 @@ export default function AdminCourses() {
     getAllUsers, getCourseAccessList, setCourseAccessControl
   } = useAuth();
 
-  const allUsers = getAllUsers();
+  // Load users asynchronously (getAllUsers is async)
+  const [allUsers, setAllUsers] = useState([]);
+  const [usersLoaded, setUsersLoaded] = useState(false);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    getAllUsers().then(users => {
+      if (!cancelled) {
+        setAllUsers(Array.isArray(users) ? users : []);
+        setUsersLoaded(true);
+      }
+    });
+    return () => { cancelled = true; };
+  }, [getAllUsers]);
+
   const learners = allUsers.filter(u => u.role === 'learner');
   const totalCourses = Object.keys(courseRegistry).length;
   const onlineCount = Object.keys(courseRegistry).filter(id => isCourseOnline(id)).length;
