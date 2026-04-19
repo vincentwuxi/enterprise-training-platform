@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Play, Circle, Clock, BookOpen, Layers, ShieldAlert } from 'lucide-react';
+import { Play, Circle, BookOpen, Layers, ShieldAlert } from 'lucide-react';
 import { courseRegistry } from '../courses/registry';
 import { useAuth } from '../context/AuthContext';
 import './CourseDetail.css';
@@ -72,7 +72,7 @@ export default function CourseDetail() {
         id: m.id,
         title: m.title,
         subtitle: m.description || '',
-        lessons: [{ id: m.id, title: m.title, estimatedMinutes: null }],
+        lessons: [{ id: m.id, title: m.title }],
       }));
     }
     return [];
@@ -81,7 +81,7 @@ export default function CourseDetail() {
   const chapters = normalizeChapters();
   const firstLesson = chapters[0]?.lessons?.[0];
 
-  const totalHours = course.estimatedHours || course.totalHours;
+
 
   return (
     <div className="course-detail-page page-container">
