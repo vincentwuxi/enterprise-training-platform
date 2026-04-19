@@ -12,6 +12,8 @@ const LessonView = React.lazy(() => import('./pages/LessonView'));
 const Dashboard  = React.lazy(() => import('./pages/Dashboard'));
 const AdminCourses = React.lazy(() => import('./pages/AdminCourses'));
 const AdminUsers   = React.lazy(() => import('./pages/AdminUsers'));
+const AdminFeedback = React.lazy(() => import('./pages/AdminFeedback'));
+const AdminAnalytics = React.lazy(() => import('./pages/AdminAnalytics'));
 const AdminSettings = React.lazy(() => import('./pages/AdminSettings'));
 
 const Loader = () => (
@@ -54,6 +56,12 @@ export default function App() {
             } />
             <Route path="admin/users" element={
               <ProtectedRoute requireAdmin><AdminUsers /></ProtectedRoute>
+            } />
+            <Route path="admin/feedback" element={
+              <ProtectedRoute requireAdmin><AdminFeedback /></ProtectedRoute>
+            } />
+            <Route path="admin/analytics" element={
+              <ProtectedRoute requireAdmin><AdminAnalytics /></ProtectedRoute>
             } />
             <Route path="admin/settings" element={
               <ProtectedRoute requireAdmin><AdminSettings /></ProtectedRoute>

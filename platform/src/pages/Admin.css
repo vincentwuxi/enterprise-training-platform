@@ -2,6 +2,60 @@
 
 .admin-page { padding-bottom: 4rem; }
 
+/* ── Sub Navigation ── */
+.admin-sub-nav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+  padding: 6px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.admin-sub-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.admin-sub-nav-item:hover {
+  color: #94a3b8;
+  background: rgba(255,255,255,0.04);
+}
+
+.admin-sub-nav-item.active {
+  background: rgba(99,102,241,0.12);
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.admin-header-sub {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0;
+}
+
+/* ── Stat Row (generic) ── */
+.admin-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 /* ── Header ── */
 .admin-header {
   display: flex;

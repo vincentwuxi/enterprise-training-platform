@@ -390,6 +390,25 @@ export default function AdminCourses() {
 
   return (
     <div className="admin-page page-container">
+      {/* Sub Navigation */}
+      <div className="admin-sub-nav">
+        <button className="admin-sub-nav-item active">
+          <BookOpen size={16} /> 课程管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/users')}>
+          <Users size={16} /> 用户管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/feedback')}>
+          <span style={{ fontSize: '14px' }}>💬</span> 建议管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/analytics')}>
+          <BarChart3 size={16} /> 学习统计
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/settings')}>
+          <span style={{ fontSize: '14px' }}>⚙️</span> 系统设置
+        </button>
+      </div>
+
       {/* Header */}
       <header className="admin-header">
         <div>
@@ -404,9 +423,6 @@ export default function AdminCourses() {
         <div className="admin-header-actions">
           <button className="admin-action-btn import-btn" onClick={() => setImportModal(true)}>
             <Upload size={16} /> 导入课程
-          </button>
-          <button className="admin-nav-btn" onClick={() => navigate('/admin/users')}>
-            <Users size={16} /> 用户管理
           </button>
         </div>
       </header>

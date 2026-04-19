@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import PlatformNavbar from './PlatformNavbar';
 import AiAssistant from './AiAssistant';
+import FeedbackWidget from './FeedbackWidget';
 import './PlatformLayout.css';
 
 export default function PlatformLayout() {
@@ -11,6 +12,7 @@ export default function PlatformLayout() {
       <main className="platform-main">
         <Outlet />
       </main>
+      <FeedbackWidget />
       <AiAssistant />
     </div>
   );

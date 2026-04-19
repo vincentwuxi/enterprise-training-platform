@@ -89,6 +89,25 @@ export default function AdminUsers() {
 
   return (
     <div className="admin-page page-container">
+      {/* Sub Navigation */}
+      <div className="admin-sub-nav">
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/courses')}>
+          <BookOpen size={16} /> 课程管理
+        </button>
+        <button className="admin-sub-nav-item active">
+          <Users size={16} /> 用户管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/feedback')}>
+          <span style={{ fontSize: '14px' }}>💬</span> 建议管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/analytics')}>
+          <span style={{ fontSize: '14px' }}>📊</span> 学习统计
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/settings')}>
+          <span style={{ fontSize: '14px' }}>⚙️</span> 系统设置
+        </button>
+      </div>
+
       <header className="admin-header">
         <div>
           <div className="admin-breadcrumb">
@@ -103,9 +122,6 @@ export default function AdminUsers() {
           <button className="admin-nav-btn" style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981', borderColor: 'rgba(16,185,129,0.3)' }}
             onClick={() => setShowAddModal(true)}>
             <UserPlus size={16} /> 添加用户
-          </button>
-          <button className="admin-nav-btn" onClick={() => navigate('/admin/courses')}>
-            <BookOpen size={16} /> 课程管理
           </button>
         </div>
       </header>

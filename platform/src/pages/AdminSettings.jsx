@@ -100,6 +100,25 @@ export default function AdminSettings() {
 
   return (
     <div className="admin-page page-container">
+      {/* Sub Navigation */}
+      <div className="admin-sub-nav">
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/courses')}>
+          <BookOpen size={16} /> 课程管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/users')}>
+          <Users size={16} /> 用户管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/feedback')}>
+          <span style={{ fontSize: '14px' }}>💬</span> 建议管理
+        </button>
+        <button className="admin-sub-nav-item" onClick={() => navigate('/admin/analytics')}>
+          <span style={{ fontSize: '14px' }}>📊</span> 学习统计
+        </button>
+        <button className="admin-sub-nav-item active">
+          <Settings size={16} /> 系统设置
+        </button>
+      </div>
+
       <header className="admin-header">
         <div>
           <div className="admin-breadcrumb">
@@ -109,14 +128,6 @@ export default function AdminSettings() {
           </div>
           <h1><Settings size={24} style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />系统设置</h1>
           <p className="admin-subtitle">AI 助手模型配置、API 端点管理</p>
-        </div>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button className="admin-nav-btn" onClick={() => navigate('/admin/courses')}>
-            <BookOpen size={16} /> 课程管理
-          </button>
-          <button className="admin-nav-btn" onClick={() => navigate('/admin/users')}>
-            <Users size={16} /> 用户管理
-          </button>
         </div>
       </header>
 

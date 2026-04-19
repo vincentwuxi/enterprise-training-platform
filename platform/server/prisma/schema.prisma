@@ -22,6 +22,7 @@ model User {
 
   progress     LessonProgress[]
   courseAccess  CourseAccess[]
+  feedback     Feedback[]
 
   @@map("users")
 }
@@ -60,6 +61,23 @@ model CourseAccess {
   @@id([courseId, userId])
   @@index([userId])
   @@map("course_access")
+}
+
+model Feedback {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  type      String   @default("suggestion")
+  content   String
+  status    String   @default("pending")
+  adminNote String?  @map("admin_note")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("feedback")
 }
 
 model Setting {

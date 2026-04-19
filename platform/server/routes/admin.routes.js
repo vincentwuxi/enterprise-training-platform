@@ -195,32 +195,92 @@ router.put('/courses/:id/access', async (req, res) => {
 // ── GET /api/admin/analytics ──
 router.get('/analytics', async (req, res) => {
   try {
-    const [totalUsers, totalCompletions, recentActivity] = await Promise.all([
+    const [totalUsers, totalCompletions, totalTimeAgg, recentActivity] = await Promise.all([
       prisma.user.count(),
       prisma.lessonProgress.count({ where: { status: 'completed' } }),
+      prisma.lessonProgress.aggregate({ _sum: { timeSpent: true } }),
       prisma.lessonProgress.findMany({
-        take: 20,
+        take: 30,
         orderBy: { completedAt: 'desc' },
-        include: { user: { select: { name: true } } },
+        include: { user: { select: { name: true, email: true } } },
       }),
     ]);
+
+    const totalTimeSpent = totalTimeAgg._sum.timeSpent || 0;
 
     // Course completion rankings
     const courseStats = await prisma.lessonProgress.groupBy({
       by: ['courseId'],
       _count: { lessonId: true },
+      _sum: { timeSpent: true },
+      orderBy: { _count: { lessonId: 'desc' } },
+      take: 20,
+    });
+
+    // Unique learners per course
+    const courseLearners = await prisma.lessonProgress.groupBy({
+      by: ['courseId'],
+      _count: { userId: true },
+      orderBy: { _count: { userId: 'desc' } },
+    });
+    const learnerMap = {};
+    courseLearners.forEach(c => { learnerMap[c.courseId] = c._count.userId; });
+
+    // Top learners by completed lessons
+    const topLearners = await prisma.lessonProgress.groupBy({
+      by: ['userId'],
+      _count: { lessonId: true },
+      _sum: { timeSpent: true },
       orderBy: { _count: { lessonId: 'desc' } },
       take: 10,
     });
+
+    // Fetch user names for top learners
+    const topLearnerIds = topLearners.map(l => l.userId);
+    const topLearnerUsers = await prisma.user.findMany({
+      where: { id: { in: topLearnerIds } },
+      select: { id: true, name: true, email: true, department: true },
+    });
+    const userMap = {};
+    topLearnerUsers.forEach(u => { userMap[u.id] = u; });
+
+    // Daily activity (last 14 days)
+    const fourteenDaysAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);
+    const dailyRaw = await prisma.lessonProgress.findMany({
+      where: { completedAt: { gte: fourteenDaysAgo } },
+      select: { completedAt: true },
+    });
+    const dailyMap = {};
+    dailyRaw.forEach(r => {
+      const day = r.completedAt.toISOString().slice(0, 10);
+      dailyMap[day] = (dailyMap[day] || 0) + 1;
+    });
+    const dailyActivity = Object.entries(dailyMap)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([date, count]) => ({ date, count }));
 
     res.json({
       success: true,
       analytics: {
         totalUsers,
         totalCompletions,
-        topCourses: courseStats.map(c => ({ courseId: c.courseId, completions: c._count.lessonId })),
+        totalTimeSpent,
+        totalTimeHours: (totalTimeSpent / 3600).toFixed(1),
+        topCourses: courseStats.map(c => ({
+          courseId: c.courseId,
+          completions: c._count.lessonId,
+          timeSpent: c._sum.timeSpent || 0,
+          learners: learnerMap[c.courseId] || 0,
+        })),
+        topLearners: topLearners.map(l => ({
+          user: userMap[l.userId] || { name: 'Unknown' },
+          completedLessons: l._count.lessonId,
+          timeSpent: l._sum.timeSpent || 0,
+        })),
+        dailyActivity,
         recentActivity: recentActivity.map(a => ({
           user: a.user.name,
+          email: a.user.email,
           courseId: a.courseId,
           lessonId: a.lessonId,
           completedAt: a.completedAt,
