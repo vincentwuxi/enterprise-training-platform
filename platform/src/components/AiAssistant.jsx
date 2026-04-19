@@ -42,8 +42,10 @@ function renderMarkdown(text) {
 const QUICK_PROMPTS = [
   '什么是 Transformer？',
   '解释一下 RAG',
-  'LLM 和 SLM 的区别',
-  'Fine-tuning 是什么？',
+  'Docker 和虚拟机的区别',
+  '什么是梯度下降？',
+  'K8s Pod 是什么概念？',
+  'Prompt Engineering 入门',
 ];
 
 export default function AiAssistant() {
@@ -123,7 +125,7 @@ export default function AiAssistant() {
               </div>
               <div>
                 <h4>AI 学习助手</h4>
-                <p>名词解释 · 概念答疑</p>
+                <p>名词解释 · 概念答疑 · 学习引导</p>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '4px' }}>
@@ -145,8 +147,8 @@ export default function AiAssistant() {
                 <div className="ai-welcome-icon">
                   <Sparkles size={24} />
                 </div>
-                <h5>你好！我是 AI 学习助手 👋</h5>
-                <p>在学习过程中遇到不理解的概念？<br />输入名词即可获取解释</p>
+                <h5>嗨，同学！我是你的 AI 学长 👋</h5>
+                <p>学习中遇到不懂的概念？问我就对了！<br />我会用「定义→原理→例子」帮你快速理解 ✨</p>
                 <div className="ai-welcome-chips">
                   {QUICK_PROMPTS.map((q, i) => (
                     <button key={i} className="ai-welcome-chip" onClick={() => sendMessage(q)}>
