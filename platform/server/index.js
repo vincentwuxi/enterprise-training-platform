@@ -51,6 +51,7 @@ import { execSync } from 'child_process';
 import authRoutes from './routes/auth.routes.js';
 import progressRoutes from './routes/progress.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import aiRoutes from './routes/ai.routes.js';
 import { verifyCfAccess } from './middleware/cfAccess.js';
 
 const PLATFORM_DIR = path.resolve(__dirname, '..');
@@ -74,6 +75,7 @@ app.use('/api', verifyCfAccess);
 app.use('/api/auth', authRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/ai', aiRoutes);
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Course API (unchanged from original)

@@ -12,6 +12,7 @@ const LessonView = React.lazy(() => import('./pages/LessonView'));
 const Dashboard  = React.lazy(() => import('./pages/Dashboard'));
 const AdminCourses = React.lazy(() => import('./pages/AdminCourses'));
 const AdminUsers   = React.lazy(() => import('./pages/AdminUsers'));
+const AdminSettings = React.lazy(() => import('./pages/AdminSettings'));
 
 const Loader = () => (
   <div style={{
@@ -54,6 +55,9 @@ export default function App() {
             <Route path="admin/users" element={
               <ProtectedRoute requireAdmin><AdminUsers /></ProtectedRoute>
             } />
+            <Route path="admin/settings" element={
+              <ProtectedRoute requireAdmin><AdminSettings /></ProtectedRoute>
+            } />
             <Route path="admin" element={
               <ProtectedRoute requireAdmin><AdminCourses /></ProtectedRoute>
             } />
@@ -63,3 +67,4 @@ export default function App() {
     </AuthProvider>
   );
 }
+

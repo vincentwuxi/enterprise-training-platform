@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BookOpen, Search, Compass, Shield, LogOut, User, ChevronDown, LayoutDashboard } from 'lucide-react';
+import { BookOpen, Search, Compass, Shield, LogOut, User, ChevronDown, LayoutDashboard, Settings } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import './PlatformNavbar.css';
 
@@ -83,6 +83,11 @@ export default function PlatformNavbar() {
                 {isAdmin && (
                   <button className="dropdown-item admin-item" onClick={() => { navigate('/admin'); setDropdownOpen(false); }}>
                     <Shield size={15} /> 管理后台
+                  </button>
+                )}
+                {isAdmin && (
+                  <button className="dropdown-item admin-item" onClick={() => { navigate('/admin/settings'); setDropdownOpen(false); }}>
+                    <Settings size={15} /> 系统设置
                   </button>
                 )}
                 <div className="dropdown-divider" />

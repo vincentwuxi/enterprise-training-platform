@@ -61,3 +61,11 @@ model CourseAccess {
   @@index([userId])
   @@map("course_access")
 }
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("settings")
+}
