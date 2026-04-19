@@ -267,56 +267,110 @@
   color: #6b7280;
 }
 
-.form-footer button {
-  background: none;
-  border: none;
-  color: #818cf8;
-  cursor: pointer;
-  font-size: inherit;
-  text-decoration: underline;
-  font-family: inherit;
-  margin-left: 0.25rem;
-}
-
-/* ── SSO Cloudflare login ── */
-.sso-divider {
+/* ── SSO Login Section (new — CF SSO only) ── */
+.sso-login-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0.5rem 0;
-  color: #4b5563;
-  font-size: 0.8rem;
-}
-.sso-divider::before, .sso-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 2rem 0;
 }
 
-.sso-btn {
+.sso-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(251,146,60,0.08));
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: rgba(249,115,22,0.1);
-  border: 1px solid rgba(249,115,22,0.3);
-  border-radius: 8px;
+  margin-bottom: 1.25rem;
   color: #fb923c;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: inherit;
-  text-decoration: none;
+  border: 1px solid rgba(249,115,22,0.2);
 }
 
-.sso-btn:hover {
-  background: rgba(249,115,22,0.18);
-  border-color: rgba(249,115,22,0.5);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(249,115,22,0.2);
+.sso-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 0.5rem;
+}
+
+.sso-desc {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.sso-error-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+.sso-error-box svg { flex-shrink: 0; margin-top: 2px; color: #ef4444; }
+.sso-error-box p { margin: 0; line-height: 1.5; }
+
+.denied-email {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0.4rem !important;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.sso-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: inherit;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(249,115,22,0.25);
+}
+
+.sso-btn-primary:hover {
+  background: linear-gradient(135deg, #c2410c, #ea580c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(249,115,22,0.35);
+}
+
+.sso-btn-primary:active {
+  transform: translateY(0);
+}
+
+.sso-help-text {
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+  line-height: 1.7;
+}
+.sso-help-text p { margin: 0; }
+.sso-help-note {
+  margin-top: 0.5rem !important;
+  color: #f59e0b;
+  font-weight: 500;
 }
 
 @keyframes pulse {
@@ -330,5 +384,4 @@
   .login-brand-panel { padding: 1.5rem; }
   .brand-headline { font-size: 1.35rem; }
   .login-form-panel { padding: 1.5rem; }
-  .quick-login-hints { display: none; }
 }

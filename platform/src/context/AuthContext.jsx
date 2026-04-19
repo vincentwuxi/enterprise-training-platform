@@ -82,36 +82,7 @@ export function AuthProvider({ children }) {
     }
   }, [loadProgress]);
 
-  // ── Auth actions ──
-  const login = useCallback(async (email, password) => {
-    try {
-      const data = await api.post('/api/auth/login', { email, password });
-      setToken(data.token);
-      setUser(data.user);
-
-      // Load progress
-      try {
-        const prog = await api.get('/api/progress');
-        setProgressCache(prog.progress || {});
-      } catch { /* progress load failure is non-fatal */ }
-
-      return { success: true };
-    } catch (err) {
-      return { error: err.data?.error || err.message || '登录失败' };
-    }
-  }, []);
-
-  const register = useCallback(async (name, email, password, department = '未分配') => {
-    try {
-      const data = await api.post('/api/auth/register', { name, email, password, department });
-      setToken(data.token);
-      setUser(data.user);
-      setProgressCache({});
-      return { success: true };
-    } catch (err) {
-      return { error: err.data?.error || err.message || '注册失败' };
-    }
-  }, []);
+  // ── Auth: only CF SSO login, no password auth ──
 
   const logout = useCallback(() => {
     clearToken();
@@ -209,10 +180,32 @@ export function AuthProvider({ children }) {
     }
   }, [user]);
 
+  // Admin: create authorized user (whitelist)
+  const createUser = useCallback(async (email, name, department, role = 'learner') => {
+    if (user?.role !== 'admin') return { error: '需要管理员权限' };
+    try {
+      const data = await api.post('/api/admin/users', { email, name, department, role });
+      return { success: true, user: data.user };
+    } catch (err) {
+      return { error: err.data?.error || err.message || '创建用户失败' };
+    }
+  }, [user]);
+
+  // Admin: update user info (name, department, role)
+  const updateUser = useCallback(async (userId, updates) => {
+    if (user?.role !== 'admin') return { error: '需要管理员权限' };
+    try {
+      const data = await api.put(`/api/admin/users/${userId}`, updates);
+      return { success: true, user: data.user };
+    } catch (err) {
+      return { error: err.data?.error || err.message || '更新用户失败' };
+    }
+  }, [user]);
+
   const updateUserRole = useCallback(async (userId, role) => {
     if (user?.role !== 'admin') return;
     try {
-      await api.put(`/api/admin/users/${userId}/role`, { role });
+      await api.put(`/api/admin/users/${userId}`, { role });
     } catch (err) {
       console.error('Update role failed:', err);
     }
@@ -241,11 +234,11 @@ export function AuthProvider({ children }) {
     user, loading, ssoLoading,
     isAdmin: user?.role === 'admin',
     courseStatus, courseAccessMap,
-    login, register, logout,
+    logout,
     setCourseOnline, isCourseOnline,
     setCourseAccessControl, getCourseAccessList, canUserAccessCourse,
     markLessonComplete, getUserProgress,
-    getAllUsers, updateUserRole, deleteUser,
+    getAllUsers, createUser, updateUser, updateUserRole, deleteUser,
     getVisibleCourses,
   };
 

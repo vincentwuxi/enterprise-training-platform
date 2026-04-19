@@ -1,10 +1,16 @@
 /**
  * Auth Routes — /api/auth/*
  * ─────────────────────────
- * GET  /api/auth/cf-sso    — Cloudflare Access SSO auto-login
- * POST /api/auth/register  — Create account
- * POST /api/auth/login     — Login, returns JWT
- * GET  /api/auth/me        — Get current user (requires JWT)
+ * GET  /api/auth/cf-sso    — Cloudflare Access SSO (redirect-based, whitelist-gated)
+ * GET  /api/auth/me        — Get current user (requires app JWT)
+ *
+ * Login flow:
+ *   1. User clicks "Cloudflare 登录" → browser navigates to /api/auth/cf-sso
+ *   2. CF Access intercepts → shows OTP page
+ *   3. After OTP, CF sets cookie & injects Cf-Access-Jwt-Assertion header
+ *   4. This endpoint verifies CF JWT → checks email in whitelist (user table)
+ *   5. If authorized → signs app JWT → redirects to /#sso_token=xxx
+ *   6. If not authorized → redirects to /?sso_error=not_authorized
  */
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
@@ -16,18 +22,14 @@ import { verifyCfToken } from '../middleware/cfAccess.js';
 const router = Router();
 const SALT_ROUNDS = 12;
 
-// Default admin email (matches Cloudflare Access identity)
+// Default admin email — always allowed, auto-created if missing
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'wenyun@gmail.com';
 
 // ── GET /api/auth/cf-sso — Cloudflare Access SSO (redirect-based) ──
-// Flow: Browser navigates here → CF Access shows OTP → after auth,
-// this endpoint verifies CF JWT, creates/finds user, generates app JWT,
-// and redirects back to frontend with token in URL fragment.
 router.get('/cf-sso', async (req, res) => {
   try {
     const cfJwt = req.headers['cf-access-jwt-assertion'];
     if (!cfJwt) {
-      // No CF JWT — redirect to login page with error
       return res.redirect('/?sso_error=no_cf_token');
     }
 
@@ -45,33 +47,39 @@ router.get('/cf-sso', async (req, res) => {
       return res.redirect('/?sso_error=missing_email');
     }
 
-    // Find or create user by email
+    const isAdmin = email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+    // Check if user exists in whitelist (user table)
     let user = await prisma.user.findUnique({ where: { email } });
 
-    if (!user) {
-      // Auto-create account for new CF Access users
+    if (!user && isAdmin) {
+      // Auto-create admin account if it doesn't exist
       const randomPassword = crypto.randomBytes(32).toString('hex');
       const passwordHash = await bcrypt.hash(randomPassword, SALT_ROUNDS);
-      const isAdmin = email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
       user = await prisma.user.create({
         data: {
           email,
           name: email.split('@')[0],
           passwordHash,
-          role: isAdmin ? 'admin' : 'learner',
-          department: '未分配',
+          role: 'admin',
+          department: '管理层',
         },
       });
-      console.log(`[CF SSO] Auto-created user: ${email} (${isAdmin ? 'admin' : 'learner'})`);
-    } else {
-      // Ensure admin email always has admin role
-      if (email.toLowerCase() === ADMIN_EMAIL.toLowerCase() && user.role !== 'admin') {
-        user = await prisma.user.update({
-          where: { id: user.id },
-          data: { role: 'admin' },
-        });
-      }
+      console.log(`[CF SSO] Auto-created admin: ${email}`);
+    }
+
+    if (!user) {
+      // Email not in whitelist — reject
+      console.warn(`[CF SSO] Unauthorized email: ${email}`);
+      return res.redirect(`/?sso_error=not_authorized&email=${encodeURIComponent(email)}`);
+    }
+
+    // Ensure admin email always has admin role
+    if (isAdmin && user.role !== 'admin') {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { role: 'admin' },
+      });
     }
 
     // Update last login
@@ -80,90 +88,13 @@ router.get('/cf-sso', async (req, res) => {
       data: { lastLogin: new Date() },
     });
 
-    // Sign app JWT and redirect to frontend with token
+    // Sign app JWT and redirect
     const token = signToken(user);
     console.log(`[CF SSO] Login success: ${email} (${user.role})`);
-    // Use URL fragment (#) so token doesn't appear in server logs
     res.redirect(`/#sso_token=${token}`);
   } catch (err) {
     console.error('CF SSO error:', err);
     res.redirect('/?sso_error=server_error');
-  }
-});
-
-// ── POST /api/auth/register ──
-router.post('/register', async (req, res) => {
-  try {
-    const { name, email, password, department } = req.body;
-
-    // Validation
-    if (!name || !email || !password) {
-      return res.status(400).json({ success: false, error: '请填写姓名、邮箱和密码' });
-    }
-    if (password.length < 6) {
-      return res.status(400).json({ success: false, error: '密码至少 6 位' });
-    }
-
-    // Check duplicate
-    const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) {
-      return res.status(409).json({ success: false, error: '该邮箱已注册' });
-    }
-
-    // Create user
-    const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
-    const safeName = String(name).slice(0, 50).replace(/[<>"'`]/g, '');
-    const safeDept = String(department || '未分配').slice(0, 30).replace(/[<>"'`]/g, '');
-
-    const user = await prisma.user.create({
-      data: {
-        email,
-        name: safeName,
-        passwordHash,
-        department: safeDept,
-        role: 'learner',
-      },
-      select: { id: true, email: true, name: true, role: true, department: true, createdAt: true },
-    });
-
-    const token = signToken(user);
-    res.status(201).json({ success: true, token, user });
-  } catch (err) {
-    console.error('Register error:', err);
-    res.status(500).json({ success: false, error: '注册失败，请稍后重试' });
-  }
-});
-
-// ── POST /api/auth/login ──
-router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      return res.status(400).json({ success: false, error: '请输入邮箱和密码' });
-    }
-
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) {
-      return res.status(401).json({ success: false, error: '账号不存在' });
-    }
-
-    const valid = await bcrypt.compare(password, user.passwordHash);
-    if (!valid) {
-      return res.status(401).json({ success: false, error: '密码错误' });
-    }
-
-    // Update last login
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { lastLogin: new Date() },
-    });
-
-    const token = signToken(user);
-    const { passwordHash, ...safeUser } = user;
-    res.json({ success: true, token, user: safeUser });
-  } catch (err) {
-    console.error('Login error:', err);
-    res.status(500).json({ success: false, error: '登录失败，请稍后重试' });
   }
 });
 
