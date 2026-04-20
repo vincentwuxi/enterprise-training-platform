@@ -98,3 +98,67 @@
 .ai-steps { display: flex; flex-direction: column; gap: 0; }
 .ai-step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.85rem; border-radius: 8px; }
 .ai-step-num { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.25); color: var(--ai-orange); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
+
+/* ============================================================
+   ALIAS MAPPINGS — bridge JSX class names to fs-* design tokens
+   ============================================================ */
+.lesson-common-container {
+  max-width: 980px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--fs-text);
+}
+.lesson-title {
+  font-size: clamp(1.75rem, 4vw, 2.4rem); font-weight: 900; line-height: 1.25;
+  margin: 0.5rem 0 1rem;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4, #f59e0b, #fb7185);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.lesson-subtitle {
+  font-size: 1rem; color: var(--fs-muted); line-height: 1.8; max-width: 720px; margin: 0 0 2rem;
+}
+.lesson-section { margin: 2.5rem 0; }
+.lesson-section h2 {
+  font-size: 1.2rem; font-weight: 800; color: #e2e8f0;
+  margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem;
+}
+.concept-card {
+  background: var(--fs-card); border: 1px solid var(--fs-border);
+  border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;
+}
+.concept-card h3 { font-size: 1rem; font-weight: 700; color: #a78bfa; margin: 0 0 1rem; }
+.info-box {
+  background: var(--fs-card); border: 1px solid var(--fs-border);
+  border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;
+  border-left: 3px solid var(--fs-cyan);
+}
+.info-box h3 { font-size: 1rem; font-weight: 700; color: #22d3ee; margin: 0 0 1rem; }
+.code-block {
+  background: #07060e; padding: 1rem 1.25rem;
+  font-family: "JetBrains Mono", monospace; font-size: 0.8rem;
+  color: #94a3b8; line-height: 1.85; white-space: pre; overflow-x: auto;
+  max-height: 480px; overflow-y: auto;
+  border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.14);
+}
+.lesson-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.lesson-table th {
+  background: rgba(139, 92, 246, 0.04); padding: 0.65rem 1rem;
+  text-align: left; font-size: 0.73rem; font-weight: 700;
+  color: var(--fs-muted); text-transform: uppercase; letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--fs-sub);
+}
+.lesson-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.03); vertical-align: top; }
+.lesson-table tr:last-child td { border-bottom: none; }
+.lesson-table tr:hover td { background: rgba(139, 92, 246, 0.02); }
+.nav-buttons {
+  display: flex; justify-content: space-between; margin-top: 3rem;
+  padding-top: 1.5rem; border-top: 1px solid var(--fs-sub);
+}
+.nav-prev, .nav-next {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem; background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 8px;
+  color: #8b5cf6; font-size: 0.875rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.nav-prev:hover, .nav-next:hover { background: rgba(139, 92, 246, 0.14); }
