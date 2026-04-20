@@ -19,42 +19,50 @@
     {
       "id": "LessonProductMatrix",
       "title": "模块一：LLM 产品类型矩阵",
-      "description": "Copilot / Agent / Automation / Generative——四种产品形态的核心差异与适用场景决策框架"
+      "description": "Copilot / Agent / Automation / Generative——四种产品形态的核心差异与适用场景决策框架",
+      "component": "LessonProductMatrix"
     },
     {
       "id": "LessonAIUX",
       "title": "模块二：AI 产品 UX 设计原则",
-      "description": "处理不确定性、延迟、错误——AI 产品的用户体验与传统产品的本质差异"
+      "description": "处理不确定性、延迟、错误——AI 产品的用户体验与传统产品的本质差异",
+      "component": "LessonAIUX"
     },
     {
       "id": "LessonPromptProduct",
       "title": "模块三：Prompt 工程与产品设计",
-      "description": "系统 Prompt 即产品核心逻辑、用户 Prompt 设计、Guardrails 与 Safety"
+      "description": "系统 Prompt 即产品核心逻辑、用户 Prompt 设计、Guardrails 与 Safety",
+      "component": "LessonPromptProduct"
     },
     {
       "id": "LessonColdStart",
       "title": "模块四：AI 产品冷启动 & 数据飞轮",
-      "description": "数据飞轮效应、Niche to Broad 策略、AI 产品的网络效应构建"
+      "description": "数据飞轮效应、Niche to Broad 策略、AI 产品的网络效应构建",
+      "component": "LessonColdStart"
     },
     {
       "id": "LessonMetrics",
       "title": "模块五：AI 产品评估 & 迭代框架",
-      "description": "如何衡量 AI 功能成功？LLM 评估指标体系、灰度策略与快速迭代"
+      "description": "如何衡量 AI 功能成功？LLM 评估指标体系、灰度策略与快速迭代",
+      "component": "LessonMetrics"
     },
     {
       "id": "LessonBizModel",
       "title": "模块六：AI 产品商业模式设计",
-      "description": "Token 成本结构、定价策略、LTV/CAC 建模、护城河构建"
+      "description": "Token 成本结构、定价策略、LTV/CAC 建模、护城河构建",
+      "component": "LessonBizModel"
     },
     {
       "id": "LessonCaseStudy",
       "title": "模块七：10 个 AI 产品案例深度拆解",
-      "description": "Cursor / Notion AI / Perplexity / GitHub Copilot / Character.AI / Midjourney 等"
+      "description": "Cursor / Notion AI / Perplexity / GitHub Copilot / Character.AI / Midjourney 等",
+      "component": "LessonCaseStudy"
     },
     {
       "id": "LessonAIProductProject",
       "title": "模块八：实战项目 — 设计你的第一个 AI 原生产品",
-      "description": "完整 AI 产品设计全流程：机会发现→PRD→UX 原型→商业模式→GTM"
+      "description": "完整 AI 产品设计全流程：机会发现→PRD→UX 原型→商业模式→GTM",
+      "component": "LessonAIProductProject"
     }
   ]
 }

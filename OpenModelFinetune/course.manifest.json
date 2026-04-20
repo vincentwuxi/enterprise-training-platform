@@ -23,42 +23,50 @@
     {
       "id": "LessonFTIntro",
       "title": "模块一：微调原理与开源模型生态",
-      "description": "为什么微调比 Prompt 更强？SFT/RLHF/DPO 技术路线比较，Llama3/Mistral/Qwen2.5/Gemma 主流模型选型指南"
+      "description": "为什么微调比 Prompt 更强？SFT/RLHF/DPO 技术路线比较，Llama3/Mistral/Qwen2.5/Gemma 主流模型选型指南",
+      "component": "LessonFTIntro"
     },
     {
       "id": "LessonDataPrep",
       "title": "模块二：数据集设计与工程化准备",
-      "description": "数据格式（Alpaca/ShareGPT/ChatML），数据清洗、去重、质量过滤，数据增强策略，Hugging Face Datasets 工程实践"
+      "description": "数据格式（Alpaca/ShareGPT/ChatML），数据清洗、去重、质量过滤，数据增强策略，Hugging Face Datasets 工程实践",
+      "component": "LessonDataPrep"
     },
     {
       "id": "LessonLoRA",
       "title": "模块三：LoRA & QLoRA — 参数高效微调核心",
-      "description": "LoRA 数学原理（低秩分解），QLoRA 4-bit 量化训练，Unsloth 2x 加速实战，rank/alpha/target_modules 调参指南"
+      "description": "LoRA 数学原理（低秩分解），QLoRA 4-bit 量化训练，Unsloth 2x 加速实战，rank/alpha/target_modules 调参指南",
+      "component": "LessonLoRA"
     },
     {
       "id": "LessonSFT",
       "title": "模块四：指令微调（SFT）全流程实战",
-      "description": "TRL SFTTrainer 实战，LLaMA-Factory 图形界面微调，训练超参数调优，学习率调度，梯度检查点，Loss 曲线诊断"
+      "description": "TRL SFTTrainer 实战，LLaMA-Factory 图形界面微调，训练超参数调优，学习率调度，梯度检查点，Loss 曲线诊断",
+      "component": "LessonSFT"
     },
     {
       "id": "LessonDPO",
       "title": "模块五：偏好对齐 — DPO & RLHF 实战",
-      "description": "RLHF 完整流程（RM训练+PPO），DPO 原理与简化实现，偏好数据集构建（chosen/rejected对），Reward Model 训练"
+      "description": "RLHF 完整流程（RM训练+PPO），DPO 原理与简化实现，偏好数据集构建（chosen/rejected对），Reward Model 训练",
+      "component": "LessonDPO"
     },
     {
       "id": "LessonEval",
       "title": "模块六：模型评估 & 调试诊断",
-      "description": "LM-Eval-Harness 评估框架，领域评估集构建，过拟合/欠拟合诊断，幻觉检测，Human Eval 代码能力评估"
+      "description": "LM-Eval-Harness 评估框架，领域评估集构建，过拟合/欠拟合诊断，幻觉检测，Human Eval 代码能力评估",
+      "component": "LessonEval"
     },
     {
       "id": "LessonQuant",
       "title": "模块七：量化与高效部署",
-      "description": "GGUF/GPTQ/AWQ 量化对比，Ollama 本地部署，vLLM 生产级推理服务，OpenAI 兼容 API 搭建，性能基准测试"
+      "description": "GGUF/GPTQ/AWQ 量化对比，Ollama 本地部署，vLLM 生产级推理服务，OpenAI 兼容 API 搭建，性能基准测试",
+      "component": "LessonQuant"
     },
     {
       "id": "LessonFTProject",
       "title": "模块八：实战项目 — 打造你的领域专家模型",
-      "description": "端到端实战：领域数据合成 → QLoRA 微调 → DPO 对齐 → GGUF 量化 → Ollama 部署 → FastAPI 对外服务"
+      "description": "端到端实战：领域数据合成 → QLoRA 微调 → DPO 对齐 → GGUF 量化 → Ollama 部署 → FastAPI 对外服务",
+      "component": "LessonFTProject"
     }
   ]
 }
