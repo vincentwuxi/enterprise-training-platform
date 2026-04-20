@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   AiAssistant — Floating Chat Widget
+   AiAssistant — Floating Chat Widget + Notebook
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Floating Button ── */
@@ -109,10 +109,33 @@
   padding: 4px;
   border-radius: 6px;
   transition: all 0.2s;
+  position: relative;
 }
 .ai-chat-close:hover {
   background: rgba(255, 255, 255, 0.05);
   color: #f1f5f9;
+}
+.ai-chat-close.active-tab {
+  color: #818cf8;
+}
+
+/* Note count badge */
+.note-count-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  line-height: 1;
 }
 
 /* ── Messages ── */
@@ -176,6 +199,50 @@
 }
 .ai-msg.assistant li { margin: 0.15rem 0; }
 
+/* ── Message Action Buttons (Copy & Save) ── */
+.ai-msg-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ai-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.ai-action-btn:hover {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #c7d2fe;
+}
+.ai-action-btn.save:hover {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+.ai-action-btn.delete:hover {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+.ai-action-btn.success {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+}
+
 /* Welcome message */
 .ai-welcome {
   text-align: center;
@@ -218,6 +285,7 @@
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
 }
 .ai-welcome-chip:hover {
   background: rgba(99, 102, 241, 0.2);
@@ -306,6 +374,186 @@
   text-align: center;
 }
 
+/* ════════════════════════════════════════════════════════════════
+   Notebook Tab
+   ════════════════════════════════════════════════════════════════ */
+.ai-notebook {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  max-height: 440px;
+}
+
+/* Empty state */
+.ai-notebook-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #6b7280;
+}
+.ai-notebook-empty-icon {
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+.ai-notebook-empty h5 {
+  color: #94a3b8;
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+.ai-notebook-empty p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+/* Search bar */
+.ai-notebook-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+.ai-notebook-search-icon {
+  color: #4b5563;
+  flex-shrink: 0;
+}
+.ai-notebook-search input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 7px 28px 7px 10px;
+  color: #f1f5f9;
+  font-size: 0.8rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ai-notebook-search input:focus {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.ai-notebook-search input::placeholder {
+  color: #4b5563;
+}
+.ai-notebook-search-clear {
+  position: absolute;
+  right: 22px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.ai-notebook-search-clear:hover {
+  color: #f1f5f9;
+}
+
+/* Notes list */
+.ai-notebook-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+
+.ai-notebook-no-match {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #4b5563;
+  font-size: 0.82rem;
+}
+
+/* Note card */
+.ai-note-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: all 0.2s;
+}
+.ai-note-card:hover {
+  border-color: rgba(99, 102, 241, 0.2);
+  background: rgba(99, 102, 241, 0.04);
+}
+
+.ai-note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.ai-note-question {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c7d2fe;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ai-note-date {
+  font-size: 0.68rem;
+  color: #4b5563;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+/* Note content — collapsed by default */
+.ai-note-content {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #94a3b8;
+  max-height: 80px;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to bottom, black 50px, transparent 80px);
+  -webkit-mask-image: linear-gradient(to bottom, black 50px, transparent 80px);
+}
+.ai-note-content p { margin: 0 0 0.3rem; }
+.ai-note-content p:last-child { margin: 0; }
+.ai-note-content code {
+  background: rgba(99, 102, 241, 0.12);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  color: #a5b4fc;
+}
+.ai-note-content strong { color: #a5b4fc; }
+.ai-note-content ul {
+  margin: 0.2rem 0;
+  padding-left: 1rem;
+}
+
+/* Expand on hover */
+.ai-note-card:hover .ai-note-content {
+  max-height: 200px;
+  mask-image: linear-gradient(to bottom, black 170px, transparent 200px);
+  -webkit-mask-image: linear-gradient(to bottom, black 170px, transparent 200px);
+}
+
+.ai-note-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
 /* ── Mobile responsive ── */
 @media (max-width: 480px) {
   .ai-chat-window {
@@ -320,5 +568,8 @@
     right: 16px;
     width: 50px;
     height: 50px;
+  }
+  .ai-notebook {
+    max-height: calc(70vh - 60px);
   }
 }
