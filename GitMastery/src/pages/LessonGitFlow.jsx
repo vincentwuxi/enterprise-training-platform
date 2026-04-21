@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import './LessonCommon.css';
 
-const tabs = ['Git Flow', 'GitHub Flow', 'Trunk-Based', '策略对比'];
+const tabs = ['🌊 Git Flow', '🚀 GitHub Flow', '🏎️ Trunk-Based', '📊 策略选型'];
 
 export default function LessonGitFlow() {
   const [active, setActive] = useState(0);
 
   return (
     <div className="lesson-fullstack">
-      <div className="fs-badge green">🔀 module_05 — 分支策略</div>
+      <div className="fs-badge green">🌿 module_05 — 分支策略</div>
       <div className="fs-hero">
         <h1>分支策略：Git Flow / GitHub Flow / Trunk-Based</h1>
         <p>
-          <strong>分支策略是团队效能的倍增器</strong>。错误的策略会导致"合并地狱"，
-          正确的策略能让 10 人团队像 2 人一样敏捷。本模块对比三大主流分支策略，
-          分析各自适用场景：Git Flow 适合版本化发布，GitHub Flow 适合持续部署，
-          Trunk-Based 适合高频迭代。<strong>没有最好的策略，只有最适合的策略</strong>。
+          分支策略决定了团队<strong>如何组织代码、何时集成、如何发布</strong>。
+          没有"最好"的策略——只有最适合你团队规模和发布频率的策略。
+          <strong>选错策略 = 合并地狱</strong>。
         </p>
       </div>
 
       <section className="fs-section">
-        <h2 className="fs-section-title">🗺️ 分支策略决策</h2>
+        <h2 className="fs-section-title">🌿 三大主流分支策略</h2>
         <div className="fs-pills">
           {tabs.map((t, i) => (
             <button key={i} className={`fs-btn ${active === i ? 'primary' : ''}`} onClick={() => setActive(i)}>{t}</button>
@@ -28,291 +27,192 @@ export default function LessonGitFlow() {
         </div>
 
         {active === 0 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🌊 Git Flow: 经典版本化发布</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> git_flow.sh</div>
-                <pre className="fs-code">{`# ═══ Git Flow 分支模型 (Vincent Driessen, 2010) ═══
-#
-# main ─────────────────────●────────────●──────→ (生产环境)
-#                          ↑            ↑
-# release ────────────●───/  ────●─────/
-#                     ↑          ↑
-# develop ──●──●──●──●──●──●──●──●──●──●──●──→ (开发主线)
-#            \\   /    \\       /
-# feature     ──●      ──●──●  
-#
-# hotfix (从 main 分出, 修复后合回 main + develop)
-# main ──●───────────────────●──→
-#         \\                 /
-# hotfix   ──●──●──────────
+          <div className="fs-card">
+            <h3>🌊 Git Flow — 经典但重量级</h3>
+            <div className="concept-card">
+              <h4>适合：版本化发布的传统软件（移动 App、桌面软件、企业系统）</h4>
+              <p>由 Vincent Driessen 在 2010 年提出。严格定义了 5 种分支类型和它们的生命周期。</p>
+            </div>
 
-# ═══ 五种分支角色 ═══
-# 1. main:    生产代码, 只能通过 release/hotfix 合入
-# 2. develop: 开发主线, 集成所有 feature
-# 3. feature: 功能分支, 从 develop 分出, 合回 develop
-# 4. release: 预发布分支, 从 develop 分出, 合回 main + develop
-# 5. hotfix:  紧急修复, 从 main 分出, 合回 main + develop
+            <h4 style={{color:'#fb923c', margin:'1rem 0 0.5rem'}}>5 种分支类型</h4>
+            <div className="fs-grid-2">
+              {[
+                { branch:'main', desc:'生产环境代码，只接受 release/hotfix 合入', life:'永久', color:'#ef4444' },
+                { branch:'develop', desc:'开发主线，所有 feature 合入此分支', life:'永久', color:'#22c55e' },
+                { branch:'feature/*', desc:'新功能开发，从 develop 创建', life:'数天~数周', color:'#06b6d4' },
+                { branch:'release/*', desc:'发布准备，冻结新功能只修 bug', life:'数天', color:'#f59e0b' },
+                { branch:'hotfix/*', desc:'生产环境紧急修复，从 main 创建', life:'数小时', color:'#fb7185' },
+              ].map(({ branch, desc, life, color }) => (
+                <div key={branch} className="concept-card" style={{margin:'0', borderColor:`${color}33`}}>
+                  <h4 style={{color}}><span className="git-chip branch" style={{color, background:`${color}15`}}>{branch}</span></h4>
+                  <p>{desc}</p>
+                  <p style={{fontSize:'0.75rem'}}>生命周期：{life}</p>
+                </div>
+              ))}
+            </div>
 
-# ═══ 完整流程 ═══
-# 开发新功能:
-git switch develop
-git switch -c feature/user-profile
-# ... 开发 ...
-git switch develop
-git merge --no-ff feature/user-profile
-git branch -d feature/user-profile
+            <div className="fs-code-wrap" style={{marginTop:'1rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f97316'}}></span> git_flow.sh</div>
+              <pre className="fs-code">{`# ═══ 使用 git-flow 工具 ═══
+brew install git-flow-avh
 
-# 准备发布:
-git switch develop
-git switch -c release/v2.1.0
-# 修复小 bug, 更新版本号, 更新 CHANGELOG
-git switch main
-git merge --no-ff release/v2.1.0
-git tag -a v2.1.0 -m "Release 2.1.0"
-git switch develop
-git merge --no-ff release/v2.1.0     # 把 release 的修复同步回 develop
-git branch -d release/v2.1.0
+git flow init                    # 初始化 (设置分支名)
+git flow feature start auth      # 创建 feature/auth (基于 develop)
+git flow feature finish auth     # 合并到 develop + 删除分支
+git flow release start v1.2.0    # 创建 release/v1.2.0 (基于 develop)
+git flow release finish v1.2.0   # 合并到 main + develop + 打标签
+git flow hotfix start fix-crash  # 创建 hotfix/fix-crash (基于 main)
+git flow hotfix finish fix-crash # 合并到 main + develop
 
-# 紧急修复:
-git switch main
-git switch -c hotfix/critical-bug
-# ... 修复 ...
-git switch main
-git merge --no-ff hotfix/critical-bug
-git tag -a v2.1.1 -m "Hotfix 2.1.1"
-git switch develop
-git merge --no-ff hotfix/critical-bug  # 同步到 develop
-git branch -d hotfix/critical-bug
+# ═══ 不用工具,手动操作 ═══
+# Feature:
+git switch develop && git switch -c feature/payment
+# ... 开发完成 ...
+git switch develop && git merge --no-ff feature/payment
+git branch -d feature/payment
 
-# ═══ 优缺点 ═══
-# ✅ 适合: 版本化发布 (移动 App / 桌面软件 / SDK)
-# ✅ 严格的发布流程, 适合大型团队
-# ❌ 分支多, 流程复杂
-# ❌ develop 和 main 双主线容易混乱
-# ❌ 不适合持续部署`}</pre>
-              </div>
+# Release:
+git switch develop && git switch -c release/v1.2.0
+# ... 只改 bug / 版本号 ...
+git switch main && git merge --no-ff release/v1.2.0
+git tag -a v1.2.0 -m "Release 1.2.0"
+git switch develop && git merge --no-ff release/v1.2.0`}</pre>
+            </div>
+
+            <div className="warning-box">
+              ⚠️ <strong>Git Flow 的问题</strong>：分支太多，合并步骤复杂，CI/CD 需要跑在多个分支上。对于频繁部署的 Web 应用来说太重了。
             </div>
           </div>
         )}
 
         {active === 1 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🐙 GitHub Flow: 极简持续部署</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#8b5cf6'}}></span> github_flow.sh</div>
-                <pre className="fs-code">{`# ═══ GitHub Flow (Scott Chacon, 2011) ═══
-# 规则极简, 只有一条:
-# main 分支始终是可部署的
-#
-# main ──●──●──●──●──●──●──●──────→ (始终可部署)
-#         \\   /    \\       /
-# feature  ──●      ──●──●
-#                   ↑
-#                   PR + Review + CI
-#
-# 整个流程只有 6 步:
-# 1. 从 main 创建分支 (名字描述功能)
-# 2. 提交代码
-# 3. 开 Pull Request
-# 4. Review + 讨论
-# 5. 部署到 staging 测试 (或预览环境)
-# 6. 合并到 main → 自动部署生产
+          <div className="fs-card">
+            <h3>🚀 GitHub Flow — 简洁高效</h3>
+            <div className="concept-card">
+              <h4>适合：持续部署的 Web 应用和 SaaS 产品</h4>
+              <p>只有 <strong>main + feature branches</strong>。main 永远可部署。每次合并到 main 就自动部署。</p>
+            </div>
 
-# ═══ 实战 ═══
-git switch main
-git pull
-git switch -c add-dark-mode
+            <div className="pipeline">
+              {[
+                { icon:'🌿', text:'Branch', sub:'从 main 创建', bg:'rgba(34,197,94,0.12)', color:'#4ade80' },
+                { icon:'💻', text:'Commit', sub:'频繁小提交', bg:'rgba(249,115,22,0.12)', color:'#fb923c' },
+                { icon:'📋', text:'PR', sub:'创建 Pull Request', bg:'rgba(139,92,246,0.12)', color:'#a78bfa' },
+                { icon:'👁️', text:'Review', sub:'Code Review + CI', bg:'rgba(6,182,212,0.12)', color:'#67e8f9' },
+                { icon:'🔀', text:'Merge', sub:'合并到 main', bg:'rgba(245,158,11,0.12)', color:'#fbbf24' },
+                { icon:'🚀', text:'Deploy', sub:'自动部署', bg:'rgba(34,197,94,0.12)', color:'#4ade80' },
+              ].map((s, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <span className="pipeline-arrow">→</span>}
+                  <div className="pipeline-stage" style={{background:s.bg, border:`1px solid ${s.color}33`, color:s.color}}>
+                    <span>{s.icon} {s.text}</span><small>{s.sub}</small>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
 
-# 开发、测试...
-git push -u origin add-dark-mode
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> github_flow.sh</div>
+              <pre className="fs-code">{`# GitHub Flow 全流程 (5 步)
+# 1. 从 main 创建分支
+git switch main && git pull
+git switch -c feature/user-profile
 
-# 在 GitHub 上创建 PR
-# CI 自动跑测试
-# Vercel/Netlify 自动创建预览部署
-# 团队 Review
+# 2. 频繁提交
+git add -p && git commit -m "feat: add profile page"
+git add -p && git commit -m "feat: add avatar upload"
 
-# Review 通过后, 合并 PR (通常 Squash Merge)
-# Merge 触发 CD Pipeline → 自动部署到生产环境
+# 3. 推送并创建 PR
+git push -u origin feature/user-profile
+gh pr create --title "feat: add user profile"
 
-# ═══ 与 Feature Flags 结合 ═══
-# 大功能可以分多次小 PR 合并到 main
-# 每次都隐藏在 Feature Flag 后面
-# 全部完成后打开 Flag → 功能上线
-#
-# 好处:
-# → main 始终可部署
-# → 小 PR 容易 Review
-# → 减少长生命周期分支
-# → 可以按用户群灰度发布
+# 4. Code Review + CI 通过
+# 5. Merge + Auto Deploy
+gh pr merge --squash
 
-# ═══ 部署环境管理 ═══
-# 方案 1: 分支部署
-# main → 生产环境
-# PR → Preview/Staging (Vercel/Netlify 自动)
-#
-# 方案 2: 环境分支 (不推荐)
-# main → 生产, staging → 预发, dev → 开发
-# → 容易产生分支漂移, 不建议使用
+# 规则:
+# ✅ main 永远可部署
+# ✅ feature 分支名要有描述性
+# ✅ PR 必须通过 CI
+# ✅ 合并后自动部署`}</pre>
+            </div>
 
-# ═══ 优缺点 ═══
-# ✅ 简单! 新人 5 分钟学会
-# ✅ 适合 Web 应用 (SaaS / 网站)
-# ✅ 天然适配 CI/CD
-# ✅ PR 驱动, 代码质量有保障
-# ❌ 不适合多版本并行维护
-# ❌ 大功能需要 Feature Flag 配合`}</pre>
-              </div>
+            <div className="tip-box">
+              💡 <strong>GitHub Flow 最适合</strong>：10人以下团队、Web 应用、有 CI/CD 管线、每天多次部署。GitHub 自身就用这个流程。
             </div>
           </div>
         )}
 
         {active === 2 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🏎️ Trunk-Based Development</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> trunk_based.sh</div>
-                <pre className="fs-code">{`# ═══ Trunk-Based Development ═══
-# Google / Facebook / Netflix 采用的模式
-# 核心思想: 所有人直接向 trunk (main) 提交
-#
-# main ──●──●──●──●──●──●──●──●──●──→
-#         ↑  ↑     ↑     ↑  ↑  ↑
-#        直接提交到 main (或极短生命周期分支)
-#
-# 关键约束:
-# 1. 分支生命周期 < 1 天
-# 2. 每次提交都必须通过 CI
-# 3. 必须搭配 Feature Flags
-# 4. 必须有强力的自动化测试
+          <div className="fs-card">
+            <h3>🏎️ Trunk-Based Development — 极限效率</h3>
+            <div className="concept-card">
+              <h4>适合：大型团队（Google、Facebook 级别）+ 特性开关</h4>
+              <p>所有人直接在 main (trunk) 上开发。分支生命周期 <strong>{"<"} 1 天</strong>。代码在 main 中但功能被 Feature Flag 控制。</p>
+            </div>
 
-# ═══ 两种变体 ═══
-
-# 变体 1: 直接提交 (Google 内部)
-git switch main
-git pull --rebase
-# ... 修改 (小变更) ...
-git add . && git commit -m "fix: typo"
-git push
-# → 每天可能提交 10+ 次到 main
-# → 依赖强大的 CI/CD 和测试覆盖
-
-# 变体 2: 短期分支 (推荐入门)
-git switch -c fix/button-color    # 生命周期 < 1 天
-# ... 修改 ...
-git push -u origin fix/button-color
-# 创建 PR → 快速 Review → 合并
-# → 分支在 PR 合并后立即删除
-
-# ═══ 发布策略: Release from Trunk ═══
-# 方法 1: 直接从 main tag 发布
-git tag -a v3.2.0 -m "Release 3.2.0"
-git push origin v3.2.0
-# CI/CD 检测到 tag → 自动构建发布
-
-# 方法 2: Release Branch (仅用于 hotfix)
-git switch -c release/v3.2 main
-# 发现 bug → cherry-pick 修复到 release 分支
-git cherry-pick abc1234
-git tag -a v3.2.1 -m "Patch"
-# → release 分支只接收 cherry-pick, 不接新功能
-
-# ═══ Feature Flags 是必需的 ═══
-# 不完整的功能必须隐藏在 Flag 后面:
-#
-# // 使用 LaunchDarkly / Unleash / 自建
-# if (featureFlags.isEnabled('new-checkout')) {
-#   return <NewCheckout />;
-# }
-# return <OldCheckout />;
-#
-# Flag 的生命周期:
-# 1. 开发时: 只对开发者开放
-# 2. 测试时: 对内部用户开放
-# 3. 灰度: 对 5% → 25% → 50% → 100% 用户开放
-# 4. 全量后: 删除 Flag 和旧代码
-
-# ═══ 优缺点 ═══
-# ✅ 极简: 几乎没有分支管理开销
-# ✅ 持续集成/部署的终极形态
-# ✅ 减少合并冲突 (因为分支短)
-# ✅ Google/Meta 工程规模已验证
-# ❌ 需要成熟的 CI/CD 和测试基础
-# ❌ 需要 Feature Flag 基础设施
-# ❌ 对开发纪律要求极高`}</pre>
+            <div className="comparison-grid">
+              <div>
+                <div className="label after">核心原则</div>
+                <div className="sandbox-output">{`✅ 所有开发基于 main
+✅ 分支生命周期 < 24 小时
+✅ 频繁集成 (每天多次)
+✅ Feature Flags 控制上线
+✅ 完善的自动化测试
+✅ CI 在 < 10 分钟内完成`}</div>
               </div>
+              <div>
+                <div className="label before">前提条件</div>
+                <div className="sandbox-output">{`⚠️ 需要强大的 CI/CD 管线
+⚠️ 需要 Feature Flag 系统
+⚠️ 需要完善的测试覆盖
+⚠️ 需要团队高度纪律
+⚠️ 需要自动化代码审查
+⚠️ 适合高级工程团队`}</div>
+              </div>
+            </div>
+
+            <div className="fs-code-wrap" style={{marginTop:'0.75rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> trunk_based.js</div>
+              <pre className="fs-code">{`// Feature Flag 示例 — 代码在 main 中但功能被控制
+function CheckoutPage() {
+  if (featureFlags.isEnabled('new-checkout-v2')) {
+    return <NewCheckoutV2 />;   // 新版本 (只对 10% 用户开放)
+  }
+  return <LegacyCheckout />;    // 旧版本 (90% 用户)
+}
+
+// 渐进式发布:
+// Week 1: 内部员工 → Week 2: 5% → Week 3: 50% → Week 4: 100%
+// 如果出问题: 关闭 Flag 即可, 不需要回滚代码
+
+// 常用 Feature Flag 服务:
+// - LaunchDarkly (企业级)
+// - Unleash (开源)
+// - 自建: 简单的 JSON 配置 + 缓存`}</pre>
             </div>
           </div>
         )}
 
         {active === 3 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>📊 三大策略对比决策表</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#ef4444'}}></span> strategy_comparison</div>
-                <pre className="fs-code">{`# ═══ 分支策略选型决策表 ═══
-#
-# ┌──────────────┬──────────────┬──────────────┬──────────────┐
-# │              │ Git Flow     │ GitHub Flow  │ Trunk-Based  │
-# ├──────────────┼──────────────┼──────────────┼──────────────┤
-# │ 复杂度        │ 高 ⬛⬛⬛    │ 低 ⬛        │ 低 ⬛        │
-# │ 分支数        │ 5种          │ 2种          │ 1种          │
-# │ 发布频率      │ 按版本       │ 每次合并     │ 每次提交     │
-# │ 适合团队      │ 10-50人      │ 2-20人       │ 任意规模     │
-# │ CI/CD要求     │ 低           │ 中           │ 高           │
-# │ Feature Flag │ 不需要        │ 可选         │ 必须         │
-# │ 多版本维护    │ ✅ 原生支持  │ ❌           │ ❌           │
-# │ 持续部署      │ ❌           │ ✅           │ ✅           │
-# └──────────────┴──────────────┴──────────────┴──────────────┘
+          <div className="fs-card">
+            <h3>📊 策略选型指南</h3>
+            <table className="fs-table">
+              <thead><tr><th>维度</th><th>Git Flow</th><th>GitHub Flow</th><th>Trunk-Based</th></tr></thead>
+              <tbody>
+                <tr><td>复杂度</td><td><span className="fs-tag red">高</span></td><td><span className="fs-tag green">低</span></td><td><span className="fs-tag amber">中</span></td></tr>
+                <tr><td>团队规模</td><td>5-50 人</td><td>1-20 人</td><td>20-1000+ 人</td></tr>
+                <tr><td>部署频率</td><td>按版本 (周/月)</td><td>每天多次</td><td>每天数十次</td></tr>
+                <tr><td>分支生命周期</td><td>天~周</td><td>小时~天</td><td>{"<"} 1 天</td></tr>
+                <tr><td>常驻分支数</td><td>2 (main + develop)</td><td>1 (main)</td><td>1 (main/trunk)</td></tr>
+                <tr><td>回滚方式</td><td>Git revert</td><td>Git revert</td><td>Feature Flag</td></tr>
+                <tr><td>前提条件</td><td>纪律性</td><td>CI/CD</td><td>CI/CD + Feature Flag</td></tr>
+                <tr><td>典型用户</td><td>企业软件/App</td><td>GitHub/创业公司</td><td>Google/Facebook</td></tr>
+              </tbody>
+            </table>
 
-# ═══ 按产品类型选择 ═══
-#
-# 移动 App (iOS/Android):
-# → Git Flow ✅
-# → 因为: App Store 审核需要版本化发布, 需要维护多个线上版本
-#
-# Web SaaS (B2B/B2C):
-# → GitHub Flow ✅ 或 Trunk-Based ✅
-# → 因为: 只有一个线上版本, 可以随时部署
-#
-# 开源库 / SDK:
-# → Git Flow ✅
-# → 因为: 需要语义化版本, 可能并行维护 v1.x 和 v2.x
-#
-# 微服务架构:
-# → Trunk-Based ✅ (每个服务独立 repo)
-# → 因为: 服务独立部署, 不需要协调版本
-#
-# Monorepo (大型项目):
-# → Trunk-Based ✅
-# → 因为: Google 和 Meta 都用 Monorepo + Trunk-Based
-
-# ═══ 团队成熟度决策 ═══
-#
-# 刚开始使用 Git 的团队:
-#   → GitHub Flow (最简单, 5分钟学会)
-#
-# 需要版本发布的成熟团队:
-#   → Git Flow (严格但安全)
-#
-# DevOps 文化成熟的精英团队:
-#   → Trunk-Based (最高效但门槛最高)
-#
-# 建议路径:
-# GitHub Flow → Git Flow → Trunk-Based
-# (随团队成熟度逐步演进)
-
-# ═══ 混合策略也是可以的 ═══
-# 实践中很多团队采用"GitHub Flow + 发布分支":
-# → 日常用 GitHub Flow (main + feature branches)
-# → 发布时从 main 切 release 分支
-# → hotfix cherry-pick 到 release 分支
-# → 兼顾了简单和版本管理`}</pre>
-              </div>
+            <div className="tip-box" style={{marginTop:'1rem'}}>
+              💡 <strong>实际建议</strong>：大多数团队应该从 <strong>GitHub Flow</strong> 开始。如果发布流程需要更多控制，再过渡到 Git Flow。只有团队工程成熟度很高时，才考虑 Trunk-Based。
             </div>
           </div>
         )}

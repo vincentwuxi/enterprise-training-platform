@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LessonCommon.css';
 
-const tabs = ['Stash 暂存', 'Reset 三模式', 'Reflog 后悔药', 'Bisect 二分调试'];
+const tabs = ['🗃️ Stash', '⏪ Reset 与 Reflog', '🔍 Bisect 与 Blame', '🛠️ 高级技巧'];
 
 export default function LessonAdvancedOps() {
   const [active, setActive] = useState(0);
@@ -12,10 +12,9 @@ export default function LessonAdvancedOps() {
       <div className="fs-hero">
         <h1>高级操作：Stash / Reset / Reflog / Bisect / Blame</h1>
         <p>
-          掌握这些"瑞士军刀"级别的命令，是从 Git 用户升级为 <strong>Git 高手</strong> 的标志。
-          Stash 让你随时切换上下文，Reflog 是"后悔药"，Bisect 用二分法
-          精准定位引入 bug 的提交，Blame 追溯每一行代码的作者。
-          <strong>这些工具在紧急故障排查时可以救命</strong>。
+          掌握这些高级命令，你就能从容应对<strong>99% 的 Git 紧急情况</strong>。
+          Stash 临时保存工作、Reset 精确撤销、Reflog 恢复误删、Bisect 二分查找 bug 引入点、
+          Blame 追溯每一行代码的作者。<strong>这些是区分 Git 用户和 Git 高手的关键技能</strong>。
         </p>
       </div>
 
@@ -28,276 +27,227 @@ export default function LessonAdvancedOps() {
         </div>
 
         {active === 0 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>📦 Stash: 临时保存工作现场</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#fb7185'}}></span> stash_mastery.sh</div>
-                <pre className="fs-code">{`# ═══ 场景: 你正在开发 feature, 突然需要修 hotfix ═══
-# 当前有未提交的修改, 但不想提交半成品
-# → Stash 把修改"藏"起来, 恢复干净的工作区
+          <div className="fs-card">
+            <h3>🗃️ Stash — 临时保存工作进度</h3>
+            <div className="concept-card">
+              <h4>什么时候需要 Stash？</h4>
+              <p>你正在 feature 分支写代码，突然需要切到 main 修一个紧急 bug。但当前的修改还不想 commit（半成品代码）。</p>
+              <p>Stash 把你的修改"藏起来"，恢复干净的工作区，等你处理完再"取出来"继续工作。</p>
+            </div>
 
-# ═══ 基本用法 ═══
-git stash                        # 保存当前修改 (已跟踪文件)
-git stash -u                     # 包括未跟踪文件
-git stash -a                     # 包括 .gitignore 忽略的文件
-git stash push -m "WIP: auth"    # 添加描述 (推荐!)
-git stash push -- src/auth.js    # 只 stash 指定文件
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#fb7185'}}></span> stash_mastery.sh</div>
+              <pre className="fs-code">{`# ═══ 基本 Stash ═══
+git stash                        # 保存所有修改 (已跟踪文件)
+git stash -u                     # 包含未跟踪的新文件
+git stash -a                     # 包含 .gitignore 的文件 (慎用)
+git stash save "WIP: payment flow" # 带描述信息 (推荐!)
 
-# 去处理 hotfix...
-git switch main && git switch -c hotfix/urgent
-# 修复 + 提交 + 推送...
-git switch feature/auth
-
-# ═══ 恢复 Stash ═══
-git stash pop                    # 恢复并删除 stash
-git stash apply                  # 恢复但保留 stash (可多次使用)
-git stash apply stash@{2}        # 恢复指定的 stash
-
-# ═══ 管理 Stash ═══
+# ═══ 查看 & 恢复 ═══
 git stash list                   # 列出所有 stash
-# stash@{0}: On feature/auth: WIP: auth validation
+# stash@{0}: On feature: WIP: payment flow
 # stash@{1}: On main: quick experiment
-# stash@{2}: WIP on feature/payment: abc1234 payment flow
 
-git stash show                   # 查看最新 stash 的修改摘要
+git stash show                   # 查看最新 stash 的变更摘要
 git stash show -p                # 查看完整 diff
-git stash show stash@{2}         # 查看指定 stash
 
-git stash drop stash@{1}         # 删除指定 stash
+git stash pop                    # 恢复最新的 stash + 删除记录
+git stash apply                  # 恢复但不删除记录 (可重复应用)
+git stash apply stash@{2}       # 恢复指定的 stash
+git stash drop stash@{1}        # 删除指定 stash
 git stash clear                  # 清空所有 stash (危险!)
 
-# ═══ Stash 高级技巧 ═══
-# 从 stash 创建分支 (避免冲突):
-git stash branch new-feature stash@{0}
-# → 基于 stash 创建时的提交创建新分支
-# → 自动 apply stash 并删除
+# ═══ 高级用法 ═══
+git stash branch fix-branch      # 从 stash 创建新分支 (推荐!)
+# → 当 pop 时有冲突, 用这个更安全
 
-# 只 stash 暂存区内容:
-git stash --staged               # Git 2.35+ 新增
-# → 只保存已 git add 的修改
+# 只 stash 部分文件
+git stash push -m "only styles" -- src/styles/
+git stash push -p                 # 交互式选择要 stash 的块`}</pre>
+            </div>
 
-# ═══ Stash 内部原理 ═══
-# stash 实际上创建了两个提交:
-# 1. index commit  → 暂存区状态
-# 2. working tree commit → 工作区状态 (以 index commit 为父)
-# 这两个提交保存在 refs/stash 引用中`}</pre>
-              </div>
+            <div className="tip-box">
+              💡 <strong>Pro Tip</strong>：用 <code>git stash save "描述信息"</code> 而非 <code>git stash</code>。当你有多个 stash 时，描述信息能帮你找到正确的那个。
             </div>
           </div>
         )}
 
         {active === 1 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🎯 Reset 三模式深度解析</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f97316'}}></span> reset_modes.sh</div>
-                <pre className="fs-code">{`# ═══ Reset 的三个层次 ═══
-#
-# git reset 移动 HEAD 指针到指定 commit
-# 三个 flag 控制对暂存区和工作区的影响:
-#
-# ┌──────────┬────────────┬────────────┬────────────┐
-# │ 模式      │ HEAD       │ 暂存区     │ 工作区     │
-# ├──────────┼────────────┼────────────┼────────────┤
-# │ --soft   │ ✅ 移动    │ ❌ 不动    │ ❌ 不动    │
-# │ --mixed  │ ✅ 移动    │ ✅ 重置    │ ❌ 不动    │
-# │ --hard   │ ✅ 移动    │ ✅ 重置    │ ✅ 重置    │
-# └──────────┴────────────┴────────────┴────────────┘
+          <div className="fs-card">
+            <h3>⏪ Reset 三模式 & Reflog 后悔药</h3>
 
-# ═══ --soft: 只移动 HEAD ═══
-# 用途: 合并最近几个提交为一个
-git reset --soft HEAD~3
-# → 最近 3 个提交的修改全部保留在暂存区
-git commit -m "feat: combined feature commit"
-# → 效果等同于 squash
-
-# ═══ --mixed (默认): 移动 HEAD + 清空暂存区 ═══
-# 用途: 重新选择哪些文件进入提交
-git reset HEAD~1                 # 等同于 git reset --mixed HEAD~1
-# → 修改回到工作区 (未暂存状态)
-# → 可以重新 git add 部分文件再提交
-
-# ═══ --hard: 三者全部重置 ═══
-# 用途: 彻底丢弃修改
-git reset --hard HEAD~1
-# → 代码被永久删除 (除非用 reflog 恢复)
-# ⚠️ 这是 Git 中最危险的命令之一
-
-# ═══ Reset 单个文件 ═══
-git reset HEAD -- file.txt       # 取消暂存 (= git restore --staged)
-git checkout HEAD -- file.txt    # 恢复到上次提交 (= git restore)
-
-# ═══ 实战场景 ═══
-# 场景 1: 刚提交了, 发现忘了加文件
-git reset --soft HEAD~1          # 撤回提交
-git add forgotten.txt
-git commit -m "complete commit"
-
-# 场景 2: 刚 push 了错误提交到 main
-# ❌ 不要 reset (会改写公共历史)
-# ✅ 使用 revert
-git revert HEAD                  # 创建反向提交
-
-# 场景 3: 要把 main 强制回退到某个版本
-git reset --hard abc1234
-git push --force-with-lease      # ⚠️ 需要权限 + 通知团队
-
-# ═══ Reset vs Checkout vs Restore ═══
-# ┌──────────┬──────────────────┬──────────────┐
-# │ 命令      │ 作用              │ 安全性       │
-# ├──────────┼──────────────────┼──────────────┤
-# │ reset    │ 移动分支指针      │ ⚠ 改写历史  │
-# │ checkout │ 移动 HEAD         │ ✅ 不改历史  │
-# │ restore  │ 恢复文件          │ ⚠ 丢失修改  │
-# │ revert   │ 创建反向提交      │ ✅ 安全      │
-# └──────────┴──────────────────┴──────────────┘`}</pre>
+            <h4 style={{color:'#fb923c', margin:'0 0 0.5rem'}}>Reset 三模式对比</h4>
+            <div className="fs-grid-3">
+              <div className="concept-card" style={{borderColor:'rgba(34,197,94,0.3)'}}>
+                <h4 style={{color:'#4ade80'}}>--soft</h4>
+                <p><strong>只移动 HEAD</strong></p>
+                <p>暂存区 ✅ 工作区 ✅</p>
+                <p style={{color:'#4ade80'}}>用途：合并提交</p>
               </div>
+              <div className="concept-card" style={{borderColor:'rgba(245,158,11,0.3)'}}>
+                <h4 style={{color:'#fbbf24'}}>--mixed (默认)</h4>
+                <p><strong>移动 HEAD + 清暂存</strong></p>
+                <p>暂存区 ❌ 工作区 ✅</p>
+                <p style={{color:'#fbbf24'}}>用途：重新选择文件</p>
+              </div>
+              <div className="concept-card" style={{borderColor:'rgba(239,68,68,0.3)'}}>
+                <h4 style={{color:'#f87171'}}>--hard ⚠️</h4>
+                <p><strong>全部清除</strong></p>
+                <p>暂存区 ❌ 工作区 ❌</p>
+                <p style={{color:'#f87171'}}>用途：彻底丢弃</p>
+              </div>
+            </div>
+
+            <div className="fs-code-wrap" style={{marginTop:'0.75rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> reset_examples.sh</div>
+              <pre className="fs-code">{`# ═══ 常见场景 ═══
+
+# 场景1: 合并最近3次提交为一个
+git reset --soft HEAD~3
+git commit -m "feat: combine 3 commits"
+
+# 场景2: 提交了不该提交的文件
+git reset --mixed HEAD~1         # 撤销提交, 文件回到工作区
+git add correct_files.txt        # 重新选择
+git commit -m "correct commit"
+
+# 场景3: 彻底放弃最近的修改
+git reset --hard HEAD~1          # ⚠️ 一切都丢了!
+# 但是... reflog 可以救你`}</pre>
+            </div>
+
+            <h4 style={{color:'#fb923c', margin:'1.5rem 0 0.5rem'}}>🛟 Reflog — 终极后悔药</h4>
+            <div className="concept-card" style={{borderColor:'rgba(34,197,94,0.3)'}}>
+              <h4 style={{color:'#4ade80'}}>Reflog 记录了 HEAD 的每一次移动</h4>
+              <p>即使 <code>git reset --hard</code> 丢失了提交，reflog 还保留着引用。<strong>保留 90 天</strong>。</p>
+            </div>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> reflog_rescue.sh</div>
+              <pre className="fs-code">{`git reflog                       # 查看 HEAD 的所有移动记录
+# abc1234 HEAD@{0}: reset: moving to HEAD~3
+# def5678 HEAD@{1}: commit: WIP: important work
+# ghi9012 HEAD@{2}: commit: feat: add login
+# jkl3456 HEAD@{3}: checkout: moving from main to feature
+
+# 恢复到 3 步操作前的状态:
+git reset --hard HEAD@{3}
+
+# 或者只恢复某个丢失的提交:
+git cherry-pick def5678
+
+# 查看特定分支的 reflog:
+git reflog show feature/auth`}</pre>
+            </div>
+            <div className="warning-box">
+              ⚠️ Reflog 只存在于<strong>本地</strong>，不会被推送到远程。且默认只保留 90 天。如果你 clone 一个新仓库，它的 reflog 是空的。
             </div>
           </div>
         )}
 
         {active === 2 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🕰️ Reflog: Git 的"后悔药"</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#8b5cf6'}}></span> reflog_rescue.sh</div>
-                <pre className="fs-code">{`# ═══ Reflog 是什么 ═══
-# Reference Log: 记录 HEAD 和分支引用的每一次移动
-# → 即使 reset --hard 删除了提交, reflog 仍然记录着
-# → 默认保留 90 天
-# → 只存在于本地 (不会 push 到远程)
+          <div className="fs-card">
+            <h3>🔍 Bisect (二分查找 bug) & Blame (追溯代码)</h3>
 
-git reflog                       # 查看 HEAD 的移动记录
-# abc1234 HEAD@{0}: commit: feat: add login
-# def5678 HEAD@{1}: reset: moving to HEAD~1
-# ghi9012 HEAD@{2}: commit: this was deleted by reset
-# jkl3456 HEAD@{3}: checkout: moving from main to feature
+            <div className="concept-card">
+              <h4>🎯 Git Bisect — 用二分法找到引入 bug 的提交</h4>
+              <p>如果你知道"v1.0 是好的，当前版本有 bug"，bisect 可以在 <strong>O(log n)</strong> 次测试内找到罪魁祸首。1000 个提交只需测试 ~10 次！</p>
+            </div>
 
-# ═══ 救回被删除的提交 ═══
-# 你不小心 git reset --hard HEAD~3, 删除了 3 个提交
-# 别慌! 提交还在 reflog 中:
-git reflog
-# 找到被删除前的 commit hash
-git reset --hard HEAD@{2}        # 恢复到那个状态!
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#8b5cf6'}}></span> bisect.sh</div>
+              <pre className="fs-code">{`# ═══ 手动 Bisect ═══
+git bisect start
+git bisect bad                   # 当前版本有 bug
+git bisect good v1.0             # v1.0 是好的
 
-# ═══ 救回被删除的分支 ═══
-git branch -D feature/important  # 手滑删除了分支
-git reflog                       # 找到该分支最后一个提交
-# 找到: abc1234 HEAD@{5}: commit: last commit on feature/important
-git branch feature/important abc1234  # 重建分支!
+# Git 自动 checkout 中间的提交
+# 你测试后告诉 Git 结果:
+git bisect good                  # 这个版本没问题
+# 或
+git bisect bad                   # 这个版本有 bug
 
-# ═══ Reflog 高级用法 ═══
-# 查看特定分支的 reflog:
-git reflog show main
-git reflog show feature/auth
+# 重复几次后 Git 会告诉你:
+# abc1234 is the first bad commit
+# Author: Bob <bob@company.com>
+# Date: Mon Jan 15 2024
+# fix: update API endpoint   ← 就是这次提交引入了 bug!
 
-# 基于时间的引用:
-git diff main@{yesterday}        # 昨天的 main
-git diff main@{2.hours.ago}      # 2 小时前的 main
-git log main@{2024-01-01}..main  # 2024年至今的提交
+git bisect reset                 # 回到原始状态
 
-# ═══ 实战: 撤销一个失败的 rebase ═══
-git rebase main                  # rebase 搞砸了, 历史乱了
-git reflog                       # 找到 rebase 前的 HEAD
-# abc1234 HEAD@{5}: rebase (start): ...
-# def5678 HEAD@{6}: checkout: moving from feature to feature
-#                   ↑ 这就是 rebase 前的状态
-git reset --hard HEAD@{6}        # 回到 rebase 前!
+# ═══ 自动 Bisect (更强大!) ═══
+# 写一个测试脚本, 返回 0=good, 非0=bad
+git bisect start HEAD v1.0
+git bisect run npm test          # 自动二分! 全程无人值守`}</pre>
+            </div>
 
-# ═══ Reflog 过期配置 ═══
-# 可达的 reflog 条目保留 90 天
-# 不可达的保留 30 天
-git config --global gc.reflogExpire 180.days
-git config --global gc.reflogExpireUnreachable 90.days
+            <h4 style={{color:'#fb923c', margin:'1.5rem 0 0.5rem'}}>📜 Blame — 追溯每一行代码的作者</h4>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> blame.sh</div>
+              <pre className="fs-code">{`git blame src/auth.js            # 显示每行的最后修改者
+# abc1234 (Alice 2024-01-15  1) const jwt = require('jsonwebtoken');
+# def5678 (Bob   2024-02-20  2) const SECRET = process.env.JWT_SECRET;
+# ghi9012 (Alice 2024-01-15  3) 
+# jkl3456 (Carol 2024-03-10  4) function verify(token) {
 
-# ═══ 重要提醒 ═══
-# reflog 是纯本地的!
-# → git clone 不会带 reflog
-# → 换电脑后不存在
-# → 依赖 reflog 不是长久之计
-# → 重要代码务必及时 push`}</pre>
-              </div>
+git blame -L 10,20 src/auth.js   # 只看第 10-20 行
+git blame -w src/auth.js         # 忽略空白变更
+git blame -C src/auth.js         # 检测跨文件移动的代码
+git blame --since="2024-01-01" src/auth.js
+
+# 在 VS Code 中: GitLens 插件提供内联 blame 显示`}</pre>
+            </div>
+
+            <div className="tip-box">
+              💡 <strong>Bisect + 自动化测试</strong> 是定位回归 bug 的终极武器。写好单元测试，<code>git bisect run</code> 帮你全自动定位！
             </div>
           </div>
         )}
 
         {active === 3 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔍 Bisect & Blame: 精确定位问题</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> bisect_blame.sh</div>
-                <pre className="fs-code">{`# ═══ Git Bisect: 二分法定位 Bug ═══
-#
-# 场景: "上周还好好的, 今天就报错了"
-# 最近有 200 个提交, 哪个引入了 bug?
-# → 二分法: 只需 log₂(200) ≈ 8 次测试就能找到!
+          <div className="fs-card">
+            <h3>🛠️ 更多高级技巧</h3>
 
-# 手动 bisect:
-git bisect start
-git bisect bad                   # 当前版本有 bug
-git bisect good v1.0.0           # 已知 v1.0.0 没问题
-# Git 自动 checkout 中间的提交
-# 测试... 如果有 bug:
-git bisect bad
-# 测试... 如果没 bug:
-git bisect good
-# 重复 7-8 次后:
-# "abc1234 is the first bad commit"
-git bisect reset                 # 回到原来的分支
-
-# ═══ 自动化 bisect (更强大!) ═══
-git bisect start HEAD v1.0.0
-git bisect run npm test          # 自动运行测试!
-# → Git 自动 checkout + 运行测试 + 标记 good/bad
-# → 完全无人值守, 找到引入 bug 的精确提交
-
-# 自定义测试脚本:
-git bisect run ./test-login.sh
-# test-login.sh:
-# #!/bin/bash
-# npm test -- --grep "login" || exit 1
-
-# ═══ Git Blame: 追问"谁写的这行代码" ═══
-git blame src/auth.js
-# abc1234 (Alice  2024-01-15  10) function login(user) {
-# def5678 (Bob    2024-02-03  11)   if (!user.email) {
-# ghi9012 (Alice  2024-01-15  12)     throw new Error("missing email");
-# jkl3456 (Eve    2024-03-01  13)   }
-
-# 常用选项:
-git blame -L 10,20 src/auth.js   # 只看第 10-20 行
-git blame -L /function login/ src/auth.js  # 从匹配行开始
-git blame -w src/auth.js         # 忽略空白符变更
-git blame -M src/auth.js         # 检测行在文件内的移动
-git blame -C src/auth.js         # 检测从其他文件复制的行
-
-# ═══ Git Log 追踪文件历史 ═══
-git log --follow -- src/auth.js  # 跟踪重命名
-git log -p -- src/auth.js        # 文件的完整变更历史
-git log --all -S "function login" # 搜索代码在何时被添加/删除
-
-# ═══ Git Grep: 全仓库搜索 ═══
-git grep "TODO"                  # 搜索当前工作区
-git grep "FIXME" HEAD~10         # 搜索 10 个提交前
-git grep -n "import.*React"      # 带行号
-git grep --count "console.log"   # 统计每个文件的匹配数
-git grep -l "deprecated"          # 只列出包含匹配的文件名
-
-# ═══ 总结: 调试工具选型 ═══
-# ┌──────────┬──────────────────────────────┐
-# │ 工具      │ 场景                          │
-# ├──────────┼──────────────────────────────┤
-# │ bisect   │ 找到引入 bug 的具体提交       │
-# │ blame    │ 追溯某行代码的作者和提交       │
-# │ log -S   │ 某段代码是在哪个提交添加的     │
-# │ grep     │ 跨版本全文搜索               │
-# │ show     │ 查看某个提交的详细变更        │
-# └──────────┴──────────────────────────────┘`}</pre>
+            <div className="fs-grid-2">
+              <div className="concept-card">
+                <h4>🧹 git clean — 清理未跟踪文件</h4>
+                <p><code>git clean -fd</code> 删除未跟踪的文件和目录。<code>-n</code> 参数可以先预览要删除的文件。</p>
               </div>
+              <div className="concept-card">
+                <h4>📋 git archive — 导出干净的源码</h4>
+                <p><code>git archive --format=tar.gz HEAD -o release.tar.gz</code> 可以导出不包含 .git 的源码压缩包。</p>
+              </div>
+              <div className="concept-card">
+                <h4>🪵 git log --all --graph</h4>
+                <p>用 ASCII 艺术显示完整的分支拓扑图。搭配 <code>--oneline</code> 更紧凑。</p>
+              </div>
+              <div className="concept-card">
+                <h4>📊 git shortlog -sn</h4>
+                <p>按提交数量统计每个作者的贡献。加 <code>--since</code> 可以统计特定时间段。</p>
+              </div>
+            </div>
+
+            <h4 style={{color:'#fb923c', margin:'1.5rem 0 0.5rem'}}>文件考古学</h4>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> file_archaeology.sh</div>
+              <pre className="fs-code">{`# ═══ 搜索代码历史 ═══
+git log -S "TODO"                    # 搜索添加/删除了 "TODO" 的提交
+git log -G "function\\s+auth"         # 正则搜索
+git log --diff-filter=D -- "*.py"    # 查看被删除的 Python 文件
+git log --follow -- old_name.js      # 跟踪文件重命名
+
+# ═══ 恢复被删除的文件 ═══
+# 找到删除文件的提交:
+git log --diff-filter=D -- path/to/deleted_file
+# 恢复 (取删除提交的父提交):
+git checkout abc1234^ -- path/to/deleted_file
+
+# ═══ 查看文件在某个时间点的内容 ═══
+git show HEAD~5:src/config.js        # 5 个提交前的版本
+git show main:package.json           # main 分支的版本
+
+# ═══ 统计 ═══
+git diff --stat HEAD~10              # 最近 10 次提交的文件变更统计
+git log --numstat --format="" | awk '{add+=$1; del+=$2} END {print "+" add " -" del}'`}</pre>
             </div>
           </div>
         )}

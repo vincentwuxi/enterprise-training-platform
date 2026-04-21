@@ -1,26 +1,44 @@
 import React, { useState } from 'react';
 import './LessonCommon.css';
 
-const tabs = ['Git Hooks', 'Pre-commit 框架', 'GitHub Actions', '自动化流水线'];
+const tabs = ['🪝 Git Hooks', '🔧 Pre-commit 框架', '🔄 CI/CD 集成', '📦 自动化工作流'];
 
 export default function LessonHooksCI() {
   const [active, setActive] = useState(0);
 
   return (
     <div className="lesson-fullstack">
-      <div className="fs-badge purple">⚡ module_06 — Hooks & CI/CD</div>
+      <div className="fs-badge purple">🪝 module_06 — Git Hooks 与 CI/CD</div>
       <div className="fs-hero">
         <h1>Git Hooks 与 CI/CD：Pre-commit / Lint / 自动化</h1>
         <p>
-          Git Hooks 是<strong>在特定事件时自动执行脚本</strong>的机制。
-          搭配 Husky/pre-commit 框架，可以在提交前自动格式化代码、跑 lint、运行测试。
-          再结合 GitHub Actions，构建从<strong>提交到部署</strong>的完整自动化流水线。
-          <strong>好的工程团队，80% 的质量靠自动化保障</strong>。
+          Git Hooks 让你在 Git 操作的<strong>关键节点注入自定义逻辑</strong>——
+          提交前自动格式化代码、推送前跑测试、合并后自动部署。
+          结合 CI/CD 管线，构建<strong>质量门禁 + 自动化交付</strong>的完整体系。
         </p>
       </div>
 
+      {/* 自动化流水线 */}
+      <div className="pipeline">
+        {[
+          { icon:'✏️', text:'Code', sub:'编写代码', bg:'rgba(249,115,22,0.12)', color:'#fb923c' },
+          { icon:'🪝', text:'Pre-commit', sub:'Lint + Format', bg:'rgba(139,92,246,0.12)', color:'#a78bfa' },
+          { icon:'📝', text:'Commit', sub:'提交到本地', bg:'rgba(34,197,94,0.12)', color:'#4ade80' },
+          { icon:'🪝', text:'Pre-push', sub:'Test', bg:'rgba(245,158,11,0.12)', color:'#fbbf24' },
+          { icon:'🔼', text:'Push', sub:'推送到远程', bg:'rgba(6,182,212,0.12)', color:'#67e8f9' },
+          { icon:'⚙️', text:'CI/CD', sub:'Build + Test + Deploy', bg:'rgba(239,68,68,0.12)', color:'#f87171' },
+        ].map((s, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <span className="pipeline-arrow">→</span>}
+            <div className="pipeline-stage" style={{background:s.bg, border:`1px solid ${s.color}33`, color:s.color}}>
+              <span>{s.icon} {s.text}</span><small>{s.sub}</small>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+
       <section className="fs-section">
-        <h2 className="fs-section-title">⚡ 自动化工具链</h2>
+        <h2 className="fs-section-title">🪝 自动化质量保证</h2>
         <div className="fs-pills">
           {tabs.map((t, i) => (
             <button key={i} className={`fs-btn ${active === i ? 'primary' : ''}`} onClick={() => setActive(i)}>{t}</button>
@@ -28,332 +46,266 @@ export default function LessonHooksCI() {
         </div>
 
         {active === 0 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🪝 Git Hooks 原生机制</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#a78bfa'}}></span> git_hooks.sh</div>
-                <pre className="fs-code">{`# ═══ Git Hooks 是什么 ═══
-# .git/hooks/ 目录下的可执行脚本
-# 在特定 Git 事件触发时自动执行
-# 退出码 0 → 继续操作; 非 0 → 阻止操作
+          <div className="fs-card">
+            <h3>🪝 Git Hooks 全览</h3>
+            <div className="concept-card">
+              <h4>什么是 Git Hooks？</h4>
+              <p>存放在 <code>.git/hooks/</code> 目录下的可执行脚本。Git 在特定操作（commit、push、merge 等）的前后自动触发这些脚本。</p>
+              <p>脚本<strong>返回 0 = 放行</strong>，非 0 = 阻止操作。</p>
+            </div>
 
-ls .git/hooks/
-# pre-commit.sample    → 提交前
-# prepare-commit-msg.sample
-# commit-msg.sample    → 提交信息写完后
-# pre-push.sample      → push 前
-# pre-rebase.sample    → rebase 前
-# post-merge.sample    → merge 后
+            <h4 style={{color:'#fb923c', margin:'1rem 0 0.5rem'}}>常用 Hooks</h4>
+            <table className="fs-table">
+              <thead><tr><th>Hook</th><th>触发时机</th><th>典型用途</th><th>重要性</th></tr></thead>
+              <tbody>
+                <tr><td><code>pre-commit</code></td><td>commit 前</td><td>Lint、格式检查、类型检查</td><td><span className="fs-tag green">⭐⭐⭐</span></td></tr>
+                <tr><td><code>commit-msg</code></td><td>提交信息写入后</td><td>校验 Conventional Commits 格式</td><td><span className="fs-tag green">⭐⭐</span></td></tr>
+                <tr><td><code>pre-push</code></td><td>push 前</td><td>运行单元测试</td><td><span className="fs-tag amber">⭐⭐</span></td></tr>
+                <tr><td><code>prepare-commit-msg</code></td><td>编辑器打开前</td><td>自动填充模板</td><td><span className="fs-tag amber">⭐</span></td></tr>
+                <tr><td><code>post-merge</code></td><td>merge 完成后</td><td>自动 npm install</td><td><span className="fs-tag amber">⭐</span></td></tr>
+                <tr><td><code>post-checkout</code></td><td>checkout 完成后</td><td>清理缓存、安装依赖</td><td><span className="fs-tag amber">⭐</span></td></tr>
+              </tbody>
+            </table>
 
-# ═══ 常用 Hook 时机 ═══
-# ┌───────────────────┬─────────────────────────────┐
-# │ Hook              │ 触发时机                     │
-# ├───────────────────┼─────────────────────────────┤
-# │ pre-commit        │ git commit 前               │
-# │ prepare-commit-msg│ 编辑器打开前                │
-# │ commit-msg        │ 提交信息写完后              │
-# │ post-commit       │ 提交完成后                  │
-# │ pre-push          │ git push 前                 │
-# │ pre-rebase        │ git rebase 前               │
-# │ post-merge        │ merge 完成后                │
-# │ post-checkout     │ checkout/switch 后          │
-# └───────────────────┴─────────────────────────────┘
+            <div className="fs-code-wrap" style={{marginTop:'0.75rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#8b5cf6'}}></span> .git/hooks/pre-commit</div>
+              <pre className="fs-code">{`#!/bin/sh
+# 手写 pre-commit hook 示例
 
-# ═══ 手写 pre-commit hook ═══
-cat > .git/hooks/pre-commit << 'EOF'
-#!/bin/bash
-# 阻止提交 console.log
-if git diff --cached --name-only | xargs grep -l 'console.log' 2>/dev/null; then
-    echo "❌ Error: Found console.log in staged files!"
-    echo "   Please remove before committing."
-    exit 1
+# 1. 检查是否有调试代码
+if git diff --cached --diff-filter=ACM | grep -n "console.log\\|debugger\\|TODO:" ; then
+  echo "❌ 发现调试代码! 请移除后再提交"
+  exit 1
 fi
 
-# 阻止提交到 main 分支
-branch=$(git rev-parse --abbrev-ref HEAD)
-if [ "$branch" = "main" ]; then
-    echo "❌ Error: Direct commits to main are not allowed!"
-    echo "   Please create a feature branch."
+# 2. 运行 lint (只检查暂存的文件)
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\\.js$')
+if [ -n "$STAGED_FILES" ]; then
+  npx eslint $STAGED_FILES
+  if [ $? -ne 0 ]; then
+    echo "❌ ESLint 检查未通过!"
     exit 1
+  fi
 fi
 
-echo "✅ Pre-commit checks passed"
-EOF
-chmod +x .git/hooks/pre-commit
-
-# ═══ commit-msg hook: 校验提交信息格式 ═══
-cat > .git/hooks/commit-msg << 'EOF'
-#!/bin/bash
-commit_msg=$(cat "$1")
-pattern="^(feat|fix|docs|style|refactor|perf|test|chore|ci)(\(.+\))?: .{1,72}$"
-if ! echo "$commit_msg" | head -1 | grep -qE "$pattern"; then
-    echo "❌ Invalid commit message format!"
-    echo "   Expected: type(scope): description"
-    echo "   Example:  feat(auth): add OAuth2 login"
+# 3. 检查文件大小 (防止提交大文件)
+MAX_SIZE=5242880  # 5MB
+for file in $(git diff --cached --name-only); do
+  size=$(wc -c < "$file" 2>/dev/null || echo 0)
+  if [ "$size" -gt "$MAX_SIZE" ]; then
+    echo "❌ $file 超过 5MB! 请用 Git LFS"
     exit 1
-fi
-EOF
-chmod +x .git/hooks/commit-msg
+  fi
+done
 
-# ⚠️ 问题: .git/hooks 不会被提交到 repo
-# → 每个开发者需要手动设置 → 用框架解决`}</pre>
-              </div>
+echo "✅ Pre-commit checks passed!"
+exit 0`}</pre>
             </div>
           </div>
         )}
 
         {active === 1 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🐶 Husky + lint-staged 实战</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f97316'}}></span> husky_setup.sh</div>
-                <pre className="fs-code">{`# ═══ Husky: 管理 Git Hooks 的标准工具 ═══
-# 解决问题: 让 hooks 可以提交到 repo, 团队共享
+          <div className="fs-card">
+            <h3>🔧 Pre-commit 框架 — 工业级方案</h3>
+            <div className="concept-card">
+              <h4>为什么不手写 Hooks？</h4>
+              <p>手写 hooks 不会被 Git 共享（.git/hooks 不被跟踪）。需要专门的框架来管理 hooks 并让团队共享。</p>
+            </div>
 
-# 安装
-npm install --save-dev husky lint-staged
-npx husky init                   # 创建 .husky/ 目录
+            <div className="comparison-grid">
+              <div>
+                <div className="label" style={{color:'#22c55e'}}>Husky (Node.js 生态)</div>
+                <div className="fs-code-wrap">
+                  <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> setup</div>
+                  <pre className="fs-code">{`# 安装 Husky
+npm install --save-dev husky
+npx husky init
 
-# ═══ 配置 pre-commit hook ═══
 # .husky/pre-commit
-echo "npx lint-staged" > .husky/pre-commit
+npx lint-staged
 
-# ═══ lint-staged: 只检查暂存的文件 ═══
-# package.json 中添加:
-# {
-#   "lint-staged": {
-#     "*.{js,jsx,ts,tsx}": [
-#       "eslint --fix",        // 自动修复 lint 问题
-#       "prettier --write"     // 自动格式化
-#     ],
-#     "*.{css,scss}": [
-#       "prettier --write"
-#     ],
-#     "*.{json,md}": [
-#       "prettier --write"
-#     ]
-#   }
-# }
-
-# 效果: git commit 时自动:
-# 1. 只处理已 git add 的文件 (不碰其他文件)
-# 2. 运行 eslint --fix 修复代码问题
-# 3. 运行 prettier 格式化代码
-# 4. 如果修复失败 → 阻止提交
-
-# ═══ commitlint: 校验提交信息 ═══
-npm install --save-dev @commitlint/{cli,config-conventional}
-
-# commitlint.config.js
-# module.exports = {
-#   extends: ['@commitlint/config-conventional'],
-#   rules: {
-#     'type-enum': [2, 'always', [
-#       'feat', 'fix', 'docs', 'style', 'refactor',
-#       'perf', 'test', 'chore', 'ci', 'build'
-#     ]],
-#     'subject-max-length': [2, 'always', 72],
-#   }
-# };
-
-echo "npx commitlint --edit \$1" > .husky/commit-msg
-
-# ═══ Python 项目: pre-commit 框架 ═══
-# pip install pre-commit
-# 创建 .pre-commit-config.yaml:
-# repos:
-#   - repo: https://github.com/psf/black
-#     rev: 23.12.1
-#     hooks:
-#       - id: black
-#   - repo: https://github.com/pycqa/isort
-#     rev: 5.13.2
-#     hooks:
-#       - id: isort
-#   - repo: https://github.com/pycqa/flake8
-#     rev: 7.0.0
-#     hooks:
-#       - id: flake8
-#   - repo: https://github.com/pre-commit/mirrors-mypy
-#     rev: v1.8.0
-#     hooks:
-#       - id: mypy
-#
-# pre-commit install               # 安装 hooks
-# pre-commit run --all-files       # 手动运行所有检查`}</pre>
+# package.json 中配置 lint-staged：
+{
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": "prettier --write",
+    "*.md": "prettier --write"
+  }
+}`}</pre>
+                </div>
               </div>
+              <div>
+                <div className="label" style={{color:'#f59e0b'}}>pre-commit (Python 生态)</div>
+                <div className="fs-code-wrap">
+                  <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> .pre-commit-config.yaml</div>
+                  <pre className="fs-code">{`repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/psf/black
+    rev: 24.1.0
+    hooks:
+      - id: black
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8`}</pre>
+                </div>
+              </div>
+            </div>
+
+            <h4 style={{color:'#fb923c', margin:'1.5rem 0 0.5rem'}}>commitlint — 校验提交信息</h4>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> commitlint.config.js</div>
+              <pre className="fs-code">{`// 安装: npm i -D @commitlint/{cli,config-conventional}
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'type-enum': [2, 'always', [
+      'feat', 'fix', 'docs', 'style', 'refactor',
+      'perf', 'test', 'chore', 'ci', 'revert'
+    ]],
+    'subject-max-length': [2, 'always', 72],
+  }
+};
+
+// .husky/commit-msg:
+// npx --no -- commitlint --edit $1
+// → "add new feature" ❌ 被拒绝
+// → "feat: add auth"  ✅ 通过`}</pre>
             </div>
           </div>
         )}
 
         {active === 2 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔄 GitHub Actions 实战模板</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> github_actions.yaml</div>
-                <pre className="fs-code">{`# .github/workflows/ci.yml
-name: CI/CD Pipeline
+          <div className="fs-card">
+            <h3>🔄 CI/CD 集成</h3>
 
+            <div className="comparison-grid">
+              <div>
+                <div className="label" style={{color:'#f97316'}}>GitHub Actions</div>
+                <div className="fs-code-wrap">
+                  <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f97316'}}></span> .github/workflows/ci.yml</div>
+                  <pre className="fs-code">{`name: CI
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
-# 并发: 同一分支的新提交取消旧的运行
-concurrency:
-  group: ci-${"${{ github.ref }}"}
-  cancel-in-progress: true
-
 jobs:
-  # ═══ Job 1: 代码质量检查 ═══
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-
-  # ═══ Job 2: 单元测试 ═══
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18, 20, 22]    # 多版本测试
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: ${"${{ matrix.node-version }}"}
-          cache: 'npm'
+        with: { node-version: 20 }
       - run: npm ci
-      - run: npm test -- --coverage
-      - uses: codecov/codecov-action@v4  # 上传覆盖率
-        with:
-          token: ${"${{ secrets.CODECOV_TOKEN }}"}
-
-  # ═══ Job 3: 构建 ═══
-  build:
-    needs: [lint, test]            # 依赖前两个 job
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: 'npm' }
-      - run: npm ci
+      - run: npm run lint
+      - run: npm test
       - run: npm run build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: dist/
 
-  # ═══ Job 4: 部署 (仅 main 分支) ═══
   deploy:
-    needs: build
+    needs: test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment: production        # 需要审批
     steps:
-      - uses: actions/download-artifact@v4
-        with: { name: build-output, path: dist/ }
-      - name: Deploy to Production
-        run: |
-          # 部署到 Vercel / AWS / GCP
-          npx vercel deploy dist/ --prod --token=${"${{ secrets.VERCEL_TOKEN }}"}`}</pre>
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: \${{ secrets.TOKEN }}
+          publish_dir: ./dist`}</pre>
+                </div>
+              </div>
+              <div>
+                <div className="label" style={{color:'#f59e0b'}}>GitLab CI</div>
+                <div className="fs-code-wrap">
+                  <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> .gitlab-ci.yml</div>
+                  <pre className="fs-code">{`stages:
+  - lint
+  - test
+  - build
+  - deploy
+
+lint:
+  stage: lint
+  script:
+    - npm ci
+    - npm run lint
+  only: [merge_requests]
+
+test:
+  stage: test
+  script:
+    - npm ci
+    - npm test -- --coverage
+  coverage: /Statements.*?(\\d+)%/
+
+build:
+  stage: build
+  script:
+    - npm ci && npm run build
+  artifacts:
+    paths: [dist/]
+
+deploy:
+  stage: deploy
+  script:
+    - rsync -avz dist/ server:/www/
+  only: [main]`}</pre>
+                </div>
               </div>
             </div>
           </div>
         )}
 
         {active === 3 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🏗️ 完整自动化流水线架构</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> full_pipeline.sh</div>
-                <pre className="fs-code">{`# ═══ 完整的 DevOps 自动化链路 ═══
-#
-# 开发者提交代码:
-# git push → GitHub
-#     │
-#     ├── Pre-commit (本地)
-#     │   ├── lint-staged (ESLint + Prettier)
-#     │   ├── commitlint (提交信息格式)
-#     │   └── 单元测试 (快速子集)
-#     │
-#     ├── PR Check (GitHub Actions)
-#     │   ├── Lint + TypeCheck
-#     │   ├── 单元测试 + 覆盖率
-#     │   ├── Build 验证
-#     │   ├── Preview 部署 (Vercel/Netlify)
-#     │   └── Danger.js / PR 自动评论
-#     │
-#     ├── Merge to Main
-#     │   ├── 完整测试套件
-#     │   ├── E2E 测试 (Playwright/Cypress)
-#     │   ├── 安全扫描 (Snyk/Dependabot)
-#     │   ├── 构建 Docker 镜像
-#     │   └── 推送到 Container Registry
-#     │
-#     └── 部署
-#         ├── Staging (自动)
-#         ├── Canary/灰度 (自动, 监控指标)
-#         └── Production (审批 或 自动)
-
-# ═══ 自动化最佳实践 ═══
-#
-# 1. 本地检查要快 (< 10 秒):
-#    → lint-staged 只检查变更文件
-#    → 不要在 pre-commit 跑完整测试
-#
-# 2. CI 要有缓存:
-#    → 缓存 node_modules / pip / Docker layers
-#    → 首次运行 2min → 后续 30s
-#
-# 3. 并行化:
-#    → lint / test / typecheck 并行运行
-#    → matrix 测试多版本/多平台
-#
-# 4. 快速反馈:
-#    → PR 评论中显示测试结果
-#    → 发布覆盖率变化
-#    → 发布 bundle size 变化
-
-# ═══ 高级: Semantic Release ═══
-# 基于 Conventional Commits 自动:
-# 1. 决定版本号 (major/minor/patch)
-# 2. 生成 CHANGELOG
-# 3. 创建 Git Tag
-# 4. 发布 npm 包
-# 5. 创建 GitHub Release
-#
-# npm install --save-dev semantic-release
-#
-# 提交信息 → 版本号:
-# feat: → minor (1.0.0 → 1.1.0)
-# fix:  → patch (1.0.0 → 1.0.1)
-# feat!: → major (1.0.0 → 2.0.0)
-# BREAKING CHANGE: → major
-
-# ═══ 自动化检查清单 ═══
-# ┌──────────────────┬────────────┬──────────┐
-# │ 阶段              │ 工具        │ 耗时     │
-# ├──────────────────┼────────────┼──────────┤
-# │ pre-commit       │ Husky      │ < 10s    │
-# │ PR CI            │ GH Actions │ < 5min   │
-# │ Merge CI         │ GH Actions │ < 15min  │
-# │ Deploy           │ ArgoCD     │ < 5min   │
-# │ 监控             │ Datadog    │ 持续     │
-# └──────────────────┴────────────┴──────────┘`}</pre>
+          <div className="fs-card">
+            <h3>📦 自动化工作流最佳实践</h3>
+            <div className="fs-grid-2">
+              <div className="concept-card">
+                <h4>🏷️ 自动版本发布</h4>
+                <p>使用 <code>semantic-release</code> 根据 Conventional Commits 自动决定版本号、生成 CHANGELOG、创建 GitHub Release。</p>
               </div>
+              <div className="concept-card">
+                <h4>🤖 Dependabot / Renovate</h4>
+                <p>自动检测过期依赖并创建 PR。配合 CI 自动测试，安全地保持依赖最新。</p>
+              </div>
+              <div className="concept-card">
+                <h4>📊 PR 自动检查清单</h4>
+                <p>CI 自动添加：bundle size 变化、测试覆盖率、Lighthouse 分数、TypeScript 类型安全检查。</p>
+              </div>
+              <div className="concept-card">
+                <h4>🔐 Secret 扫描</h4>
+                <p>使用 <code>gitleaks</code> / <code>trufflehog</code> 在 pre-commit 或 CI 中自动扫描泄露的密钥和凭证。</p>
+              </div>
+            </div>
+
+            <div className="fs-code-wrap" style={{marginTop:'0.75rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> post-merge hook</div>
+              <pre className="fs-code">{`#!/bin/sh
+# .husky/post-merge — 合并后自动安装新依赖
+
+# 检查 package.json 是否有变更
+CHANGED_FILES="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+if echo "$CHANGED_FILES" | grep -q "package.json"; then
+  echo "📦 package.json changed → running npm install..."
+  npm install
+fi
+
+if echo "$CHANGED_FILES" | grep -q "Gemfile"; then
+  echo "💎 Gemfile changed → running bundle install..."
+  bundle install
+fi`}</pre>
             </div>
           </div>
         )}

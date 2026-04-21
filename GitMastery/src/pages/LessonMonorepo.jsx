@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import './LessonCommon.css';
 
-const tabs = ['Monorepo 理念', 'Submodule & Subtree', 'Nx & Turborepo', '大仓最佳实践'];
+const tabs = ['📦 Submodule', '🌳 Subtree', '🏗️ Monorepo 工具', '📊 方案选型'];
 
 export default function LessonMonorepo() {
   const [active, setActive] = useState(0);
 
   return (
     <div className="lesson-fullstack">
-      <div className="fs-badge amber">📦 module_07 — Monorepo</div>
+      <div className="fs-badge amber">📦 module_07 — Monorepo 与大型仓库</div>
       <div className="fs-hero">
-        <h1>Monorepo 与大型仓库管理</h1>
+        <h1>Monorepo 与大型仓库：Submodule / Subtree / Nx / Turborepo</h1>
         <p>
-          Google 用一个仓库管理 <strong>20 亿行代码</strong>，Meta 的 Monorepo 有
-          <strong>数百万个文件</strong>。本模块深入 Monorepo vs Polyrepo 的架构决策，
-          掌握 Submodule/Subtree 的跨仓库引用，以及 Nx/Turborepo 等现代 Monorepo
-          工具的高效构建与依赖管理。<strong>大型项目的 Git 管理是完全不同的技能</strong>。
+          当项目规模增长，你会面临<strong>多仓库 (Polyrepo) vs 单仓库 (Monorepo)</strong> 的选择。
+          本模块深入 Git Submodule/Subtree 的跨仓库管理，以及 Nx/Turborepo
+          等现代 Monorepo 构建工具。<strong>Google 和 Meta 的整个代码库都在一个仓库中</strong>。
         </p>
       </div>
 
@@ -28,291 +27,217 @@ export default function LessonMonorepo() {
         </div>
 
         {active === 0 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🏢 Monorepo vs Polyrepo 决策</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> monorepo_vs_polyrepo.sh</div>
-                <pre className="fs-code">{`# ═══ 概念对比 ═══
-#
-# Polyrepo (多仓库):
-# ├── frontend-repo/
-# ├── backend-api-repo/
-# ├── shared-utils-repo/
-# ├── mobile-app-repo/
-# └── infra-config-repo/
-#
-# Monorepo (单仓库):
-# monorepo/
-# ├── apps/
-# │   ├── frontend/
-# │   ├── backend-api/
-# │   └── mobile-app/
-# ├── packages/
-# │   ├── shared-utils/
-# │   ├── ui-components/
-# │   └── config/
-# ├── infra/
-# └── package.json
+          <div className="fs-card">
+            <h3>📦 Git Submodule — "仓库中的仓库"</h3>
+            <div className="concept-card">
+              <h4>Submodule 的本质</h4>
+              <p>Submodule 在父仓库中保存一个<strong>指向子仓库特定 commit 的引用</strong>。子仓库保持独立的 .git 目录和完整历史。</p>
+              <p>类比：就像在项目中放了一个"书签"，指向另一个仓库的某个版本。</p>
+            </div>
 
-# ═══ 对比决策表 ═══
-# ┌──────────────┬──────────────────┬──────────────────┐
-# │ 维度          │ Monorepo         │ Polyrepo         │
-# ├──────────────┼──────────────────┼──────────────────┤
-# │ 代码共享      │ ✅ 直接 import   │ ❌ 需要发 npm 包  │
-# │ 原子提交      │ ✅ 跨项目原子变更 │ ❌ 需要协调多 repo │
-# │ 依赖管理      │ ✅ 单一版本      │ ❌ 版本不一致     │
-# │ CI/CD        │ ⚠ 需要智能构建   │ ✅ 各自独立       │
-# │ 权限控制      │ ⚠ 需要 CODEOWNERS│ ✅ repo 级隔离    │
-# │ 仓库大小      │ ❌ 可能很大      │ ✅ 各自小巧       │
-# │ 新人上手      │ ⚠ 复杂度高      │ ✅ 关注范围小     │
-# │ 重构          │ ✅ 全局重构      │ ❌ 跨 repo 痛苦   │
-# └──────────────┴──────────────────┴──────────────────┘
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f97316'}}></span> submodule_ops.sh</div>
+              <pre className="fs-code">{`# ═══ 添加 Submodule ═══
+git submodule add https://github.com/lib/shared-utils.git libs/utils
+# 创建 .gitmodules 文件 + libs/utils 目录
 
-# ═══ 谁在用 Monorepo ═══
-# Google:    Piper (内部工具, 20 亿行代码)
-# Meta:      Mercurial → 自研 Eden
-# Microsoft: Git + VFS for Git
-# Uber:      Go Monorepo
-# Airbnb:    JavaScript Monorepo
-# Vercel:    Turborepo (他们自己开发的)
-# Nx:        自己的 Monorepo 用 Nx 管理
+# ═══ Clone 含 Submodule 的仓库 ═══
+git clone --recurse-submodules https://github.com/my/project.git
+# 或者分步:
+git clone https://github.com/my/project.git
+git submodule init               # 注册 submodule
+git submodule update             # 拉取 submodule 代码
 
-# ═══ 何时选 Monorepo ═══
-# ✅ 多个项目共享大量代码
-# ✅ 团队需要频繁跨项目修改
-# ✅ 想要统一的工具链和配置
-# ✅ 需要原子化的跨项目提交
-#
-# ❌ 何时不要 Monorepo:
-# ❌ 项目之间完全独立
-# ❌ 不同项目使用不同语言/工具链
-# ❌ 需要严格的访问控制`}</pre>
-              </div>
+# ═══ 更新 Submodule 到最新 ═══
+git submodule update --remote     # 拉取子仓库最新提交
+# 然后在父仓库 commit 这个变更:
+git add libs/utils
+git commit -m "chore: update shared-utils to latest"
+
+# ═══ 遍历所有 Submodule ═══
+git submodule foreach 'git pull origin main'
+git submodule foreach 'git checkout main && git pull'
+
+# ═══ 删除 Submodule (步骤较复杂) ═══
+git submodule deinit libs/utils
+git rm libs/utils
+rm -rf .git/modules/libs/utils
+git commit -m "chore: remove shared-utils submodule"`}</pre>
+            </div>
+
+            <div className="warning-box">
+              ⚠️ <strong>Submodule 常见坑</strong>：忘记 <code>--recurse-submodules</code> 导致代码不全；submodule 指向的是 commit 而非分支，更新后要在父仓库重新 commit。
             </div>
           </div>
         )}
 
         {active === 1 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔗 Submodule & Subtree</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#8b5cf6'}}></span> submodule_subtree.sh</div>
-                <pre className="fs-code">{`# ═══ Git Submodule: 引用另一个仓库 ═══
-# 用途: 在一个 repo 中引用另一个 repo 的特定版本
-
-# 添加 submodule
-git submodule add https://github.com/org/shared-lib.git libs/shared
-# → 创建 .gitmodules 文件
-# → libs/shared 指向 shared-lib 的某个 commit
-
-# 克隆含 submodule 的项目
-git clone --recursive https://github.com/org/project.git
-# 或
-git clone https://github.com/org/project.git
-git submodule init
-git submodule update
-
-# 更新 submodule 到最新
-cd libs/shared
-git pull origin main
-cd ../..
-git add libs/shared
-git commit -m "chore: update shared-lib"
-
-# 批量更新所有 submodule
-git submodule update --remote --merge
-
-# ═══ Submodule 的痛点 ═══
-# ❌ 忘记 --recursive clone → 空目录
-# ❌ 切换分支时 submodule 不自动更新
-# ❌ 合并冲突难以解决
-# ❌ CI/CD 需要额外配置
-# ❌ 新人容易困惑
-
-# ═══ Git Subtree: 另一种方案 ═══
-# 把外部 repo 的代码"复制"进来, 作为目录的一部分
-
-# 添加 subtree
-git subtree add --prefix=libs/shared \
-    https://github.com/org/shared-lib.git main --squash
-
-# 拉取上游更新
-git subtree pull --prefix=libs/shared \
-    https://github.com/org/shared-lib.git main --squash
-
-# 推送本地修改回上游
-git subtree push --prefix=libs/shared \
-    https://github.com/org/shared-lib.git main
-
-# ═══ Submodule vs Subtree ═══
-# ┌──────────────┬──────────────────┬─────────────────┐
-# │ 维度          │ Submodule        │ Subtree         │
-# ├──────────────┼──────────────────┼─────────────────┤
-# │ 存储方式      │ 指针引用         │ 完整复制        │
-# │ clone         │ 需要 --recursive │ 正常 clone      │
-# │ 独立开发      │ ✅ 各自独立      │ ⚠ 需要 push回  │
-# │ 离线开发      │ ❌ 需要网络      │ ✅ 代码在本地   │
-# │ 仓库大小      │ ✅ 不增加        │ ❌ 增加         │
-# │ 学习成本      │ ❌ 高            │ ✅ 低           │
-# │ 适用场景      │ 大型依赖/框架    │ 小型共享库      │
-# └──────────────┴──────────────────┴─────────────────┘
-#
-# 推荐: 如果可能, 优先用 npm/pip 包管理
-# → 只有两个 repo 确实需要紧密耦合时才考虑 submodule/subtree`}</pre>
-              </div>
+          <div className="fs-card">
+            <h3>🌳 Git Subtree — 更简单的替代方案</h3>
+            <div className="concept-card">
+              <h4>Subtree vs Submodule</h4>
+              <p>Subtree 把外部仓库的代码<strong>直接合并到目录中</strong>，不需要 .gitmodules 文件，clone 时自动包含所有代码。对使用者完全透明。</p>
             </div>
+
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#22c55e'}}></span> subtree_ops.sh</div>
+              <pre className="fs-code">{`# ═══ 添加 Subtree ═══
+git subtree add --prefix=libs/utils \\
+  https://github.com/lib/shared-utils.git main --squash
+
+# ═══ 拉取更新 ═══
+git subtree pull --prefix=libs/utils \\
+  https://github.com/lib/shared-utils.git main --squash
+
+# ═══ 推送修改回上游 ═══
+# 如果你在主仓库中修改了 subtree 的代码:
+git subtree push --prefix=libs/utils \\
+  https://github.com/lib/shared-utils.git feature/fix
+
+# ═══ 简化: 添加 remote 别名 ═══
+git remote add utils https://github.com/lib/shared-utils.git
+git subtree pull --prefix=libs/utils utils main --squash`}</pre>
+            </div>
+
+            <h4 style={{color:'#fb923c', margin:'1.5rem 0 0.5rem'}}>Submodule vs Subtree</h4>
+            <table className="fs-table">
+              <thead><tr><th>特性</th><th>Submodule</th><th>Subtree</th></tr></thead>
+              <tbody>
+                <tr><td>Clone 体验</td><td>需要 <code>--recurse</code></td><td>✅ 自动包含</td></tr>
+                <tr><td>独立历史</td><td>✅ 完全独立</td><td>混合在一起</td></tr>
+                <tr><td>学习成本</td><td>较高</td><td>✅ 较低</td></tr>
+                <tr><td>回推修改</td><td>✅ 直接操作</td><td>需要 subtree push</td></tr>
+                <tr><td>CI/CD</td><td>需特殊配置</td><td>✅ 无需配置</td></tr>
+                <tr><td>推荐场景</td><td>大型共享库</td><td>小型依赖</td></tr>
+              </tbody>
+            </table>
           </div>
         )}
 
         {active === 2 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>⚡ Nx & Turborepo 现代 Monorepo 工具</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> modern_monorepo.sh</div>
-                <pre className="fs-code">{`# ═══ 现代 Monorepo 工具解决的核心问题 ═══
-# 1. 增量构建: 只构建变更的包
-# 2. 任务编排: 按依赖顺序执行 build/test
-# 3. 缓存: 缓存构建产物, 避免重复工作
-# 4. 影响分析: 哪些包受到了变更的影响
+          <div className="fs-card">
+            <h3>🏗️ 现代 Monorepo 工具</h3>
 
-# ═══ Turborepo (Vercel) ═══
-npx create-turbo@latest my-monorepo
-
-# turbo.json
-# {
-#   "tasks": {
-#     "build": {
-#       "dependsOn": ["^build"],       // 先构建依赖
-#       "outputs": ["dist/**"]         // 缓存构建产物
-#     },
-#     "test": {
-#       "dependsOn": ["build"]
-#     },
-#     "lint": {},                       // 无依赖, 可并行
-#     "dev": {
-#       "cache": false,                // dev 不缓存
-#       "persistent": true
-#     }
-#   }
-# }
-
-turbo run build                  # 构建所有包 (自动增量)
-turbo run build --filter=web     # 只构建 web 及其依赖
-turbo run test --affected        # 只测试受变更影响的包
-
-# ═══ Nx (Nrwl) ═══
-npx create-nx-workspace@latest my-workspace
-
-# Nx 核心概念:
-# 1. 项目图 (Project Graph): 自动分析依赖关系
-# 2. 任务图 (Task Graph): 按依赖顺序调度
-# 3. 计算缓存: 本地 + 远程缓存
-# 4. 受影响分析: 基于 Git diff
-
-nx graph                         # 可视化项目依赖图!
-nx build my-app                  # 构建 (自动增量)
-nx affected --target=test        # 只测试受影响的项目
-nx run-many --target=build --all # 构建所有项目
-
-# ═══ Turborepo vs Nx ═══
-# ┌──────────────┬──────────────────┬──────────────────┐
-# │ 维度          │ Turborepo        │ Nx               │
-# ├──────────────┼──────────────────┼──────────────────┤
-# │ 定位          │ 轻量级构建编排   │ 完整开发平台     │
-# │ 学习成本      │ 低               │ 中高             │
-# │ 代码生成      │ ❌               │ ✅ generators    │
-# │ 插件生态      │ 基础             │ 丰富             │
-# │ 远程缓存      │ Vercel Remote    │ Nx Cloud         │
-# │ 语言支持      │ JS/TS            │ JS/TS/Go/Rust等  │
-# │ 项目可视化    │ ❌               │ ✅ nx graph      │
-# └──────────────┴──────────────────┴──────────────────┘
-
-# ═══ pnpm Workspace (轻量方案) ═══
-# pnpm-workspace.yaml:
-# packages:
-#   - 'apps/*'
-#   - 'packages/*'
-#
-# pnpm install                     # 安装所有依赖 (共享 node_modules)
-# pnpm --filter web dev            # 只启动 web
-# pnpm --filter './packages/**' build  # 构建所有包`}</pre>
+            <div className="fs-grid-2">
+              <div className="concept-card" style={{borderColor:'rgba(6,182,212,0.3)'}}>
+                <h4 style={{color:'#67e8f9'}}>🏎️ Turborepo</h4>
+                <p>Vercel 出品。<strong>增量构建 + 远程缓存</strong>。配置简单，适合 JavaScript/TypeScript 项目。</p>
+                <ul>
+                  <li>智能任务调度 (拓扑排序)</li>
+                  <li>远程缓存 (Vercel Remote Cache)</li>
+                  <li>增量构建 (只构建变更的包)</li>
+                </ul>
               </div>
+              <div className="concept-card" style={{borderColor:'rgba(139,92,246,0.3)'}}>
+                <h4 style={{color:'#a78bfa'}}>🔧 Nx</h4>
+                <p>Nrwl 出品。<strong>依赖图分析 + 代码生成器</strong>。支持 React/Angular/Node 等。</p>
+                <ul>
+                  <li>受影响项目检测 (affected)</li>
+                  <li>分布式任务执行 (Nx Cloud)</li>
+                  <li>插件生态 (代码脚手架)</li>
+                </ul>
+              </div>
+              <div className="concept-card" style={{borderColor:'rgba(249,115,22,0.3)'}}>
+                <h4 style={{color:'#fb923c'}}>📦 pnpm Workspaces</h4>
+                <p>轻量级方案，用 pnpm 内建的 workspace 功能管理多包。不需要额外工具。</p>
+                <ul>
+                  <li>硬链接节省磁盘空间</li>
+                  <li>内置 workspace 协议</li>
+                  <li>与 Turborepo 搭配最佳</li>
+                </ul>
+              </div>
+              <div className="concept-card" style={{borderColor:'rgba(34,197,94,0.3)'}}>
+                <h4 style={{color:'#4ade80'}}>🐻 Bazel / Buck2</h4>
+                <p>Google/Meta 级别的构建系统。支持<strong>任意语言</strong>的增量构建和远程执行。</p>
+                <ul>
+                  <li>语言无关 (Go, Java, Python...)</li>
+                  <li>分布式远程执行</li>
+                  <li>学习成本极高</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="fs-code-wrap" style={{marginTop:'0.75rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> turbo.json</div>
+              <pre className="fs-code">{`// Turborepo 配置示例
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],      // 先构建依赖包
+      "outputs": ["dist/**"]        // 缓存构建产物
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+
+// 使用: turbo run build --filter=@app/web
+// → 只构建 @app/web 及其依赖, 跳过未变更的包`}</pre>
             </div>
           </div>
         )}
 
         {active === 3 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🎯 大型仓库实战技巧</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#ef4444'}}></span> large_repo_tips.sh</div>
-                <pre className="fs-code">{`# ═══ 1. Sparse Checkout: 只检出需要的目录 ═══
-# 仓库有 100 个包, 你只需要 3 个
+          <div className="fs-card">
+            <h3>📊 Polyrepo vs Monorepo</h3>
+            <div className="comparison-grid">
+              <div>
+                <div className="label before">Polyrepo (多仓库)</div>
+                <div className="sandbox-output">{`✅ 团队自治, 独立部署
+✅ 权限隔离清晰
+✅ 仓库体积小
+❌ 跨项目修改困难
+❌ 依赖版本不一致
+❌ 代码共享困难
+❌ 重构成本高`}</div>
+              </div>
+              <div>
+                <div className="label after">Monorepo (单仓库)</div>
+                <div className="sandbox-output">{`✅ 原子化跨项目修改
+✅ 统一依赖版本
+✅ 代码共享直接 import
+✅ 统一 CI/CD + 工具链
+❌ 仓库体积大
+❌ 需要增量构建工具
+❌ 权限管理更复杂
+❌ 需要 Git 性能优化`}</div>
+              </div>
+            </div>
+
+            <h4 style={{color:'#fb923c', margin:'1.5rem 0 0.5rem'}}>大型仓库性能优化</h4>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> git_performance.sh</div>
+              <pre className="fs-code">{`# ═══ Sparse Checkout (只检出部分目录) ═══
 git clone --filter=blob:none --sparse https://github.com/org/monorepo.git
 cd monorepo
-git sparse-checkout set apps/web packages/shared packages/ui
-# → 只有这 3 个目录有文件, 其他是空的
-# → 节省磁盘和 clone 时间
+git sparse-checkout set packages/my-app packages/shared
 
-git sparse-checkout add packages/config   # 添加更多目录
-git sparse-checkout list                   # 查看当前配置
+# ═══ Shallow Clone (只克隆最近的历史) ═══
+git clone --depth=1 https://github.com/org/monorepo.git
+git fetch --deepen=100           # 需要时加深历史
 
-# ═══ 2. Shallow Clone: 只克隆最近的历史 ═══
-git clone --depth 1 https://github.com/org/repo.git
-# → 只克隆最新的 1 个提交
-# → CI/CD 中节省大量时间
-
-git clone --depth 100             # 最近 100 个提交
-git fetch --unshallow             # 后续需要完整历史时
-
-# ═══ 3. Partial Clone: 按需下载对象 ═══
-git clone --filter=blob:none https://github.com/org/repo.git
-# → 克隆提交和树, 但不下载文件内容
-# → 实际访问文件时才下载
-# → 适合超大仓库
-
-# ═══ 4. Git LFS (Large File Storage) ═══
-# 管理大文件 (图片/视频/模型/数据集)
+# ═══ Git LFS (大文件存储) ═══
 git lfs install
-git lfs track "*.psd"            # 追踪 Photoshop 文件
-git lfs track "*.model"          # 追踪模型文件
-git lfs track "dataset/**"       # 追踪数据集目录
-# → .gitattributes 自动更新
-# → 大文件存储在 LFS 服务器, Git 只保存指针
+git lfs track "*.psd" "*.zip" "*.bin"
+git add .gitattributes
 
-git lfs ls-files                 # 查看 LFS 管理的文件
-git lfs pull                     # 下载 LFS 文件
+# ═══ 维护命令 ═══
+git gc --aggressive              # 压缩优化
+git maintenance start            # 自动后台维护 (Git 2.29+)
+git fsck                         # 检查仓库完整性`}</pre>
+            </div>
 
-# ═══ 5. 清理仓库历史中的大文件 ═══
-# 不小心提交了 500MB 的文件, 即使删除了,
-# 历史中仍然存在, 仓库巨大
-#
-# 方案 1: git filter-repo (推荐)
-pip install git-filter-repo
-git filter-repo --path data/huge.csv --invert-paths
-# → 从所有历史中删除该文件
-
-# 方案 2: BFG Repo-Cleaner
-java -jar bfg.jar --strip-blobs-bigger-than 100M
-git reflog expire --all && git gc --prune=now --aggressive
-
-# ═══ 6. 性能优化配置 ═══
-git config core.fsmonitor true             # 文件系统监控 (加速 status)
-git config core.untrackedcache true        # 缓存未跟踪文件
-git config feature.manyFiles true          # 大仓库优化
-git config pack.threads 0                  # 多线程打包
-git maintenance start                      # 后台优化任务
-
-# ═══ 仓库大小诊断 ═══
-git count-objects -vH              # 查看对象数和仓库大小
-git rev-list --objects --all |
-  git cat-file --batch-check |
-  sort -k3 -n -r | head -20       # 找到最大的对象`}</pre>
-              </div>
+            <div className="tip-box">
+              💡 <strong>推荐组合</strong>：pnpm workspaces + Turborepo + GitHub Actions。轻量级起步，按需扩展。
             </div>
           </div>
         )}
