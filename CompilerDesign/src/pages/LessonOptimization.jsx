@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LessonCommon.css';
 
-const tabs = ['局部优化', '全局优化', '循环优化', '过程间优化'];
+const tabs = ['🔧 基本优化', '🔄 循环优化', '📊 数据流分析', '⚡ 优化前后对比'];
 
 export default function LessonOptimization() {
   const [active, setActive] = useState(0);
@@ -12,15 +12,25 @@ export default function LessonOptimization() {
       <div className="fs-hero">
         <h1>编译优化：常量折叠 / 死代码消除 / 循环优化</h1>
         <p>
-          编译优化在<strong>保持语义等价</strong>的前提下改进程序的效率——
-          减少执行时间、降低内存使用。优化的正确性是最重要的约束，
-          其次才是优化效果。从窥孔优化到过程间分析，
-          现代编译器的优化 Pass 数量可达数百个。
+          优化 Pass 是编译器中价值最高的部分——在不改变程序语义的前提下，让代码跑得更快、占用更少资源。
+          现代编译器（GCC -O2、LLVM -O3）可能执行<strong>上百个优化 Pass</strong>。
         </p>
       </div>
 
+      <div className="pipeline">
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#94a3b8'}}><span>🌳 AST</span></div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#94a3b8'}}><span>⚡ IR</span></div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage active" style={{background:'rgba(245,158,11,0.12)', border:'1px solid rgba(245,158,11,0.4)', color:'#fbbf24', boxShadow:'0 0 20px rgba(245,158,11,0.3)'}}><span>🔧 优化 Pass</span></div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#94a3b8'}}><span>⚡ 优化后 IR</span></div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#64748b'}}><span>🎯 Codegen</span></div>
+      </div>
+
       <section className="fs-section">
-        <h2 className="fs-section-title">⚙️ 编译优化深入</h2>
+        <h2 className="fs-section-title">⚙️ 编译优化技术</h2>
         <div className="fs-pills">
           {tabs.map((t, i) => (
             <button key={i} className={`fs-btn ${active === i ? 'primary' : ''}`} onClick={() => setActive(i)}>{t}</button>
@@ -28,364 +38,184 @@ export default function LessonOptimization() {
         </div>
 
         {active === 0 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔍 局部优化 (Basic Block 内)</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#7c3aed'}}></span> local_opts.txt</div>
-                <pre className="fs-code">{`═══ 常量折叠 (Constant Folding) ═══
+          <div className="fs-card">
+            <h3>🔧 基本优化 Pass</h3>
+            <div className="concept-card">
+              <h4>🎯 优化的两大原则</h4>
+              <p><strong>安全性</strong>：优化不能改变程序的可观测行为（as-if rule）</p>
+              <p><strong>收益性</strong>：优化带来的加速 {'>'} 编译时增加的开销</p>
+            </div>
 
-编译时计算常量表达式:
-  x = 3 + 5        → x = 8
-  y = 2 * 3.14     → y = 6.28
-  z = "hello" + " " + "world"  → z = "hello world"
-  b = 10 > 5       → b = true
+            <h4 style={{color:'#c4b5fd', margin:'1.5rem 0 0.5rem'}}>1. 常量折叠 (Constant Folding)</h4>
+            <div className="comparison-grid">
+              <div><div className="label before">优化前</div><div className="sandbox-output">{`x = 3 + 4 * 2
+y = "hello" + " world"`}</div></div>
+              <div><div className="label after">优化后</div><div className="sandbox-output">{`x = 11          ← 编译期算好!
+y = "hello world" ← 字符串也折叠`}</div></div>
+            </div>
 
-注意: 浮点折叠需要保证与运行时行为一致
-  → 某些编译器对浮点常量折叠保守
+            <h4 style={{color:'#c4b5fd', margin:'1.5rem 0 0.5rem'}}>2. 死代码消除 (Dead Code Elimination)</h4>
+            <div className="comparison-grid">
+              <div><div className="label before">优化前</div><div className="sandbox-output">{`x = compute()    ← x 从没被使用!
+return 42`}</div></div>
+              <div><div className="label after">优化后 (如果 compute 无副作用)</div><div className="sandbox-output">{`return 42        ← x 的赋值被删除`}</div></div>
+            </div>
 
-═══ 常量传播 (Constant Propagation) ═══
+            <h4 style={{color:'#c4b5fd', margin:'1.5rem 0 0.5rem'}}>3. 常量传播 (Constant Propagation)</h4>
+            <div className="comparison-grid">
+              <div><div className="label before">优化前</div><div className="sandbox-output">{`x = 5
+y = x * 3
+z = y + x`}</div></div>
+              <div><div className="label after">优化后</div><div className="sandbox-output">{`x = 5
+y = 15          ← x 替换为 5
+z = 20          ← 进一步折叠`}</div></div>
+            </div>
 
-如果变量值已知为常量, 替换所有使用:
-  x = 5
-  y = x + 3    → y = 5 + 3 → y = 8  (再折叠!)
-  z = x * y    → z = 5 * 8 → z = 40
-
-SSA 形式让常量传播非常简单:
-  x₁ = 5
-  y₁ = x₁ + 3  → 直接看到 x₁ 的唯一定义是 5
-
-═══ 代数化简 (Algebraic Simplification) ═══
-
-  x + 0   → x          x * 1   → x
-  x - 0   → x          x * 0   → 0
-  x * 2   → x << 1     x / 1   → x
-  x ** 2  → x * x      -(-x)   → x
-  x & 0   → 0          x | 0   → x
-  x ^ x   → 0          x & x   → x
-
-强度削弱 (Strength Reduction):
-  x * 4   → x << 2     (移位比乘法快)
-  x / 8   → x >> 3     (仅对无符号/正整数)
-  x % 16  → x & 15
-
-═══ 公共子表达式消除 (CSE) ═══
-
-  t1 = a + b
-  t2 = a + b    → t2 = t1  (复用已计算的结果!)
-  t3 = t1 * t2
-  
-  在 SSA 中更简单:
-  如果两个表达式的操作数是相同的 SSA 变量
-  且操作相同 → 等价
-
-  局部 CSE: 在基本块内
-  全局 CSE: 在 CFG 上 (使用可用表达式分析)
-
-═══ 死代码消除 (DCE) ═══
-
-删除结果不被使用的指令:
-  x = compute_something()  // x 后续未使用
-  → 删除! (前提: compute_something 无副作用)
-
-SSA 中的 DCE:
-  如果一个 SSA 变量的 use list 为空 → 删除其定义
-
-连锁删除:
-  x₁ = a + b    // x₁ 只被 y₁ 使用
-  y₁ = x₁ * 2   // y₁ 未使用 → 删除 y₁
-  → x₁ 也未使用了 → 删除 x₁
-
-═══ 复制传播 (Copy Propagation) ═══
-
-  x = y
-  z = x + 1    → z = y + 1  (用 y 替换 x)
-  → 然后 x = y 可能变成死代码被删除`}</pre>
-              </div>
+            <h4 style={{color:'#c4b5fd', margin:'1.5rem 0 0.5rem'}}>4. 公共子表达式消除 (CSE)</h4>
+            <div className="comparison-grid">
+              <div><div className="label before">优化前</div><div className="sandbox-output">{`a = b * c + d
+e = b * c + f    ← b*c 重复计算!`}</div></div>
+              <div><div className="label after">优化后</div><div className="sandbox-output">{`t = b * c        ← 复用!
+a = t + d
+e = t + f`}</div></div>
             </div>
           </div>
         )}
 
         {active === 1 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🌐 全局优化 (跨基本块)</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#2563eb'}}></span> global_opts.txt</div>
-                <pre className="fs-code">{`═══ 全局常量传播 (SCCP) ═══
+          <div className="fs-card">
+            <h3>🔄 循环优化</h3>
+            <div className="concept-card">
+              <h4>循环是程序执行时间最集中的地方 — 90/10 法则</h4>
+              <p>程序 90% 的执行时间花在 10% 的代码上，而那 10% 几乎都是循环！</p>
+            </div>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> loop_optimizations.txt</div>
+              <pre className="fs-code">{`═══ 循环不变量外提 (LICM) ═══
+优化前:                        优化后:
+  for i in 0..n:                 t = len(arr)    ← 提到循环外!
+    x = len(arr)   ← 每次都算!   for i in 0..n:
+    use(x, i)                      use(t, i)
 
-Sparse Conditional Constant Propagation:
-  结合 SSA + CFG, 同时做常量传播和不可达代码消除
+═══ 归纳变量优化 ═══
+优化前:                        优化后:
+  for i in 0..n:                 addr = &a[0]
+    a[i] = 0                     end  = &a[n]
+    // addr = base + i*8          while addr < end:
+                                    *addr = 0
+                                    addr += 8    ← 改乘为加!
 
-  if (true) {       // true 是常量!
-    x = 5;
-  } else {
-    x = 10;         // 此分支不可达!
-  }
-  y = x + 1;        // x 一定是 5 → y = 6
+═══ 循环展开 (Loop Unrolling) ═══
+优化前:                        优化后:
+  for i in 0..100:               for i in 0..100 step 4:
+    a[i] *= 2                      a[i]   *= 2
+                                   a[i+1] *= 2
+                                   a[i+2] *= 2
+                                   a[i+3] *= 2
+→ 减少循环控制开销, 暴露更多指令级并行
 
-SCCP 的格 (Lattice):
-  ⊤ (undefined) → 常量值 → ⊥ (not constant)
-  
-  初始: 所有变量 = ⊤
-  遇到常量赋值: 变量 = 常量
-  两个不同常量汇合: 变量 = ⊥
+═══ 循环融合 / 分裂 ═══
+融合 (减少循环开销):         分裂 (改善缓存):
+  for i: a[i]=0               for i: a[i]=b[i]*2
+  for i: b[i]=0               for i: c[i]=d[i]+1
+  → for i: a[i]=0; b[i]=0   → 拆开, 让每个循环的数据集更小
 
-═══ 全局值编号 (GVN) ═══
-
-给等价的表达式分配相同的编号:
-  a₁ = x + y   → vn(a₁) = hash(ADD, vn(x), vn(y)) = v1
-  b₁ = x + y   → vn(b₁) = hash(ADD, vn(x), vn(y)) = v1
-  → a₁ 和 b₁ 有相同的值编号 → b₁ = a₁
-
-比 CSE 更强:
-  a = x + y
-  b = y + x     // 交换律: 也是 v1!
-
-═══ 部分冗余消除 (PRE) ═══
-
-表达式在某些路径上冗余, 但在其他路径上不冗余
-
-  路径1: a = x + y; ... b = x + y  (冗余)
-  路径2: .............. b = x + y  (非冗余)
-  
-  PRE: 在路径2的前面插入 t = x + y
-  → 两条路径都用 t, b = t
-
-Lazy Code Motion:
-  → 表达式尽可能晚计算 (减少寄存器压力)
-  → 但至少和原来一样早 (不增加计算次数)
-
-═══ 条件消除 ═══
-
-  if (x > 0) {
-    if (x > 0) {   // 冗余条件!
-      ...
-    }
-  }
-  → 内层 if 一定为 true, 消除
-
-  if (x > 5) {
-    if (x > 3) {   // 被蕴含!
-      ...
-    }
-  }
-  → 内层 if 一定为 true (x > 5 → x > 3), 消除
-
-═══ 尾调用优化 (TCO) ═══
-
-  fn factorial(n, acc):
-    if n <= 1: return acc
-    return factorial(n-1, n*acc)  // 尾调用!
-  
-  → 复用当前栈帧, 变成循环:
-  factorial:
-    if n <= 1: return acc
-    acc = n * acc
-    n = n - 1
-    goto factorial
-
-  要求: 递归调用是函数的最后一个操作
-  → Go 不做 TCO! (设计决定: 更好的 stack trace)
-  → Rust/C/Scheme 支持 TCO`}</pre>
-              </div>
+═══ 向量化 (Auto-Vectorization) ═══
+标量:                          SIMD:
+  for i in 0..n:                 for i in 0..n step 4:
+    a[i] = b[i] + c[i]            a[i:i+4] = b[i:i+4] + c[i:i+4]
+                                   // 一条指令处理 4 个元素!`}</pre>
             </div>
           </div>
         )}
 
         {active === 2 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔁 循环优化</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> loop_opts.txt</div>
-                <pre className="fs-code">{`═══ 循环不变量外提 (LICM) ═══
+          <div className="fs-card">
+            <h3>📊 数据流分析</h3>
+            <div className="fs-code-wrap">
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> dataflow.txt</div>
+              <pre className="fs-code">{`═══ 数据流分析框架 ═══
 
-将循环内不变的计算移到循环外:
+通用形式:
+  OUT[B] = fB(IN[B])          ← 传递函数
+  IN[B]  = ∪ OUT[P]          ← 合流 (前驱 P 的并集)
+           P∈pred(B)
 
-  for (i = 0; i < n; i++) {
-    x = a * b + c;     // 每次迭代结果相同!
-    arr[i] = x + i;
-  }
-  
-  优化后:
-  x = a * b + c;       // 外提到循环外
-  for (i = 0; i < n; i++) {
-    arr[i] = x + i;
-  }
+迭代求解, 直到所有 IN/OUT 不变 (不动点)
 
-条件: 表达式的所有操作数在循环内不被修改
+═══ 四种经典分析 ═══
 
-═══ 循环展开 (Loop Unrolling) ═══
+分析类型      │ 方向  │ 合流  │ 用途
+──────────────┼───────┼───────┼────────────────
+到达定值      │  前向  │  ∪   │ 未初始化变量检测
+活跃变量      │  后向  │  ∪   │ 寄存器分配
+可用表达式    │  前向  │  ∩   │ 公共子表达式消除
+非常忙表达式  │  后向  │  ∩   │ 代码外提
 
-减少循环控制开销, 增加 ILP 机会:
+═══ 到达定值 (Reaching Definitions) ═══
+问: 变量 x 在某点的值来自哪条赋值?
+  gen[B]  = B 中定义的变量
+  kill[B] = B 中重新定义前的同变量旧定义
+  OUT[B]  = gen[B] ∪ (IN[B] - kill[B])
 
-  for (i = 0; i < 100; i++)
-    a[i] = b[i] + c[i];
-
-  展开 4 次:
-  for (i = 0; i < 100; i += 4) {
-    a[i]   = b[i]   + c[i];
-    a[i+1] = b[i+1] + c[i+1];
-    a[i+2] = b[i+2] + c[i+2];
-    a[i+3] = b[i+3] + c[i+3];
-  }
-
-好处:
-  → 减少分支指令 (4x)
-  → 增加指令级并行 (ILP)
-  → 为 SIMD 向量化做准备
-
-成本:
-  → 代码体积增大
-  → I-cache 压力
-
-═══ 归纳变量消除 ═══
-
-  for (i = 0; i < n; i++) {
-    j = i * 4;         // j 是 i 的派生归纳变量
-    a[j] = ...;        // 等价于 a[i*4]
-  }
-
-  优化后 (强度削弱):
-  j = 0;
-  for (i = 0; i < n; i++) {
-    a[j] = ...;
-    j = j + 4;          // 乘法 → 加法!
-  }
-
-  进一步删除 i (如果 i 只用于控制循环):
-  j = 0;
-  limit = n * 4;
-  while (j < limit) {
-    a[j] = ...;
-    j = j + 4;
-  }
-
-═══ 循环向量化 (Auto-vectorization) ═══
-
-  for (i = 0; i < n; i++)
-    a[i] = b[i] + c[i];
-
-  向量化 (SSE/AVX):
-  for (i = 0; i < n; i += 4) {   // 4 个 float 一组
-    __m128 vb = _mm_load_ps(&b[i]);
-    __m128 vc = _mm_load_ps(&c[i]);
-    __m128 va = _mm_add_ps(vb, vc);
-    _mm_store_ps(&a[i], va);       // 4 个元素同时计算!
-  }
-
-条件:
-  → 无循环依赖 (a[i] 不依赖 a[i-1])
-  → 数据对齐
-  → 编译器能证明不存在别名 (aliasing)
-
-═══ 循环分裂 / 融合 / 交换 ═══
-
-分裂 (Fission): 一个循环 → 多个循环
-  → 改善缓存局部性
-
-融合 (Fusion): 多个循环 → 一个循环
-  → 减少循环开销, 改善数据复用
-
-交换 (Interchange):
-  for (i) for (j) a[i][j] = ...   // 行优先
-  → for (j) for (i) a[i][j] = ... // 列优先
-  → 改善 C 语言的行主序访问模式`}</pre>
-              </div>
+═══ 活跃变量 (Liveness) ═══
+问: 变量 x 在某点之后还会被使用吗?
+  use[B]  = B 中使用但未在之前定义的变量
+  def[B]  = B 中定义的变量
+  IN[B]   = use[B] ∪ (OUT[B] - def[B])
+  → 不活跃的变量 → 寄存器可以回收!`}</pre>
             </div>
           </div>
         )}
 
         {active === 3 && (
-          <div className="fs-grid-2">
-            <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔗 过程间优化 (IPA)</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> ipa.txt</div>
-                <pre className="fs-code">{`═══ 函数内联 (Inlining) ═══
-
-将函数调用替换为函数体:
-
-  int square(int x) { return x * x; }
-  
-  int result = square(5);
-  → int result = 5 * 5;
-  → int result = 25;  (常量折叠!)
-
-内联的好处:
-  → 消除调用开销 (call/ret/压栈/出栈)
-  → 暴露更多优化机会 (常量传播到函数体内)
-  → 改善指令缓存局部性 (小函数)
-
-内联的成本:
-  → 代码体积膨胀
-  → 编译时间增加
-  → I-cache 压力
-
-内联决策 (启发式):
-  → 小函数 (热路径上 <100 条指令): 总是内联
-  → 递归函数: 不内联 (或有限展开)
-  → 虚函数/间接调用: 使用推测内联 (Speculative Inlining)
-  → cold 函数: 不内联
-  → 调用频率 (PGO Profile-Guided): 热路径优先内联
-
-═══ 过程间常量传播 ═══
-
-  void process(int n) {
-    if (n > 0) { ... }
-  }
-  
-  process(5);  // n 一定是 5 → if (5 > 0) → if (true)
-
-跨函数传播常量, 简化被调用函数
-
-═══ 逃逸分析 (Escape Analysis) ═══
-
-分析对象是否逃逸出当前函数:
-  → 不逃逸: 可以栈分配 (避免 GC!)
-  → 逃逸到堆: 必须堆分配
-
-Go 编译器的逃逸分析:
-  func create() *User {
-    u := User{Name: "Alice"}
-    return &u               // u 逃逸到堆!
-  }
-  
-  func local() int {
-    u := User{Name: "Alice"}
-    return u.Age            // u 不逃逸, 栈分配!
-  }
-
-═══ 链接时优化 (LTO) ═══
-
-Link-Time Optimization:
-  编译每个文件时保存 IR (而非目标代码)
-  链接时合并所有 IR, 执行全程序优化
-
-  clang -flto -O2 a.c b.c   // 生成 LLVM bitcode
-  → 链接时合并, 跨文件内联/优化
-
-ThinLTO:
-  → 并行 LTO, 摘要信息指导优化
-  → 编译速度接近非 LTO, 优化效果接近 Full LTO
-
-═══ Profile-Guided Optimization (PGO) ═══
-
-  1. 编译插桩版本: gcc -fprofile-generate -o app app.c
-  2. 运行收集 profile: ./app < typical_input
-  3. 使用 profile 重新编译: gcc -fprofile-use -o app app.c
-
-PGO 可指导:
-  → 分支预测 (likely/unlikely)
-  → 内联决策 (热函数优先)
-  → 基本块布局 (热路径连续)
-  → 循环展开次数
-
-效果: 通常 10-30% 性能提升
-  → Rust 编译器自身用 PGO 编译!
-  → Chrome/V8 也使用 PGO`}</pre>
+          <div className="fs-card">
+            <h3>⚡ 真实代码优化对比</h3>
+            <div className="concept-card">
+              <h4>GCC -O0 vs -O2 — 看编译器到底做了什么</h4>
+            </div>
+            <div className="comparison-grid">
+              <div>
+                <div className="label before">C 源代码</div>
+                <div className="sandbox-output">{`int sum(int n) {
+  int total = 0;
+  for (int i = 1; i <= n; i++)
+    total += i;
+  return total;
+}`}</div>
               </div>
+              <div>
+                <div className="label after">GCC -O2 优化后 (x86-64)</div>
+                <div className="sandbox-output">{`sum:
+  ; 编译器用公式替换了循环!
+  ; total = n * (n + 1) / 2
+  lea    eax, [rdi+1]
+  imul   eax, edi
+  shr    eax, 1
+  ret`}</div>
+              </div>
+            </div>
+            <div className="tip-box" style={{marginTop:'1rem'}}>
+              💡 <strong>GCC -O2 将 O(n) 循环优化为 O(1) 常量时间！</strong>
+              编译器通过归纳变量分析识别出这是等差数列求和公式 n×(n+1)/2，直接替换为数学运算。
+            </div>
+            <div className="fs-code-wrap" style={{marginTop:'1rem'}}>
+              <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> optimization_levels.txt</div>
+              <pre className="fs-code">{`═══ GCC/Clang 优化级别 ═══
+-O0: 不优化 (调试用, 编译最快)
+-O1: 基本优化 (常量折叠/DCE/CSE)
+-O2: 推荐级别 (循环优化/内联/向量化)
+-O3: 激进优化 (可能增大代码体积)
+-Os: 优化代码大小 (嵌入式)
+-Oz: 极致小 (Clang 特有)
+-Ofast: -O3 + 不严格遵守 IEEE 浮点
+
+═══ LLVM Pass Pipeline (-O2) ═══
+约 80+ 个 Pass, 关键的:
+  SimplifyCFG → SROA → EarlyCSE →
+  InstCombine → GVN → LoopRotate →
+  LICM → IndVarSimplify → LoopUnroll →
+  Vectorize → SLP → InstCombine(again)`}</pre>
             </div>
           </div>
         )}

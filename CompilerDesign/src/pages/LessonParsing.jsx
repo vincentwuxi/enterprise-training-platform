@@ -1,10 +1,89 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './LessonCommon.css';
 
-const tabs = ['CFG 与推导', 'LL(1) 分析', 'LR 分析', 'Parser 实战'];
+/* ── Mini Expression Parser (Pratt / Precedence Climbing) ── */
+function parseExpr(src) {
+  const tokens = [];
+  let p = 0;
+  // simple tokenizer for math expressions
+  while (p < src.length) {
+    if (/\s/.test(src[p])) { p++; continue; }
+    if (/\d/.test(src[p])) {
+      let n = '';
+      while (p < src.length && /[\d.]/.test(src[p])) n += src[p++];
+      tokens.push({ type: 'NUM', value: n });
+    } else if (/[a-zA-Z_]/.test(src[p])) {
+      let id = '';
+      while (p < src.length && /\w/.test(src[p])) id += src[p++];
+      tokens.push({ type: 'ID', value: id });
+    } else {
+      tokens.push({ type: 'OP', value: src[p++] });
+    }
+  }
+  tokens.push({ type: 'EOF', value: '' });
+
+  let pos = 0;
+  const peek = () => tokens[pos] || { type: 'EOF', value: '' };
+  const advance = () => tokens[pos++];
+
+  const PREC = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2 };
+
+  function expr(minBP = 0) {
+    let tok = advance();
+    let left;
+    if (tok.type === 'NUM') left = { type: 'Num', value: tok.value };
+    else if (tok.type === 'ID') left = { type: 'Var', name: tok.value };
+    else if (tok.value === '(') { left = expr(0); advance(); /* skip ) */ }
+    else if (tok.value === '-') { left = { type: 'Neg', child: expr(3) }; }
+    else return { type: 'Error', value: tok.value };
+
+    while (peek().type === 'OP' && PREC[peek().value] !== undefined) {
+      const op = peek();
+      const bp = PREC[op.value];
+      if (bp <= minBP) break;
+      advance();
+      const right = expr(bp);
+      left = { type: 'BinOp', op: op.value, left, right };
+    }
+    return left;
+  }
+
+  try { return expr(); } catch { return { type: 'Error', value: 'Parse error' }; }
+}
+
+function renderTree(node, prefix = '', isLast = true) {
+  if (!node) return '';
+  const connector = isLast ? '└─ ' : '├─ ';
+  const extension = isLast ? '   ' : '│  ';
+  let line = prefix + connector;
+
+  if (node.type === 'BinOp') {
+    line += `[${node.op}]\n`;
+    line += renderTree(node.left, prefix + extension, false);
+    line += renderTree(node.right, prefix + extension, true);
+  } else if (node.type === 'Neg') {
+    line += `[neg]\n`;
+    line += renderTree(node.child, prefix + extension, true);
+  } else if (node.type === 'Num') {
+    line += node.value + '\n';
+  } else if (node.type === 'Var') {
+    line += node.name + '\n';
+  } else {
+    line += `Error: ${node.value}\n`;
+  }
+  return line;
+}
+
+const tabs = ['📐 CFG & 推导', '⬇️ LL(1) 分析', '⬆️ LR 分析', '🎮 AST 构建器'];
 
 export default function LessonParsing() {
   const [active, setActive] = useState(0);
+  const [exprInput, setExprInput] = useState('3 + 4 * (2 - 1)');
+  const [ast, setAst] = useState(() => parseExpr('3 + 4 * (2 - 1)'));
+
+  const handleParse = useCallback(() => {
+    setAst(parseExpr(exprInput));
+  }, [exprInput]);
 
   return (
     <div className="lesson-fullstack">
@@ -12,11 +91,36 @@ export default function LessonParsing() {
       <div className="fs-hero">
         <h1>语法分析：CFG / LL(1) / LR(1) / Parser 生成器</h1>
         <p>
-          语法分析 (Parsing) 是编译器的<strong>第二阶段</strong>——将 Token 流按照
-          上下文无关文法 (CFG) 的规则构建语法树。LL 分析器自顶向下预测，
-          LR 分析器自底向上移进-归约。理解 FIRST/FOLLOW 集和分析表的构造
-          是掌握编译器前端的核心。
+          语法分析是编译器<strong>第二阶段</strong>——将 Token 流按上下文无关文法 (CFG) 的规则构建抽象语法树 (AST)。
+          LL 自顶向下预测、LR 自底向上移进-归约，理解 FIRST/FOLLOW 集和分析表构造是掌握编译器前端的核心。
         </p>
+      </div>
+
+      {/* Pipeline */}
+      <div className="pipeline">
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#64748b'}}>
+          <span>📝 Source</span><small>字符流</small>
+        </div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#94a3b8'}}>
+          <span>🔤 Lexer</span><small>Token 流</small>
+        </div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage active" style={{background:'rgba(37,99,235,0.15)', border:'1px solid rgba(37,99,235,0.4)', color:'#93c5fd', boxShadow:'0 0 20px rgba(37,99,235,0.3)'}}>
+          <span>🌳 Parser</span><small>语法分析</small>
+        </div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#64748b'}}>
+          <span>🔍 Semantic</span>
+        </div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#64748b'}}>
+          <span>⚡ IR</span>
+        </div>
+        <span className="pipeline-arrow">→</span>
+        <div className="pipeline-stage" style={{background:'rgba(100,116,139,0.06)', border:'1px solid rgba(100,116,139,0.15)', color:'#64748b'}}>
+          <span>🎯 Codegen</span>
+        </div>
       </div>
 
       <section className="fs-section">
@@ -27,167 +131,120 @@ export default function LessonParsing() {
           ))}
         </div>
 
+        {/* Tab 0: CFG */}
         {active === 0 && (
           <div className="fs-grid-2">
             <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
               <h3>📐 上下文无关文法 (CFG)</h3>
+
+              <div className="concept-card">
+                <h4>🎯 CFG 形式定义</h4>
+                <p><strong>G = (V, Σ, P, S)</strong></p>
+                <ul>
+                  <li><code>V</code> — 非终结符集 (变量集)</li>
+                  <li><code>Σ</code> — 终结符集 (Token 集)</li>
+                  <li><code>P</code> — 产生式规则集</li>
+                  <li><code>S</code> — 开始符号, S ∈ V</li>
+                </ul>
+              </div>
+
               <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#7c3aed'}}></span> cfg_theory.txt</div>
-                <pre className="fs-code">{`═══ CFG 形式定义 ═══
+                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#7c3aed'}}></span> cfg_example.txt</div>
+                <pre className="fs-code">{`═══ 算术表达式文法 (经典!) ═══
 
-G = (V, Σ, P, S)
-  V — 非终结符集 (变量集)
-  Σ — 终结符集 (Token 集)
-  P — 产生式规则集
-  S — 开始符号, S ∈ V
+  E → E + T | E - T | T      ← 加减法 (左结合)
+  T → T * F | T / F | F      ← 乘除法 (左结合, 高优先级)
+  F → ( E ) | num | id       ← 原子
 
-═══ 算术表达式文法 ═══
+推导 "3 + 4 * 5":
+  E ⇒ E + T                  ← 选择 E → E + T
+    ⇒ T + T                  ← E → T
+    ⇒ F + T                  ← T → F
+    ⇒ 3 + T                  ← F → num
+    ⇒ 3 + T * F              ← T → T * F
+    ⇒ 3 + F * F              ← T → F
+    ⇒ 3 + 4 * F              ← F → num
+    ⇒ 3 + 4 * 5              ← F → num
 
-  E → E + T | E - T | T
-  T → T * F | T / F | F
-  F → ( E ) | num | id
-
-分析 "3 + 4 * 5":
-  E → E + T → T + T → F + T → 3 + T
-    → 3 + T * F → 3 + F * F → 3 + 4 * F → 3 + 4 * 5
-
-═══ 推导 (Derivation) ═══
-
-最左推导 (Leftmost): 每步替换最左边的非终结符
-  E ⇒ E + T ⇒ T + T ⇒ F + T ⇒ 3 + T ⇒ ...
-
-最右推导 (Rightmost): 每步替换最右边的非终结符
-  E ⇒ E + T ⇒ E + T * F ⇒ E + T * 5 ⇒ ...
+  结果: * 比 + 先结合 → 优先级通过文法结构实现!
 
 ═══ 二义性 (Ambiguity) ═══
 
-二义文法: 同一个串有两棵不同的语法树
-
-  经典例子 — 悬挂 else:
-  S → if E then S
-    | if E then S else S
-    | other
-
+悬挂 else 问题:
+  S → if E then S | if E then S else S | other
   "if a then if b then s1 else s2"
-  → else 和哪个 if 配对? 两种解析!
+  → else 和哪个 if 配对? 两棵不同的语法树!
 
-  解决方案:
-  1. 重写文法消除二义性:
-     S → matched | unmatched
-     matched → if E then matched else matched | other
-     unmatched → if E then S | if E then matched else unmatched
-  
-  2. 优先级/结合性声明 (Yacc/Bison):
-     %left '+' '-'
-     %left '*' '/'
-     %right '='
+解决: 重写文法 / %left %right 声明 / PEG 有序选择
 
 ═══ 消除左递归 ═══
-
-直接左递归:
-  A → Aα | β
-  改写为:
-  A → βA'
-  A' → αA' | ε
-
-示例:
-  E → E + T | T
-  改写为:
-  E → T E'
-  E' → + T E' | ε
-
-间接左递归 (A → B..., B → A...):
-  按非终结符排序, 逐步消除
-
-═══ 提取左公因子 ═══
-
-  A → αβ₁ | αβ₂
-  改写为:
-  A → αA'
-  A' → β₁ | β₂
-
-示例:
-  S → if E then S else S | if E then S
-  改写为:
-  S → if E then S S'
-  S' → else S | ε`}</pre>
+  E → E + T | T   (左递归!)
+  改为:
+  E  → T E'
+  E' → + T E' | ε  (右递归, LL 可用)`}</pre>
               </div>
             </div>
           </div>
         )}
 
+        {/* Tab 1: LL(1) */}
         {active === 1 && (
           <div className="fs-grid-2">
             <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
               <h3>⬇️ LL(1) 自顶向下分析</h3>
+
+              <div className="concept-card">
+                <h4>LL(1) = Left-to-right, Leftmost derivation, 1 lookahead</h4>
+                <p>从<strong>开始符号</strong>出发，每次选择一条产生式展开最左非终结符，只看 1 个前看符号就能确定选哪条规则。</p>
+              </div>
+
               <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#2563eb'}}></span> ll1_parser.txt</div>
-                <pre className="fs-code">{`═══ LL(1) = Left-to-right, Leftmost derivation, 1 lookahead ═══
-
-═══ FIRST 集计算 ═══
-
+                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#2563eb'}}></span> first_follow.txt</div>
+                <pre className="fs-code">{`═══ FIRST 集 ═══
 FIRST(α) = α 能推导出的所有串的首终结符集
 
 规则:
-  1. FIRST(a) = {a}  (a 是终结符)
-  2. 如果 A → ε, 则 ε ∈ FIRST(A)
-  3. 如果 A → Y₁Y₂...Yₖ:
-     - FIRST(Y₁) - {ε} 加入 FIRST(A)
-     - 如果 ε ∈ FIRST(Y₁), 则 FIRST(Y₂) - {ε} 加入
-     - 如果 ε ∈ FIRST(Y₁)...FIRST(Yᵢ), 则 FIRST(Yᵢ₊₁) 加入
-     - 如果所有 Yᵢ 都可推出 ε, 则 ε ∈ FIRST(A)
+  1. FIRST(终结符 a) = {a}
+  2. A → ε  ⟹  ε ∈ FIRST(A)
+  3. A → Y₁Y₂...Yₖ:
+     • FIRST(Y₁) - {ε} 加入 FIRST(A)
+     • 如果 ε ∈ FIRST(Y₁), 再看 Y₂ ...
+     • 如果全部 Yᵢ 可推出 ε, 则 ε ∈ FIRST(A)
 
-═══ FOLLOW 集计算 ═══
-
-FOLLOW(A) = 所有句型中, 紧跟 A 后面的终结符集
+═══ FOLLOW 集 ═══
+FOLLOW(A) = 句型中紧跟 A 后面的终结符集
 
 规则:
-  1. $ ∈ FOLLOW(S)  (S 是开始符号)
-  2. 如果 A → αBβ:
-     - FIRST(β) - {ε} 加入 FOLLOW(B)
-  3. 如果 A → αB, 或 A → αBβ 且 ε ∈ FIRST(β):
-     - FOLLOW(A) 加入 FOLLOW(B)
+  1. $ ∈ FOLLOW(S)         (S = 开始符号)
+  2. A → αBβ: FIRST(β)-{ε} 加入 FOLLOW(B)
+  3. A → αB 或 β ⇒* ε: FOLLOW(A) 加入 FOLLOW(B)
 
-═══ 构造 LL(1) 预测分析表 ═══
+═══ 完整示例 ═══
+文法: E→TE', E'→+TE'|ε, T→FT', T'→*FT'|ε, F→(E)|id
 
-对每条产生式 A → α:
-  1. 对每个 a ∈ FIRST(α), 将 A → α 放入 M[A, a]
-  2. 如果 ε ∈ FIRST(α):
-     对每个 b ∈ FOLLOW(A), 将 A → α 放入 M[A, b]
-
-如果某个 M[A, a] 有多条规则 → 不是 LL(1) 文法!
-
-═══ 示例: 算术表达式 ═══
-
-文法 (已消除左递归):
-  E  → T E'
-  E' → + T E' | ε
-  T  → F T'
-  T' → * F T' | ε
-  F  → ( E ) | id
-
-FIRST 集:
   FIRST(E) = FIRST(T) = FIRST(F) = {(, id}
-  FIRST(E') = {+, ε}
-  FIRST(T') = {*, ε}
-
-FOLLOW 集:
+  FIRST(E') = {+, ε}     FIRST(T') = {*, ε}
   FOLLOW(E) = FOLLOW(E') = {), $}
   FOLLOW(T) = FOLLOW(T') = {+, ), $}
   FOLLOW(F) = {*, +, ), $}
 
-预测分析表 M:
-       │  id    │  +     │  *     │  (     │  )     │  $
-  ─────┼────────┼────────┼────────┼────────┼────────┼──────
-  E    │ TE'   │        │        │ TE'   │        │
-  E'   │        │ +TE'  │        │        │  ε     │  ε
-  T    │ FT'   │        │        │ FT'   │        │
-  T'   │        │  ε     │ *FT'  │        │  ε     │  ε
-  F    │  id    │        │        │ (E)   │        │
+═══ LL(1) 预测分析表 ═══
+        │  id   │  +    │  *    │  (    │  )    │  $
+  ──────┼───────┼───────┼───────┼───────┼───────┼──────
+  E     │ TE'  │       │       │ TE'  │       │
+  E'    │       │ +TE' │       │       │  ε    │  ε
+  T     │ FT'  │       │       │ FT'  │       │
+  T'    │       │  ε    │ *FT' │       │  ε    │  ε
+  F     │  id   │       │       │ (E)  │       │
 
-═══ 递归下降 Parser (最常用!) ═══
-每个非终结符 → 一个函数
-每个产生式右部 → 一个分支
+如果某格有两条规则 → 不是 LL(1)!`}</pre>
+              </div>
+
+              <div className="fs-code-wrap">
+                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> recursive_descent.py</div>
+                <pre className="fs-code">{`# ═══ 递归下降 Parser (最实用!) ═══
+# 每个非终结符 → 一个函数
+# 每个产生式右部 → 一个分支
 
 def parse_E():
     parse_T()
@@ -198,192 +255,155 @@ def parse_E_prime():
         match('+')
         parse_T()
         parse_E_prime()
-    # else: ε production, do nothing`}</pre>
+    # else: ε production, do nothing
+
+def parse_F():
+    if lookahead == '(':
+        match('(')
+        parse_E()
+        match(')')
+    elif lookahead == 'id':
+        match('id')
+    else:
+        error("expected ( or id")`}</pre>
+              </div>
+
+              <div className="tip-box">
+                💡 <strong>面试高频</strong>：递归下降 Parser 是 LL(1) 的代码实现形式。
+                GCC、Clang、Rust、V8、Go 编译器全部使用手写递归下降！
               </div>
             </div>
           </div>
         )}
 
+        {/* Tab 2: LR */}
         {active === 2 && (
           <div className="fs-grid-2">
             <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
               <h3>⬆️ LR 自底向上分析</h3>
+
+              <div className="concept-card">
+                <h4>LR = Left-to-right, Rightmost derivation (逆序)</h4>
+                <p>从<strong>输入的 Token 流</strong>出发，通过「移进-归约」不断将栈顶的产生式右部替换为左部非终结符，最终归约到开始符号。</p>
+              </div>
+
               <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#06b6d4'}}></span> lr_parser.txt</div>
-                <pre className="fs-code">{`═══ LR = Left-to-right, Rightmost derivation (in reverse) ═══
+                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#7c3aed'}}></span> lr_analysis.txt</div>
+                <pre className="fs-code">{`═══ LR 核心操作 ═══
+  Shift:   读入 Token, 压栈
+  Reduce:  弹出栈顶 β, 按 A → β 替换为 A
+  Accept:  归约到开始符号 + 输入耗尽 → 成功!
+  Error:   无法继续 → 语法错误
 
-LR 分析器的核心操作:
-  移进 (Shift):  读入下一个 Token, 压入栈
-  归约 (Reduce): 弹出栈顶的 β, 按 A → β 替换为 A
-  接受 (Accept): 归约到开始符号, 输入已耗尽
-  报错 (Error):  无法继续
+═══ LR 家族 ═══
+  LR(0)  ⊂  SLR(1)  ⊂  LALR(1)  ⊂  CLR(1)
+  │          │           │            │
+  太弱      用FOLLOW     实用标准     最强但状态多
+             解决冲突     Yacc/Bison   
 
-═══ LR 分析器家族 ═══
-
-  LR(0):  不看前看符号, 最简单但最弱
-  SLR(1): 用 FOLLOW 集解决冲突, 中等力
-  LALR(1): 合并 LR(1) 同核状态, 实用 (Yacc/Bison)
-  CLR(1): 最强, 但状态数最多
-
-  能力: LR(0) ⊂ SLR(1) ⊂ LALR(1) ⊂ CLR(1)
-
-═══ LR(0) 项集 (Item Set) ═══
-
-LR(0) 项: 产生式中加一个点 "·"
-  表示"已经看到点左边的部分"
-
+═══ LR(0) 项与项集 ═══
+LR(0) 项 = 产生式中插入一个点 "·"
   E → · E + T    (还没看到任何东西)
-  E → E · + T    (已经看到 E)
-  E → E + · T    (已经看到 E+)
-  E → E + T ·    (已经看到 E+T, 可以归约!)
-
-═══ 构造 LR(0) 自动机 ═══
-
-1. 增广文法: 加入 S' → S
-2. 初始项集 I₀: closure({S' → ·S})
-3. GOTO(I, X): 从 I 中, 经过符号 X 能到达的项集的闭包
-
-closure(I):
-  对 I 中每个项 A → α·Bβ (点后面是非终结符 B):
-    将 B 的所有产生式 B → ·γ 加入 I
-  重复直到不变
+  E → E · + T    (已看到 E, 等待 +)
+  E → E + · T    (已看到 E+, 等待 T)
+  E → E + T ·    (可以归约!)
 
 ═══ SLR(1) 分析表构造 ═══
-
 对每个状态 I:
-  1. 如果 A → α·aβ ∈ I (a 是终结符):
-     ACTION[I, a] = shift GOTO(I, a)
-  2. 如果 A → α· ∈ I (归约项):
-     对所有 a ∈ FOLLOW(A): ACTION[I, a] = reduce A → α
-  3. 如果 S' → S· ∈ I:
-     ACTION[I, $] = accept
+  · 在点后面 (A → α · aβ): ACTION[I,a] = shift
+  · 点在最后 (A → α ·):    ACTION[I,a] = reduce (∀a ∈ FOLLOW(A))
+  · S' → S ·:              ACTION[I,$] = accept
 
-冲突类型:
-  移进-归约冲突 (shift-reduce): 看到 a, 不知道移进还是归约
-  归约-归约冲突 (reduce-reduce): 不知道用哪条规则归约
+冲突:
+  移进-归约冲突: 不知道移进还是归约
+  归约-归约冲突: 不知道用哪条规则
   → 出现冲突 = 不是 SLR(1)!
 
-═══ LALR(1) — 实用标准 ═══
+═══ LALR(1) — 工业标准 ═══
+LR(1) 项: [A → α·β, a]  多一个前看符号
+LALR(1): 合并核相同的 LR(1) 状态
+  → 状态数 = LR(0), 能力 ≈ LR(1)
+  → Yacc / Bison / LEMON 都用 LALR(1)`}</pre>
+              </div>
 
-LR(1) 项: 比 LR(0) 项多一个前看符号
-  [A → α·β, a]   a 是前看符号
-
-LALR(1): 合并 LR(1) 中核相同的状态
-  → 状态数 = LR(0)
-  → 能力 > SLR(1), 接近 LR(1)
-  → Yacc/Bison/LEMON 都用 LALR(1)
-
-═══ 冲突解决 ═══
-1. 优先级声明: %left '+' '-'
-2. 结合性声明: %right '='
-3. 重写文法
-4. GLR parser: 同时尝试所有可能 (Tree-sitter)`}</pre>
+              <div className="fs-card" style={{marginTop:'1rem'}}>
+                <h3>🔧 Parser 选择指南</h3>
+                <table className="fs-table">
+                  <thead><tr><th>编译器</th><th>Parser 类型</th><th>特点</th></tr></thead>
+                  <tbody>
+                    <tr><td>GCC / Clang</td><td>手写递归下降</td><td>灵活错误恢复</td></tr>
+                    <tr><td>Rust (rustc)</td><td>手写递归下降</td><td>优秀错误消息</td></tr>
+                    <tr><td>CPython 3.9+</td><td>PEG Parser</td><td>Packrat 缓存</td></tr>
+                    <tr><td>Tree-sitter</td><td>GLR</td><td>增量解析, 编辑器用</td></tr>
+                    <tr><td>Yacc/Bison</td><td>LALR(1)</td><td>经典生成器</td></tr>
+                    <tr><td>ANTLR 4</td><td>LL(*)</td><td>多语言目标</td></tr>
+                  </tbody>
+                </table>
+                <div className="warning-box" style={{marginTop:'0.75rem'}}>
+                  ⚠️ 生产级编译器几乎都用<strong>手写递归下降</strong>！原因：错误恢复更灵活、性能可控、错误消息更友好。
+                </div>
               </div>
             </div>
           </div>
         )}
 
+        {/* Tab 3: Interactive AST Builder */}
         {active === 3 && (
           <div className="fs-grid-2">
             <div className="fs-card" style={{ gridColumn: '1 / -1' }}>
-              <h3>🔧 Parser 实战</h3>
-              <div className="fs-code-wrap">
-                <div className="fs-code-head"><span className="fs-code-dot" style={{background:'#f59e0b'}}></span> parser_impl.py</div>
-                <pre className="fs-code">{`# ═══ Pratt Parser (运算符优先级分析) ═══
-# 递归下降的优雅变种, 处理运算符优先级和结合性
+              <div className="sandbox">
+                <div className="sandbox-header">
+                  <h4>🎮 交互式 AST 构建器 — Pratt Parser</h4>
+                  <button className="fs-btn primary" onClick={handleParse} style={{padding:'0.35rem 0.8rem', fontSize:'0.78rem'}}>
+                    ▶ 解析
+                  </button>
+                </div>
+                <div className="sandbox-body">
+                  <input
+                    type="text"
+                    value={exprInput}
+                    onChange={e => setExprInput(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && handleParse()}
+                    placeholder="输入算术表达式, 如: 3 + 4 * (2 - 1)"
+                    spellCheck={false}
+                  />
 
-class PrattParser:
-    """
-    Pratt Parser — 处理中缀/前缀/后缀表达式
-    关键概念: binding power (绑定力)
-    """
-    
-    # 优先级表 (绑定力)
-    PRECEDENCE = {
-        '=':  (1, 2),   # 右结合: left < right
-        '||': (3, 4),
-        '&&': (5, 6),
-        '==': (7, 8), '!=': (7, 8),
-        '<':  (9, 10), '>': (9, 10),
-        '+':  (11, 12), '-': (11, 12),
-        '*':  (13, 14), '/': (13, 14),
-        # 左结合: (n, n+1)
-        # 右结合: (n+1, n)
-    }
-    
-    def parse_expr(self, min_bp=0):
-        # 1. 解析前缀 (nud)
-        token = self.advance()
-        
-        if token.type == 'INTEGER':
-            lhs = IntLiteral(token.value)
-        elif token.type == 'IDENT':
-            lhs = Identifier(token.value)
-        elif token.type == 'LPAREN':
-            lhs = self.parse_expr(0)
-            self.expect('RPAREN')
-        elif token.value == '-':       # 前缀负号
-            rhs = self.parse_expr(15)  # 高优先级
-            lhs = UnaryOp('-', rhs)
-        elif token.value == '!':       # 前缀取反
-            rhs = self.parse_expr(15)
-            lhs = UnaryOp('!', rhs)
-        
-        # 2. 解析中缀 (led)
-        while True:
-            op = self.peek()
-            if op.type == 'EOF':
-                break
-            
-            if op.value not in self.PRECEDENCE:
-                break
-            
-            left_bp, right_bp = self.PRECEDENCE[op.value]
-            
-            if left_bp < min_bp:
-                break  # 当前运算符优先级不够
-            
-            self.advance()  # 消费运算符
-            rhs = self.parse_expr(right_bp)
-            lhs = BinaryOp(op.value, lhs, rhs)
-        
-        return lhs
+                  {ast && (
+                    <>
+                      <div style={{margin:'1rem 0 0.5rem', fontSize:'0.82rem', color:'#a78bfa', fontWeight:700}}>
+                        🌳 抽象语法树 (AST)
+                      </div>
+                      <div className="sandbox-output" style={{fontFamily:'JetBrains Mono, monospace'}}>
+                        {renderTree(ast, '', true)}
+                      </div>
 
-# 解析 "1 + 2 * 3":
-# parse_expr(0)
-#   lhs = 1
-#   op = '+', bp = (11, 12), 11 >= 0 → 进入
-#     rhs = parse_expr(12)
-#       lhs = 2
-#       op = '*', bp = (13, 14), 13 >= 12 → 进入
-#         rhs = parse_expr(14)
-#           lhs = 3
-#           op = EOF → 返回 3
-#         lhs = 2 * 3
-#       op = EOF → 返回 2 * 3
-#     rhs = 2 * 3
-#   lhs = 1 + (2 * 3)  ← 正确!
+                      <div style={{margin:'1rem 0 0.5rem', fontSize:'0.82rem', color:'#22d3ee', fontWeight:700}}>
+                        📋 AST JSON
+                      </div>
+                      <div className="sandbox-output">
+                        {JSON.stringify(ast, null, 2)}
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
 
-# ═══ 实际编译器的 Parser 选择 ═══
-# GCC: 手写递归下降 (C/C++)
-# Clang: 同上
-# Rust (rustc): 手写递归下降
-# V8 (JS): 手写递归下降
-# Python (CPython): PEG Parser (Python 3.9+)
-# Go: 手写递归下降
-#
-# 结论: 生产级编译器几乎都用手写递归下降!
-# → 错误恢复更灵活
-# → 性能可控
-# → 更好的错误消息
+              <div className="tip-box" style={{marginTop:'1rem'}}>
+                💡 <strong>试试这些表达式</strong>：
+                <br/><code>1 + 2 * 3</code> → 观察 * 优先级高于 +
+                <br/><code>(1 + 2) * 3</code> → 括号改变优先级
+                <br/><code>a + b * c - d / e</code> → 多运算符混合
+                <br/><code>-x + y</code> → 前缀一元运算符
+              </div>
 
-# ═══ Parser 生成器 ═══
-# Yacc/Bison: LALR(1), C/C++
-# ANTLR 4: LL(*), Java/Python/JS/Go
-# Tree-sitter: GLR/PEG, 增量解析, 编辑器用
-# PEG: Packrat Parser, 无二义性 (有序选择)
-# Lalrpop: LALR(1), Rust
-# pest: PEG, Rust`}</pre>
+              <div className="concept-card" style={{marginTop:'1rem'}}>
+                <h4>💡 Pratt Parser 核心原理</h4>
+                <p>每个运算符有两个<strong>绑定力 (binding power)</strong>：左绑定力和右绑定力。</p>
+                <ul>
+                  <li><strong>左结合</strong> (<code>+</code>, <code>*</code>): left_bp {'<'} right_bp，如 (11, 12)</li>
+                  <li><strong>右结合</strong> (<code>=</code>): left_bp {'>'} right_bp，如 (2, 1)</li>
+                </ul>
+                <p>递归时传入最小绑定力 min_bp，当遇到的运算符 left_bp {'<'} min_bp 时停止，自然实现优先级和结合性。</p>
               </div>
             </div>
           </div>
