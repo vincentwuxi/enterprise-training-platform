@@ -4,7 +4,7 @@
 
 set -e
 
-SERVER="wenyun@100.102.139.9"
+SERVER="wenyun@100.104.50.111"
 REMOTE_DIR="/var/www/training"
 PORT=8082
 
@@ -20,4 +20,4 @@ ssh "$SERVER" "sudo systemctl reload nginx"
 
 echo ""
 echo "✅ Deploy complete!"
-echo "🌐 http://100.102.139.9:$PORT"
+echo "🌐 http://100.104.50.111:$PORT"
